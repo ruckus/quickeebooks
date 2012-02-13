@@ -1,4 +1,5 @@
-== Quickeebooks ==
+Quickeebooks
+============
 
 Integration with Quickbooks Online via the Intuit Data Services REST API.
 
