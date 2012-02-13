@@ -1,17 +1,4 @@
-
-module Quickbooks
-
-  class Customer < IntuitType
-    #attr_accessor :id
-    #attr_accessor :syncToken
-    #attr_accessor :MetaData
-    attribute :id, String
-    attribute :syncToken, Integer
-    attribute :metaData, QuickBooks::Metadata
-  end
-end
-
-=begin
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Customer>
   <Id idDomain="QBO">1</Id>
   <SyncToken>1</SyncToken>
@@ -74,4 +61,3 @@ end
     <Amount>6200</Amount>
   </OpenBalance>
 </Customer>
-=end
