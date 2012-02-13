@@ -15,9 +15,9 @@ Gem::Specification.new do |gem|
   gem.files = Dir["**/*"]#.select { |d| d =~ %r{^(README|bin/|data/|ext/|lib/|spec/|test/)} }
 
   gem.add_dependency 'roxml'
-
+  #gem.add_dependency 'httparty'
+  
   gem.add_development_dependency 'rake'
-  #gem.add_development_dependency 'fakefs', '~> 0.2.1'
   gem.add_development_dependency 'rcov',   '~> 0.9.8'
   gem.add_development_dependency 'rr',     '~> 1.0.2'
   gem.add_development_dependency 'rspec',  '~> 2.0.0'

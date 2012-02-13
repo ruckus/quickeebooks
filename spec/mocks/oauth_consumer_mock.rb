@@ -1,0 +1,2 @@
+class OauthConsumerMock
+end
