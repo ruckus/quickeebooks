@@ -16,31 +16,6 @@ module Quickeebooks
       xml_accessor :current_balance, :from => 'CurrentBalance', :as => Float
       xml_accessor :opening_balance_date, :from => 'OpeningBalanceDate', :as => Date
 
-      
-      # def opening_balance_date=(date)
-      # end
-      # 
-      # def to_xml
-      #   xml = <<-XML
-      #   <Account xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2">
-      #   <Name>#{name}</Name>
-      #   <Desc>#{desc}</Desc>
-      #   <Subtype>#{sub_type}</Subtype>
-      #   <AcctNum>#{acct_num}</AcctNum>
-      #   <OpeningBalanceDate>#{@opening_balance_date.strftim('%Y-%m-%d')}</OpeningBalanceDate>
-      #   </Account>
-      #   XML
-      # end
-      # 
-      # def to_xml_for_delete
-      #   xml = <<-XML
-      #   <Account xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2">
-      #   <Id>#{id}</Id>
-      #   <SyncToken>#{sync_token}</SyncToken>
-      #   </Account>
-      #   XML
-      # end
-      
     end
   end
 end

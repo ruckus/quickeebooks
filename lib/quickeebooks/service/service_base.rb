@@ -49,16 +49,25 @@ module Quickeebooks
       
       def fetch_collection(http_method = :post, resource = nil, container = nil, model = nil, options = {})
         results = []
-        response = @oauth_consumer.request(http_method, url_for_resource(resource), nil, {'Content-Type' => 'application/x-www-form-urlencoded'})
+        response = do_http_post(url_for_resource(resource), nil, {'Content-Type' => 'application/x-www-form-urlencoded'})
         if response && response.code == "200"
+          collection = Quickeebooks::Collection.new
           xml = Nokogiri::XML(response.body)
           xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{container}").each do |xa|
             results << model.from_xml(xa)
           end
-          results
+          collection.entries = results
+          collection.count = xml.xpath("//qbo:SearchResults/qbo:Count")[0].text.to_i
+          collection.current_page = xml.xpath("//qbo:SearchResults/qbo:CurrentPage")[0].text.to_i
+          collection
         else
           nil
         end
+      end
+      
+      def do_http_post(url, body = nil, headers = {})
+        headers = headers.merge({'Content-Type' => 'application/xml'})
+        response = @oauth_consumer.request(:post, url, body, headers)
       end
 
       def log(msg)

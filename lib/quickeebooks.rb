@@ -27,6 +27,10 @@ module Quickeebooks
     end 
   end
   
+  class Collection
+    attr_accessor :entries, :count, :current_page
+  end
+  
 end
 
 # monkey-path the to_xml method to add support for passing
@@ -48,7 +52,6 @@ module ROXML
           refs.reject! { |r| !params[:fields].include?(r.name) }
         end
         refs.each do |ref|
-          #puts "ref = #{ref.name}"
           value = ref.to_xml(self)
           unless value.nil?
             ref.update_xml(root, value)

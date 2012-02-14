@@ -25,7 +25,9 @@ describe "Quickeebooks::Service::Account" do
     FakeWeb.register_uri(:post, service.url_for_resource("accounts"), :status => ["200", "OK"], :body => xml)
     accounts = service.list
     accounts.count.should == 10
-    accounts.first.current_balance.should == 6200
+    accounts.current_page.should == 1
+    accounts.entries.count.should == 10
+    accounts.entries.first.current_balance.should == 6200
   end
   
 end
