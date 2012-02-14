@@ -9,11 +9,14 @@ module Quickeebooks
       
       QB_BASE_URI = "https://qbo.intuit.com/qbo1/rest/user/v2"
       
-      def initialize(oauth_consumer, realm_id)
+      def initialize(oauth_consumer, realm_id, base_url = nil)
         @oauth_consumer = oauth_consumer
         @realm_id = realm_id
-        
-        determine_base_url
+        if base_url.nil?
+          determine_base_url
+        else
+          @base_url = base_url
+        end
       end
       
       # Given a realm ID we need to determine the real Base URL
@@ -23,22 +26,19 @@ module Quickeebooks
         response = @oauth_consumer.request(:get, qb_base_uri_with_realm_id)
         if response
           if response.code == "200"
-            doc = REXML::Document.new(response.body)
-            base = doc.elements['qbo:QboUser/qbo:CurrentCompany/qbo:BaseURI']
-            if base
-              @base_uri = base.text
+            doc = Nokogiri::XML(response.body)
+            element = doc.xpath("//qbo:QboUser/qbo:CurrentCompany/qbo:BaseURI")[0]
+            if element
+              @base_uri = element.text
             end
           else
             raise "Response error: invalid code #{response.code}"
           end
         end
       end
-      
-      private
-      
-      def base_uri_with_realm_id
-        raise "Base URI has not been determined" if @base_uri.nil?
-        "#{@base_uri}/#{@realm_id}"
+
+      def url_for_resource(resource)
+        "#{@base_uri}/resource/#{resource}/v2/#{@realm_id}"
       end
 
       def qb_base_uri_with_realm_id

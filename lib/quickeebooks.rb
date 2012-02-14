@@ -1,4 +1,5 @@
 require 'roxml'
+require 'nokogiri'
 
 module Quickeebooks
 

@@ -2,6 +2,7 @@ module Quickeebooks
 
   module Model
     class InvoiceLineItem < IntuitType
+      xml_name 'Line'
       xml_accessor :id, :from => 'Id'
       xml_accessor :desc, :from => 'Desc'
       xml_accessor :amount, :from => 'Amount', :as => Float

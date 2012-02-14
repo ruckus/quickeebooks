@@ -4,6 +4,7 @@ module Quickeebooks
 
   module Model
     class InvoiceHeader < IntuitType
+      xml_name 'Header'
       xml_accessor :doc_number, :from => 'DocNumber'
       xml_accessor :txn_date, :from => 'TxnDate', :as => Time
       xml_accessor :msg, :from => 'Msg'
