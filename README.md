@@ -22,9 +22,6 @@ Getting Started
 
 This library assumes you already have an OAuth token and secret. You can then initialize your `OAuth Consumer` and create a `OAuth Client` via:
 
-```
-
-
 ```ruby
 QB_KEY = "your-qb-key"
 QB_SECRET = "your-qb-secret"
@@ -56,7 +53,6 @@ Quickeebooks will attempt to determine the base URL for the given OAuth client a
 ```ruby
 customer_service = Quickeebooks::Service::Customer.new(oauth_client, realm_id, "https://qbo.intuit.com/qbo36")
 ```
-
 
 Author
 ======
