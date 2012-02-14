@@ -15,7 +15,7 @@ module Quickeebooks
         if base_url.nil?
           determine_base_url
         else
-          @base_url = base_url
+          @base_uri = base_url
         end
       end
       
@@ -43,6 +43,27 @@ module Quickeebooks
 
       def qb_base_uri_with_realm_id
         "#{QB_BASE_URI}/#{@realm_id}"
+      end
+
+      private
+      
+      def fetch_collection(http_method = :post, resource = nil, container = nil, model = nil, options = {})
+        results = []
+        response = @oauth_consumer.request(http_method, url_for_resource(resource), nil, {'Content-Type' => 'application/x-www-form-urlencoded'})
+        if response && response.code == "200"
+          xml = Nokogiri::XML(response.body)
+          xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{container}").each do |xa|
+            results << model.from_xml(xa)
+          end
+          results
+        else
+          nil
+        end
+      end
+
+      def log(msg)
+        Quickeebooks.logger.info(msg)
+        Quickeebooks.logger.flush if Quickeebooks.logger.respond_to?(:flush)
       end
 
     end

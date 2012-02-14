@@ -11,8 +11,9 @@ require "quickeebooks/model/open_balance"
 module Quickeebooks
   module Model
     class Customer < IntuitType
+      xml_convention :camelcase
       xml_accessor :id, :from => 'Id'
-      xml_accessor :syncToken, :from => 'SyncToken', :as => Integer
+      xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
       xml_accessor :name, :from => 'Name'
       xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Model::MetaData
       xml_accessor :addresses, :from => 'Address', :as => [Quickeebooks::Model::Address]

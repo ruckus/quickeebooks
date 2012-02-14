@@ -7,7 +7,7 @@ describe "Quickeebooks::Model::Customer" do
   describe "parse customer from XML" do
     xml = File.read(File.dirname(__FILE__) + "/../xml/customer.xml")
     customer = Quickeebooks::Model::Customer.from_xml(xml)
-    customer.syncToken.should == 1
+    customer.sync_token.should == 1
     customer.name.should == "John Doe"
     
     create_time = Date.civil(2011, 9, 29)

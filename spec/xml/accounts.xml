@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+  <qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Accounts">
+    <Account>
+      <Id idDomain="QBO">30</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2012-01-22T20:28:58-08:00</CreateTime>
+        <LastUpdatedTime>2012-01-22T20:28:58-08:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Accounts Receivable (A/R)</Name>
+      <Subtype>AccountsReceivable</Subtype>
+      <CurrentBalance>6200.00</CurrentBalance>
+    </Account>
+    <Account>
+      <Id idDomain="QBO">7</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2011-09-29T15:42:38-07:00</CreateTime>
+        <LastUpdatedTime>2011-09-29T15:42:38-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Advertising</Name>
+      <Subtype>AdvertisingPromotional</Subtype>
+    </Account>
+    <Account>
+      <Id idDomain="QBO">8</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2011-09-29T15:42:38-07:00</CreateTime>
+        <LastUpdatedTime>2011-09-29T15:42:38-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Bank Charges</Name>
+      <Subtype>BankCharges</Subtype>
+    </Account>
+    <Account>
+      <Id idDomain="QBO">9</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2011-09-29T15:42:38-07:00</CreateTime>
+        <LastUpdatedTime>2011-09-29T15:42:38-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Commissions &amp; Fees</Name>
+      <Subtype>OtherMiscellaneousServiceCost</Subtype>
+    </Account>
+    <Account>
+      <Id idDomain="QBO">32</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2012-01-22T20:34:01-08:00</CreateTime>
+        <LastUpdatedTime>2012-01-22T20:34:01-08:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Cost of Goods Sold</Name>
+      <Subtype>SuppliesMaterialsCogs</Subtype>
+    </Account>
+    <Account>
+      <Id idDomain="QBO">28</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2011-09-29T15:45:43-07:00</CreateTime>
+        <LastUpdatedTime>2011-09-29T15:45:43-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Discounts given</Name>
+      <Subtype>DiscountsRefundsGiven</Subtype>
+    </Account>
+    <Account>
+      <Id idDomain="QBO">10</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2011-09-29T15:42:38-07:00</CreateTime>
+        <LastUpdatedTime>2011-09-29T15:42:38-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Dues &amp; Subscriptions</Name>
+      <Subtype>DuesSubscriptions</Subtype>
+    </Account>
+    <Account>
+      <Id idDomain="QBO">5</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2011-09-29T15:42:38-07:00</CreateTime>
+        <LastUpdatedTime>2011-09-29T15:42:38-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Fees Billed</Name>
+      <Subtype>ServiceFeeIncome</Subtype>
+    </Account>
+    <Account>
+      <Id idDomain="QBO">11</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2011-09-29T15:42:38-07:00</CreateTime>
+        <LastUpdatedTime>2011-09-29T15:42:38-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Insurance</Name>
+      <Subtype>Insurance</Subtype>
+    </Account>
+    <Account>
+      <Id idDomain="QBO">25</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2011-09-29T15:42:38-07:00</CreateTime>
+        <LastUpdatedTime>2011-09-29T15:42:38-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Interest Earned</Name>
+      <Subtype>InterestEarned</Subtype>
+    </Account>
+  </qbo:CdmCollections>
+  <qbo:Count>10</qbo:Count>
+  <qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>

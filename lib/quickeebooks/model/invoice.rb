@@ -10,8 +10,9 @@ module Quickeebooks
 
   module Model
     class Invoice < IntuitType
+      xml_convention :camelcase
       xml_accessor :id, :from => 'Id', :as => Integer
-      xml_accessor :syncToken, :from => 'SyncToken', :as => Integer
+      xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
       xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Model::MetaData
       xml_accessor :header, :from => 'Header', :as => Quickeebooks::Model::InvoiceHeader
       xml_accessor :bill_address, :from => 'BillAddr', :as => Quickeebooks::Model::Address
