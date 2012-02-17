@@ -6,7 +6,7 @@ module Quickeebooks
   @@logger = nil
   
   def self.logger
-    @@logger || Logger.new("quickeebooks.log")
+    @@logger || Logger.new($stdout) # TODO: replace with a real log file
   end
   
   def self.logger=(logger)
@@ -18,6 +18,13 @@ module Quickeebooks
       include ROXML
 
       private
+      
+      # ROXML doesnt insert the namespaces into generated XML so we need to do it ourselves
+      # insert the static namespaces in the first opening tag that matches the +model_name+
+      def to_xml_inject_ns(model_name, options = {})
+        xml = to_xml(options)
+        xml.to_s.sub("<#{model_name}>", "<#{model_name} #{Quickeebooks::Service::ServiceBase::XML_NS}>")
+      end
       
       def log(msg)
         Quickeebooks.logger.info(msg)
@@ -61,3 +68,11 @@ module ROXML
     end
   end  
 end
+
+# Models
+require 'quickeebooks/model/customer'
+require 'quickeebooks/model/account'
+
+# Services
+require 'quickeebooks/service/customer'
+require 'quickeebooks/service/account'

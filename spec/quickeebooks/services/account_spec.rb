@@ -17,11 +17,19 @@ describe "Quickeebooks::Service::Account" do
         :authorize_path       => "/oauth/v1/get_access_token",
         :access_token_path    => "/oauth/v1/get_access_token"
     })
+    @oauth = OAuth::ConsumerToken.new(@oauth_consumer, "blah", "blah")
+  end
+  
+  it "receives 404 from invalid base URL" do
+    uri = "https://qbo.intuit.com/invalid"
+    service = Quickeebooks::Service::Account.new(@oauth, @realm_id, uri)
+    FakeWeb.register_uri(:post, service.url_for_resource("accounts"), :status => ["200", "OK"], :body => "blah")
+    lambda { service.list }.should raise_error(IntuitRequestException)
   end
   
   it "can fetch a list of accounts" do
     xml = File.read(File.dirname(__FILE__) + "/../../xml/accounts.xml")
-    service = Quickeebooks::Service::Account.new(@oauth_consumer, @realm_id, @base_uri)
+    service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
     FakeWeb.register_uri(:post, service.url_for_resource("accounts"), :status => ["200", "OK"], :body => xml)
     accounts = service.list
     accounts.count.should == 10

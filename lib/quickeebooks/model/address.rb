@@ -16,7 +16,11 @@ module Quickeebooks
 
       def zip
         postal_code
-      end 
+      end
+      
+      def to_xml_ns
+        to_xml_inject_ns('Address')
+      end
 
     end
   end

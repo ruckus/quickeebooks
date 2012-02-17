@@ -31,6 +31,11 @@ module Quickeebooks
       xml_accessor :sales_term_id, :from => 'SalesTermId'
       xml_accessor :paymethod_method_id, :from => 'PaymentMethodId'
       xml_accessor :open_balance, :from => 'OpenBalance', :as => Quickeebooks::Model::OpenBalance
+
+      def to_xml_ns(options = {})
+        to_xml_inject_ns('Customer', options)
+      end
+      
     end
   end
 

@@ -16,6 +16,10 @@ module Quickeebooks
       xml_accessor :current_balance, :from => 'CurrentBalance', :as => Float
       xml_accessor :opening_balance_date, :from => 'OpeningBalanceDate', :as => Date
 
+      def to_xml_ns
+        to_xml_inject_ns('Account')
+      end
+
     end
   end
 end

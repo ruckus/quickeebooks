@@ -1,20 +1,29 @@
 require 'rexml/document'
+require 'uri'
+
+class IntuitRequestException < Exception; end
+class AuthorizationFailure < Exception; end
 
 module Quickeebooks
   module Service
     class ServiceBase
       attr_accessor :realm_id
-      attr_accessor :oauth_consumer
+      attr_accessor :oauth
       attr_reader :base_uri
       
       QB_BASE_URI = "https://qbo.intuit.com/qbo1/rest/user/v2"
+      XML_NS = 'xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2"'
       
-      def initialize(oauth_consumer, realm_id, base_url = nil)
-        @oauth_consumer = oauth_consumer
+      def initialize(oauth_consumer_token, realm_id, base_url = nil)
+        @oauth = oauth_consumer_token
         @realm_id = realm_id
         if base_url.nil?
           determine_base_url
         else
+          uri = URI.parse(base_url)
+          if uri.host.nil?
+            raise ArgumentError, "#{base_url} doesn't appear to be a valid host name!"
+          end
           @base_uri = base_url
         end
       end
@@ -23,16 +32,16 @@ module Quickeebooks
       # to use for all subsequenet REST operations
       # See: https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0010_Getting_the_Base_URL
       def determine_base_url
-        response = @oauth_consumer.request(:get, qb_base_uri_with_realm_id)
+        response = @oauth.request(:get, qb_base_uri_with_realm_id)
         if response
           if response.code == "200"
-            doc = Nokogiri::XML(response.body)
+            doc = parse_xml(response.body)
             element = doc.xpath("//qbo:QboUser/qbo:CurrentCompany/qbo:BaseURI")[0]
             if element
               @base_uri = element.text
             end
           else
-            raise "Response error: invalid code #{response.code}"
+            raise IntuitRequestException.new("Response error: invalid code #{response.code}")
           end
         end
       end
@@ -47,27 +56,101 @@ module Quickeebooks
 
       private
       
+      def parse_xml(xml)
+        Nokogiri::XML(xml)
+      end
+      
+      def valid_xml_document(xml)
+        doc = <<-XML
+        <?xml version="1.0" encoding="utf-8"?>
+        #{xml}
+        XML
+        doc.strip
+      end
+      
       def fetch_collection(http_method = :post, resource = nil, container = nil, model = nil, options = {})
         results = []
-        response = do_http_post(url_for_resource(resource), nil, {'Content-Type' => 'application/x-www-form-urlencoded'})
-        if response && response.code == "200"
+        response = do_http_post(url_for_resource(resource), "", {}, {'Content-Type' => 'application/x-www-form-urlencoded'})
+        if response
           collection = Quickeebooks::Collection.new
-          xml = Nokogiri::XML(response.body)
-          xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{container}").each do |xa|
-            results << model.from_xml(xa)
+          xml = parse_xml(response)
+          begin
+            xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{container}").each do |xa|
+              results << model.from_xml(xa)
+            end
+            collection.entries = results
+            collection.count = xml.xpath("//qbo:SearchResults/qbo:Count")[0].text.to_i
+            collection.current_page = xml.xpath("//qbo:SearchResults/qbo:CurrentPage")[0].text.to_i
+          rescue => ex
+            log("Error parsing XML: #{ex.message}")
+            raise IntuitRequestException.new("Error parsing XML: #{ex.message}")
           end
-          collection.entries = results
-          collection.count = xml.xpath("//qbo:SearchResults/qbo:Count")[0].text.to_i
-          collection.current_page = xml.xpath("//qbo:SearchResults/qbo:CurrentPage")[0].text.to_i
           collection
         else
           nil
         end
       end
-      
-      def do_http_post(url, body = nil, headers = {})
-        headers = headers.merge({'Content-Type' => 'application/xml'})
-        response = @oauth_consumer.request(:post, url, body, headers)
+
+      def do_http_post(url, body = "", params = {}, headers = {}) # throws IntuitRequestException
+        url = add_query_string_to_url(url, params)
+        do_http(:post, url, body, headers)
+      end
+
+      def do_http_get(url, params = {}, headers = {}) # throws IntuitRequestException
+        url = add_query_string_to_url(url, params)
+        do_http(:get, url, "", headers)
+      end
+
+      def do_http(method, url, body, headers) # throws IntuitRequestException
+        unless headers.has_key?('Content-Type')
+          headers.merge!({'Content-Type' => 'application/xml'})
+        end
+        # puts "METHOD = #{method}"
+        # puts "URL = #{url}"
+        # puts "BODY = #{body == nil ? "<NIL>" : body}"
+        # puts "HEADERS = #{headers.inspect}"
+        response = @oauth.request(method, url, body, headers)
+        check_response(response)
+      end
+
+      def add_query_string_to_url(url, params)
+        if params.is_a?(Hash) && !params.empty?
+          url + "?" + params.collect { |k| "#{k.first}=#{k.last}" }.join("&")
+        else
+          url
+        end
+      end
+
+      def check_response(response)
+        #puts "HTTP Response: #{response.code}"
+        status = response.code.to_i
+        case status
+        when 200
+          response.body
+        when 302
+          raise "Unhandled HTTP Redirect"
+        when 401
+          raise AuthorizationFailure
+        when 400, 500
+          err = parse_intuit_error(response.body)
+          raise IntuitRequestException.new("Message: #{err[:message]}  Code: #{err[:code]}")
+        else
+          raise "HTTP Error Code: #{status}, Msg: #{response.body}"
+        end
+      end
+
+      def parse_intuit_error(body)
+        xml = parse_xml(body)
+        error = {:message => "", :code => 0}
+        fault = xml.xpath("//xmlns:FaultInfo/xmlns:Message")[0]
+        if fault
+          error[:message] = fault.text
+        end
+        error_code = xml.xpath("//xmlns:FaultInfo/xmlns:ErrorCode")[0]
+        if error_code
+          error[:code] = error_code.text
+        end
+        error
       end
 
       def log(msg)
