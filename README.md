@@ -194,7 +194,7 @@ customers.entries
 => [ #<Quickeebooks::Model::Customer:0x007f8e29259770>, #<Quickeebooks::Model::Customer:0x0078768202020>, ... ]
 ```
 
-## Reading Objects
+## Reading a single object
 
 Use the `Service` instance to fetch an object by its id using the `fetch_by_id` method:
 
@@ -206,17 +206,17 @@ customer.name
 => John Doe
 ```
 
-## Updating Objects
+## Updating a single object
 
-Create an instance of your object then pass it to the `update` method on its related Service:
+Pass an instance of your object to the `update` method on its related Service:
 
 ```ruby
 customer_service = Quickeebooks::Service::Customer.new(oauth_client, realm_id)
+customer = customer_service.fetch_by_id(100)
 customer.name = "Richard Parker"
 customer.email = "richard@example.org"
 customer_service.update(customer)
 ```
-
 
 ## Author
 
