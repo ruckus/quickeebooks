@@ -164,10 +164,17 @@ sorter = Quickeebooks::Service::Sort.new('FamilyName', 'AtoZ')
 
 customer_service = Quickeebooks::Service::Customer.new(oauth_client, realm_id)
 customers = customer_service.list(filters, 1, 30, sort)
-=> 
-customers.count = 67
-customers.current_page = 1
-customers.entries = [ #<Quickeebooks::Model::Customer:0x007f8e29259770>, #<Quickeebooks::Model::Customer:0x0078768202020>, ... ]
+
+# returns
+ 
+customers.count
+=> 67
+
+customers.current_page
+=> 1
+
+customers.entries 
+=> [ #<Quickeebooks::Model::Customer:0x007f8e29259770>, #<Quickeebooks::Model::Customer:0x0078768202020>, ... ]
 ```
 
 ## Author
