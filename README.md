@@ -8,6 +8,13 @@ https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services
 
 ## Requirements
 
+Gems:
+
+* `oauth`
+* `roxml` : Workhorse for (de)serializing objects between Ruby & XML
+* `nokogiri` : XML parsing
+* `active_model` : For validations
+
 This is being developed on Ruby 1.9.2. Other versions/VMs are untested but Ruby 1.8 should work in theory.
 
 ## Dependencies
