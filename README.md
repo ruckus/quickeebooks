@@ -2,9 +2,12 @@
 
 Integration with Quickbooks Online via the Intuit Data Services REST API.
 
-This library communicates with the Quickbooks Data Services v3 API, documented at:
+This library communicates with the Quickbooks Data Services `v2` API, documented at:
 
 https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services
+
+When Intuit finalizes the `v3` API I would like to move to that version as it appears to be better structured
+and has `JSON` request/response formats, which should be easier to work with than XML.
 
 ## Requirements
 
