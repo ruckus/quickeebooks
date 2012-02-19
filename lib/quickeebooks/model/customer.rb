@@ -5,7 +5,7 @@ require "quickeebooks/model/phone"
 require "quickeebooks/model/web_site"
 require "quickeebooks/model/email"
 require "quickeebooks/model/note"
-require "quickeebooks/model/custom_field"
+require "quickeebooks/model/customer_custom_field"
 require "quickeebooks/model/open_balance"
 
 module Quickeebooks
@@ -27,13 +27,17 @@ module Quickeebooks
       xml_accessor :gender, :from => 'Gender'
       xml_accessor :dba_name, :from => 'DBAName'
       xml_accessor :notes, :from => 'Notes', :as => [Quickeebooks::Model::Note]
-      xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Model::CustomField]
+      xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Model::CustomerCustomField]
       xml_accessor :sales_term_id, :from => 'SalesTermId'
       xml_accessor :paymethod_method_id, :from => 'PaymentMethodId'
       xml_accessor :open_balance, :from => 'OpenBalance', :as => Quickeebooks::Model::OpenBalance
 
       def to_xml_ns(options = {})
         to_xml_inject_ns('Customer', options)
+      end
+      
+      def email_address=(email_address)
+        self.email = Quickeebooks::Model::Email.new(email_address)
       end
       
     end

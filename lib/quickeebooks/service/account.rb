@@ -12,7 +12,12 @@ module Quickeebooks
       def create(account)
         raise InvalidModelException unless account.valid?
         xml = account.to_xml_ns
-        do_http_post(url_for_resource("account"), valid_xml_document(xml))
+        response = do_http_post(url_for_resource("account"), valid_xml_document(xml))
+        if response && response.code.to_i == 200
+          Quickeebooks::Model::Account.from_xml(response.body)
+        else
+          nil
+        end
       end
       
       def fetch_by_id(id)
@@ -24,7 +29,8 @@ module Quickeebooks
         raise InvalidModelException.new("Missing required parameters for delete") unless account.valid_for_deletion?
         xml = valid_xml_document(account.to_xml_ns(:fields => ['Id', 'SyncToken']))
         url = "#{url_for_resource("account")}/#{account.id}"
-        do_http_post(url, xml, {:methodx => "delete"})
+        response = do_http_post(url, xml, {:methodx => "delete"})
+        response.code.to_i == 200
       end
       
     end

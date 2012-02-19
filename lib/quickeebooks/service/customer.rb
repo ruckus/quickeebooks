@@ -4,27 +4,49 @@ require 'nokogiri'
 module Quickeebooks
   module Service
     class Customer < ServiceBase
-      
+
       def create(customer)
         xml = customer.to_xml_ns
-        do_http_post(url_for_resource("customer"), valid_xml_document(xml))
+        response = do_http_post(url_for_resource("customer"), valid_xml_document(xml))
+        if response.code.to_i == 200
+          Quickeebooks::Model::Customer.from_xml(response.body)
+        else
+          nil
+        end
       end
-      
+
       def fetch_by_id(id)
-        body = do_http_get(url_for_resource("customer") + '/' + id)
-        Quickeebooks::Model::Customer.from_xml(body)
+        url = "#{url_for_resource("customer")}/#{id}"
+        response = do_http_get(url)
+        if response && response.code.to_i == 200
+          Quickeebooks::Model::Customer.from_xml(response.body)
+        else
+          nil
+        end
       end
       
+      def update(customer)
+        url = "#{url_for_resource("customer")}/#{customer.id}"
+        xml = customer.to_xml_ns
+        response = do_http_post(url, valid_xml_document(xml))
+        if response.code.to_i == 200
+          Quickeebooks::Model::Customer.from_xml(response.body)
+        else
+          nil
+        end
+      end
+
       def delete(customer)
         xml = valid_xml_document(customer.to_xml_ns(:fields => ['Id', 'SyncToken']))
         url = "#{url_for_resource("customer")}/#{customer.id}"
-        do_http_post(url, xml, {:methodx => "delete"})
+        response = do_http_post(url, xml, {:methodx => "delete"})
+        response.code.to_i == 200
       end
-      
+
       def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
         fetch_collection("customers", "Customer", Quickeebooks::Model::Customer, filters, page, per_page, sort, options)
       end
-      
+
     end
   end
 end

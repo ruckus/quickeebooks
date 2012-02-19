@@ -18,7 +18,7 @@ module Quickeebooks
       attr_reader :base_uri
       
       QB_BASE_URI = "https://qbo.intuit.com/qbo1/rest/user/v2"
-      XML_NS = 'xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2"'
+      XML_NS = %{xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm"}
       
       def initialize(oauth_consumer_token, realm_id, base_url = nil)
         @oauth = oauth_consumer_token
@@ -67,11 +67,7 @@ module Quickeebooks
       end
       
       def valid_xml_document(xml)
-        doc = <<-XML
-        <?xml version="1.0" encoding="utf-8"?>
-        #{xml}
-        XML
-        doc.strip
+        %Q{<?xml version="1.0" encoding="utf-8"?>\n#{xml.strip}}
       end
       
       def fetch_collection(resource, container, model, filters = [], page = 1, per_page = 20, sort = nil, options ={})

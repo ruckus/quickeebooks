@@ -25,8 +25,79 @@ module Quickeebooks
       # ROXML doesnt insert the namespaces into generated XML so we need to do it ourselves
       # insert the static namespaces in the first opening tag that matches the +model_name+
       def to_xml_inject_ns(model_name, options = {})
-        xml = to_xml(options)
-        xml.to_s.sub("<#{model_name}>", "<#{model_name} #{Quickeebooks::Service::ServiceBase::XML_NS}>")
+        s = StringIO.new
+        xml = to_xml(options).write_to(s, :indent => 0, :indent_text => '')
+        s.string.sub("<#{model_name}>", "<#{model_name} #{Quickeebooks::Service::ServiceBase::XML_NS}>")
+=begin
+        s1 = <<-XML
+        <Customer>
+          <Id idDomain="QBO">#{id}</Id>
+          <SyncToken>0</SyncToken>
+          <MetaData>
+            <CreateTime>2011-09-29T15:45:12-07:00</CreateTime>
+            <LastUpdatedTime>2012-01-22T20:35:57-08:00</LastUpdatedTime>
+          </MetaData>
+          <Name>John DoeA</Name>
+          <Address>
+            <Line1>123 Main St.</Line1>
+            <Line2>Suite 400</Line2>
+            <City>San Diego</City>
+            <Country>USA</Country>
+            <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+            <PostalCode>96009</PostalCode>
+            <Tag>Billing</Tag>
+          </Address>
+          <Address>
+            <Line1>123 Main St.</Line1>
+            <Line2>Suite 400</Line2>
+            <City>San Diego</City>
+            <Country>USA</Country>
+            <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+            <PostalCode>96009</PostalCode>
+            <Tag>Shipping</Tag>
+          </Address>
+          </Customer>
+        XML
+        s = <<-XML
+        <Customer xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm">
+        <Id>5</Id>
+        <SyncToken>1</SyncToken>
+        <Name>John DoeA</Name>
+        <MetaData>
+        <CreateTime>2012-02-15T20:27:03-0800</CreateTime>
+        <LastUpdatedTime>2012-02-18T21:56:59-0800</LastUpdatedTime>
+        </MetaData>
+        <Address>
+        <Line1>123 Main St.</Line1>
+        <Line2>Suite 400</Line2>
+        <City>San Diego</City>
+        <Country>USA</Country>
+        <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+        <PostalCode>96009</PostalCode>
+        <Tag>Billing</Tag>
+        </Address>
+        <Address>
+        <Line1>123 Main St.</Line1>
+        <Line2>Suite 400</Line2>
+        <City>San Diego</City>
+        <Country>USA</Country>
+        <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+        <PostalCode>96009</PostalCode>
+        <Tag>Shipping</Tag>
+        </Address>
+        <CustomField xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="StringTypeCustomField">
+        <DefinitionId>Preferred Delivery Method</DefinitionId>
+        <Value>Email</Value>
+        </CustomField>
+        <CustomField xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="BooleanTypeCustomeField">
+        <DefinitionId>Bill With Parent</DefinitionId>
+        <Value>false</Value>
+        </CustomField>
+        </Customer>
+        XML
+        #s.sub("<#{model_name}>", "<#{model_name} #{Quickeebooks::Service::ServiceBase::XML_NS}>")
+        s
+=end
       end
       
       def log(msg)

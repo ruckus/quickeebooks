@@ -38,12 +38,15 @@ describe "Quickeebooks::Service::Account" do
   end
   
   it "can create an account" do
+    xml = File.read(File.dirname(__FILE__) + "/../../xml/account.xml")
     service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
-    FakeWeb.register_uri(:post, service.url_for_resource("account"), :status => ["200", "OK"])
+    FakeWeb.register_uri(:post, service.url_for_resource("account"), :status => ["200", "OK"], :body => xml)
     account = Quickeebooks::Model::Account.new
     account.name = "Billy Bob"
     account.sub_type = "AccountsPayable"
+    account.valid?.should == true
     result = service.create(account)
+    result.id.to_i.should > 0
   end
 
   it "can delete an account" do
@@ -54,7 +57,7 @@ describe "Quickeebooks::Service::Account" do
     account.id = 99
     account.sync_token = 0
     result = service.delete(account)
-    result.code.should == "200"
+    result.should == true
   end
   
   it "cannot delete an account with missing required fields for deletion" do
