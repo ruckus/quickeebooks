@@ -77,5 +77,8 @@ require 'quickeebooks/model/customer'
 require 'quickeebooks/model/account'
 
 # Services
+require 'quickeebooks/service/filter'
+require 'quickeebooks/service/pagination'
+require 'quickeebooks/service/sort'
 require 'quickeebooks/service/customer'
 require 'quickeebooks/service/account'

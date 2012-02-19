@@ -5,14 +5,19 @@ module Quickeebooks
   module Service
     class Account < ServiceBase
       
-      def list(options = {})
-        fetch_collection(:post, "accounts", "Account", Quickeebooks::Model::Account)
+      def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
+        fetch_collection("accounts", "Account", Quickeebooks::Model::Account, filters, page, per_page, sort, options)
       end
 
       def create(account)
         raise InvalidModelException unless account.valid?
         xml = account.to_xml_ns
         do_http_post(url_for_resource("account"), valid_xml_document(xml))
+      end
+      
+      def fetch_by_id(id)
+        response = do_http_get("#{url_for_resource("account")}/#{id}")
+        Quickeebooks::Model::Account.from_xml(response.body)
       end
 
       def delete(account)

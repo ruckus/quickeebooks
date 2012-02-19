@@ -1,5 +1,6 @@
 require 'rexml/document'
 require 'uri'
+require 'cgi'
 
 class IntuitRequestException < Exception
   attr_accessor :code, :cause
@@ -73,18 +74,39 @@ module Quickeebooks
         doc.strip
       end
       
-      def fetch_collection(http_method = :post, resource = nil, container = nil, model = nil, options = {})
-        results = []
-        response = do_http_post(url_for_resource(resource), "", {}, {'Content-Type' => 'application/x-www-form-urlencoded'})
+      def fetch_collection(resource, container, model, filters = [], page = 1, per_page = 20, sort = nil, options ={})
+        raise ArgumentError, "missing resource to fetch" if resource.nil?
+        raise ArgumentError, "missing result container" if container.nil?
+        raise ArgumentError, "missing model to instantiate" if model.nil?
+
+        post_body_lines = []
+        
+        if filters.is_a?(Array) && filters.length > 0
+          filter_string = filters.collect { |f| f.to_s }
+          post_body_lines << "Filter=#{CGI.escape(filter_string.join(" :AND: "))}"
+        end
+        
+        post_body_lines << "PageNum=#{page}"
+        post_body_lines << "ResultsPerPage=#{per_page}"
+        
+        if sort
+          post_body_lines << CGI.escape("Sort=#{sort.to_s}")
+        end
+        
+        body = post_body_lines.join("&")
+        response = do_http_post(url_for_resource(resource), body, {}, {'Content-Type' => 'application/x-www-form-urlencoded'})
         if response
           collection = Quickeebooks::Collection.new
           xml = parse_xml(response.body)
           begin
-            xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{container}").each do |xa|
-              results << model.from_xml(xa)
+            results = []
+            collection.count = xml.xpath("//qbo:SearchResults/qbo:Count")[0].text.to_i
+            if collection.count > 0
+              xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{container}").each do |xa|
+                results << model.from_xml(xa)
+              end
             end
             collection.entries = results
-            collection.count = xml.xpath("//qbo:SearchResults/qbo:Count")[0].text.to_i
             collection.current_page = xml.xpath("//qbo:SearchResults/qbo:CurrentPage")[0].text.to_i
           rescue => ex
             log("Error parsing XML: #{ex.message}")
@@ -138,8 +160,7 @@ module Quickeebooks
           raise AuthorizationFailure
         when 400, 500
           err = parse_intuit_error(response.body)
-          #raise IntuitRequestException.new("Message:#{err[:message]}  Code:#{err[:code]}, Cause:#{err[:cause]}")
-          ex = IntuitRequestException.new(err[:message])#{}"Message:#{}  Code:#{err[:code]}, Cause:#{err[:cause]}")
+          ex = IntuitRequestException.new(err[:message])
           ex.code = err[:code]
           ex.cause = err[:cause]
           raise ex

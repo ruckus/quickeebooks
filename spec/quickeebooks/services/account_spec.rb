@@ -32,7 +32,6 @@ describe "Quickeebooks::Service::Account" do
     service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
     FakeWeb.register_uri(:post, service.url_for_resource("accounts"), :status => ["200", "OK"], :body => xml)
     accounts = service.list
-    accounts.count.should == 10
     accounts.current_page.should == 1
     accounts.entries.count.should == 10
     accounts.entries.first.current_balance.should == 6200
@@ -63,12 +62,20 @@ describe "Quickeebooks::Service::Account" do
     account = Quickeebooks::Model::Account.new
     lambda { service.delete(account) }.should raise_error(InvalidModelException, "Missing required parameters for delete")
   end
-
   
   it "exception is raised when we try to create an invalid account" do
     account = Quickeebooks::Model::Account.new
     service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
     lambda { service.create(account) }.should raise_error(InvalidModelException)
+  end
+  
+  it "can fetch an account by id" do
+    xml = File.read(File.dirname(__FILE__) + "/../../xml/account.xml")
+    service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
+    url = "#{service.url_for_resource("account")}/99"
+    FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => xml)
+    account = service.fetch_by_id(99)
+    account.name.should == "Billy Bob"
   end
   
 end

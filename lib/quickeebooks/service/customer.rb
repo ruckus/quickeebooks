@@ -21,8 +21,8 @@ module Quickeebooks
         do_http_post(url, xml, {:methodx => "delete"})
       end
       
-      def list
-        fetch_collection(:post, "customers", "Customer", Quickeebooks::Model::Customer)
+      def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
+        fetch_collection("customers", "Customer", Quickeebooks::Model::Customer, filters, page, per_page, sort, options)
       end
       
     end
