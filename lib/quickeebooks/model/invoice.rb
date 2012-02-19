@@ -10,6 +10,7 @@ module Quickeebooks
 
   module Model
     class Invoice < IntuitType
+      include ActiveModel::Validations
       xml_convention :camelcase
       xml_accessor :id, :from => 'Id', :as => Integer
       xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
@@ -26,6 +27,22 @@ module Quickeebooks
       xml_accessor :discount_taxable, :from => 'DiscountTaxable'
       xml_accessor :txn_id, :from => 'TxnId'
       xml_accessor :line_items, :from => 'Line', :as => [Quickeebooks::Model::InvoiceLineItem]
+      
+      validates_length_of :line_items, :minimum => 1
+      
+      def initialize
+        ensure_line_items_initialization
+      end
+      
+      private
+      
+      def after_parse
+      end
+      
+      def ensure_line_items_initialization
+        self.line_items ||= []
+      end
+      
     end
   end
 

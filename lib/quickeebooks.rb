@@ -146,6 +146,9 @@ end
 # Models
 require 'quickeebooks/model/customer'
 require 'quickeebooks/model/account'
+require 'quickeebooks/model/invoice'
+require 'quickeebooks/model/invoice_header'
+require 'quickeebooks/model/invoice_line_item'
 
 # Services
 require 'quickeebooks/service/filter'
@@ -153,3 +156,4 @@ require 'quickeebooks/service/pagination'
 require 'quickeebooks/service/sort'
 require 'quickeebooks/service/customer'
 require 'quickeebooks/service/account'
+require 'quickeebooks/service/invoice'

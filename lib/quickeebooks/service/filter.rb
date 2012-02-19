@@ -11,6 +11,9 @@ module Quickeebooks
       # For Date/Time filtering
       attr_accessor :before, :after
       
+      # For number comparisons
+      attr_accessor :gt, :lt, :eq
+      
       def initialize(type, *args)
         @type = type
         if args.first.is_a?(Hash)
@@ -28,12 +31,28 @@ module Quickeebooks
           text_to_s
         when :boolean
           boolean_to_s
+        when :number
+          number_to_s
         else
           raise ArgumentError, "Don't know how to generate a Filter for type #{@type}"
         end
       end
       
       private
+      
+      def number_to_s
+        clauses = []
+        if @eq
+          clauses << "#{@field} :EQUALS: #{@value}"
+        end
+        if @gt
+          clauses << "#{@field} :GreaterThan: #{@value}"
+        end
+        if @lt
+          clauses << "#{@field} :LessThan: #{@value}"
+        end
+        clauses.join(" :AND: ")
+      end
       
       def date_time_to_s
         clauses = []
