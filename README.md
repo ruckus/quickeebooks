@@ -132,6 +132,15 @@ Specify a type of `:boolean` and your desired `:field` and a `:value` with eithe
 Quickeebooks::Service::Filter.new(:boolean, :field => 'IncludeJobs', :value => false)
 ```
 
+#### Filtering on a Number
+
+Specify a type of `:number` and an operator, one of: `:gt`, `:lt`, or `:eq`.
+
+```ruby
+# find all customers and exclude jobs
+Quickeebooks::Service::Filter.new(:number, :field => 'Amount', :gt => 150)
+```
+
 Once you have created all of your `Filters` than just pass an array of them to any services `list` method and they will all be applied.
 
 Example: find all Customers with a last name of 'Richards' who have been created before Feb 25, 2012:
