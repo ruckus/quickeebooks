@@ -94,6 +94,7 @@ Quickeebooks::Service::Filter.new(:text, :field => 'FamilyName', :value => 'Rich
 Specify a type of `:datetime` and your desired `:field` than any combination of: `:before` and `:after`
 
 Examples:
+
 ```ruby
 # find all customers created after 2/15/2011
 datetime = Time.mktime(2011, 2, 15)
@@ -124,7 +125,6 @@ Once you have created all of your `Filters` than just pass an array of them to a
 Example: find all Customers with a last name of 'Richards' who have been created before Feb 25, 2012:
 
 ```ruby
-
 filters = []
 filters << Quickeebooks::Service::Filter.new(:text, :field => 'FamilyName', :value => 'Richards')
 datetime = Time.mktime(2011, 2, 25)
@@ -132,7 +132,6 @@ filters << Quickeebooks::Service::Filter.new(:datetime, :field => 'CreateTime', 
 customer_service = Quickeebooks::Service::Customer.new(oauth_client, realm_id)
 customers = customer_service.list(filters)
 ```
-
 ## Sorting
 
 Create an instance of `Quickeebooks::Service::Sort` where the first argument is the field and the second is the sorting direction/logic.
