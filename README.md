@@ -37,8 +37,11 @@ Now we can initialize any of the `Service` clients:
 ```ruby
 customer_service = Quickeebooks::Service::Customer.new(oauth_client, realm_id)
 customer_service.list 
-=> [ #<Quickeebooks::Model::Customer:0x007f8e29259770>, #<Quickeebooks::Model::Customer:0x0078768202020>, ... ]
+
+# returns a `Collection` object
 ```
+
+See *Retrieving Objects* for the complete docs on fetching collections.
 
 Quickbooks API requires that all HTTP operations are performed against a client-specific "Base URL", as discussed here:
 
@@ -70,6 +73,8 @@ customer_service = Quickeebooks::Service::Customer.new(oauth_client, realm_id,)
 # fetch all customers with default parameters (pagination, sorting, filtering)
 customers = customer_service.list
 ```
+
+Return result: a `Collection` instance with properties: `entries`, `current_page`, `count` which should be self-explanatory.
 
 ### Filtering
 
@@ -116,8 +121,7 @@ Specify a type of `:boolean` and your desired `:field` and a `:value` with eithe
 
 ```ruby
 # find all customers and exclude jobs
-datetime = Time.mktime(2011, 2, 15)
-Quickeebooks::Service::Filter.new(:datetime, :field => 'IncludeJobs', :value => false)
+Quickeebooks::Service::Filter.new(:boolean, :field => 'IncludeJobs', :value => false)
 ```
 
 Once you have created all of your `Filters` than just pass an array of them to any services `list` method and they will all be applied.
@@ -144,6 +148,27 @@ Example
 sorter = Quickeebooks::Service::Sort.new('FamilyName', 'AtoZ')
 ```
 
+## Bringing it all together
+
+Goal: fetch all customers with a last name of Smith starting at the first page with a per page size of 30, created between May and August of 2011 and sort by last name from A-to-Z.
+
+```ruby
+filters = []
+filters << Quickeebooks::Service::Filter.new(:text, :field => 'FamilyName', :value => 'Smith')
+
+d1 = Time.mktime(2011, 5, 1)
+d2 = Time.mktime(2011, 8, 1)
+filters << Quickeebooks::Service::Filter.new(:datetime, :field => 'CreateTime', :after => d1, :before => d2)
+
+sorter = Quickeebooks::Service::Sort.new('FamilyName', 'AtoZ')
+
+customer_service = Quickeebooks::Service::Customer.new(oauth_client, realm_id)
+customers = customer_service.list(filters, 1, 30, sort)
+=> 
+customers.count = 67
+customers.current_page = 1
+customers.entries = [ #<Quickeebooks::Model::Customer:0x007f8e29259770>, #<Quickeebooks::Model::Customer:0x0078768202020>, ... ]
+```
 
 ## Author
 

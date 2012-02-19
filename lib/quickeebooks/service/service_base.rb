@@ -90,7 +90,7 @@ module Quickeebooks
         post_body_lines << "ResultsPerPage=#{per_page}"
         
         if sort
-          post_body_lines << CGI.escape("Sort=#{sort.to_s}")
+          post_body_lines << "Sort=#{CGI.escape(sort.to_s)}"
         end
         
         body = post_body_lines.join("&")
