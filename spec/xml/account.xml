@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Account xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+	<Id idDomain="QBO">37</Id>
+	<SyncToken>0</SyncToken>
+	<MetaData>
+		<CreateTime>2012-02-18T15:50:17-08:00</CreateTime>
+		<LastUpdatedTime>2012-02-18T15:50:17-08:00</LastUpdatedTime>
+	</MetaData>
+	<Name>Billy Bob</Name>
+	<AccountParentId idDomain="QBO">36</AccountParentId>
+	<Subtype>AccountsPayable</Subtype>
+	<CurrentBalance>0.00</CurrentBalance>
+</Account>

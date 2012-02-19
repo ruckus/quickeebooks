@@ -1,1 +1,1 @@
-rvm use ruby-1.9.2-p290-patched@qb2ruby --create
+rvm use ruby-1.9.2-p290@quickeebooks --create

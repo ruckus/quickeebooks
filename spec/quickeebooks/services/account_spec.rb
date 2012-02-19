@@ -38,4 +38,37 @@ describe "Quickeebooks::Service::Account" do
     accounts.entries.first.current_balance.should == 6200
   end
   
+  it "can create an account" do
+    service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
+    FakeWeb.register_uri(:post, service.url_for_resource("account"), :status => ["200", "OK"])
+    account = Quickeebooks::Model::Account.new
+    account.name = "Billy Bob"
+    account.sub_type = "AccountsPayable"
+    result = service.create(account)
+  end
+
+  it "can delete an account" do
+    service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
+    url = "#{service.url_for_resource("account")}/99?methodx=delete"
+    FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
+    account = Quickeebooks::Model::Account.new
+    account.id = 99
+    account.sync_token = 0
+    result = service.delete(account)
+    result.code.should == "200"
+  end
+  
+  it "cannot delete an account with missing required fields for deletion" do
+    service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
+    account = Quickeebooks::Model::Account.new
+    lambda { service.delete(account) }.should raise_error(InvalidModelException, "Missing required parameters for delete")
+  end
+
+  
+  it "exception is raised when we try to create an invalid account" do
+    account = Quickeebooks::Model::Account.new
+    service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
+    lambda { service.create(account) }.should raise_error(InvalidModelException)
+  end
+  
 end

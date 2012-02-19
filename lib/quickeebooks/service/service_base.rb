@@ -1,7 +1,12 @@
 require 'rexml/document'
 require 'uri'
 
-class IntuitRequestException < Exception; end
+class IntuitRequestException < Exception
+  attr_accessor :code, :cause
+  def initialize(msg)
+    super(msg)
+  end
+end
 class AuthorizationFailure < Exception; end
 
 module Quickeebooks
@@ -73,7 +78,7 @@ module Quickeebooks
         response = do_http_post(url_for_resource(resource), "", {}, {'Content-Type' => 'application/x-www-form-urlencoded'})
         if response
           collection = Quickeebooks::Collection.new
-          xml = parse_xml(response)
+          xml = parse_xml(response.body)
           begin
             xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{container}").each do |xa|
               results << model.from_xml(xa)
@@ -126,14 +131,18 @@ module Quickeebooks
         status = response.code.to_i
         case status
         when 200
-          response.body
+          response
         when 302
           raise "Unhandled HTTP Redirect"
         when 401
           raise AuthorizationFailure
         when 400, 500
           err = parse_intuit_error(response.body)
-          raise IntuitRequestException.new("Message: #{err[:message]}  Code: #{err[:code]}")
+          #raise IntuitRequestException.new("Message:#{err[:message]}  Code:#{err[:code]}, Cause:#{err[:cause]}")
+          ex = IntuitRequestException.new(err[:message])#{}"Message:#{}  Code:#{err[:code]}, Cause:#{err[:cause]}")
+          ex.code = err[:code]
+          ex.cause = err[:cause]
+          raise ex
         else
           raise "HTTP Error Code: #{status}, Msg: #{response.body}"
         end
@@ -141,7 +150,7 @@ module Quickeebooks
 
       def parse_intuit_error(body)
         xml = parse_xml(body)
-        error = {:message => "", :code => 0}
+        error = {:message => "", :code => 0, :cause => ""}
         fault = xml.xpath("//xmlns:FaultInfo/xmlns:Message")[0]
         if fault
           error[:message] = fault.text
@@ -150,6 +159,11 @@ module Quickeebooks
         if error_code
           error[:code] = error_code.text
         end
+        error_cause = xml.xpath("//xmlns:FaultInfo/xmlns:Cause")[0]
+        if error_cause
+          error[:cause] = error_cause.text
+        end
+
         error
       end
 

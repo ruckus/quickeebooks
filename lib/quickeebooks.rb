@@ -1,6 +1,9 @@
 require 'roxml'
 require 'nokogiri'
 require 'logger'
+require 'active_model'
+
+class InvalidModelException < Exception; end
 
 module Quickeebooks
   @@logger = nil

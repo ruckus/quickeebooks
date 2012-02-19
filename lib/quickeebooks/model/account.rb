@@ -1,9 +1,11 @@
 require "quickeebooks"
 require "quickeebooks/model/meta_data"
+require "quickeebooks/model/account_detail_type"
 
 module Quickeebooks
   module Model
     class Account < IntuitType
+      include ActiveModel::Validations
       xml_convention :camelcase
       xml_accessor :id, :from => 'Id'
       xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
@@ -16,10 +18,21 @@ module Quickeebooks
       xml_accessor :current_balance, :from => 'CurrentBalance', :as => Float
       xml_accessor :opening_balance_date, :from => 'OpeningBalanceDate', :as => Date
 
-      def to_xml_ns
-        to_xml_inject_ns('Account')
+      validates_presence_of :name, :sub_type
+      validates_inclusion_of :sub_type, :in => Quickeebooks::Model::AccountDetailType::TYPES
+
+      def to_xml_ns(options = {})
+        to_xml_inject_ns('Account', options)
+      end
+      
+      # To delete an account Intuit requires we provide Id and SyncToken fields
+      def valid_for_deletion?
+        return false if(id.nil? || sync_token.nil?)
+        id.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
       end
 
     end
+    
+    
   end
 end

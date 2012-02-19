@@ -17,21 +17,12 @@ module Quickeebooks
       
       def delete(customer)
         xml = valid_xml_document(customer.to_xml_ns(:fields => ['Id', 'SyncToken']))
-        do_http_post(url_for_resource("customer") + '/' + customer.id, xml, {:methodx => "delete"})
+        url = "#{url_for_resource("customer")}/#{customer.id}"
+        do_http_post(url, xml, {:methodx => "delete"})
       end
       
       def list
-        customers = []
-        response = do_http_post(url_for_resource("customers"), "")
-        if response
-          xml = parse_xml(response)
-          xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:Customer").each do |xc|
-            customers << Quickeebooks::Model::Customer.from_xml(xc)
-          end
-          customers
-        else
-          nil
-        end
+        fetch_collection(:post, "customers", "Customer", Quickeebooks::Model::Customer)
       end
       
     end
