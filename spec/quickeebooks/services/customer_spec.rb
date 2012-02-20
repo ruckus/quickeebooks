@@ -39,48 +39,69 @@ describe "Quickeebooks::Service::Customer" do
     accounts.entries.count.should == 3
     accounts.entries.first.name.should == "John Doe"
   end
+  
+  it "can create a customer" do
+    xml = File.read(File.dirname(__FILE__) + "/../../xml/customer.xml")
+    service = Quickeebooks::Service::Customer.new(@oauth, @realm_id, @base_uri)
+    FakeWeb.register_uri(:post, service.url_for_resource("customer"), :status => ["200", "OK"], :body => xml)
+    customer = Quickeebooks::Model::Customer.new
+    customer.name = "Billy Bob"
+    result = service.create(customer)
+    result.id.to_i.should > 0
+  end
+  
+  it "can delete a customer" do
+    service = Quickeebooks::Service::Customer.new(@oauth, @realm_id, @base_uri)
+    url = "#{service.url_for_resource("customer")}/99?methodx=delete"
+    FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
+    customer = Quickeebooks::Model::Customer.new
+    customer.id = 99
+    customer.sync_token = 0
+    result = service.delete(customer)
+    result.should == true
+  end
 
+  it "cannot delete a customer with missing required fields for deletion" do
+    service = Quickeebooks::Service::Customer.new(@oauth, @realm_id, @base_uri)
+    customer = Quickeebooks::Model::Customer.new
+    lambda { service.delete(customer) }.should raise_error(InvalidModelException, "Missing required parameters for delete")
+  end
 
-    # 
-    # it "can create an account" do
-    #   service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
-    #   FakeWeb.register_uri(:post, service.url_for_resource("account"), :status => ["200", "OK"])
-    #   account = Quickeebooks::Model::Account.new
-    #   account.name = "Billy Bob"
-    #   account.sub_type = "AccountsPayable"
-    #   result = service.create(account)
-    # end
-    # 
-    # it "can delete an account" do
-    #   service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
-    #   url = "#{service.url_for_resource("account")}/99?methodx=delete"
-    #   FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
-    #   account = Quickeebooks::Model::Account.new
-    #   account.id = 99
-    #   account.sync_token = 0
-    #   result = service.delete(account)
-    #   result.code.should == "200"
-    # end
-    # 
-    # it "cannot delete an account with missing required fields for deletion" do
-    #   service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
-    #   account = Quickeebooks::Model::Account.new
-    #   lambda { service.delete(account) }.should raise_error(InvalidModelException, "Missing required parameters for delete")
-    # end
-    # 
-    # it "exception is raised when we try to create an invalid account" do
-    #   account = Quickeebooks::Model::Account.new
-    #   service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
-    #   lambda { service.create(account) }.should raise_error(InvalidModelException)
-    # end
-    # 
-    # it "can fetch an account by id" do
-    #   xml = File.read(File.dirname(__FILE__) + "/../../xml/account.xml")
-    #   service = Quickeebooks::Service::Account.new(@oauth, @realm_id, @base_uri)
-    #   url = "#{service.url_for_resource("account")}/99"
-    #   FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => xml)
-    #   account = service.fetch_by_id(99)
-    #   account.name.should == "Billy Bob"
-    # end
-    # 
+  it "exception is raised when we try to create an invalid account" do
+    customer = Quickeebooks::Model::Customer.new
+    service = Quickeebooks::Service::Customer.new(@oauth, @realm_id, @base_uri)
+    lambda { service.create(customer) }.should raise_error(InvalidModelException)
+  end
+  
+  it "cannot update an invalid customer" do
+    customer = Quickeebooks::Model::Customer.new
+    customer.name = "John Doe"
+    service = Quickeebooks::Service::Customer.new(@oauth, @realm_id, @base_uri)
+    lambda { service.update(customer) }.should raise_error(InvalidModelException)
+  end
+  
+  it "can fetch an customer by id" do
+    xml = File.read(File.dirname(__FILE__) + "/../../xml/customer.xml")
+    service = Quickeebooks::Service::Customer.new(@oauth, @realm_id, @base_uri)
+    url = "#{service.url_for_resource("customer")}/99"
+    FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => xml)
+    customer = service.fetch_by_id(99)
+    customer.name.should == "John Doe"
+  end
+
+  it "can update a customer" do
+    xml2 = File.read(File.dirname(__FILE__) + "/../../xml/customer2.xml")
+    customer = Quickeebooks::Model::Customer.new
+    customer.name = "John Doe"
+    customer.id = 1
+    customer.sync_token = 2
+    
+    service = Quickeebooks::Service::Customer.new(@oauth, @realm_id, @base_uri)
+    url = "#{service.url_for_resource("customer")}/#{customer.id}"
+    FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml2)
+    updated = service.update(customer)
+    updated.name.should == "Billy Bob"
+  end
+
+  
 end

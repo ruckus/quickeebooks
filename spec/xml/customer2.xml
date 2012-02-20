@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Customer>
+  <Id idDomain="QBO">1</Id>
+  <SyncToken>1</SyncToken>
+  <MetaData>
+    <CreateTime>2011-09-29T15:45:12-07:00</CreateTime>
+    <LastUpdatedTime>2012-01-22T20:35:57-08:00</LastUpdatedTime>
+  </MetaData>
+  <Name>Billy Bob</Name>
+  <Address>
+    <Line1>123 Main St.</Line1>
+    <Line2>Suite 400</Line2>
+    <City>San Diego</City>
+    <Country>USA</Country>
+    <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+    <PostalCode>96009</PostalCode>
+    <Tag>Billing</Tag>
+  </Address>
+  <Address>
+    <Line1>123 Main St.</Line1>
+    <Line2>Suite 400</Line2>
+    <City>San Diego</City>
+    <Country>USA</Country>
+    <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+    <PostalCode>96009</PostalCode>
+    <Tag>Shipping</Tag>
+  </Address>
+  <Phone>
+    <DeviceType>Primary</DeviceType>
+    <FreeFormNumber>(408) 555-1212</FreeFormNumber>
+  </Phone>
+  <Phone>
+    <DeviceType>Mobile</DeviceType>
+    <FreeFormNumber>(831) 334-0987</FreeFormNumber>
+  </Phone>
+  <WebSite/>
+  <Email>
+    <Address>johndoe@gmail.com</Address>
+  </Email>
+  <GivenName>John</GivenName>
+  <FamilyName>Doe</FamilyName>
+  <DBAName>John's Wine Shop</DBAName>
+  <Notes>
+    <Content>Likes chocolate and horses</Content>
+  </Notes>
+  <CustomField xsi:type="BooleanTypeCustomField">
+    <DefinitionId>Bill With Parent</DefinitionId>
+    <Value>false</Value>
+  </CustomField>
+  <CustomField xsi:type="StringTypeCustomField">
+    <DefinitionId>Resale Number</DefinitionId>
+    <Value>ABC-123</Value>
+  </CustomField>
+  <CustomField xsi:type="StringTypeCustomField">
+    <DefinitionId>Preferred Delivery Method</DefinitionId>
+    <Value>PRINT</Value>
+  </CustomField>
+  <SalesTermId idDomain="QBO">3</SalesTermId>
+  <PaymentMethodId idDomain="QBO">5</PaymentMethodId>
+  <OpenBalance>
+    <Amount>6200</Amount>
+  </OpenBalance>
+</Customer>

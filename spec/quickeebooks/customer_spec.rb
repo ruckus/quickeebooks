@@ -4,7 +4,7 @@ require "quickeebooks/model/customer"
 
 describe "Quickeebooks::Model::Customer" do
   
-  describe "parse customer from XML" do
+  it "parse customer from XML" do
     xml = File.read(File.dirname(__FILE__) + "/../xml/customer.xml")
     customer = Quickeebooks::Model::Customer.from_xml(xml)
     customer.sync_token.should == 1
@@ -27,6 +27,20 @@ describe "Quickeebooks::Model::Customer" do
     customer.custom_fields.count.should == 3
 
     customer.open_balance.amount.should == 6200.0
+  end
+  
+  it "can assign an email address" do
+    customer = Quickeebooks::Model::Customer.new
+    the_email = "foo@example.org"
+    customer.email_address = the_email
+    customer.email.is_a?(Quickeebooks::Model::Email).should == true
+    customer.email.address.should == the_email
+  end
+  
+  it "cannot update an invalid model" do
+    customer = Quickeebooks::Model::Customer.new
+    customer.valid_for_update?.should == false
+    customer.errors.keys.include?(:sync_token).should == true
   end
   
 end

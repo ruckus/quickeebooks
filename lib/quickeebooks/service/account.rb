@@ -20,8 +20,20 @@ module Quickeebooks
         end
       end
       
-      def fetch_by_id(id)
-        response = do_http_get("#{url_for_resource("account")}/#{id}")
+      def update(account)
+        raise InvalidModelException unless account.valid_for_update?
+        xml = account.to_xml_ns
+        url = "#{url_for_resource("account")}/#{account.id}"
+        response = do_http_post(url, valid_xml_document(xml))
+        if response && response.code.to_i == 200
+          Quickeebooks::Model::Account.from_xml(response.body)
+        else
+          nil
+        end
+      end
+      
+      def fetch_by_id(account_id)
+        response = do_http_get("#{url_for_resource("account")}/#{account_id}")
         Quickeebooks::Model::Account.from_xml(response.body)
       end
 

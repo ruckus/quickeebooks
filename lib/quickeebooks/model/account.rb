@@ -25,6 +25,14 @@ module Quickeebooks
         to_xml_inject_ns('Account', options)
       end
       
+      def valid_for_update?
+        if sync_token.nil?
+          errors.add(:sync_token, "Missing required attribute SyncToken for update")
+        end
+        valid?
+        errors.empty?
+      end
+      
       # To delete an account Intuit requires we provide Id and SyncToken fields
       def valid_for_deletion?
         return false if(id.nil? || sync_token.nil?)

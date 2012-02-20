@@ -6,6 +6,7 @@ module Quickeebooks
     class Customer < ServiceBase
 
       def create(customer)
+        raise InvalidModelException unless customer.valid?
         xml = customer.to_xml_ns
         response = do_http_post(url_for_resource("customer"), valid_xml_document(xml))
         if response.code.to_i == 200
@@ -26,6 +27,7 @@ module Quickeebooks
       end
       
       def update(customer)
+        raise InvalidModelException.new("Missing required parameters for update") unless customer.valid_for_update?
         url = "#{url_for_resource("customer")}/#{customer.id}"
         xml = customer.to_xml_ns
         response = do_http_post(url, valid_xml_document(xml))
@@ -37,6 +39,7 @@ module Quickeebooks
       end
 
       def delete(customer)
+        raise InvalidModelException.new("Missing required parameters for delete") unless customer.valid_for_deletion?
         xml = valid_xml_document(customer.to_xml_ns(:fields => ['Id', 'SyncToken']))
         url = "#{url_for_resource("customer")}/#{customer.id}"
         response = do_http_post(url, xml, {:methodx => "delete"})
