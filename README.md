@@ -218,6 +218,37 @@ customer.email = "richard@example.org"
 customer_service.update(customer)
 ```
 
+# Services
+
+All `Service` objects (`Quickeebooks::Service::Customer`, `Quickeebooks::Service::Account`, `Quickeebooks::Service::Invoice`, etc) have a simple API for CRUD operations. Some service objects have additional functionality (for example the Invoice object can fetch a PDF representation of an invoice). See notes below for each service.
+
+```ruby
+create(object)
+update(object)
+list()
+fetch_by_id(object_id)
+delete(object)
+```
+
+Current Services:
+
+* Account
+* Customer
+* Invoice
+* Item
+
+
+## Invoice Service
+
+The `Quickeebooks::Service::Invoice` has the ability to retrieve an invoice as a PDF document:
+
+```ruby
+invoice_as_pdf(invoice_id)
+```
+
+The `invoice_as_pdf` method returns a string representing the path to the PDF on the local disk. The method uses `ENV['TMPDIR']` to write the file to a temporary storage location. _Note:_ it is up to you the caller to remove or clean up the file when you are done.
+
+
 ## Author
 
 Cody Caughlan

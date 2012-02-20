@@ -26,7 +26,7 @@ module Quickeebooks
       def invoice_as_pdf(invoice_id)
         response = do_http_get("#{url_for_resource("invoice-document")}/#{invoice_id}", {}, {'Content-Type' => 'application/pdf'})
         if response && response.code.to_i == 200
-          file_name = "/tmp/invoice-document-#{invoice_id}-#{Time.now.strftime('%Y-%m-%d_%H-%M')}.pdf"
+          file_name = "#{ENV['TMPDIR']}invoice-document-#{invoice_id}-#{Time.now.strftime('%Y-%m-%d_%H-%M')}.pdf"
           File.open(file_name, "wb") do |file|
             file.write(response.body)
           end
