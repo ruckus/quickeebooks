@@ -53,7 +53,12 @@ module Quickeebooks
       end
 
       def url_for_resource(resource)
-        "#{@base_uri}/resource/#{resource}/v2/#{@realm_id}"
+        url_for_base("resource/#{resource}")
+        #{}"#{@base_uri}/resource/#{resource}/v2/#{@realm_id}"
+      end
+      
+      def url_for_base(raw)
+        "#{@base_uri}/#{raw}/v2/#{@realm_id}"
       end
 
       def qb_base_uri_with_realm_id
