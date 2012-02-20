@@ -4,6 +4,9 @@ module Quickeebooks
 
   module Model
     class InvoiceHeader < IntuitType
+      
+      IS_TAXABLE = "IS_TAXABLE"
+      
       xml_name 'Header'
       xml_accessor :doc_number, :from => 'DocNumber'
       xml_accessor :txn_date, :from => 'TxnDate', :as => Time
