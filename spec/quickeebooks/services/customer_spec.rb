@@ -17,7 +17,7 @@ describe "Quickeebooks::Service::Customer" do
         :authorize_path       => "/oauth/v1/get_access_token",
         :access_token_path    => "/oauth/v1/get_access_token"
     })
-    @oauth = OAuth::ConsumerToken.new(@oauth_consumer, "blah", "blah")
+    @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
   end
   
   it "can fetch a list of customers" do

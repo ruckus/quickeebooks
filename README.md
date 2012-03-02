@@ -37,7 +37,7 @@ qb_oauth_consumer = OAuth::Consumer.new(QB_KEY, QB_SECRET, {
     :access_token_path    => "/oauth/v1/get_access_token"
 })
 
-oauth_client = OAuth::ConsumerToken.new(qb_oauth_consumer, access_token, access_secret)
+oauth_client = OAuth::AccessToken.new(qb_oauth_consumer, access_token, access_secret)
 ```
 
 Now we can initialize any of the `Service` clients:
