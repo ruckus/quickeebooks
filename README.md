@@ -4,7 +4,7 @@ Integration with Quickbooks Online via the Intuit Data Services REST API.
 
 This library communicates with the Quickbooks Data Services `v2` API, documented at:
 
-https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services
+[https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services](Data Services v2)
 
 When Intuit finalizes the `v3` API I would like to move to that version as it appears to be better structured
 and has `JSON` request/response formats, which should be easier to work with than XML.
@@ -53,7 +53,7 @@ See *Retrieving Objects* for the complete docs on fetching collections.
 
 Quickbooks API requires that all HTTP operations are performed against a client-specific "Base URL", as discussed here:
 
-https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0010_Getting_the_Base_URL
+[https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0010_Getting_the_Base_URL](Getting the Base URL)
 
 Quickeebooks will attempt to determine the base URL for the given OAuth client and Realm. This comes at the cost of the overhead of making that initial request. A customers Base URL should not change so if you know it ahead of time then you can specify it as the third argument to the service constructor. For example:
 
@@ -205,6 +205,26 @@ customer = customer_service.fetch_by_id(100)
 customer.name
 => John Doe
 ```
+
+## Writing Objects
+
+Create or fetch an instance of a `Model` object and pass it to the corresponding service `create` or `update` method.
+
+You will need make sure you supply all required fields for that Intuit object, so consult the documentation. For instance the documentation for a `Customer` object is at: [https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/Customer](Intuit Customer Object)
+
+## Creating a single object
+
+Pass an instance of your object to the `create` method on its related Service:
+
+```ruby
+customer_service = Quickeebooks::Service::Customer.new(oauth_client, realm_id)
+customer = Quickeebooks::Model::Customer.new
+customer.name = "Richard Parker"
+customer.email = "richard@example.org"
+customer_service.create(customer)
+```
+
+
 
 ## Updating a single object
 
