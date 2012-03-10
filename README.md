@@ -4,7 +4,7 @@ Integration with Quickbooks Online via the Intuit Data Services REST API.
 
 This library communicates with the Quickbooks Data Services `v2` API, documented at:
 
-[https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services](Data Services v2)
+[Data Services v2](https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services)
 
 When Intuit finalizes the `v3` API I would like to move to that version as it appears to be better structured
 and has `JSON` request/response formats, which should be easier to work with than XML.
@@ -53,7 +53,7 @@ See *Retrieving Objects* for the complete docs on fetching collections.
 
 Quickbooks API requires that all HTTP operations are performed against a client-specific "Base URL", as discussed here:
 
-[https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0010_Getting_the_Base_URL](Getting the Base URL)
+[Getting the Base URL](https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0010_Getting_the_Base_URL)
 
 Quickeebooks will attempt to determine the base URL for the given OAuth client and Realm. This comes at the cost of the overhead of making that initial request. A customers Base URL should not change so if you know it ahead of time then you can specify it as the third argument to the service constructor. For example:
 
@@ -157,7 +157,7 @@ customers = customer_service.list(filters)
 
 Create an instance of `Quickeebooks::Service::Sort` where the first argument is the field and the second is the sorting direction/logic.
 
-See https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0030_Retrieving_Objects#Sorting for the complete set of sorting options.
+See [Sorting and Pagination](https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0030_Retrieving_Objects#Sorting) for the complete set of sorting options.
 
 Example
 
@@ -210,7 +210,7 @@ customer.name
 
 Create or fetch an instance of a `Model` object and pass it to the corresponding service `create` or `update` method.
 
-You will need make sure you supply all required fields for that Intuit object, so consult the documentation. For instance the documentation for a `Customer` object is at: [https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/Customer](Intuit Customer Object)
+You will need make sure you supply all required fields for that Intuit object, so consult the documentation. For instance the documentation for a `Customer` object is at: [Intuit Customer Object](https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/Customer)
 
 ## Creating a single object
 
