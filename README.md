@@ -268,6 +268,9 @@ invoice_as_pdf(invoice_id)
 
 The `invoice_as_pdf` method returns a string representing the path to the PDF on the local disk. The method uses `ENV['TMPDIR']` to write the file to a temporary storage location. _Note:_ it is up to you the caller to remove or clean up the file when you are done.
 
+## License
+
+This software is licensed under the MIT License. See [MIT License](MIT-License) for details.
 
 ## Author
 
