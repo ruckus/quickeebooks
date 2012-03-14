@@ -268,10 +268,18 @@ invoice_as_pdf(invoice_id)
 
 The `invoice_as_pdf` method returns a string representing the path to the PDF on the local disk. The method uses `ENV['TMPDIR']` to write the file to a temporary storage location. _Note:_ it is up to you the caller to remove or clean up the file when you are done.
 
-## License
-
-This software is licensed under the MIT License. See [MIT License](MIT-License) for details.
-
 ## Author
 
 Cody Caughlan
+
+## License
+
+The MIT License
+
+Copyright (c) 2012
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
