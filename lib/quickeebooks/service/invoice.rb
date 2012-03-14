@@ -23,10 +23,10 @@ module Quickeebooks
       # Returns the absolute path to the PDF on disk
       # Its left to the caller to unlink the file at some later date
       # Returns: +String+ : absolute path to file on disk or nil if couldnt fetch PDF
-      def invoice_as_pdf(invoice_id)
+      def invoice_as_pdf(invoice_id, destination_parent_directory)
         response = do_http_get("#{url_for_resource("invoice-document")}/#{invoice_id}", {}, {'Content-Type' => 'application/pdf'})
         if response && response.code.to_i == 200
-          file_name = "#{ENV['TMPDIR']}invoice-document-#{invoice_id}-#{Time.now.strftime('%Y-%m-%d_%H-%M')}.pdf"
+          file_name = File.join(destination_parent_directory, "invoice-document-#{invoice_id}-#{Time.now.strftime('%Y-%m-%d_%H-%M')}.pdf")
           File.open(file_name, "wb") do |file|
             file.write(response.body)
           end

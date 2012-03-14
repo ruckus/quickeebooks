@@ -57,9 +57,11 @@ module Quickeebooks
       def date_time_to_s
         clauses = []
         if @before
+          raise ':before is not a valid Time object' unless @before.is_a?(Time)
           clauses << "#{@field} :BEFORE: #{formatted_time(@before)}"
         end
         if @after
+          raise ':after is not a valid Time object' unless @after.is_a?(Time)
           clauses << "#{@field} :AFTER: #{formatted_time(@after)}"
         end
 
