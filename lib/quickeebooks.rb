@@ -51,6 +51,8 @@ module ROXML
   end
 end
 
+#== Online
+
 # Models
 require 'quickeebooks/online/model/intuit_type'
 require 'quickeebooks/online/model/customer'
@@ -64,8 +66,6 @@ require 'quickeebooks/online/model/meta_data'
 require 'quickeebooks/online/model/price'
 require 'quickeebooks/online/model/account_reference'
 
-
-
 # Services
 require 'quickeebooks/online/service/filter'
 require 'quickeebooks/online/service/pagination'
@@ -75,3 +75,12 @@ require 'quickeebooks/online/service/account'
 require 'quickeebooks/online/service/invoice'
 require 'quickeebooks/online/service/item'
 require 'quickeebooks/online/service/entitlement'
+
+#== Windows
+require 'quickeebooks/windows/model/intuit_type'
+require 'quickeebooks/windows/model/customer_custom_field'
+require 'quickeebooks/windows/model/price'
+require 'quickeebooks/windows/model/customer'
+require 'quickeebooks/windows/model/account'
+require 'quickeebooks/windows/service/service_base'
+require 'quickeebooks/windows/service/account'
