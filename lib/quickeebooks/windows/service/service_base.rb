@@ -18,6 +18,7 @@ module Quickeebooks
         attr_accessor :realm_id
         attr_accessor :oauth
         attr_reader :base_uri
+        attr_reader :last_response_body
         attr_reader :last_response_xml
 
         XML_NS = %{xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm"}
@@ -29,7 +30,7 @@ module Quickeebooks
         end
 
         def url_for_resource(resource)
-          url_for_base("resource/#{resource}")
+          url_for_base(resource)
         end
 
         def url_for_base(raw)
@@ -58,7 +59,7 @@ module Quickeebooks
 
           response = do_http_get(url_for_resource(resource), {}, {'Content-Type' => 'text/html'})
           if response
-            collection = QuickeebooksQbw::Collection.new
+            collection = Quickeebooks::Collection.new
             xml = parse_xml(response.body)
             begin
               results = []
@@ -115,47 +116,55 @@ module Quickeebooks
 
         def check_response(response)
           #puts "HTTP Response: #{response.code}"
+          parse_xml(response.body)
           status = response.code.to_i
           case status
           when 200
-            response
+            # even HTTP 200 can contain an error, so we always have to peek for an Error
+            if response_is_error?
+              parse_and_raise_exceptione
+            else
+              response
+            end
           when 302
             raise "Unhandled HTTP Redirect"
           when 401
             raise AuthorizationFailure
           when 400, 500
-            err = parse_intuit_error(response.body)
-            ex = IntuitRequestException.new(err[:message])
-            ex.code = err[:code]
-            ex.cause = err[:cause]
-            raise ex
+            parse_and_raise_exceptione
           else
             raise "HTTP Error Code: #{status}, Msg: #{response.body}"
           end
         end
+        
+        def parse_and_raise_exceptione
+          err = parse_intuit_error
+          ex = IntuitRequestException.new(err[:message])
+          ex.code = err[:code]
+          ex.cause = err[:cause]
+          raise ex
+        end
+        
+        def response_is_error?
+          @last_response_xml.xpath("//xmlns:RestResponse/xmlns:Error").first != nil
+        end
 
-        def parse_intuit_error(body)
-          xml = parse_xml(body)
+        def parse_intuit_error
           error = {:message => "", :code => 0, :cause => ""}
-          fault = xml.xpath("//xmlns:FaultInfo/xmlns:Message")[0]
+          fault = @last_response_xml.xpath("//xmlns:RestResponse/xmlns:Error/xmlns:ErrorDesc")[0]
           if fault
             error[:message] = fault.text
           end
-          error_code = xml.xpath("//xmlns:FaultInfo/xmlns:ErrorCode")[0]
+          error_code = @last_response_xml.xpath("//xmlns:RestResponse/xmlns:Error/xmlns:ErrorCode")[0]
           if error_code
             error[:code] = error_code.text
           end
-          error_cause = xml.xpath("//xmlns:FaultInfo/xmlns:Cause")[0]
-          if error_cause
-            error[:cause] = error_cause.text
-          end
-
           error
         end
 
         def log(msg)
-          QuickeebooksQbw.logger.info(msg)
-          QuickeebooksQbw.logger.flush if Quickeebooks.logger.respond_to?(:flush)
+          Quickeebooks.logger.info(msg)
+          Quickeebooks.logger.flush if Quickeebooks.logger.respond_to?(:flush)
         end
 
       end

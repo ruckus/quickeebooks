@@ -15,6 +15,8 @@ module Quickeebooks
         include ActiveModel::Validations
 
         DEFAULT_TYPE_OF = 'Person'
+        XML_COLLECTION_NODE = 'Customers'
+        XML_NODE = 'Customer'
         
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id'
@@ -40,7 +42,7 @@ module Quickeebooks
         xml_accessor :gender, :from => 'Gender'
         xml_accessor :dba_name, :from => 'DBAName'
         xml_accessor :tax_identifier, :from => 'TaxIdentifier'
-        xml_accessor :notes, :from => 'Notes', :as => [Quickeebooks::Windows::Model::Note]
+        xml_accessor :notes, :from => 'Note', :as => [Quickeebooks::Windows::Model::Note]
         xml_accessor :active, :from => 'Active'
         xml_accessor :show_as, :from => 'ShowAs'
         xml_accessor :customer_type_id, :from => 'CustomerTypeId'
@@ -60,6 +62,7 @@ module Quickeebooks
         xml_accessor :price_level_id, :from => 'PriceLevelId'
         xml_accessor :price_level_name, :from => 'PriceLevelName'
         xml_accessor :open_balance_date, :from => 'OpenBalanceDate', :as => Time
+        xml_accessor :open_balance, :from => 'OpenBalance', :as => Quickeebooks::Windows::Model::Price
         xml_accessor :open_balance_with_jobs, :from => 'OpenBalanceWithJobs', :as => Quickeebooks::Windows::Model::Price
         xml_accessor :credit_limit, :from => 'CreditLimit', :as => Quickeebooks::Windows::Model::Price
         xml_accessor :acct_num, :from => 'AcctNum'

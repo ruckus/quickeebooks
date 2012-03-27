@@ -1,0 +1,8 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+	<Error RequestId="90b36b8b74504e6bb184a9b1dc3ba47e">
+		<RequestName>ErrorRequest</RequestName>
+		<ProcessedTime>2012-03-27T14:21:41+00:00</ProcessedTime>
+		<ErrorCode>401</ErrorCode>
+		<ErrorDesc>Invalid security token</ErrorDesc>
+	</Error>
+</RestResponse>
