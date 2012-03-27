@@ -19,7 +19,7 @@ module QuickeebooksQbw
         xml_accessor :external_key, :from => 'ExternalKey'
         xml_accessor :synchronized, :from => 'Synchronized'
         xml_accessor :meta_data, :from => 'MetaData', :as => QuickeebooksQbw::Model::MetaData
-        xml_accessor :custom_fields, :from => 'CustomField', :as => [QuickeebooksQbw::Model::CustomerCustomField]
+        xml_accessor :custom_fields, :from => 'CustomField', :as => [QuickeebooksQbw::Model::CustomField]
         xml_accessor :draft
         xml_accessor :object_state, :from => 'ObjectState'
         xml_accessor :item_parent_id, :from => 'ItemParentId'

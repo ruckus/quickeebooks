@@ -13,7 +13,7 @@ module Quickeebooks
         xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Windows::Model::MetaData
         xml_accessor :external_key, :from => 'ExternalKey'
         xml_accessor :synchronized, :from => 'Synchronized'
-        xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Windows::Model::CustomerCustomField]
+        xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Windows::Model::CustomField]
         xml_accessor :draft
         xml_accessor :object_state, :from => 'ObjectState'
         xml_accessor :account_parent_id, :from => 'AccountParentId'
