@@ -16,28 +16,6 @@ module Quickeebooks
     @@logger = logger
   end
   
-  module Model
-    class IntuitType
-      include ROXML
-
-      private
-      
-      # ROXML doesnt insert the namespaces into generated XML so we need to do it ourselves
-      # insert the static namespaces in the first opening tag that matches the +model_name+
-      def to_xml_inject_ns(model_name, options = {})
-        s = StringIO.new
-        xml = to_xml(options).write_to(s, :indent => 0, :indent_text => '')
-        s.string.sub("<#{model_name}>", "<#{model_name} #{Quickeebooks::Service::ServiceBase::XML_NS}>")
-      end
-      
-      def log(msg)
-        Quickeebooks.logger.info(msg)
-        Quickeebooks.logger.flush if Quickeebooks.logger.respond_to?(:flush)
-      end
-        
-    end 
-  end
-  
   class Collection
     attr_accessor :entries, :count, :current_page
   end
@@ -70,29 +48,30 @@ module ROXML
         end
       end
     end
-  end  
+  end
 end
 
 # Models
-require 'quickeebooks/model/customer'
-require 'quickeebooks/model/account'
-require 'quickeebooks/model/invoice'
-require 'quickeebooks/model/invoice_header'
-require 'quickeebooks/model/invoice_line_item'
-require 'quickeebooks/model/item'
-require 'quickeebooks/model/unit_price'
-require 'quickeebooks/model/meta_data'
-require 'quickeebooks/model/price'
-require 'quickeebooks/model/account_reference'
+require 'quickeebooks/online/model/intuit_type'
+require 'quickeebooks/online/model/customer'
+require 'quickeebooks/online/model/account'
+require 'quickeebooks/online/model/invoice'
+require 'quickeebooks/online/model/invoice_header'
+require 'quickeebooks/online/model/invoice_line_item'
+require 'quickeebooks/online/model/item'
+require 'quickeebooks/online/model/unit_price'
+require 'quickeebooks/online/model/meta_data'
+require 'quickeebooks/online/model/price'
+require 'quickeebooks/online/model/account_reference'
 
 
 
 # Services
-require 'quickeebooks/service/filter'
-require 'quickeebooks/service/pagination'
-require 'quickeebooks/service/sort'
-require 'quickeebooks/service/customer'
-require 'quickeebooks/service/account'
-require 'quickeebooks/service/invoice'
-require 'quickeebooks/service/item'
-require 'quickeebooks/service/entitlement'
+require 'quickeebooks/online/service/filter'
+require 'quickeebooks/online/service/pagination'
+require 'quickeebooks/online/service/sort'
+require 'quickeebooks/online/service/customer'
+require 'quickeebooks/online/service/account'
+require 'quickeebooks/online/service/invoice'
+require 'quickeebooks/online/service/item'
+require 'quickeebooks/online/service/entitlement'

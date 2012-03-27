@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Invoice xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns2="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:ns3="http://www.intuit.com/sb/cdm/qbo">
+    <Id>28</Id>
+    <SyncToken>0</SyncToken>
+    <MetaData>
+        <CreateTime>2010-09-14T02:22:53-07:00</CreateTime>
+        <LastUpdatedTime>2010-09-14T02:22:53-07:00</LastUpdatedTime>
+    </MetaData>
+    <Header>
+        <DocNumber>00010</DocNumber>
+        <TxnDate>2010-08-07-07:00</TxnDate>
+        <Msg>No Black Ink Pens</Msg>
+        <Note>Blue Ink pens only</Note>
+        <CustomerId>5</CustomerId>
+        <SalesTaxCodeId idDomain="QBO">1</SalesTaxCodeId>
+        <SalesTaxCodeName>IS_TAXABLE</SalesTaxCodeName>
+        <SubTotalAmt>200.00</SubTotalAmt>
+        <TaxRate>0.5</TaxRate>
+        <TaxAmt>100.00</TaxAmt>
+        <TotalAmt>298.75</TotalAmt>
+        <DueDate>2010-08-16-07:00</DueDate>
+        <BillEmail>john_doe@digitalinsight.com</BillEmail>
+        <DiscountAmt>-1.25</DiscountAmt>
+    </Header>
+    <Line>
+        <Desc>Pens</Desc>
+        <Amount>200.00</Amount>
+        <Taxable>true</Taxable>
+        <ItemId>4</ItemId>
+        <UnitPrice>100</UnitPrice>
+        <Qty>4</Qty>
+    </Line>
+</Invoice>
