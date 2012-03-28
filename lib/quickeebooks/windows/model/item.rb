@@ -4,7 +4,7 @@ require 'quickeebooks/windows/model/meta_data'
 require 'quickeebooks/windows/model/account_reference'
 require 'quickeebooks/windows/model/vendor_reference'
 
-module QuickeebooksQbw
+module Quickeebooks
   module Windows
     module Model
       class Item < Quickeebooks::Windows::Model::IntuitType
@@ -18,8 +18,8 @@ module QuickeebooksQbw
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :external_key, :from => 'ExternalKey'
         xml_accessor :synchronized, :from => 'Synchronized'
-        xml_accessor :meta_data, :from => 'MetaData', :as => QuickeebooksQbw::Model::MetaData
-        xml_accessor :custom_fields, :from => 'CustomField', :as => [QuickeebooksQbw::Model::CustomField]
+        xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Windows::Model::MetaData
+        xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Windows::Model::CustomField]
         xml_accessor :draft
         xml_accessor :object_state, :from => 'ObjectState'
         xml_accessor :item_parent_id, :from => 'ItemParentId'
@@ -27,20 +27,19 @@ module QuickeebooksQbw
         xml_accessor :name, :from => 'Name'
         xml_accessor :desc, :from => 'Desc'
         xml_accessor :taxable, :from => 'Taxable'
-        xml_accessor :unit_price, :from => 'UnitPrice', :as => QuickeebooksQbw::Model::Price
+        xml_accessor :unit_price, :from => 'UnitPrice', :as => Quickeebooks::Windows::Model::Price
         xml_accessor :active
         xml_accessor :rate_percent, :from => 'RatePercent'
         xml_accessor :type, :from => 'Type'
         xml_accessor :uomid, :from => 'UOMId'
         xml_accessor :uomabbrv, :from => 'UOMAbbrv'
-        xml_accessor :account_reference, :from => 'IncomeAccountRef', :as => QuickeebooksQbw::Model::AccountReference
+        xml_accessor :account_reference, :from => 'IncomeAccountRef', :as => Quickeebooks::Windows::Model::AccountReference
         xml_accessor :purchase_desc, :from => 'PurchaseDesc'
-        xml_accessor :purchase_cost, :from => 'PurchaseCost', :as => QuickeebooksQbw::Model::Price
-        xml_accessor :expense_account_reference, :from => 'ExpenseAccountRef', :as => QuickeebooksQbw::Model::AccountReference
-        xml_accessor :cogs_account_reference, :from => 'COGSAccountRef', :as => QuickeebooksQbw::Model::AccountReference
-        xml_accessor :pref_vendor_ref, :from => 'VendorRef', :as => QuickeebooksQbw::Model::VendorReference
-        xml_accessor :avg_cost, :from => 'AvgCost', :as => QuickeebooksQbw::Model::Price
-
+        xml_accessor :purchase_cost, :from => 'PurchaseCost', :as => Quickeebooks::Windows::Model::Price
+        xml_accessor :expense_account_reference, :from => 'ExpenseAccountRef', :as => Quickeebooks::Windows::Model::AccountReference
+        xml_accessor :cogs_account_reference, :from => 'COGSAccountRef', :as => Quickeebooks::Windows::Model::AccountReference
+        xml_accessor :pref_vendor_ref, :from => 'VendorRef', :as => Quickeebooks::Windows::Model::VendorReference
+        xml_accessor :avg_cost, :from => 'AvgCost', :as => Quickeebooks::Windows::Model::Price
         xml_accessor :qty_on_hand, :from => 'QtyOnHand', :as => Float
         xml_accessor :qty_on_purchase_order, :from => 'QtyOnPurchaseOrder', :as => Float
         xml_accessor :qty_on_sales_order, :from => 'QtyOnSalesOrder', :as => Float

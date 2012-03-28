@@ -64,7 +64,6 @@ module Quickeebooks
             begin
               results = []
               path_to_nodes = "//xmlns:RestResponse/xmlns:#{model::XML_COLLECTION_NODE}/xmlns:#{model::XML_NODE}"
-              puts path_to_nodes
               collection.count = xml.xpath(path_to_nodes).count
               if collection.count > 0
                 xml.xpath(path_to_nodes).each do |xa|

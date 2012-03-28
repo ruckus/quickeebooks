@@ -5,7 +5,7 @@ require "quickeebooks/windows/model/phone"
 require "quickeebooks/windows/model/web_site"
 require "quickeebooks/windows/model/email"
 require "quickeebooks/windows/model/note"
-require "quickeebooks/windows/model/customer_custom_field"
+require "quickeebooks/windows/model/custom_field"
 require "quickeebooks/windows/model/open_balance"
 
 module Quickeebooks

@@ -78,10 +78,12 @@ require 'quickeebooks/online/service/entitlement'
 
 #== Windows
 require 'quickeebooks/windows/model/intuit_type'
-require 'quickeebooks/windows/model/customer_custom_field'
+require 'quickeebooks/windows/model/custom_field'
 require 'quickeebooks/windows/model/price'
 require 'quickeebooks/windows/model/customer'
 require 'quickeebooks/windows/model/account'
+require 'quickeebooks/windows/model/item'
 require 'quickeebooks/windows/service/service_base'
 require 'quickeebooks/windows/service/account'
 require 'quickeebooks/windows/service/customer'
+require 'quickeebooks/windows/service/item'
