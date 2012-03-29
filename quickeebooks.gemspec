@@ -1,5 +1,5 @@
 $:.unshift File.expand_path("../lib", __FILE__)
-require "Quickeebooks/version"
+require "quickeebooks/version"
 
 Gem::Specification.new do |gem|
   gem.name     = "quickeebooks"
