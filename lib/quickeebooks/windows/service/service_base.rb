@@ -58,7 +58,7 @@ module Quickeebooks
           raise ArgumentError, "missing model to instantiate" if model.nil?
 
           if custom_field_query != nil
-            response = do_http_post(url_for_resource(resource), custom_field_query, {'Content-Type' => 'text/xml'})
+            response = do_http_post(url_for_resource(resource), custom_field_query, {}, {'Content-Type' => 'text/xml'})
           else
             response = do_http_get(url_for_resource(resource), {}, {'Content-Type' => 'text/html'})
           end
