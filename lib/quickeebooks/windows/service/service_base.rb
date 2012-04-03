@@ -52,12 +52,16 @@ module Quickeebooks
           %Q{<?xml version="1.0" encoding="utf-8"?>\n#{xml.strip}}
         end
 
-        def fetch_collection(resource, container, model, filters = [], page = 1, per_page = 20, sort = nil, options ={})
+        def fetch_collection(resource, container, model, custom_field_query = nil, filters = [], page = 1, per_page = 20, sort = nil, options ={})
           raise ArgumentError, "missing resource to fetch" if resource.nil?
           raise ArgumentError, "missing result container" if container.nil?
           raise ArgumentError, "missing model to instantiate" if model.nil?
 
-          response = do_http_get(url_for_resource(resource), {}, {'Content-Type' => 'text/html'})
+          if custom_field_query != nil
+            response = do_http_post(url_for_resource(resource), custom_field_query, {'Content-Type' => 'text/xml'})
+          else
+            response = do_http_get(url_for_resource(resource), {}, {'Content-Type' => 'text/html'})
+          end
           if response
             collection = Quickeebooks::Collection.new
             xml = parse_xml(response.body)

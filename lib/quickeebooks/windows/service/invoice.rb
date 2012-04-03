@@ -18,7 +18,7 @@ module Quickeebooks
         # sort: +Sort+ object
         # options: +Hash+ extra arguments
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
-          fetch_collection("invoices", "Invoice", Quickeebooks::Windows::Model::Invoice, filters, page, per_page, sort, options)
+          fetch_collection("invoices", "Invoice", Quickeebooks::Windows::Model::Invoice, nil, filters, page, per_page, sort, options)
         end
 
       end
