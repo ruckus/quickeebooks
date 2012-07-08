@@ -29,6 +29,7 @@ module Quickeebooks
         xml_accessor :suffix, :from => 'Suffix'
         xml_accessor :gender, :from => 'Gender'
         xml_accessor :dba_name, :from => 'DBAName'
+        xml_accessor :tax_identifier, :from => 'TaxIdentifier'
         xml_accessor :notes, :from => 'Notes', :as => [Quickeebooks::Online::Model::Note]
         xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Online::Model::CustomerCustomField]
         xml_accessor :sales_term_id, :from => 'SalesTermId'
