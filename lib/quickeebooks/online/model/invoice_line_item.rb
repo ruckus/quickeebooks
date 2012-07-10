@@ -1,5 +1,4 @@
 module Quickeebooks
-
   module Online
     module Model
       class InvoiceLineItem < Quickeebooks::Online::Model::IntuitType
