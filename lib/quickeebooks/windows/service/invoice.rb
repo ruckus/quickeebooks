@@ -20,6 +20,20 @@ module Quickeebooks
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
           fetch_collection("invoices", "Invoice", Quickeebooks::Windows::Model::Invoice, nil, filters, page, per_page, sort, options)
         end
+        
+        def create(invoice)
+          # XML is a wrapped 'object' where the type is specified as an attribute
+          #    <Object xsi:type="Invoice">
+          xml_node = invoice.to_xml(:name => 'Object')
+          xml_node.set_attribute('xsi:type', 'Invoice')
+          xml = <<-XML
+          <Add xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequestId="#{guid}" xmlns="http://www.intuit.com/sb/cdm/v2">
+          <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
+          #{xml_node}
+          </Add>
+          XML
+          perform_write("invoice", xml)
+        end
 
       end
     end

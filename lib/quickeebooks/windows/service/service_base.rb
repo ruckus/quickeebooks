@@ -1,6 +1,7 @@
 require 'rexml/document'
 require 'uri'
 require 'cgi'
+require 'uuidtools'
 
 class IntuitRequestException < Exception
   attr_accessor :code, :cause
@@ -35,6 +36,10 @@ module Quickeebooks
 
         def url_for_base(raw)
           "#{@base_uri}/#{raw}/v2/#{@realm_id}"
+        end
+        
+        def guid
+          UUIDTools::UUID.random_create.to_s.gsub('-', '')
         end
 
         private
@@ -85,6 +90,27 @@ module Quickeebooks
           else
             nil
           end
+        end
+        
+        def perform_write(resource, body = "", params = {}, headers = {})
+          url = url_for_resource(resource)
+          unless headers.has_key?('Content-Type')
+            headers['Content-Type'] = 'text/xml'
+          end
+          response = do_http_post(url, body.strip, params, headers)
+          
+          result = nil
+          if response
+            case response.code.to_i
+            when 200
+              result = Quickeebooks::Windows::Model::RestResponse.from_xml(response.body)
+            when 401
+              raise IntuitRequestException.new("Authorization failure: token timed out?")
+            when 404
+              raise IntuitRequestException.new("Resource Not Found: Check URL and try again")
+            end
+          end
+          result
         end
 
         def do_http_post(url, body = "", params = {}, headers = {}) # throws IntuitRequestException

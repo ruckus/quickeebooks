@@ -19,7 +19,7 @@ module Quickeebooks
         XML_NODE = 'Customer'
         
         xml_convention :camelcase
-        xml_accessor :id, :from => 'Id'
+        xml_accessor :id, :from => 'Id', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :synchronized, :from => 'Synchronized'
         xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Windows::Model::MetaData
