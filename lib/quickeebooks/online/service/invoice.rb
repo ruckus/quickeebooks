@@ -9,16 +9,34 @@ module Quickeebooks
     module Service
       class Invoice < ServiceBase
 
+        def create(invoice)
+          raise InvalidModelException unless invoice.valid?
+          xml = invoice.to_xml_ns
+          response = do_http_post(url_for_resource("invoice"), valid_xml_document(xml))
+          if response.code.to_i == 200
+            Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+          else
+            nil
+          end
+        end
 
-        # Fetch a +Collection+ of +Invoice+ objects
-        # Arguments:
-        # filters: Array of +Filter+ objects to apply
-        # page: +Fixnum+ Starting page
-        # per_page: +Fixnum+ How many results to fetch per page
-        # sort: +Sort+ object
-        # options: +Hash+ extra arguments
-        def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
-          fetch_collection("invoices", "Invoice", Quickeebooks::Online::Model::Invoice, filters, page, per_page, sort, options)
+        # Fetch an invoice by its ID
+        # Returns: +Invoice+ object
+        def fetch_by_id(invoice_id)
+          response = do_http_get("#{url_for_resource("invoice")}/#{invoice_id}")
+          Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+        end
+
+        def update(invoice)
+          raise InvalidModelException.new("Missing required parameters for update") unless invoice.valid_for_update?
+          url = "#{url_for_resource("invoice")}/#{invoice.id}"
+          xml = invoice.to_xml_ns
+          response = do_http_post(url, valid_xml_document(xml))
+          if response.code.to_i == 200
+            Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+          else
+            nil
+          end
         end
 
         # Returns the absolute path to the PDF on disk
@@ -37,11 +55,23 @@ module Quickeebooks
           end
         end
 
-        # Fetch an invoice by its ID
-        # Returns: +Invoice+ object
-        def fetch_by_id(invoice_id)
-          response = do_http_get("#{url_for_resource("invoice")}/#{invoice_id}")
-          Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+        def delete(invoice)
+          raise InvalidModelException.new("Missing required parameters for delete") unless invoice.valid_for_deletion?
+          xml = valid_xml_document(invoice.to_xml_ns(:fields => ['Id', 'SyncToken']))
+          url = "#{url_for_resource("invoice")}/#{invoice.id}"
+          response = do_http_post(url, xml, {:methodx => "delete"})
+          response.code.to_i == 200
+        end
+        
+        # Fetch a +Collection+ of +Invoice+ objects
+        # Arguments:
+        # filters: Array of +Filter+ objects to apply
+        # page: +Fixnum+ Starting page
+        # per_page: +Fixnum+ How many results to fetch per page
+        # sort: +Sort+ object
+        # options: +Hash+ extra arguments
+        def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
+          fetch_collection("invoices", "Invoice", Quickeebooks::Online::Model::Invoice, filters, page, per_page, sort, options)
         end
 
       end
