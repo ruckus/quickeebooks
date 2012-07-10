@@ -16,7 +16,7 @@ module Quickeebooks
         xml_accessor :payment_method_name,   :from => 'PaymentMethodName'
         # TODO 
         #xml_accessor :detail,               :from => 'Detail',           :as => Quickeebooks::Online::Model::PaymentDetail
-        xml_accessor :total_amt,             :from => 'TotalAmt',         :as => Float
+        xml_accessor :total_amount,          :from => 'TotalAmt',         :as => Float
         xml_accessor :process_payment,       :from => 'ProcessPayment'
       end
     end
