@@ -10,6 +10,10 @@ module Quickeebooks
     module Model
       class Invoice < Quickeebooks::Windows::Model::IntuitType
         include ActiveModel::Validations
+        
+        XML_COLLECTION_NODE = 'Invoices'
+        XML_NODE = 'Invoice'
+        
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer

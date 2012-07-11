@@ -23,6 +23,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rcov',   '~> 0.9.8'
   gem.add_development_dependency 'rr',     '~> 1.0.2'
-  gem.add_development_dependency 'rspec',  '~> 2.0.0'
+  gem.add_development_dependency 'rspec',  '2.11.0'
   gem.add_development_dependency 'fakeweb'
 end

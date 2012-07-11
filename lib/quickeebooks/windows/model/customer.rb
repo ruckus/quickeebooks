@@ -76,6 +76,14 @@ module Quickeebooks
           active == 'true'
         end
         
+        def billing_address
+          addresses.detect { |address| address.tag == "Billing" }
+        end
+
+        def shipping_address
+          addresses.detect { |address| address.tag == "Shipping" }
+        end
+        
         def has_required_attributes
           if name.is_a?(String) && name.index(':') != nil
             errors.add(:name, "Attribute :name cannot contain a colon")

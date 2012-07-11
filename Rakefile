@@ -12,6 +12,6 @@ require "quickeebooks"
 task :default => :spec
 
 desc "Run all specs"
-Rspec::Core::RakeTask.new(:spec) do |t|
+RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = 'spec/**/*_spec.rb'
 end
