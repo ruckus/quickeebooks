@@ -1,4 +1,5 @@
 require 'time'
+require 'quickeebooks/online/model/payment_detail'
 
 module Quickeebooks
   module Online

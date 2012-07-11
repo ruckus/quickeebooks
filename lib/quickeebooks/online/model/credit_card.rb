@@ -1,3 +1,6 @@
+require 'quickeebooks/online/model/credit_charge_info'
+require 'quickeebooks/online/model/credit_charge_response'
+
 module Quickeebooks
   module Online
     module Model

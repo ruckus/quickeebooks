@@ -1,3 +1,5 @@
+require 'quickeebooks/online/model/credit_card'
+
 module Quickeebooks
   module Online
     module Model
