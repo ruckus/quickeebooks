@@ -18,6 +18,16 @@ module Quickeebooks
           error != nil
         end
         
+        def to_s
+          s = "#<RestResponse>: "
+          if success?
+            s += "Success[#{success.request_name}] @ #{success.processed_time} - "
+          else
+            s += "Error[#{error.request_name}] @ #{error.processed_time} - "
+            s += "Code: #{error.code}, Desc: #{error.desc}"
+          end
+        end
+        
       end
     end
   end

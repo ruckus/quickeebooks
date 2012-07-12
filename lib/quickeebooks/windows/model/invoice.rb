@@ -14,6 +14,9 @@ module Quickeebooks
         XML_COLLECTION_NODE = 'Invoices'
         XML_NODE = 'Invoice'
         
+        # https://services.intuit.com/sb/invoice/v2/<realmID>
+        REST_RESOURCE = "invoice"
+        
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer

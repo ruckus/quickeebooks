@@ -57,15 +57,13 @@ module Quickeebooks
           %Q{<?xml version="1.0" encoding="utf-8"?>\n#{xml.strip}}
         end
 
-        def fetch_collection(resource, container, model, custom_field_query = nil, filters = [], page = 1, per_page = 20, sort = nil, options ={})
-          raise ArgumentError, "missing resource to fetch" if resource.nil?
-          raise ArgumentError, "missing result container" if container.nil?
+        def fetch_collection(model, custom_field_query = nil, filters = [], page = 1, per_page = 20, sort = nil, options ={})
           raise ArgumentError, "missing model to instantiate" if model.nil?
 
           if custom_field_query != nil
-            response = do_http_post(url_for_resource(resource), custom_field_query, {}, {'Content-Type' => 'text/xml'})
+            response = do_http_post(url_for_resource(model::REST_RESOURCE), custom_field_query, {}, {'Content-Type' => 'text/xml'})
           else
-            response = do_http_get(url_for_resource(resource), {}, {'Content-Type' => 'text/html'})
+            response = do_http_get(url_for_resource(model::REST_RESOURCE), {}, {'Content-Type' => 'text/html'})
           end
           if response
             collection = Quickeebooks::Collection.new
@@ -92,8 +90,8 @@ module Quickeebooks
           end
         end
         
-        def perform_write(resource, body = "", params = {}, headers = {})
-          url = url_for_resource(resource)
+        def perform_write(model, body = "", params = {}, headers = {})
+          url = url_for_resource(model::REST_RESOURCE)
           unless headers.has_key?('Content-Type')
             headers['Content-Type'] = 'text/xml'
           end

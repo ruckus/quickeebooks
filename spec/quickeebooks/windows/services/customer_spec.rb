@@ -22,8 +22,9 @@ describe "Quickeebooks::Windows::Service::Customer" do
   
   it "can fetch a list of customers" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/customers.xml")
+    model = Quickeebooks::Windows::Model::Customer
     service = Quickeebooks::Windows::Service::Customer.new(@oauth, @realm_id)
-    FakeWeb.register_uri(:post, service.url_for_resource("customer"), :status => ["200", "OK"], :body => xml)
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     accounts = service.list
     accounts.entries.count.should == 3
     wine_house = accounts.entries.first

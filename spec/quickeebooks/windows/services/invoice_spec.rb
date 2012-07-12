@@ -24,7 +24,8 @@ describe "Quickeebooks::Windows::Service::Invoice" do
   it "can fetch a list of invoices" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/invoices.xml")
     service = Quickeebooks::Windows::Service::Invoice.new(@oauth, @realm_id)
-    FakeWeb.register_uri(:get, service.url_for_resource("invoices"), :status => ["200", "OK"], :body => xml)
+    model = Quickeebooks::Windows::Model::Invoice
+    FakeWeb.register_uri(:get, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     invoices = service.list
     invoices.entries.count.should == 7
     
@@ -78,7 +79,8 @@ describe "Quickeebooks::Windows::Service::Invoice" do
   it "can create an invoice" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/invoice_success_create.xml")
     service = Quickeebooks::Windows::Service::Invoice.new(@oauth, @realm_id)
-    FakeWeb.register_uri(:post, service.url_for_resource("invoice"), :status => ["200", "OK"], :body => xml)
+    model = Quickeebooks::Windows::Model::Invoice
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
 
     invoice = Quickeebooks::Windows::Model::Invoice.new
     header = Quickeebooks::Windows::Model::InvoiceHeader.new

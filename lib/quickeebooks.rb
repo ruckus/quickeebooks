@@ -95,9 +95,16 @@ require 'quickeebooks/windows/model/success'
 require 'quickeebooks/windows/model/error'
 require 'quickeebooks/windows/model/object_ref'
 
+require 'quickeebooks/windows/model/sales_rep'
+require 'quickeebooks/windows/model/vendor'
+require 'quickeebooks/windows/model/vendor_id'
+require 'quickeebooks/windows/model/external_key'
+
+
 # Services
 require 'quickeebooks/windows/service/service_base'
 require 'quickeebooks/windows/service/account'
 require 'quickeebooks/windows/service/customer'
 require 'quickeebooks/windows/service/item'
 require 'quickeebooks/windows/service/invoice'
+require 'quickeebooks/windows/service/sales_rep'

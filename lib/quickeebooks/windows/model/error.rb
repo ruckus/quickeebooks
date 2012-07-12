@@ -10,8 +10,8 @@ module Quickeebooks
         xml_accessor :object_ref, :as => Quickeebooks::Windows::Model::ObjectRef
         xml_accessor :request_name
         xml_accessor :processed_time, :as => Time
-        xml_accessor :error_code
-        xml_accessor :error_desc
+        xml_accessor :code, :from => 'ErrorCode'
+        xml_accessor :desc, :from => 'ErrorDesc'
         
       end
     end
