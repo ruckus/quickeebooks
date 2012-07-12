@@ -22,7 +22,10 @@ describe "Quickeebooks::Windows::Service::SalesRep" do
   
   it "can fetch a list of sales reps" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/sales_reps.xml")
-    service = Quickeebooks::Windows::Service::SalesRep.new(@oauth, @realm_id)
+    service = Quickeebooks::Windows::Service::SalesRep.new
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    
     model = Quickeebooks::Windows::Model::SalesRep
     FakeWeb.register_uri(:get, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     reps = service.list

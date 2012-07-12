@@ -24,9 +24,24 @@ module Quickeebooks
 
         XML_NS = %{xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm"}
 
-        def initialize(oauth_access_token, realm_id)
+        def initialize(oauth_access_token = nil, realm_id = nil)
           @base_uri = 'https://services.intuit.com/sb'
-          @oauth = oauth_access_token
+          
+          if !oauth_access_token.nil? && !realm_id.nil?
+            msg = "Quickeebooks::Windows::ServiceBase - "
+            msg += "This version of the constructor is deprecated. "
+            msg += "Use the no-arg constructor and set the AccessToken and the RealmID using the accessors."
+            warn(msg)
+            access_token = oauth_access_token
+            realm_id = realm_id
+          end
+        end
+        
+        def access_token=(token)
+          @oauth = token
+        end
+        
+        def realm_id=(realm_id)
           @realm_id = realm_id
         end
 
