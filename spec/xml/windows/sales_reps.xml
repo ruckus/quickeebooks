@@ -180,5 +180,25 @@
 			</Vendor> 
 			<Initials>WB</Initials> 
 		</SalesRep> 
+		<SalesRep> 
+			<Id idDomain="QB">6</Id> 
+			<SyncToken>1</SyncToken> 
+			<MetaData> 
+				<CreatedBy>app</CreatedBy> 
+				<CreatedById>1</CreatedById> 
+				<CreateTime>2012-03-24T19:00:05.0Z</CreateTime> 
+				<LastModifiedBy>app</LastModifiedBy> 
+				<LastModifiedById>1</LastModifiedById> 
+				<LastUpdatedTime>2012-03-24T19:00:51.0Z</LastUpdatedTime> 
+			</MetaData> 
+			<ExternalKey idDomain="QB">6</ExternalKey> 
+			<Synchronized>true</Synchronized> 
+			<NameOf>Other</NameOf> 
+			<OtherName> 
+				<OtherNameId idDomain="QB">96</OtherNameId> 
+				<OtherNameName>Samples.</OtherNameName> 
+			</OtherName> 
+			<Initials>SAMP</Initials> 
+		</SalesRep>
 	</SalesReps>
 </RestResponse>
