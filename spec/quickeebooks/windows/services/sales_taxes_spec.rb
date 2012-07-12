@@ -20,7 +20,7 @@ describe "Quickeebooks::Windows::Service::SalesTax" do
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
   end
   
-  it "can fetch a list of shipping methods" do
+  it "can fetch a list of sales taxes" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/sales_taxes.xml")
     model = Quickeebooks::Windows::Model::SalesTax
     service = Quickeebooks::Windows::Service::SalesTax.new
