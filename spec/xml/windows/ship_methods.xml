@@ -1,0 +1,139 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+	<ShipMethods>
+		<ShipMethod>
+			<Id idDomain="QB">15</Id>
+			<MetaData>
+				<CreateTime>2012-07-08T06:50:59Z</CreateTime>
+				<LastUpdatedTime>2012-07-08T06:50:59Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Timmy</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">14</Id>
+			<MetaData>
+				<CreateTime>2012-06-29T00:03:56Z</CreateTime>
+				<LastUpdatedTime>2012-06-29T00:03:56Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Jimbo</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">13</Id>
+			<MetaData>
+				<CreateTime>2012-06-19T02:44:37Z</CreateTime>
+				<LastUpdatedTime>2012-06-19T02:44:37Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Vinlux</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">12</Id>
+			<MetaData>
+				<CreateTime>2012-06-13T23:12:25Z</CreateTime>
+				<LastUpdatedTime>2012-06-13T23:12:25Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Gary</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">11</Id>
+			<MetaData>
+				<CreateTime>2012-06-11T06:47:56Z</CreateTime>
+				<LastUpdatedTime>2012-06-11T06:47:56Z</LastUpdatedTime>
+			</MetaData>
+			<Name>TE Imports</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">10</Id>
+			<MetaData>
+				<CreateTime>2012-05-22T07:00:12Z</CreateTime>
+				<LastUpdatedTime>2012-05-22T07:00:12Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Will Call</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">9</Id>
+			<MetaData>
+				<CreateTime>2012-03-26T23:44:03Z</CreateTime>
+				<LastUpdatedTime>2012-03-26T23:44:03Z</LastUpdatedTime>
+			</MetaData>
+			<Name>JT</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">8</Id>
+			<MetaData>
+				<CreateTime>2012-03-26T22:18:54Z</CreateTime>
+				<LastUpdatedTime>2012-03-26T22:18:54Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Michael Scott</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">7</Id>
+			<MetaData>
+				<CreateTime>2012-03-26T21:38:54Z</CreateTime>
+				<LastUpdatedTime>2012-03-26T21:38:54Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Pam</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">6</Id>
+			<MetaData>
+				<CreateTime>2012-03-26T19:17:01Z</CreateTime>
+				<LastUpdatedTime>2012-03-26T19:17:01Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Garrison</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">5</Id>
+			<MetaData>
+				<CreateTime>2012-03-26T16:49:22Z</CreateTime>
+				<LastUpdatedTime>2012-03-26T16:49:22Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Zephyr</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">4</Id>
+			<MetaData>
+				<CreateTime>2012-03-24T17:47:36Z</CreateTime>
+				<LastUpdatedTime>2012-03-24T17:47:36Z</LastUpdatedTime>
+			</MetaData>
+			<Name>US Mail</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">3</Id>
+			<MetaData>
+				<CreateTime>2012-03-24T17:47:36Z</CreateTime>
+				<LastUpdatedTime>2012-03-24T17:47:36Z</LastUpdatedTime>
+			</MetaData>
+			<Name>UPS</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">2</Id>
+			<MetaData>
+				<CreateTime>2012-03-24T17:47:36Z</CreateTime>
+				<LastUpdatedTime>2012-03-24T17:47:36Z</LastUpdatedTime>
+			</MetaData>
+			<Name>Federal Express</Name>
+			<Active>true</Active>
+		</ShipMethod>
+		<ShipMethod>
+			<Id idDomain="QB">1</Id>
+			<MetaData>
+				<CreateTime>2012-03-24T17:47:36Z</CreateTime>
+				<LastUpdatedTime>2012-03-24T17:47:36Z</LastUpdatedTime>
+			</MetaData>
+			<Name>DHL</Name>
+			<Active>true</Active>
+		</ShipMethod>
+	</ShipMethods>
+</RestResponse>
