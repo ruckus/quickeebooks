@@ -7,7 +7,7 @@ module Quickeebooks
       # read only, corresponds to the realm_id
       # see https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/CompanyMetaData
       class CompanyMetaData < ServiceBase
-        def company_meta_data
+        def load
           url = "#{url_for_resource("companymetadata")}"
           response = do_http_get(url)
           if response && response.code.to_i == 200

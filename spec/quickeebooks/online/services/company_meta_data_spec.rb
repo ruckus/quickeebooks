@@ -22,10 +22,10 @@ describe "Quickeebooks::Online::Service::CompanyMetaData" do
 
   it "can get the realm's company_meta_data record" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/company_meta_data.xml")
-    service = Quickeebooks::Online::Service::CompanyMetaData.new(@oauth, @realm_id, @base_uri)
-    url = "#{service.url_for_resource("companymetadata")}"
+    company_meta_data = Quickeebooks::Online::Service::CompanyMetaData.new(@oauth, @realm_id, @base_uri)
+    url = "#{company_meta_data.url_for_resource("companymetadata")}"
     FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => xml)
-    company_meta_data = service.company_meta_data
+    company_meta_data = company_meta_data.load
     company_meta_data.registered_company_name.should == "Bay Area landscape services"
   end
 end
