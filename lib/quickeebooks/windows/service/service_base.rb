@@ -96,7 +96,7 @@ module Quickeebooks
               collection.entries = results
               collection.current_page = 1 # TODO: fix this
             rescue => ex
-              log("Error parsing XML: #{ex.message}")
+              #log("Error parsing XML: #{ex.message}")
               raise IntuitRequestException.new("Error parsing XML: #{ex.message}")
             end
             collection

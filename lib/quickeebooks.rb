@@ -55,6 +55,7 @@ end
 
 # Models
 require 'quickeebooks/online/model/intuit_type'
+require 'quickeebooks/online/model/company_meta_data'
 require 'quickeebooks/online/model/customer'
 require 'quickeebooks/online/model/account'
 require 'quickeebooks/online/model/invoice'
@@ -70,6 +71,7 @@ require 'quickeebooks/online/model/account_reference'
 require 'quickeebooks/online/service/filter'
 require 'quickeebooks/online/service/pagination'
 require 'quickeebooks/online/service/sort'
+require 'quickeebooks/online/service/company_meta_data'
 require 'quickeebooks/online/service/customer'
 require 'quickeebooks/online/service/account'
 require 'quickeebooks/online/service/invoice'
