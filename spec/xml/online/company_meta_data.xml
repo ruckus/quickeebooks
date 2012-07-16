@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CompanyMetaData xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+    <QBNRegisteredCompanyName>Bay Area landscape services</QBNRegisteredCompanyName>
+    <Address>
+        <Line1>2600 Service Street</Line1>
+        <City>San Jose</City>
+        <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+        <PostalCode>95131</PostalCode>
+        <Tag>COMPANY_ADDRESS</Tag>
+    </Address>
+    <Address>
+        <Line1>2601 ServicePayment Street</Line1>
+        <City>San Jose</City>
+        <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+        <PostalCode>95131</PostalCode>
+        <Tag>PUBLIC_ADDRESS</Tag>
+    </Address>
+    <Phone>
+        <FreeFormNumber>(669)111-2222</FreeFormNumber>
+    </Phone>
+    <Email>
+        <Address>john@bayarealandscapeservices.com</Address>
+        <Tag>COMPANY_EMAIL</Tag>
+    </Email>
+    <Email>
+        <Address>admin@bayarealandscapeservices.com</Address>
+        <Tag>EMAIL_ADDRESS_FOR_CUSTOMERS</Tag>
+    </Email>
+    <LegalAddress>
+        <Line1>2602 Service Street</Line1>
+        <City>San Jose</City>
+        <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+        <PostalCode>95131</PostalCode>
+        <Tag>LEGAL_ADDRESS</Tag>
+    </LegalAddress>
+    <IndustryType>Landscaping Services</IndustryType>
+</CompanyMetaData>
