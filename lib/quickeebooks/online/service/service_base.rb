@@ -112,7 +112,7 @@ module Quickeebooks
               collection.entries = results
               collection.current_page = xml.xpath("//qbo:SearchResults/qbo:CurrentPage")[0].text.to_i
             rescue => ex
-              log("Error parsing XML: #{ex.message}")
+              #log("Error parsing XML: #{ex.message}")
               raise IntuitRequestException.new("Error parsing XML: #{ex.message}")
             end
             collection
