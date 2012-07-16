@@ -24,13 +24,13 @@ module Quickeebooks
         xml_accessor :class_name, :from => 'ClassName'
         xml_accessor :sales_rep_id, :from => 'SalesRepId', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sales_rep_name, :from => 'SalesRepName'
-        xml_accessor :sales_tax_code_id, :from => 'SalesTaxCodeId'
+        xml_accessor :sales_tax_code_id, :from => 'SalesTaxCodeId', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sales_tax_code_name, :from => 'SalesTaxCodeName'
         xml_accessor :po_number, :from => 'PONumber'
         xml_accessor :ship_date, :from => 'ShipDate', :as => Time
         xml_accessor :sub_total_amount, :from => 'SubTotalAmt', :as => Float
-        xml_accessor :tax_id, :from => 'TaxId', :as => Quickeebooks::Windows::Model::Id
-        xml_accessor :tax_name, :from => 'TaxName'
+        xml_accessor :tax_id, :from => 'TaxId' # FEIN
+        xml_accessor :tax_name, :from => 'TaxName' # Business Name related to the FEIN
         xml_accessor :tax_group_id, :from => 'TaxGroupId', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :tax_group_name, :from => 'TaxGroupName'
         xml_accessor :tax_rate, :from => 'TaxRate', :as => Float
