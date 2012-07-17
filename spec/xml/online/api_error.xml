@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FaultInfo xmlns="http://www.intuit.com/sb/cdm/baseexceptionmodel/xsd">
+	<Message>Internal Server Error</Message>
+	<ErrorCode>500</ErrorCode>
+	<Cause>SERVER</Cause>
+</FaultInfo>

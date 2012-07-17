@@ -1,5 +1,6 @@
 # https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/Invoice
 
+require 'quickeebooks/online/model/id'
 require 'quickeebooks/online/model/invoice_header'
 require 'quickeebooks/online/model/invoice_line_item'
 require 'quickeebooks/online/model/address'
@@ -11,15 +12,18 @@ module Quickeebooks
     module Model
       class Invoice < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
+        
+        REST_RESOURCE = "invoice"
+        
         xml_convention :camelcase
-        xml_accessor :id, :from => 'Id', :as => Integer
+        xml_accessor :id, :from => 'Id', :as => Quickeebooks::Online::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Online::Model::MetaData
         xml_accessor :header, :from => 'Header', :as => Quickeebooks::Online::Model::InvoiceHeader
         xml_accessor :bill_address, :from => 'BillAddr', :as => Quickeebooks::Online::Model::Address
         xml_accessor :ship_address, :from => 'ShipAddr', :as => Quickeebooks::Online::Model::Address
         xml_accessor :bill_email, :from => 'BillEmail'
-        xml_accessor :ship_method_id, :from => 'ShipMethodId'
+        xml_accessor :ship_method_id, :from => 'ShipMethodId', :as => Quickeebooks::Online::Model::Id
         xml_accessor :ship_method_name, :from => 'ShipMethodName'
         xml_accessor :balance, :from => 'Balance', :as => Float
         xml_accessor :discount_amount, :from => 'DiscountAmt', :as => Float
@@ -34,6 +38,15 @@ module Quickeebooks
           ensure_line_items_initialization
         end
 
+        def to_xml_ns(options = {})
+          to_xml_inject_ns('Invoice', options)
+        end
+        
+        #== Class methods
+        def self.resource_for_collection
+          "#{self::REST_RESOURCE}s"
+        end
+        
         private
 
         def after_parse

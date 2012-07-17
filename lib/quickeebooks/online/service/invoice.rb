@@ -9,6 +9,16 @@ module Quickeebooks
     module Service
       class Invoice < ServiceBase
 
+        def create(invoice)
+          raise InvalidModelException unless invoice.valid?
+          xml = invoice.to_xml_ns
+          response = do_http_post(url_for_resource(Quickeebooks::Online::Model::Invoice::REST_RESOURCE), valid_xml_document(xml))
+          if response.code.to_i == 200
+            Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+          else
+            nil
+          end
+        end
 
         # Fetch a +Collection+ of +Invoice+ objects
         # Arguments:
@@ -18,7 +28,7 @@ module Quickeebooks
         # sort: +Sort+ object
         # options: +Hash+ extra arguments
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
-          fetch_collection("invoices", "Invoice", Quickeebooks::Online::Model::Invoice, filters, page, per_page, sort, options)
+          fetch_collection(Quickeebooks::Online::Model::Invoice, filters, page, per_page, sort, options)
         end
 
         # Returns the absolute path to the PDF on disk

@@ -9,6 +9,8 @@ module Quickeebooks
     module Model
       class CompanyMetaData < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
+        
+        REST_RESOURCE = "companymetadata"
 
         xml_convention :camelcase
         xml_accessor :external_realm_id, :from => 'ExternalRealmId'

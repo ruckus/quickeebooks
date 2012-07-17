@@ -18,13 +18,23 @@ describe "Quickeebooks::Online::Service::Customer" do
         :access_token_path    => "/oauth/v1/get_access_token"
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
+    
+    @service = Quickeebooks::Online::Service::Customer.new
+    @service.access_token = @oauth
+    @service.instance_eval {
+      @realm_id = "9991111222"
+    }
+    @service.base_uri = @base_uri
+    determine_base_url = @service.qb_base_uri_with_realm_id
+    xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/determine_base_url.xml")
+    FakeWeb.register_uri(:get, determine_base_url, :status => ["200", "OK"], :body => xml)    
   end
   
   it "can fetch a list of customers" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/customers.xml")
-    service = Quickeebooks::Online::Service::Customer.new(@oauth, @realm_id, @base_uri)
-    FakeWeb.register_uri(:post, service.url_for_resource("customers"), :status => ["200", "OK"], :body => xml)
-    accounts = service.list
+    url = @service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_collection)
+    FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml)
+    accounts = @service.list
     accounts.current_page.should == 1
     accounts.entries.count.should == 3
     accounts.entries.first.name.should == "John Doe"
@@ -32,9 +42,9 @@ describe "Quickeebooks::Online::Service::Customer" do
 
   it "can fetch a list of customers with filters" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/customers.xml")
-    service = Quickeebooks::Online::Service::Customer.new(@oauth, @realm_id, @base_uri)
-    FakeWeb.register_uri(:post, service.url_for_resource("customers"), :status => ["200", "OK"], :body => xml)
-    accounts = service.list
+    url = @service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_collection)
+    FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml)
+    accounts = @service.list
     accounts.current_page.should == 1
     accounts.entries.count.should == 3
     accounts.entries.first.name.should == "John Doe"
@@ -42,50 +52,45 @@ describe "Quickeebooks::Online::Service::Customer" do
   
   it "can create a customer" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/customer.xml")
-    service = Quickeebooks::Online::Service::Customer.new(@oauth, @realm_id, @base_uri)
-    FakeWeb.register_uri(:post, service.url_for_resource("customer"), :status => ["200", "OK"], :body => xml)
+    url = @service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)
+    FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml)
     customer = Quickeebooks::Online::Model::Customer.new
     customer.name = "Billy Bob"
-    result = service.create(customer)
-    result.id.to_i.should > 0
+    result = @service.create(customer)
+    result.id.value.to_i.should > 0
   end
   
   it "can delete a customer" do
-    service = Quickeebooks::Online::Service::Customer.new(@oauth, @realm_id, @base_uri)
-    url = "#{service.url_for_resource("customer")}/99?methodx=delete"
+    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/99"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
     customer = Quickeebooks::Online::Model::Customer.new
-    customer.id = 99
+    customer.id = Quickeebooks::Online::Model::Id.new("99")
     customer.sync_token = 0
-    result = service.delete(customer)
+    result = @service.delete(customer)
     result.should == true
   end
 
   it "cannot delete a customer with missing required fields for deletion" do
-    service = Quickeebooks::Online::Service::Customer.new(@oauth, @realm_id, @base_uri)
     customer = Quickeebooks::Online::Model::Customer.new
-    lambda { service.delete(customer) }.should raise_error(InvalidModelException, "Missing required parameters for delete")
+    lambda { @service.delete(customer) }.should raise_error(InvalidModelException, "Missing required parameters for delete")
   end
 
   it "exception is raised when we try to create an invalid account" do
     customer = Quickeebooks::Online::Model::Customer.new
-    service = Quickeebooks::Online::Service::Customer.new(@oauth, @realm_id, @base_uri)
-    lambda { service.create(customer) }.should raise_error(InvalidModelException)
+    lambda { @service.create(customer) }.should raise_error(InvalidModelException)
   end
   
   it "cannot update an invalid customer" do
     customer = Quickeebooks::Online::Model::Customer.new
     customer.name = "John Doe"
-    service = Quickeebooks::Online::Service::Customer.new(@oauth, @realm_id, @base_uri)
-    lambda { service.update(customer) }.should raise_error(InvalidModelException)
+    lambda { @service.update(customer) }.should raise_error(InvalidModelException)
   end
   
-  it "can fetch an customer by id" do
+  it "can fetch a customer by id" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/customer.xml")
-    service = Quickeebooks::Online::Service::Customer.new(@oauth, @realm_id, @base_uri)
-    url = "#{service.url_for_resource("customer")}/99"
+    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/99"
     FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => xml)
-    customer = service.fetch_by_id(99)
+    customer = @service.fetch_by_id(99)
     customer.name.should == "John Doe"
   end
 
@@ -93,13 +98,12 @@ describe "Quickeebooks::Online::Service::Customer" do
     xml2 = File.read(File.dirname(__FILE__) + "/../../../xml/online/customer2.xml")
     customer = Quickeebooks::Online::Model::Customer.new
     customer.name = "John Doe"
-    customer.id = 1
+    customer.id = Quickeebooks::Online::Model::Id.new("1")
     customer.sync_token = 2
     
-    service = Quickeebooks::Online::Service::Customer.new(@oauth, @realm_id, @base_uri)
-    url = "#{service.url_for_resource("customer")}/#{customer.id}"
+    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/#{customer.id.value}"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml2)
-    updated = service.update(customer)
+    updated = @service.update(customer)
     updated.name.should == "Billy Bob"
   end
 

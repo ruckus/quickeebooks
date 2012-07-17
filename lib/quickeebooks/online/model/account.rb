@@ -1,12 +1,17 @@
 require "quickeebooks"
 require "quickeebooks/online/model/meta_data"
 require "quickeebooks/online/model/account_detail_type"
+require "quickeebooks/online/model/id"
 
 module Quickeebooks
   module Online
     module Model
       class Account < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
+        
+        REST_RESOURCE = "account"
+        XML_NODE = "Account"
+        
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id'
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
@@ -15,7 +20,7 @@ module Quickeebooks
         xml_accessor :desc, :from => 'Desc'
         xml_accessor :sub_type, :from => 'Subtype'
         xml_accessor :acct_num, :from => 'AcctNum'
-        xml_accessor :account_parent_id, :from => 'AccountParentId'
+        xml_accessor :account_parent_id, :from => 'AccountParentId', :as => Quickeebooks::Online::Model::Id
         xml_accessor :current_balance, :from => 'CurrentBalance', :as => Float
         xml_accessor :opening_balance_date, :from => 'OpeningBalanceDate', :as => Date
 
@@ -25,6 +30,7 @@ module Quickeebooks
         def to_xml_ns(options = {})
           to_xml_inject_ns('Account', options)
         end
+        
 
         def valid_for_update?
           if sync_token.nil?
@@ -38,6 +44,11 @@ module Quickeebooks
         def valid_for_deletion?
           return false if(id.nil? || sync_token.nil?)
           id.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
+        end
+        
+        #== Class methods
+        def self.resource_for_collection
+          "#{self::REST_RESOURCE}s"
         end
 
       end

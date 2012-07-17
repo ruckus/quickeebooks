@@ -17,23 +17,33 @@ module Quickeebooks
       class ServiceBase
         attr_accessor :realm_id
         attr_accessor :oauth
-        attr_reader :base_uri
+        attr_accessor :base_uri
 
         QB_BASE_URI = "https://qbo.intuit.com/qbo1/rest/user/v2"
         XML_NS = %{xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm"}
 
-        def initialize(oauth_consumer_token, realm_id, base_url = nil)
-          @oauth = oauth_consumer_token
-          @realm_id = realm_id
-          if base_url.nil?
-            determine_base_url
-          else
-            uri = URI.parse(base_url)
-            if uri.host.nil?
-              raise ArgumentError, "#{base_url} doesn't appear to be a valid host name!"
-            end
-            @base_uri = base_url
+        def initialize(oauth_access_token = nil, realm_id = nil)
+          if !oauth_access_token.nil? && !realm_id.nil?
+            msg = "Quickeebooks::Online::ServiceBase - "
+            msg += "This version of the constructor is deprecated. "
+            msg += "Use the no-arg constructor and set the AccessToken and the RealmID using the accessors."
+            warn(msg)
+            access_token = oauth_access_token
+            realm_id = realm_id
           end
+        end
+
+        def access_token=(token)
+          @oauth = token
+        end
+        
+        def realm_id=(realm_id)
+          @realm_id = realm_id
+          determine_base_url
+        end
+        
+        def base_url=(uri)
+          @base_uri = uri
         end
 
         # Given a realm ID we need to determine the real Base URL
@@ -68,6 +78,10 @@ module Quickeebooks
         end
 
         private
+        
+        def determined_base_url?
+          @base_uri != nil
+        end
 
         def parse_xml(xml)
           Nokogiri::XML(xml)
@@ -77,10 +91,10 @@ module Quickeebooks
           %Q{<?xml version="1.0" encoding="utf-8"?>\n#{xml.strip}}
         end
 
-        def fetch_collection(resource, container, model, filters = [], page = 1, per_page = 20, sort = nil, options ={})
-          raise ArgumentError, "missing resource to fetch" if resource.nil?
-          raise ArgumentError, "missing result container" if container.nil?
+        def fetch_collection(model, filters = [], page = 1, per_page = 20, sort = nil, options ={})
           raise ArgumentError, "missing model to instantiate" if model.nil?
+          
+          determine_base_url unless determined_base_url?
 
           post_body_lines = []
 
@@ -97,7 +111,7 @@ module Quickeebooks
           end
 
           body = post_body_lines.join("&")
-          response = do_http_post(url_for_resource(resource), body, {}, {'Content-Type' => 'application/x-www-form-urlencoded'})
+          response = do_http_post(url_for_resource(model.resource_for_collection), body, {}, {'Content-Type' => 'application/x-www-form-urlencoded'})
           if response
             collection = Quickeebooks::Collection.new
             xml = parse_xml(response.body)
@@ -105,7 +119,7 @@ module Quickeebooks
               results = []
               collection.count = xml.xpath("//qbo:SearchResults/qbo:Count")[0].text.to_i
               if collection.count > 0
-                xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{container}").each do |xa|
+                xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{model::XML_NODE}").each do |xa|
                   results << model.from_xml(xa)
                 end
               end
@@ -121,25 +135,26 @@ module Quickeebooks
           end
         end
 
-        def do_http_post(url, body = "", params = {}, headers = {}) # throws IntuitRequestException
-          url = add_query_string_to_url(url, params)
-          do_http(:post, url, body, headers)
+        def do_http_post(resource, body = "", params = {}, headers = {}) # throws IntuitRequestException
+          url = add_query_string_to_url(resource, params)
+          do_http(:post, resource, body, headers)
         end
 
-        def do_http_get(url, params = {}, headers = {}) # throws IntuitRequestException
+        def do_http_get(resource, params = {}, headers = {}) # throws IntuitRequestException
           url = add_query_string_to_url(url, params)
-          do_http(:get, url, "", headers)
+          do_http(:get, resource, "", headers)
         end
 
-        def do_http(method, url, body, headers) # throws IntuitRequestException
+        def do_http(method, resource, body, headers) # throws IntuitRequestException
           unless headers.has_key?('Content-Type')
             headers.merge!({'Content-Type' => 'application/xml'})
           end
+          determine_base_url unless determined_base_url?
           # puts "METHOD = #{method}"
           # puts "URL = #{url}"
           # puts "BODY = #{body == nil ? "<NIL>" : body}"
           # puts "HEADERS = #{headers.inspect}"
-          response = @oauth.request(method, url, body, headers)
+          response = @oauth.request(method, resource, body, headers)
           check_response(response)
         end
 
