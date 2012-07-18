@@ -21,6 +21,10 @@ module Quickeebooks
           fetch_collection(Quickeebooks::Windows::Model::Invoice, nil, filters, page, per_page, sort, options)
         end
         
+        def invoice_as_pdf(invoice_id, destination_file_name)
+          raise NoMethodError, 'invoice_as_pdf is not implemented in Quickeebooks for Windows, only available in the Online adapter.'
+        end
+        
         def create(invoice)
           # XML is a wrapped 'object' where the type is specified as an attribute
           #    <Object xsi:type="Invoice">
