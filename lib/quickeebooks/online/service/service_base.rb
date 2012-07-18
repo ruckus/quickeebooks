@@ -40,11 +40,9 @@ module Quickeebooks
         # to use for all subsequenet REST operations
         # See: https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0010_Getting_the_Base_URL
         def determine_base_url
-          response = @oauth.request(:get, qb_base_uri_with_realm_id)
-          if response
-            if response.code == "200"
-              doc = parse_xml(response.body)
-              element = doc.xpath("//qbo:QboUser/qbo:CurrentCompany/qbo:BaseURI")[0]
+          if service_response
+            if service_response.code == "200"
+              element = base_doc.xpath("//qbo:QboUser/qbo:CurrentCompany/qbo:BaseURI")[0]
               if element
                 @base_uri = element.text
               end
@@ -65,6 +63,24 @@ module Quickeebooks
 
         def qb_base_uri_with_realm_id
           "#{QB_BASE_URI}/#{@realm_id}"
+        end
+
+        # store service base response
+        # so it can be accessed by other methods
+        def service_response
+          @service_response ||= @oauth.request(:get, qb_base_uri_with_realm_id)
+        end
+
+        # allows for reuse of service base's xml doc
+        # rather than loading it each time we need it
+        def base_doc
+          @base_doc ||= parse_xml(service_response.body)
+        end
+        
+        # gives us the qbo user's LoginName
+        # useful for verifying email address against
+        def login_name
+          @login_name ||= base_doc.xpath("//qbo:QboUser/qbo:LoginName")[0].text
         end
 
         private
