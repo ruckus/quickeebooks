@@ -58,6 +58,7 @@ customer_service.list
 # Instantiate a Windows API
 customer_service = Quickeebooks::Windows::Service::Customer.new(oauth_client, realm_id)
 customer_service.list 
+```
 
 All of the documentation below is geared towards the Online flavor but unless noted one should be able to replace it with Windows.
 

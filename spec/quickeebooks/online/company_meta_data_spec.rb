@@ -3,7 +3,7 @@ require "quickeebooks/online/model/company_meta_data"
 
 describe "Quickeebooks::Online::Model::CompanyMetaData" do
   
-  it "parse customer from XML" do
+  it "parse company meta data from XML" do
     xml = File.read(File.dirname(__FILE__) + "/../../xml/online/company_meta_data.xml")
     company_meta_data = Quickeebooks::Online::Model::CompanyMetaData.from_xml(xml)
 
