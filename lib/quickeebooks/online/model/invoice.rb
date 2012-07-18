@@ -13,6 +13,7 @@ module Quickeebooks
       class Invoice < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
         
+        XML_NODE = "Invoice"
         REST_RESOURCE = "invoice"
         
         xml_convention :camelcase
@@ -39,7 +40,7 @@ module Quickeebooks
         end
 
         def to_xml_ns(options = {})
-          to_xml_inject_ns('Invoice', options)
+          to_xml_inject_ns(XML_NODE, options)
         end
         
         #== Class methods
