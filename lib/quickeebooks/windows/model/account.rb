@@ -7,6 +7,13 @@ module Quickeebooks
     module Model
       class Account < Quickeebooks::Windows::Model::IntuitType
         include ActiveModel::Validations
+        
+        XML_COLLECTION_NODE = 'Accounts'
+        XML_NODE = 'Account'
+        
+        # https://services.intuit.com/sb/account/v2/<realmID>
+        REST_RESOURCE = "account"
+        
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id'
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer

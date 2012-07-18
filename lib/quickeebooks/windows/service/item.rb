@@ -11,7 +11,7 @@ module Quickeebooks
           custom_field_query += '<ItemQuery xmlns="http://www.intuit.com/sb/cdm/v2">'
           custom_field_query += "<StartPage>#{page}</StartPage><ChunkSize>#{per_page}</ChunkSize>"
           custom_field_query += '<CustomFieldEnable>true</CustomFieldEnable></ItemQuery>'
-          fetch_collection("item", "Item", Quickeebooks::Windows::Model::Item, custom_field_query.strip, filters, page, per_page, sort, options)
+          fetch_collection(Quickeebooks::Windows::Model::Item, custom_field_query.strip, filters, page, per_page, sort, options)
         end
 
       end
