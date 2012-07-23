@@ -18,8 +18,11 @@ module Quickeebooks
         XML_COLLECTION_NODE = 'Customers'
         XML_NODE = 'Customer'
         
+        # https://services.intuit.com/sb/customer/v2/<realmID>
+        REST_RESOURCE = "customer"
+        
         xml_convention :camelcase
-        xml_accessor :id, :from => 'Id'
+        xml_accessor :id, :from => 'Id', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :synchronized, :from => 'Synchronized'
         xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Windows::Model::MetaData
@@ -74,6 +77,14 @@ module Quickeebooks
         
         def active?
           active == 'true'
+        end
+        
+        def billing_address
+          addresses.detect { |address| address.tag == "Billing" }
+        end
+
+        def shipping_address
+          addresses.detect { |address| address.tag == "Shipping" }
         end
         
         def has_required_attributes

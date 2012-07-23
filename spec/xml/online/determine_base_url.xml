@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:QboUser xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+  <qbo:LoginName>ipp.intuit.com+dr@gmail.com</qbo:LoginName>
+  <qbo:Ticket>V1-73-Q013395388397857cf0f26</qbo:Ticket>
+  <qbo:AgentId>489710665</qbo:AgentId>
+  <qbo:CurrentCompany><qbo:CompanyId>489711245</qbo:CompanyId>
+    <qbo:BaseURI>https://qbo.intuit.com/qbo1</qbo:BaseURI>
+    <qbo:SubscriptionStatus>SUBSCRIBED</qbo:SubscriptionStatus>
+  </qbo:CurrentCompany>
+</qbo:QboUser>

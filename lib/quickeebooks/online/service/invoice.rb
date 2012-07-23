@@ -12,7 +12,7 @@ module Quickeebooks
         def create(invoice)
           raise InvalidModelException unless invoice.valid?
           xml = invoice.to_xml_ns
-          response = do_http_post(url_for_resource("invoice"), valid_xml_document(xml))
+          response = do_http_post(url_for_resource(Quickeebooks::Online::Model::Invoice::REST_RESOURCE), valid_xml_document(xml))
           if response.code.to_i == 200
             Quickeebooks::Online::Model::Invoice.from_xml(response.body)
           else
@@ -38,30 +38,6 @@ module Quickeebooks
             nil
           end
         end
-
-        # Returns the absolute path to the PDF on disk
-        # Its left to the caller to unlink the file at some later date
-        # Returns: +String+ : absolute path to file on disk or nil if couldnt fetch PDF
-        def invoice_as_pdf(invoice_id, destination_parent_directory)
-          response = do_http_get("#{url_for_resource("invoice-document")}/#{invoice_id}", {}, {'Content-Type' => 'application/pdf'})
-          if response && response.code.to_i == 200
-            file_name = File.join(destination_parent_directory, "invoice-document-#{invoice_id}-#{Time.now.strftime('%Y-%m-%d_%H-%M')}.pdf")
-            File.open(file_name, "wb") do |file|
-              file.write(response.body)
-            end
-            file_name
-          else
-            nil
-          end
-        end
-
-        def delete(invoice)
-          raise InvalidModelException.new("Missing required parameters for delete") unless invoice.valid_for_deletion?
-          xml = valid_xml_document(invoice.to_xml_ns(:fields => ['Id', 'SyncToken']))
-          url = "#{url_for_resource("invoice")}/#{invoice.id}"
-          response = do_http_post(url, xml, {:methodx => "delete"})
-          response.code.to_i == 200
-        end
         
         # Fetch a +Collection+ of +Invoice+ objects
         # Arguments:
@@ -71,7 +47,30 @@ module Quickeebooks
         # sort: +Sort+ object
         # options: +Hash+ extra arguments
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
-          fetch_collection("invoices", "Invoice", Quickeebooks::Online::Model::Invoice, filters, page, per_page, sort, options)
+          fetch_collection(Quickeebooks::Online::Model::Invoice, filters, page, per_page, sort, options)
+        end
+
+        # Returns the absolute path to the PDF on disk
+        # Its left to the caller to unlink the file at some later date
+        # Returns: +String+ : absolute path to file on disk or nil if couldnt fetch PDF
+        def invoice_as_pdf(invoice_id, destination_file_name)
+          response = do_http_get("#{url_for_resource("invoice-document")}/#{invoice_id}", {}, {'Content-Type' => 'application/pdf'})
+          if response && response.code.to_i == 200
+            File.open(destination_file_name, "wb") do |file|
+              file.write(response.body)
+            end
+            destination_file_name
+          else
+            nil
+          end
+        end
+
+        def delete(invoice)
+          raise InvalidModelException.new("Missing required parameters for delete") unless invoice.valid_for_deletion?
+          xml = valid_xml_document(invoice.to_xml_ns(:fields => ['Id', 'SyncToken']))
+          url = "#{url_for_resource(Quickeebooks::Online::Model::Invoice::REST_RESOURCE)}/#{invoice.id}"
+          response = do_http_post(url, xml, {:methodx => "delete"})
+          response.code.to_i == 200
         end
 
       end

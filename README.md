@@ -58,6 +58,7 @@ customer_service.list
 # Instantiate a Windows API
 customer_service = Quickeebooks::Windows::Service::Customer.new(oauth_client, realm_id)
 customer_service.list 
+```
 
 All of the documentation below is geared towards the Online flavor but unless noted one should be able to replace it with Windows.
 
@@ -284,10 +285,16 @@ Current Services:
 The `Quickeebooks::Online::Service::Invoice` has the ability to retrieve an invoice as a PDF document:
 
 ```ruby
-invoice_as_pdf(invoice_id)
+invoice_as_pdf(invoice_id, destination_file_name)
 ```
 
-The `invoice_as_pdf` method returns a string representing the path to the PDF on the local disk. The method uses `ENV['TMPDIR']` to write the file to a temporary storage location. _Note:_ it is up to you the caller to remove or clean up the file when you are done.
+Usage: Download invoice #89 and store it at `/tmp/invoice.pdf`:
+
+```ruby
+invoice_as_pdf(89, "/tmp/invoice.pdf")
+```
+
+_Note:_ it is up to you the caller to remove or clean up the file when you are done.
 
 ## Author
 

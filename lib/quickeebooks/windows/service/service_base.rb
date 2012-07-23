@@ -1,6 +1,7 @@
 require 'rexml/document'
 require 'uri'
 require 'cgi'
+require 'uuidtools'
 
 class IntuitRequestException < Exception
   attr_accessor :code, :cause
@@ -23,9 +24,24 @@ module Quickeebooks
 
         XML_NS = %{xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm"}
 
-        def initialize(oauth_access_token, realm_id)
+        def initialize(oauth_access_token = nil, realm_id = nil)
           @base_uri = 'https://services.intuit.com/sb'
-          @oauth = oauth_access_token
+          
+          if !oauth_access_token.nil? && !realm_id.nil?
+            msg = "Quickeebooks::Windows::ServiceBase - "
+            msg += "This version of the constructor is deprecated. "
+            msg += "Use the no-arg constructor and set the AccessToken and the RealmID using the accessors."
+            warn(msg)
+            access_token = oauth_access_token
+            realm_id = realm_id
+          end
+        end
+        
+        def access_token=(token)
+          @oauth = token
+        end
+        
+        def realm_id=(realm_id)
           @realm_id = realm_id
         end
 
@@ -35,6 +51,10 @@ module Quickeebooks
 
         def url_for_base(raw)
           "#{@base_uri}/#{raw}/v2/#{@realm_id}"
+        end
+        
+        def guid
+          UUIDTools::UUID.random_create.to_s.gsub('-', '')
         end
 
         private
@@ -52,15 +72,13 @@ module Quickeebooks
           %Q{<?xml version="1.0" encoding="utf-8"?>\n#{xml.strip}}
         end
 
-        def fetch_collection(resource, container, model, custom_field_query = nil, filters = [], page = 1, per_page = 20, sort = nil, options ={})
-          raise ArgumentError, "missing resource to fetch" if resource.nil?
-          raise ArgumentError, "missing result container" if container.nil?
+        def fetch_collection(model, custom_field_query = nil, filters = [], page = 1, per_page = 20, sort = nil, options ={})
           raise ArgumentError, "missing model to instantiate" if model.nil?
 
           if custom_field_query != nil
-            response = do_http_post(url_for_resource(resource), custom_field_query, {}, {'Content-Type' => 'text/xml'})
+            response = do_http_post(url_for_resource(model::REST_RESOURCE), custom_field_query, {}, {'Content-Type' => 'text/xml'})
           else
-            response = do_http_get(url_for_resource(resource), {}, {'Content-Type' => 'text/html'})
+            response = do_http_get(url_for_resource(model::REST_RESOURCE), {}, {'Content-Type' => 'text/html'})
           end
           if response
             collection = Quickeebooks::Collection.new
@@ -78,13 +96,34 @@ module Quickeebooks
               collection.entries = results
               collection.current_page = 1 # TODO: fix this
             rescue => ex
-              log("Error parsing XML: #{ex.message}")
+              #log("Error parsing XML: #{ex.message}")
               raise IntuitRequestException.new("Error parsing XML: #{ex.message}")
             end
             collection
           else
             nil
           end
+        end
+        
+        def perform_write(model, body = "", params = {}, headers = {})
+          url = url_for_resource(model::REST_RESOURCE)
+          unless headers.has_key?('Content-Type')
+            headers['Content-Type'] = 'text/xml'
+          end
+          response = do_http_post(url, body.strip, params, headers)
+          
+          result = nil
+          if response
+            case response.code.to_i
+            when 200
+              result = Quickeebooks::Windows::Model::RestResponse.from_xml(response.body)
+            when 401
+              raise IntuitRequestException.new("Authorization failure: token timed out?")
+            when 404
+              raise IntuitRequestException.new("Resource Not Found: Check URL and try again")
+            end
+          end
+          result
         end
 
         def do_http_post(url, body = "", params = {}, headers = {}) # throws IntuitRequestException

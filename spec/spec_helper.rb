@@ -14,7 +14,7 @@ def mock_exit(&block)
   block.should raise_error(SystemExit)
 end
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.color_enabled = true
   config.mock_with :rr
 end

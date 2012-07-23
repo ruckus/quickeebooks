@@ -29,6 +29,14 @@ module Quickeebooks
         def default?
           default == "true"
         end
+        
+        def state
+          country_sub_division_code
+        end
+        
+        def state=(new_state)
+          self.country_sub_division_code = new_state
+        end
 
       end
     end

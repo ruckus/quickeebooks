@@ -12,9 +12,12 @@ module Quickeebooks
 
         XML_COLLECTION_NODE = 'Items'
         XML_NODE = 'Item'
+        
+        # https://services.intuit.com/sb/item/v2/<realmID>
+        REST_RESOURCE = "item"
 
         xml_name 'Item'
-        xml_accessor :id, :from => 'Id'
+        xml_accessor :id, :from => 'Id', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :external_key, :from => 'ExternalKey'
         xml_accessor :synchronized, :from => 'Synchronized'
@@ -22,7 +25,7 @@ module Quickeebooks
         xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Windows::Model::CustomField]
         xml_accessor :draft
         xml_accessor :object_state, :from => 'ObjectState'
-        xml_accessor :item_parent_id, :from => 'ItemParentId'
+        xml_accessor :item_parent_id, :from => 'ItemParentId', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :item_parent_name, :from => 'ItemParentName'
         xml_accessor :name, :from => 'Name'
         xml_accessor :desc, :from => 'Desc'
@@ -31,7 +34,7 @@ module Quickeebooks
         xml_accessor :active
         xml_accessor :rate_percent, :from => 'RatePercent'
         xml_accessor :type, :from => 'Type'
-        xml_accessor :uomid, :from => 'UOMId'
+        xml_accessor :uomid, :from => 'UOMId', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :uomabbrv, :from => 'UOMAbbrv'
         xml_accessor :account_reference, :from => 'IncomeAccountRef', :as => Quickeebooks::Windows::Model::AccountReference
         xml_accessor :purchase_desc, :from => 'PurchaseDesc'

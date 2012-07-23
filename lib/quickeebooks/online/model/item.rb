@@ -1,4 +1,5 @@
 require 'time'
+require "quickeebooks/online/model/id"
 require 'quickeebooks/online/model/price'
 require 'quickeebooks/online/model/meta_data'
 require 'quickeebooks/online/model/account_reference'
@@ -9,12 +10,17 @@ module Quickeebooks
     module Model
       class Item < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
+        
+        XML_NODE = "Item"
+        
+        # <baseURL>/resource/items/v2/<realmID>
+        REST_RESOURCE = "items"
 
         xml_name 'Item'
-        xml_accessor :id, :from => 'Id'
+        xml_accessor :id, :from => 'Id', :as => Quickeebooks::Online::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Online::Model::MetaData
-        xml_accessor :item_parent_id, :from => 'ItemParentId'
+        xml_accessor :item_parent_id, :from => 'ItemParentId', :as => Quickeebooks::Online::Model::Id
         xml_accessor :item_parent_name, :from => 'ItemParentName'
         xml_accessor :name, :from => 'Name'
         xml_accessor :desc, :from => 'Desc'
