@@ -1,5 +1,5 @@
 module Quickeebooks
 
-  VERSION = "0.0.3fast"
+  VERSION = "0.0.4"
 
 end

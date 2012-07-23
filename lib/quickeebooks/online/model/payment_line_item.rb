@@ -1,3 +1,5 @@
+require 'quickeebooks/online/model/id'
+
 module Quickeebooks 
   module Online 
     module Model
@@ -6,7 +8,7 @@ module Quickeebooks
         xml_accessor :id,         :from => 'Id',        :as => Integer
         xml_accessor :amount,     :from => 'Amount',    :as => Float
         xml_accessor :desc,       :from => 'Desc'
-        xml_accessor :txn_id,     :from => 'TxnId'
+        xml_accessor :txn_id,     :from => 'TxnId', :as => Quickeebooks::Online::Model::Id
       end
     end
   end

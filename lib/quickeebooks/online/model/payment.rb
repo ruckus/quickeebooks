@@ -11,8 +11,7 @@ module Quickeebooks
     module Model
       class Payment  < Quickeebooks::Online::Model::IntuitType
         XML_NODE = "Payment"
-        REST_RESOURCE = "Payment"
-
+        REST_RESOURCE = "payment"
 
         include ActiveModel::Validations
         xml_convention :camelcase
