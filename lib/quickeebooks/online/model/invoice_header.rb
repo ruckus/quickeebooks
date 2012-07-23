@@ -12,6 +12,7 @@ module Quickeebooks
         xml_accessor :txn_date, :from => 'TxnDate', :as => Time
         xml_accessor :msg, :from => 'Msg'
         xml_accessor :customer_id, :from => 'CustomerId', :as => Quickeebooks::Online::Model::Id
+        xml_accessor :customer_name, :from => 'CustomerName'
         xml_accessor :sales_tax_code_id, :from => 'SalesTaxCodeId', :as => Quickeebooks::Online::Model::Id
         xml_accessor :sales_tax_code_name, :from => 'SalesTaxCodeName'
         xml_accessor :sub_total_amount, :from => 'SubTotalAmt', :as => Float
@@ -22,6 +23,7 @@ module Quickeebooks
         xml_accessor :discount_amount, :from => 'DiscountAmt', :as => Float
         xml_accessor :status, :from => 'Status'
         xml_accessor :ship_date, :from => 'ShipDate', :as => Time
+        xml_accessor :to_be_emailed, :from => 'ToBeEmailed'
       end
     end
   end

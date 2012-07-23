@@ -20,6 +20,25 @@ module Quickeebooks
           end
         end
 
+        # Fetch an invoice by its ID
+        # Returns: +Invoice+ object
+        def fetch_by_id(invoice_id)
+          response = do_http_get("#{url_for_resource(Quickeebooks::Online::Model::Invoice::REST_RESOURCE)}/#{invoice_id}")
+          Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+        end
+
+        def update(invoice)
+          raise InvalidModelException.new("Missing required parameters for update") unless invoice.valid_for_update?
+          url = "#{url_for_resource(Quickeebooks::Online::Model::Invoice::REST_RESOURCE)}/#{invoice.id}"
+          xml = invoice.to_xml_ns
+          response = do_http_post(url, valid_xml_document(xml))
+          if response.code.to_i == 200
+            Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+          else
+            nil
+          end
+        end
+        
         # Fetch a +Collection+ of +Invoice+ objects
         # Arguments:
         # filters: Array of +Filter+ objects to apply
@@ -46,11 +65,12 @@ module Quickeebooks
           end
         end
 
-        # Fetch an invoice by its ID
-        # Returns: +Invoice+ object
-        def fetch_by_id(invoice_id)
-          response = do_http_get("#{url_for_resource("invoice")}/#{invoice_id}")
-          Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+        def delete(invoice)
+          raise InvalidModelException.new("Missing required parameters for delete") unless invoice.valid_for_deletion?
+          xml = valid_xml_document(invoice.to_xml_ns(:fields => ['Id', 'SyncToken']))
+          url = "#{url_for_resource(Quickeebooks::Online::Model::Invoice::REST_RESOURCE)}/#{invoice.id}"
+          response = do_http_post(url, xml, {:methodx => "delete"})
+          response.code.to_i == 200
         end
 
       end

@@ -39,6 +39,15 @@ module Quickeebooks
           ensure_line_items_initialization
         end
 
+        def valid_for_update?
+          errors.empty?
+        end        
+
+        def valid_for_deletion?
+          return false if(id.nil? || sync_token.nil?)
+          id.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
+        end
+        
         def to_xml_ns(options = {})
           to_xml_inject_ns(XML_NODE, options)
         end
