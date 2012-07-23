@@ -10,10 +10,13 @@ module Quickeebooks
   module Online
     module Model
       class Payment  < Quickeebooks::Online::Model::IntuitType
+        XML_NODE = "Payment"
+        REST_RESOURCE = "Payment"
+
 
         include ActiveModel::Validations
         xml_convention :camelcase
-        xml_accessor :id,         :from => 'Id',        :as => Integer
+        xml_accessor :id,         :from => 'Id',        :as => Quickeebooks::Online::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :meta_data,  :from => 'MetaData',  :as => Quickeebooks::Online::Model::MetaData
         xml_accessor :header,     :from => 'Header',    :as => Quickeebooks::Online::Model::PaymentHeader
@@ -28,12 +31,17 @@ module Quickeebooks
         end        
 
         def to_xml_ns(options = {})
-          to_xml_inject_ns('Payment', options)
+          to_xml_inject_ns(XML_NODE, options)
         end
 
         def valid_for_deletion?
           return false if(id.nil? || sync_token.nil?)
           id.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
+        end
+        
+        #== Class methods
+        def self.resource_for_collection
+          "#{self::REST_RESOURCE}s"
         end
 
         private
