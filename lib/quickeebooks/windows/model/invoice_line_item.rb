@@ -25,6 +25,10 @@ module Quickeebooks
         xml_accessor :discount_id, :from => 'DiscountId', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :discount_name, :from => 'DiscountName'
         xml_accessor :quantity, :from => 'Qty', :as => Float
+        
+        #xml_accessor :discount_amount, :from => 'DiscountAmount', :as => Float
+        #xml_accessor :discount_rate_percent, :from => 'DiscountRatePercent', :as => Float
+        
         xml_accessor :sales_tax_code_id, :from => 'SalesTaxCodeId', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sales_tax_code_name, :from => 'SalesTaxCodeName'
         xml_accessor :service_date, :from => 'ServiceDate', :as => Time
