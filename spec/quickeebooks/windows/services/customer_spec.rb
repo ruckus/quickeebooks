@@ -45,5 +45,16 @@ describe "Quickeebooks::Windows::Service::Customer" do
     email.tag.should == "Business"
     email.default.should == "1"
   end
+  
+  it "can fetch a customer by ID" do
+    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/fetch_customer_by_id.xml")
+    model = Quickeebooks::Windows::Model::Customer
+    service = Quickeebooks::Windows::Service::Customer.new
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    FakeWeb.register_uri(:get, "#{service.url_for_resource(model::REST_RESOURCE)}/341?idDomain=QB", :status => ["200", "OK"], :body => xml)
+    customer = service.fetch_by_id(341)
+    customer.name.should == "Wine Stop"
+  end
 
 end

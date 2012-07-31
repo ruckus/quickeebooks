@@ -60,7 +60,7 @@ module Quickeebooks
         private
 
         def parse_xml(xml)
-          @last_response_xml ||= 
+          @last_response_xml = 
           begin
             x = Nokogiri::XML(xml)
             #x.document.remove_namespaces!
@@ -71,6 +71,19 @@ module Quickeebooks
         def valid_xml_document(xml)
           %Q{<?xml version="1.0" encoding="utf-8"?>\n#{xml.strip}}
         end
+        
+        # In QBD a single object response is the same as a collection response except
+        # it just has a single main element
+        def fetch_object(model, url, params = {}, options = {})
+          raise ArgumentError, "missing model to instantiate" if model.nil?
+          response = do_http_get(url, params, {'Content-Type' => 'text/xml'})
+          collection = parse_collection(response, model)
+          if collection.is_a?(Quickeebooks::Collection)
+            collection.entries.first
+          else
+            nil
+          end
+        end
 
         def fetch_collection(model, custom_field_query = nil, filters = [], page = 1, per_page = 20, sort = nil, options ={})
           raise ArgumentError, "missing model to instantiate" if model.nil?
@@ -80,9 +93,13 @@ module Quickeebooks
           else
             response = do_http_get(url_for_resource(model::REST_RESOURCE), {}, {'Content-Type' => 'text/html'})
           end
+          parse_collection(response, model)
+        end
+        
+        def parse_collection(response, model)
           if response
             collection = Quickeebooks::Collection.new
-            xml = parse_xml(response.body)
+            xml = @last_response_xml
             begin
               results = []
               path_to_nodes = "//xmlns:RestResponse/xmlns:#{model::XML_COLLECTION_NODE}/xmlns:#{model::XML_NODE}"

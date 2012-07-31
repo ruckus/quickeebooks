@@ -8,11 +8,11 @@ Gem::Specification.new do |gem|
   gem.author   = "Cody Caughlan"
   gem.email    = "toolbag@gmail.com"
   gem.homepage = "http://github.com/ruckus/quickeebooks"
-  gem.summary  = "REST integration with Quickbooks Online"
+  gem.summary  = "REST API to Quickbooks Online/Windows via Intuit Data Services"
 
   gem.description = gem.summary
 
-  gem.files = Dir["**/*"]#.select { |d| d =~ %r{^(README|bin/|data/|ext/|lib/|spec/|test/)} }
+  gem.files = Dir["**/*"]
 
   gem.add_dependency 'roxml'
   gem.add_dependency 'oauth'
