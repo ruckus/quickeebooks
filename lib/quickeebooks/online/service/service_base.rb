@@ -55,6 +55,8 @@ module Quickeebooks
               element = base_doc.xpath("//qbo:QboUser/qbo:CurrentCompany/qbo:BaseURI")[0]
               if element
                 @base_uri = element.text
+              else
+                raise IntuitRequestException.new("Response error: Could not extract BaseURI from response. Invalid XML: #{service_response.body}")
               end
             else
               raise IntuitRequestException.new("Response error: invalid code #{response.code}")

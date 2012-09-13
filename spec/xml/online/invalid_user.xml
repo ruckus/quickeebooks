@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:QboUser xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+  <qbo:LoginName>foo@example.com</qbo:LoginName>
+  <qbo:Ticket>V1-162-alskdfasldkjfalsdkjf</qbo:Ticket>
+  <qbo:AgentId>9991111222</qbo:AgentId>
+  <qbo:Blah>Hello</qbo:Blah>
+</qbo:QboUser>
