@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    quickeebooks (0.0.7)
+    quickeebooks (0.0.6)
       activemodel
       nokogiri
       oauth

@@ -39,9 +39,9 @@ module Quickeebooks
         
         def realm_id=(realm_id)
           @realm_id = realm_id
-          determine_base_url
         end
         
+        # uri is of the form `https://qbo.intuit.com/qbo36`
         def base_url=(uri)
           @base_uri = uri
         end
@@ -66,7 +66,6 @@ module Quickeebooks
 
         def url_for_resource(resource)
           url_for_base("resource/#{resource}")
-          #{}"#{@base_uri}/resource/#{resource}/v2/#{@realm_id}"
         end
 
         def url_for_base(raw)
