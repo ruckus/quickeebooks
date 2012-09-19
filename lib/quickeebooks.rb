@@ -51,6 +51,11 @@ module ROXML
   end
 end
 
+#== Shared
+
+# Services
+require 'quickeebooks/shared/service/filter'
+
 #== Online
 
 # Models
@@ -114,6 +119,7 @@ require 'quickeebooks/windows/model/customer_msg'
 require 'quickeebooks/windows/model/company_meta_data'
 
 # Services
+require 'quickeebooks/windows/service/filter'
 require 'quickeebooks/windows/service/service_base'
 require 'quickeebooks/windows/service/account'
 require 'quickeebooks/windows/service/customer'
