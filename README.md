@@ -300,6 +300,13 @@ _Note:_ it is up to you the caller to remove or clean up the file when you are d
 
 Cody Caughlan
 
+## Credits
+
+Thank you for the contributions:
+
+* [Walter McGinnis](https://github.com/walter)
+* [Simon Wistow](https://github.com/simonwistow)
+
 ## License
 
 The MIT License
