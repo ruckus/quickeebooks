@@ -69,6 +69,7 @@ module Quickeebooks
         end
 
         def url_for_base(raw)
+          determine_base_url unless determined_base_url?
           "#{@base_uri}/#{raw}/v2/#{@realm_id}"
         end
 

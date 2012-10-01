@@ -17,6 +17,7 @@ module Quickeebooks
         xml_accessor :sales_tax_code_name, :from => 'SalesTaxCodeName'
         xml_accessor :sub_total_amount, :from => 'SubTotalAmt', :as => Float
         xml_accessor :tax_rate, :from => 'TaxRate', :as => Float
+        xml_accessor :balance, :from => 'Balance', :as => Float
         xml_accessor :total_amount, :from => 'TotalAmt', :as => Float
         xml_accessor :due_date, :from => 'DueDate', :as => Time
         xml_accessor :bill_email, :from => 'BillEmail'
