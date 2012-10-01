@@ -26,7 +26,6 @@ module Quickeebooks
         xml_accessor :bill_email, :from => 'BillEmail'
         xml_accessor :ship_method_id, :from => 'ShipMethodId', :as => Quickeebooks::Online::Model::Id
         xml_accessor :ship_method_name, :from => 'ShipMethodName'
-        xml_accessor :balance, :from => 'Balance', :as => Float
         xml_accessor :discount_amount, :from => 'DiscountAmt', :as => Float
         xml_accessor :discount_rate, :from => 'DiscountRate', :as => Float
         xml_accessor :discount_taxable, :from => 'DiscountTaxable'
