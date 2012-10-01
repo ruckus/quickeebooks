@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+  <Success RequestId="48147b60b90e460893db27b32d9f2acf">
+    <PartyRoleRef>
+      <Id idDomain="NG">6762304</Id>
+      <SyncToken>1</SyncToken>
+      <LastUpdatedTime>2012-09-25T21:08:17Z</LastUpdatedTime>
+      <PartyReferenceId idDomain="NG">9270150</PartyReferenceId>
+    </PartyRoleRef>
+    <RequestName>CustomerAdd</RequestName>
+    <ProcessedTime>2012-09-25T21:08:17Z</ProcessedTime>
+  </Success>
+</RestResponse>

@@ -59,7 +59,7 @@ module Quickeebooks
                 raise IntuitRequestException.new("Response error: Could not extract BaseURI from response. Invalid XML: #{service_response.body}")
               end
             else
-              raise IntuitRequestException.new("Response error: invalid code #{response.code}")
+              raise IntuitRequestException.new("Response error: invalid code #{service_response.code}")
             end
           end
         end

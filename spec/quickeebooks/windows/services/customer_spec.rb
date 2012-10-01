@@ -56,5 +56,103 @@ describe "Quickeebooks::Windows::Service::Customer" do
     customer = service.fetch_by_id(341)
     customer.name.should == "Wine Stop"
   end
+  
+  it "cannot create a customer without a name" do
+    customer = Quickeebooks::Windows::Model::Customer.new
+    service = Quickeebooks::Windows::Service::Customer.new
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    lambda do
+      service.create(customer)
+    end.should raise_error(InvalidModelException)
+    
+    customer.valid?.should == false
+    customer.errors.keys.include?(:name).should == true
+  end
+
+  it "cannot create a customer without a type_of attribute" do
+    customer = Quickeebooks::Windows::Model::Customer.new
+    service = Quickeebooks::Windows::Service::Customer.new
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    lambda do
+      service.create(customer)
+    end.should raise_error(InvalidModelException)
+    customer.errors.keys.include?(:type_of).should == true
+  end
+  
+  it "cannot create a customer with invalid name" do
+    customer = Quickeebooks::Windows::Model::Customer.new
+    service = Quickeebooks::Windows::Service::Customer.new
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    customer.name = "Bobs:Plumbing"
+    lambda do
+      service.create(customer)
+    end.should raise_error(InvalidModelException)
+    
+    customer.valid?.should == false
+    customer.errors.keys.include?(:name).should == true
+  end
+
+  it "cannot create a customer with no address" do
+    customer = Quickeebooks::Windows::Model::Customer.new
+    service = Quickeebooks::Windows::Service::Customer.new
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    customer.name = "Bobs Plumbing"
+    lambda do
+      service.create(customer)
+    end.should raise_error(InvalidModelException)
+    
+    customer.valid?.should == false
+    customer.errors.keys.include?(:addresses).should == true
+  end
+
+  it "cannot create a customer with an invalid email" do
+    customer = Quickeebooks::Windows::Model::Customer.new
+    service = Quickeebooks::Windows::Service::Customer.new
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    customer.name = "Bobs Plumbing"
+    customer.email_address = "foobar.com"
+    lambda do
+      service.create(customer)
+    end.should raise_error(InvalidModelException)
+    
+    customer.valid?.should == false
+    customer.errors.keys.include?(:email).should == true
+  end
+
+  it "can create a customer" do
+    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/customer_create_success.xml")
+    service = Quickeebooks::Windows::Service::Customer.new
+    model = Quickeebooks::Windows::Model::Customer
+    customer = Quickeebooks::Windows::Model::Customer.new
+
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+
+    customer.type_of = "Person"
+    customer.name = "Bobs Plumbing"
+    email = Quickeebooks::Windows::Model::Email.new
+    email.address = "foo@bar.com"
+    email.tag = "Business"
+    customer.email = email
+    billing_address = Quickeebooks::Windows::Model::Address.new
+    billing_address.tag = "Billing"
+    billing_address.line1 = "123 Main St."
+    billing_address.city = "San Francisco"
+    billing_address.country_sub_division_code = "CA"
+    billing_address.postal_code = "94117"
+    billing_address.country = "USA"
+    customer.address = billing_address
+    create_response = service.create(customer)
+    create_response.success?.should == true
+    create_response.success.party_role_ref.id.value.should == "6762304"
+    create_response.success.request_name.should == "CustomerAdd"
+  end
+
 
 end
