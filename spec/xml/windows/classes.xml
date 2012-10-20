@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+  <Classes>
+    <Class>
+      <Id idDomain="QB">157</Id>
+      <SyncToken>1</SyncToken>
+      <MetaData>
+        <CreateTime>2012-10-19T21:57:46Z</CreateTime>
+        <LastUpdatedTime>2012-10-19T21:57:46Z</LastUpdatedTime>
+      </MetaData>
+      <ExternalKey idDomain="QB">157</ExternalKey>
+      <Synchronized>true</Synchronized>
+      <Name>Bugay</Name>
+      <Active>true</Active>
+    </Class>
+    <Class>
+      <Id idDomain="QB">356</Id>
+      <SyncToken>1</SyncToken>
+      <MetaData>
+        <CreateTime>2012-10-17T22:07:11Z</CreateTime>
+        <LastUpdatedTime>2012-10-17T22:07:11Z</LastUpdatedTime>
+      </MetaData>
+      <ExternalKey idDomain="QB">356</ExternalKey>
+      <Synchronized>true</Synchronized>
+      <Name>Nudo Petit</Name>
+      <Active>true</Active>
+    </Class>
+    <Class>
+      <Id idDomain="QB">955</Id>
+      <SyncToken>1</SyncToken>
+      <MetaData>
+        <CreateTime>2012-10-17T21:51:30Z</CreateTime>
+        <LastUpdatedTime>2012-10-17T21:51:30Z</LastUpdatedTime>
+      </MetaData>
+      <ExternalKey idDomain="QB">955</ExternalKey>
+      <Synchronized>true</Synchronized>
+      <Name>Radog</Name>
+      <Active>true</Active>
+    </Class>
+  </Classes>
+</RestResponse>

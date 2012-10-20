@@ -15,6 +15,11 @@ module Quickeebooks
           self.idDomain = DOMAIN
           self.value = value
         end
+        
+        def to_i
+          self.value.to_i
+        end
+        
       end
     end
   end

@@ -124,6 +124,7 @@ require 'quickeebooks/windows/model/payment_detail'
 require 'quickeebooks/windows/model/credit_card'
 require 'quickeebooks/windows/model/credit_charge_info'
 require 'quickeebooks/windows/model/credit_charge_response'
+require 'quickeebooks/windows/model/clazz'
 
 # Services
 require 'quickeebooks/windows/service/filter'
@@ -138,3 +139,4 @@ require 'quickeebooks/windows/service/sales_tax'
 require 'quickeebooks/windows/service/customer_msg'
 require 'quickeebooks/windows/service/company_meta_data'
 require 'quickeebooks/windows/service/payment'
+require 'quickeebooks/windows/service/clazz'
