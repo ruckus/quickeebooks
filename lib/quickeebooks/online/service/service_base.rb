@@ -80,7 +80,7 @@ module Quickeebooks
         # store service base response
         # so it can be accessed by other methods
         def service_response
-          @service_response ||= @oauth.request(:get, qb_base_uri_with_realm_id)
+          @service_response ||= check_response(@oauth.request(:get, qb_base_uri_with_realm_id))
         end
 
         # allows for reuse of service base's xml doc
