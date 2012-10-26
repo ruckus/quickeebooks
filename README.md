@@ -46,7 +46,7 @@ IDS provides 2 APIs, one for interacting with Quickbooks Online resources and on
 
 See: https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services
 
-As of this time Quickeebooks has a little more features for Online API vs Windows API. Ultimately the Quickeebooks API should be the same and its just a matter of instantiating the correct classes.
+You will need to be aware of which flavor of the API you want to invoke.
 
 For example:
 
