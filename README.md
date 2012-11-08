@@ -52,11 +52,15 @@ For example:
 
 ```ruby
 # Instantiate a Online API
-customer_service = Quickeebooks::Online::Service::Customer.new(oauth_client, realm_id)
+customer_service = Quickeebooks::Online::Service::Customer.new
+customer_service.access_token = oauth_client
+customer_service.realm_id = realm_id
 customer_service.list 
 
 # Instantiate a Windows API
 customer_service = Quickeebooks::Windows::Service::Customer.new(oauth_client, realm_id)
+customer_service.access_token = oauth_client
+customer_service.realm_id = realm_id
 customer_service.list 
 ```
 
@@ -65,7 +69,10 @@ All of the documentation below is geared towards the Online flavor but unless no
 Now we can initialize any of the `Service` clients:
 
 ```ruby
-customer_service = Quickeebooks::Online::Service::Customer.new(oauth_client, realm_id)
+customer_service = Quickeebooks::Online::Service::Customer.new
+customer_service.access_token = oauth_client
+customer_service.realm_id = realm_id
+customer_service.list 
 customer_service.list 
 
 # returns a `Collection` object
@@ -99,7 +106,11 @@ Pass a `Sort` object for any desired sorting or just let Intuit use the default 
 Specify none of these to get the defaults:
 
 ```ruby
-customer_service = Quickeebooks::Online::Service::Customer.new(oauth_client, realm_id,)
+customer_service = Quickeebooks::Online::Service::Customer.new
+customer_service.access_token = oauth_client
+customer_service.realm_id = realm_id
+customer_service.list 
+
 # fetch all customers with default parameters (pagination, sorting, filtering)
 customers = customer_service.list
 ```
@@ -172,7 +183,11 @@ filters = []
 filters << Quickeebooks::Online::Service::Filter.new(:text, :field => 'FamilyName', :value => 'Richards')
 datetime = Time.mktime(2011, 2, 25)
 filters << Quickeebooks::Online::Service::Filter.new(:datetime, :field => 'CreateTime', :before => datetime)
-customer_service = Quickeebooks::Online::Service::Customer.new(oauth_client, realm_id)
+customer_service = Quickeebooks::Online::Service::Customer.new
+customer_service.access_token = oauth_client
+customer_service.realm_id = realm_id
+customer_service.list 
+
 customers = customer_service.list(filters)
 ```
 ## Sorting (currently only supported in the Online API)
@@ -201,7 +216,11 @@ filters << Quickeebooks::Online::Service::Filter.new(:datetime, :field => 'Creat
 
 sorter = Quickeebooks::Online::Service::Sort.new('FamilyName', 'AtoZ')
 
-customer_service = Quickeebooks::Online::Service::Customer.new(oauth_client, realm_id)
+customer_service = Quickeebooks::Online::Service::Customer.new
+customer_service.access_token = oauth_client
+customer_service.realm_id = realm_id
+customer_service.list 
+
 customers = customer_service.list(filters, 1, 30, sort)
 
 # returns
@@ -222,7 +241,11 @@ Use the `Service` instance to fetch an object by its id using the `fetch_by_id` 
 
 ```ruby
 # fetch the Customer object with an id of 100
-customer_service = Quickeebooks::Online::Service::Customer.new(oauth_client, realm_id)
+customer_service = Quickeebooks::Online::Service::Customer.new
+customer_service.access_token = oauth_client
+customer_service.realm_id = realm_id
+customer_service.list 
+
 customer = customer_service.fetch_by_id(100)
 customer.name
 => John Doe
@@ -239,7 +262,11 @@ You will need make sure you supply all required fields for that Intuit object, s
 Pass an instance of your object to the `create` method on its related Service:
 
 ```ruby
-customer_service = Quickeebooks::Online::Service::Customer.new(oauth_client, realm_id)
+customer_service = Quickeebooks::Online::Service::Customer.new
+customer_service.access_token = oauth_client
+customer_service.realm_id = realm_id
+customer_service.list 
+
 customer = Quickeebooks::Online::Model::Customer.new
 customer.name = "Richard Parker"
 customer.email = "richard@example.org"
@@ -253,7 +280,11 @@ customer_service.create(customer)
 Pass an instance of your object to the `update` method on its related Service:
 
 ```ruby
-customer_service = Quickeebooks::Online::Service::Customer.new(oauth_client, realm_id)
+customer_service = Quickeebooks::Online::Service::Customer.new
+customer_service.access_token = oauth_client
+customer_service.realm_id = realm_id
+customer_service.list 
+
 customer = customer_service.fetch_by_id(100)
 customer.name = "Richard Parker"
 customer.email = "richard@example.org"
