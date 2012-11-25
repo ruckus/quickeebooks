@@ -24,14 +24,28 @@ Gems:
 
 ## Getting Started & Initiating Authentication Flow with Intuit
 
+Create a Rails initializer with:
+
+```
+QB_KEY = "your apps Intuit App Key"
+QB_SECRET = "your apps Intuit Secret Key"
+
+$qb_oauth_consumer = OAuth::Consumer.new(QB_KEY, QB_SECRET, {
+    :site                 => "https://oauth.intuit.com",
+    :request_token_path   => "/oauth/v1/get_request_token",
+    :authorize_url        => "https://appcenter.intuit.com/Connect/Begin",
+    :access_token_path    => "/oauth/v1/get_access_token"
+})
+```
+
 To start the authentication flow with Intuit you include the Intuit Javascript and on a page of your choosing you present the "Connect to Quickbooks" button by including this XHTML:
 
 
-```
-<!-- some in your document include the Javascript -->
+```HTML
+<!-- somewhere in your document include the Javascript -->
 <script type="text/javascript" src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere.js"></script>
 
-<!-- configure the Intuit object: 'grantUrls' is a URL in your application which kicks off the flow, see below -->
+<!-- configure the Intuit object: 'grantUrl' is a URL in your application which kicks off the flow, see below -->
 <script>
 intuit.ipp.anywhere.setup({menuProxy: '/path/to/blue-dot', grantUrl: '/path/to/your-flow-start'});
 </script>
@@ -65,20 +79,10 @@ end
 
 ## Creating an OAuth Access Token
 
-Once you have your users OAuth Token & Secret you can initialize your `OAuth Consumer` and create a `OAuth Client` via:
+Once you have your users OAuth Token & Secret you can initialize your `OAuth Consumer` and create a `OAuth Client` using the `$qb_oauth_consumer` you created earlier in your Rails initializer:
 
 ```ruby
-QB_KEY = "your apps Intuit App Key"
-QB_SECRET = "your apps Intuit Secret Key"
-
-qb_oauth_consumer = OAuth::Consumer.new(QB_KEY, QB_SECRET, {
-    :site                 => "https://oauth.intuit.com",
-    :request_token_path   => "/oauth/v1/get_request_token",
-    :authorize_url        => "https://appcenter.intuit.com/Connect/Begin",
-    :access_token_path    => "/oauth/v1/get_access_token"
-})
-
-oauth_client = OAuth::AccessToken.new(qb_oauth_consumer, access_token, access_secret)
+oauth_client = OAuth::AccessToken.new($qb_oauth_consumer, access_token, access_secret)
 ```
 
 ## Quickbooks Online vs Windows
