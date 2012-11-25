@@ -24,6 +24,8 @@ Gems:
 
 ## Getting Started & Initiating Authentication Flow with Intuit
 
+What follows is an example using Rails but the principles can be adapted to any other framework / pure Ruby.
+
 Create a Rails initializer with:
 
 ```ruby
