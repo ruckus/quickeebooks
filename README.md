@@ -22,11 +22,6 @@ Gems:
 * `nokogiri` : XML parsing
 * `active_model` : For validations
 
-## Getting a Users OAuth Token & Secret
-
-Create a Controller in your application which you direct the user
-
-
 ## Getting Started & Initiating Authentication Flow with Intuit
 
 To start the authentication flow with Intuit you include the Intuit Javascript and on a page of your choosing you present the "Connect to Quickbooks" button by including this XHTML:
@@ -64,7 +59,7 @@ def oauth_callback
 	token = at.token
 	secret = at.secret
 	realm_id = params['realmId']
-	# store the token, secret & RealmID somewhere for this user
+	# store the token, secret & RealmID somewhere for this user, you will need all 3 to work with Quickeebooks
 end
 ```
 
