@@ -26,7 +26,7 @@ Gems:
 
 Create a Rails initializer with:
 
-```
+```ruby
 QB_KEY = "your apps Intuit App Key"
 QB_SECRET = "your apps Intuit Secret Key"
 
@@ -56,7 +56,7 @@ intuit.ipp.anywhere.setup({menuProxy: '/path/to/blue-dot', grantUrl: '/path/to/y
 
 Your Controller action (the `grantUrl` above) should look like this:
 
-```
+```ruby
   def authenticate
     callback = quickbooks_oauth_callback_url
     token = $qb_oauth_consumer.get_request_token(:oauth_callback => callback)
@@ -67,7 +67,7 @@ Your Controller action (the `grantUrl` above) should look like this:
 
 Where `quickbooks_oauth_callback_url` is the absolute URL of your application that Intuit should send the user when authentication succeeeds. That action should look like:
 
-```
+```ruby
 def oauth_callback
 	at = session[:qb_request_token].get_access_token(:oauth_verifier => params[:oauth_verifier])
 	token = at.token
