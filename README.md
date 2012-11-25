@@ -22,13 +22,59 @@ Gems:
 * `nokogiri` : XML parsing
 * `active_model` : For validations
 
-## Getting Started
+## Getting a Users OAuth Token & Secret
 
-This library assumes you already have an OAuth token and secret. You can then initialize your `OAuth Consumer` and create a `OAuth Client` via:
+Create a Controller in your application which you direct the user
+
+
+## Getting Started & Initiating Authentication Flow with Intuit
+
+To start the authentication flow with Intuit you include the Intuit Javascript and on a page of your choosing you present the "Connect to Quickbooks" button by including this XHTML:
+
+
+```
+<!-- some in your document include the Javascript -->
+<script type="text/javascript" src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere.js"></script>
+
+<!-- configure the Intuit object: 'grantUrls' is a URL in your application which kicks off the flow, see below -->
+<script>
+intuit.ipp.anywhere.setup({menuProxy: '/path/to/blue-dot', grantUrl: '/path/to/your-flow-start'});
+</script>
+
+<!-- this will display a button that the user clicks to start the flow -->
+<ipp:connectToIntuit></ipp:connectToIntuit>
+```
+
+Your Controller action (the `grantUrl` above) should look like this:
+
+```
+  def authenticate
+    callback = quickbooks_oauth_callback_url
+    token = $qb_oauth_consumer.get_request_token(:oauth_callback => callback)
+    session[:qb_request_token] = token
+    redirect_to("https://appcenter.intuit.com/Connect/Begin?oauth_token=#{token.token}") and return
+  end
+```
+
+Where `quickbooks_oauth_callback_url` is the absolute URL of your application that Intuit should send the user when authentication succeeeds. That action should look like:
+
+```
+def oauth_callback
+	at = session[:qb_request_token].get_access_token(:oauth_verifier => params[:oauth_verifier])
+	token = at.token
+	secret = at.secret
+	realm_id = params['realmId']
+	# store the token, secret & RealmID somewhere for this user
+end
+```
+
+## Creating an OAuth Access Token
+
+Once you have your users OAuth Token & Secret you can initialize your `OAuth Consumer` and create a `OAuth Client` via:
 
 ```ruby
-QB_KEY = "your-qb-key"
-QB_SECRET = "your-qb-secret"
+QB_KEY = "your apps Intuit App Key"
+QB_SECRET = "your apps Intuit Secret Key"
 
 qb_oauth_consumer = OAuth::Consumer.new(QB_KEY, QB_SECRET, {
     :site                 => "https://oauth.intuit.com",
