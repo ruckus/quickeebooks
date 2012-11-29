@@ -153,6 +153,26 @@ describe "Quickeebooks::Windows::Service::Customer" do
     create_response.success.party_role_ref.id.value.should == "6762304"
     create_response.success.request_name.should == "CustomerAdd"
   end
+  
+  it "can update a customer name" do
+    customer_xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/customer.xml")
+    update_response_xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/customer_update_success.xml")
+    service = Quickeebooks::Windows::Service::Customer.new
+    model = Quickeebooks::Windows::Model::Customer
+    customer = model.from_xml(customer_xml)
+    customer.name.should == "Wine House"
+
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => update_response_xml)
+
+    # change the name
+    customer.name = "Acme Cafe"
+    update_response = service.update(customer)
+    update_response.success?.should == true
+    update_response.success.party_role_ref.id.value.should == "6762304"
+    update_response.success.request_name.should == "CustomerMod"
+  end
 
 
 end

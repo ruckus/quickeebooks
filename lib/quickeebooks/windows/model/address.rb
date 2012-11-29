@@ -15,8 +15,8 @@ module Quickeebooks
         xml_accessor :country_sub_division_code, :from => 'CountrySubDivisionCode'
         xml_accessor :postal_code, :from => 'PostalCode'
         xml_accessor :postal_code_suffix, :from => 'PostalCodeSuffix'
-        xml_accessor :tag, :from => 'Tag'
         xml_accessor :default, :from => 'Default'
+        xml_accessor :tag, :from => 'Tag'
 
         def zip
           postal_code

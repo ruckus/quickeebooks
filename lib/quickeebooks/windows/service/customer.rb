@@ -32,7 +32,41 @@ module Quickeebooks
           </Add>
           XML
           perform_write(Quickeebooks::Windows::Model::Customer, xml)
+        end
+        
+        def update(customer)
+          # XML is a wrapped 'object' where the type is specified as an attribute
+          #    <Object xsi:type="Invoice">
           
+          # Intuit requires that some fields are unset / do not exist.
+          customer.meta_data = nil
+          customer.external_key = nil
+
+          # unset Id fields in addresses, phones, email
+          if customer.addresses
+            customer.addresses.each {|address| address.id = nil }
+          end
+          if customer.email
+            customer.email.id = nil
+          end
+          
+          if customer.phones
+            customer.phones.each {|phone| phone.id = nil }
+          end
+          
+          if customer.web_site
+            customer.web_site.id = nil
+          end
+          
+          xml_node = customer.to_xml(:name => 'Object')
+          xml_node.set_attribute('xsi:type', 'Customer')
+          xml = <<-XML
+          <Mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequestId="#{guid}" xmlns="http://www.intuit.com/sb/cdm/v2">
+          <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
+          #{xml_node}
+          </Mod>
+          XML
+          perform_write(Quickeebooks::Windows::Model::Customer, xml)
         end
 
       end
