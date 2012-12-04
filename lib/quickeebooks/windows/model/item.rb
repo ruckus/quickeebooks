@@ -55,6 +55,8 @@ module Quickeebooks
         validates_length_of :desc, :minimum => 1, :maximum => 4000
         validates_inclusion_of :type, :in => ["Assembly", "Fixed Asset", "Group", "Inventory", "Other Charge", "Payment", "Product", "Service", "Subtotal"]
         validate :name_cannot_contain_invalid_characters
+        # Note: You must also specify account references for create.  Which ones depends on the item type.
+        # See: https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0500_QuickBooks_Windows/0600_Object_Reference/Item
 
         def to_xml_ns(options = {})
           to_xml(options)
