@@ -17,10 +17,10 @@ module Quickeebooks
         DEFAULT_TYPE_OF = 'Person'
         XML_COLLECTION_NODE = 'Customers'
         XML_NODE = 'Customer'
-        
+
         # https://services.intuit.com/sb/customer/v2/<realmID>
         REST_RESOURCE = "customer"
-        
+
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
@@ -76,11 +76,11 @@ module Quickeebooks
         validate :require_an_address
         validate :name_cannot_contain_invalid_characters
         validate :email_address_is_valid
-        
+
         def active?
           active == 'true'
         end
-        
+
         def billing_address
           addresses.detect { |address| address.tag == "Billing" }
         end
@@ -88,14 +88,22 @@ module Quickeebooks
         def shipping_address
           addresses.detect { |address| address.tag == "Shipping" }
         end
-        
+
+        def phone
+          phones.detect { |phone| phone.tag == "Business" }
+        end
+
+        def fax
+          phones.detect { |phone| phone.tag == "Fax" }
+        end
+
         def valid_for_update?
           if sync_token.nil?
             errors.add(:sync_token, "Missing required attribute SyncToken for update")
           end
           errors.empty?
         end
-        
+
         def valid_for_create?
           valid?
           if type_of.nil?
@@ -111,10 +119,15 @@ module Quickeebooks
         def email_address=(email_address)
           self.email = Quickeebooks::Windows::Model::Email.new(email_address)
         end
-        
+
         def address=(address)
           self.addresses ||= []
           self.addresses << address
+        end
+
+        def phone=(phone)
+          self.phones ||= []
+          self.phones << phone
         end
 
         # To delete an account Intuit requires we provide Id and SyncToken fields
@@ -122,13 +135,13 @@ module Quickeebooks
           return false if(id.nil? || sync_token.nil?)
           id.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
         end
-        
+
         def name_cannot_contain_invalid_characters
           if name.to_s.index(':')
             errors.add(:name, "Name cannot contain a colon (:)")
           end
         end
-        
+
         def email_address_is_valid
           if email
             address = email.address
@@ -137,7 +150,7 @@ module Quickeebooks
             end
           end
         end
-        
+
         def require_an_address
           if addresses.nil? || (addresses.is_a?(Array) && addresses.empty?)
             errors.add(:addresses, "Must provide at least one address for this Customer.")
