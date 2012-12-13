@@ -6,7 +6,7 @@ require "quickeebooks"
 describe "Quickeebooks::Online::Service::Filter" do
   before(:all) do
   end
-  
+
   it "can generate a text filter" do
     filter = Quickeebooks::Online::Service::Filter.new(:text, :field => "Name", :value => "Smith")
     filter.to_s.should == "Name :EQUALS: Smith"
@@ -27,6 +27,21 @@ describe "Quickeebooks::Online::Service::Filter" do
     time = Time.mktime(2012, 1, 2, 8, 31, 44)
     filter = Quickeebooks::Online::Service::Filter.new(:datetime, :field => "CreateTime", :after => time)
     filter.to_s.should == "CreateTime :AFTER: #{time.strftime(Quickeebooks::Online::Service::Filter::DATE_TIME_FORMAT)}"
+  end
+
+  it "can generate a number filter with equals" do
+    filter = Quickeebooks::Online::Service::Filter.new(:number, :field => "OpenBalance", :eq => 5)
+    filter.to_s.should == "OpenBalance :EQUALS: 5"
+  end
+
+  it "can generate a number filter with greater than" do
+    filter = Quickeebooks::Online::Service::Filter.new(:number, :field => "OpenBalance", :gt => 5)
+    filter.to_s.should == "OpenBalance :GreaterThan: 5"
+  end
+
+  it "can generate a number filter with less than" do
+    filter = Quickeebooks::Online::Service::Filter.new(:number, :field => "OpenBalance", :lt => 5)
+    filter.to_s.should == "OpenBalance :LessThan: 5"
   end
 
   it "can generate a datetime filter with bounded dates" do
