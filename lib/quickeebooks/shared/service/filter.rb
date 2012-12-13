@@ -44,13 +44,13 @@ module Quickeebooks
         def number_to_s
           clauses = []
           if @eq
-            clauses << "#{@field} :EQUALS: #{@value}"
+            clauses << "#{@field} :EQUALS: #{@eq}"
           end
           if @gt
-            clauses << "#{@field} :GreaterThan: #{@value}"
+            clauses << "#{@field} :GreaterThan: #{@gt}"
           end
           if @lt
-            clauses << "#{@field} :LessThan: #{@value}"
+            clauses << "#{@field} :LessThan: #{@lt}"
           end
           clauses.join(" :AND: ")
         end
