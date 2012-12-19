@@ -125,6 +125,10 @@ require 'quickeebooks/windows/model/credit_card'
 require 'quickeebooks/windows/model/credit_charge_info'
 require 'quickeebooks/windows/model/credit_charge_response'
 require 'quickeebooks/windows/model/clazz'
+require 'quickeebooks/windows/model/sales_receipt_header'
+require 'quickeebooks/windows/model/sales_receipt_line_item'
+require 'quickeebooks/windows/model/sales_receipt'
+
 
 # Services
 require 'quickeebooks/windows/service/filter'
@@ -134,6 +138,7 @@ require 'quickeebooks/windows/service/customer'
 require 'quickeebooks/windows/service/item'
 require 'quickeebooks/windows/service/invoice'
 require 'quickeebooks/windows/service/sales_rep'
+require 'quickeebooks/windows/service/sales_receipt'
 require 'quickeebooks/windows/service/ship_method'
 require 'quickeebooks/windows/service/sales_tax'
 require 'quickeebooks/windows/service/customer_msg'
