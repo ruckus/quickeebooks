@@ -14,6 +14,20 @@ module Quickeebooks
           fetch_collection(Quickeebooks::Windows::Model::Item, custom_field_query.strip, filters, page, per_page, sort, options)
         end
 
+        def create(item)
+          # XML is a wrapped 'object' where the type is specified as an attribute
+          #    <Object xsi:type="Item">
+          xml_node = item.to_xml(:name => 'Object')
+          xml_node.set_attribute('xsi:type', 'Item')
+          xml = <<-XML
+          <Add xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequestId="#{guid}" xmlns="http://www.intuit.com/sb/cdm/v2">
+          <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
+          #{xml_node}
+          </Add>
+          XML
+          perform_write(Quickeebooks::Windows::Model::Item, xml)
+        end
+
       end
     end
     
