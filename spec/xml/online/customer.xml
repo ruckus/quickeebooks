@@ -33,7 +33,9 @@
     <DeviceType>Mobile</DeviceType>
     <FreeFormNumber>(831) 334-0987</FreeFormNumber>
   </Phone>
-  <WebSite/>
+  <WebSite>
+    <URI>http://blah.com</URI>
+  </WebSite>
   <Email>
     <Address>johndoe@gmail.com</Address>
   </Email>

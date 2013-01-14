@@ -107,5 +107,14 @@ describe "Quickeebooks::Online::Service::Customer" do
     updated.name.should == "Billy Bob"
   end
 
+  it 'Can update a fetched customer' do
+    xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/customer.xml")
+    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/99"
+    FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => xml)
+    customer = @service.fetch_by_id(99)
+    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/#{customer.id.value}"
+    FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml)
+    updated = @service.update(customer)
+  end
   
 end
