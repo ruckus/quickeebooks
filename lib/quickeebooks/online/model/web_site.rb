@@ -8,6 +8,7 @@ module Quickeebooks
 
         def to_xml(options = {})
           return "" if uri.to_s.empty?
+          super(options)
         end
 
       end
