@@ -128,6 +128,7 @@ require 'quickeebooks/windows/model/clazz'
 require 'quickeebooks/windows/model/sales_receipt_header'
 require 'quickeebooks/windows/model/sales_receipt_line_item'
 require 'quickeebooks/windows/model/sales_receipt'
+require 'quickeebooks/windows/model/payment_method'
 
 
 # Services
@@ -144,4 +145,5 @@ require 'quickeebooks/windows/service/sales_tax'
 require 'quickeebooks/windows/service/customer_msg'
 require 'quickeebooks/windows/service/company_meta_data'
 require 'quickeebooks/windows/service/payment'
+require 'quickeebooks/windows/service/payment_method'
 require 'quickeebooks/windows/service/clazz'
