@@ -55,6 +55,7 @@ end
 
 # Services
 require 'quickeebooks/shared/service/filter'
+require 'quickeebooks/shared/service/access_token'
 
 #== Online
 
@@ -90,6 +91,7 @@ require 'quickeebooks/online/service/invoice'
 require 'quickeebooks/online/service/item'
 require 'quickeebooks/online/service/entitlement'
 require 'quickeebooks/online/service/payment'
+require 'quickeebooks/online/service/access_token'
 
 #== Windows
 
@@ -145,3 +147,4 @@ require 'quickeebooks/windows/service/customer_msg'
 require 'quickeebooks/windows/service/company_meta_data'
 require 'quickeebooks/windows/service/payment'
 require 'quickeebooks/windows/service/clazz'
+require 'quickeebooks/windows/service/access_token'
