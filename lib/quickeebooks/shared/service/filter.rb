@@ -4,7 +4,7 @@ module Quickeebooks
       class Filter
 
         DATE_FORMAT = '%Y-%m-%d'
-        DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S%z'
+        DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S%Z'
 
         attr_reader :type
         attr_accessor :field, :value
@@ -84,7 +84,7 @@ module Quickeebooks
         def formatted_time(time)
           if time.is_a?(Date)
             time.strftime(DATE_FORMAT)
-          elsif time.is_a?(DateTime) || time.is_a?(Time)
+          elsif time.respond_to?(:strftime) # catch any other Time-like object
             time.strftime(DATE_TIME_FORMAT)
           end
         end
