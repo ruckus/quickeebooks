@@ -16,6 +16,11 @@ module Quickeebooks
           fetch_collection(Quickeebooks::Windows::Model::SalesReceipt, custom_field_query.strip, filters, page, per_page, sort, options)
         end
 
+        def fetch_by_id(id, idDomain = 'QB', options = {})
+          url = "#{url_for_resource(Quickeebooks::Windows::Model::SalesReceipt::REST_RESOURCE)}/#{id}"
+          fetch_object(Quickeebooks::Windows::Model::SalesReceipt, url, {:idDomain => idDomain})
+        end
+
         def create(sales_receipt)
           raise InvalidModelException unless sales_receipt.valid_for_create?
           
@@ -28,6 +33,25 @@ module Quickeebooks
           <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
           #{xml_node}
           </Add>
+          XML
+          perform_write(Quickeebooks::Windows::Model::SalesReceipt, xml)
+        end
+
+        def update(sales_receipt)
+          # XML is a wrapped 'object' where the type is specified as an attribute
+          #    <Object xsi:type="Invoice">
+          
+          # Intuit requires that some fields are unset / do not exist.
+          sales_receipt.meta_data = nil
+          sales_receipt.external_key = nil
+          
+          xml_node = sales_receipt.to_xml(:name => 'Object')
+          xml_node.set_attribute('xsi:type', 'SalesReceipt')
+          xml = <<-XML
+          <Mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequestId="#{guid}" xmlns="http://www.intuit.com/sb/cdm/v2">
+          <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
+          #{xml_node}
+          </Mod>
           XML
           perform_write(Quickeebooks::Windows::Model::SalesReceipt, xml)
         end
