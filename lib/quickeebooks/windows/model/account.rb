@@ -29,7 +29,7 @@ module Quickeebooks
         xml_accessor :desc, :from => 'Desc'
         xml_accessor :active
         xml_accessor :type, :from => 'Type'
-        xml_accessor :sub_type, :from => 'SubType'
+        xml_accessor :sub_type, :from => 'Subtype'
         xml_accessor :acct_num, :from => 'AcctNum'
         xml_accessor :bank_num, :from => 'BankNum'
         xml_accessor :routing_num, :from => 'RoutingNum'
