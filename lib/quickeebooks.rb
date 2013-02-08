@@ -131,6 +131,9 @@ require 'quickeebooks/windows/model/sales_receipt_header'
 require 'quickeebooks/windows/model/sales_receipt_line_item'
 require 'quickeebooks/windows/model/sales_receipt'
 require 'quickeebooks/windows/model/payment_method'
+require 'quickeebooks/windows/model/ng_id_set'
+require 'quickeebooks/windows/model/status'
+
 
 
 # Services
@@ -150,3 +153,4 @@ require 'quickeebooks/windows/service/payment'
 require 'quickeebooks/windows/service/payment_method'
 require 'quickeebooks/windows/service/clazz'
 require 'quickeebooks/windows/service/access_token'
+require 'quickeebooks/windows/service/status'
