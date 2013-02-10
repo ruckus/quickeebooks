@@ -24,14 +24,14 @@ describe "Quickeebooks::Online::Service::Account" do
       @realm_id = "9991111222"
     }
   end
-  
+
   it "receives 404 from invalid base URL" do
     uri = "https://qbo.intuit.com/invalid"
     url = @service.url_for_resource(Quickeebooks::Online::Model::Account.resource_for_collection)
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => "blah")
     lambda { @service.list }.should raise_error(IntuitRequestException)
   end
-  
+
   it "can fetch a list of accounts" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/accounts.xml")
     url = @service.url_for_resource(Quickeebooks::Online::Model::Account.resource_for_collection)
@@ -41,7 +41,7 @@ describe "Quickeebooks::Online::Service::Account" do
     accounts.entries.count.should == 10
     accounts.entries.first.current_balance.should == 6200
   end
-  
+
   it "can create an account" do
     xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/account.xml")
     url = @service.url_for_resource(Quickeebooks::Online::Model::Account.resource_for_singular)
@@ -64,24 +64,24 @@ describe "Quickeebooks::Online::Service::Account" do
     result = @service.delete(account)
     result.should == true
   end
-  
+
   it "cannot delete an account with missing required fields for deletion" do
     account = Quickeebooks::Online::Model::Account.new
     lambda { @service.delete(account) }.should raise_error(InvalidModelException, "Missing required parameters for delete")
   end
-  
+
   it "exception is raised when we try to create an invalid account" do
     account = Quickeebooks::Online::Model::Account.new
     lambda { @service.create(account) }.should raise_error(InvalidModelException)
   end
-  
+
   it "can fetch an account by id" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/account.xml")
+    xml = onlineFixture("account.xml")
     url = @service.url_for_resource(Quickeebooks::Online::Model::Account.resource_for_singular)
     url = "#{url}/99"
     FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => xml)
     account = @service.fetch_by_id(99)
     account.name.should == "Billy Bob"
   end
-  
+
 end

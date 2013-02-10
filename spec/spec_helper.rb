@@ -26,3 +26,11 @@ RSpec.configure do |config|
   config.color_enabled = true
   config.mock_with :rr
 end
+
+def fixture_path
+  File.expand_path("../xml", __FILE__)
+end
+
+def onlineFixture(file)
+  File.new(fixture_path + '/online/' + file)
+end
