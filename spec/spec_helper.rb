@@ -34,3 +34,7 @@ end
 def onlineFixture(file)
   File.new(fixture_path + '/online/' + file)
 end
+
+def sharedFixture(file)
+  File.new(fixture_path + '/shared/' + file)
+end

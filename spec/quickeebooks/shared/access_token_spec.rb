@@ -10,7 +10,7 @@ describe "Quickeebooks::Shared::Service::AccessToken" do
       let(:reconnect_url){ "https://appcenter.intuit.com/api/v1/Connection/Reconnect" }
 
       it "can successfully reconnect" do
-        xml = File.read(File.dirname(__FILE__) + "/../../xml/shared/reconnect_success.xml")
+        xml = sharedFixture("reconnect_success.xml")
         FakeWeb.register_uri(:get, reconnect_url, :status => ["200", "OK"], :body => xml)
 
         response = @service.reconnect
@@ -21,7 +21,7 @@ describe "Quickeebooks::Shared::Service::AccessToken" do
       end
 
       it "can handle expired tokens" do
-        xml = File.read(File.dirname(__FILE__) + "/../../xml/shared/reconnect_error_expired.xml")
+        xml = sharedFixture("reconnect_error_expired.xml")
         FakeWeb.register_uri(:get, reconnect_url, :status => ["200", "OK"], :body => xml)
 
         response = @service.reconnect
@@ -32,7 +32,7 @@ describe "Quickeebooks::Shared::Service::AccessToken" do
       end
 
       it "can handle out-of-bounds refresh windows" do
-        xml = File.read(File.dirname(__FILE__) + "/../../xml/shared/reconnect_error_out_of_bounds.xml")
+        xml = sharedFixture("reconnect_error_out_of_bounds.xml")
         FakeWeb.register_uri(:get, reconnect_url, :status => ["200", "OK"], :body => xml)
 
         response = @service.reconnect
@@ -44,7 +44,7 @@ describe "Quickeebooks::Shared::Service::AccessToken" do
 
 
       it "can handle unapproved apps" do
-        xml = File.read(File.dirname(__FILE__) + "/../../xml/shared/reconnect_error_not_approved.xml")
+        xml = sharedFixture("reconnect_error_not_approved.xml")
         FakeWeb.register_uri(:get, reconnect_url, :status => ["200", "OK"], :body => xml)
 
         response = @service.reconnect
@@ -59,7 +59,7 @@ describe "Quickeebooks::Shared::Service::AccessToken" do
       let(:disconnect_url){ "https://appcenter.intuit.com/api/v1/Connection/Disconnect" }
 
       it "can successfully disconnect" do
-        xml = File.read(File.dirname(__FILE__) + "/../../xml/shared/disconnect_success.xml")
+        xml = sharedFixture("disconnect_success.xml")
         FakeWeb.register_uri(:get, disconnect_url, :status => ["200", "OK"], :body => xml)
 
         response = @service.disconnect
@@ -68,7 +68,7 @@ describe "Quickeebooks::Shared::Service::AccessToken" do
       end
 
       it "can handle invalid tokens" do
-        xml = File.read(File.dirname(__FILE__) + "/../../xml/shared/disconnect_invalid.xml")
+        xml = sharedFixture("disconnect_invalid.xml")
         FakeWeb.register_uri(:get, disconnect_url, :status => ["200", "OK"], :body => xml)
 
         response = @service.disconnect
