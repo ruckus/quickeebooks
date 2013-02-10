@@ -1,7 +1,3 @@
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Shared::Service::AccessToken" do
 
   shared_examples "access_token_operations" do

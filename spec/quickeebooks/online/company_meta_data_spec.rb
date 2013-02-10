@@ -1,5 +1,3 @@
-require "quickeebooks/online/model/company_meta_data"
-
 describe "Quickeebooks::Online::Model::CompanyMetaData" do
 
   it "parse company meta data from XML" do

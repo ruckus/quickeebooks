@@ -1,6 +1,3 @@
-require "stringio"
-require "quickeebooks/online/model/account"
-
 describe "Quickeebooks::Online::Model::Account" do
 
   it "should convert Ruby to XML" do

@@ -1,5 +1,3 @@
-require "quickeebooks/windows/model/customer"
-
 describe "Quickeebooks::Windows::Model::Customer" do
 
   it "parse customer from XML" do

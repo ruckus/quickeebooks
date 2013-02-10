@@ -1,7 +1,3 @@
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Windows::Service::SalesRep" do
   before(:all) do
     FakeWeb.allow_net_connect = false

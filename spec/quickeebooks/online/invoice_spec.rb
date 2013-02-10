@@ -1,6 +1,3 @@
-
-require "quickeebooks/online/model/invoice"
-
 describe "Quickeebooks::Online::Model::Invoice" do
 
   describe "parse invoice from XML" do

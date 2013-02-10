@@ -1,7 +1,3 @@
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Online::Service::Sort" do
   before(:all) do
   end

@@ -1,6 +1,3 @@
-
-require "quickeebooks/online/model/customer"
-
 describe "Quickeebooks::Online::Model::Customer" do
 
   it "parse customer from XML" do

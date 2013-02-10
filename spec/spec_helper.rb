@@ -8,8 +8,11 @@ end
 
 require "rubygems"
 require "rspec"
+require "fakeweb"
+require "oauth"
 
 $:.unshift "lib"
+require 'quickeebooks'
 
 def mock_error(subject, message)
   mock_exit do

@@ -1,5 +1,3 @@
-require "quickeebooks"
-
 describe Quickeebooks do
 
   describe "VERSION" do

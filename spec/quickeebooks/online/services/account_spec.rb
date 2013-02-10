@@ -1,7 +1,3 @@
-require "fakeweb"
-require "oauth"
-require "quickeebooks/online/service/account"
-
 describe "Quickeebooks::Online::Service::Account" do
   before(:all) do
     FakeWeb.allow_net_connect = false

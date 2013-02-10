@@ -1,8 +1,3 @@
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-require "date"
-
 describe "Quickeebooks::Windows::Service::Payment" do
   before(:all) do
     FakeWeb.allow_net_connect = false
