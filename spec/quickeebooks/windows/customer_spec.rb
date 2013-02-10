@@ -1,5 +1,3 @@
-require "spec_helper"
-
 require "quickeebooks/windows/model/customer"
 
 describe "Quickeebooks::Windows::Model::Customer" do

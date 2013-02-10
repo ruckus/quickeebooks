@@ -1,4 +1,3 @@
-require "spec_helper"
 require "fakeweb"
 require "oauth"
 require "quickeebooks"

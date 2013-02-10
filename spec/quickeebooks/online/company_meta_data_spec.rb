@@ -1,4 +1,3 @@
-require "spec_helper"
 require "quickeebooks/online/model/company_meta_data"
 
 describe "Quickeebooks::Online::Model::CompanyMetaData" do
