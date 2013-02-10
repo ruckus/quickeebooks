@@ -1,9 +1,5 @@
-require "spec_helper"
-require "stringio"
-require "quickeebooks/online/model/account"
-
 describe "Quickeebooks::Online::Model::Account" do
-  
+
   it "should convert Ruby to XML" do
     account = Quickeebooks::Online::Model::Account.new
     account.sync_token = 1
@@ -14,7 +10,7 @@ describe "Quickeebooks::Online::Model::Account" do
     xml = account.to_xml(:fields => 'Name').write_to(s, :indent => 0, :indent_text => '')
     xml.string.gsub(/\n/, '').should == expected
   end
-  
+
   it "has a validation error on invalid subtype" do
     account = Quickeebooks::Online::Model::Account.new
     account.sub_type = "invalid"
@@ -32,10 +28,10 @@ describe "Quickeebooks::Online::Model::Account" do
     account.sub_type = "AccountsPayable"
     account.valid?.should == true
   end
-  
+
   it "cannot delete an Account without providing required fields" do
     account = Quickeebooks::Online::Model::Account.new
     account.valid_for_deletion?.should == false
   end
-  
+
 end

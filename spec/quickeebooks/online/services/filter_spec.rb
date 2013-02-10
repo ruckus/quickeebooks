@@ -1,8 +1,3 @@
-require "spec_helper"
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Online::Service::Filter" do
   before(:all) do
   end
