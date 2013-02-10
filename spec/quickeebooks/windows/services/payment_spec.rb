@@ -20,13 +20,13 @@ describe "Quickeebooks::Windows::Service::Payment" do
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
   end
-  
+
   it "can fetch a list of payments" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/payments.xml")
+    xml = windowsFixture("payments.xml")
     service = Quickeebooks::Windows::Service::Payment.new
     service.access_token = @oauth
     service.realm_id = @realm_id
-    
+
     model = Quickeebooks::Windows::Model::Payment
     FakeWeb.register_uri(:get,
                          service.url_for_resource(model::REST_RESOURCE),
@@ -34,13 +34,13 @@ describe "Quickeebooks::Windows::Service::Payment" do
                          :body => xml)
     payments = service.list
     payments.entries.count.should == 1
-    
+
     payment = payments.entries.first
     payment.id.value.should == "4"
     payment.header.should_not be_nil
     header = payment.header
     header.customer_name.should == "Davis"
-        
+
     line1 = payment.line_items.first
     line1.should_not be_nil
     line1.amount.should == header.total_amount

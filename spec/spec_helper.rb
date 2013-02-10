@@ -38,3 +38,8 @@ end
 def sharedFixture(file)
   File.new(fixture_path + '/shared/' + file)
 end
+
+def windowsFixture(file)
+  File.new(fixture_path + '/windows/' + file)
+end
+
