@@ -1,8 +1,3 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Windows::Service::CompanyMetaData" do
   before(:all) do
     FakeWeb.allow_net_connect = false
@@ -19,9 +14,9 @@ describe "Quickeebooks::Windows::Service::CompanyMetaData" do
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
   end
-  
+
   it "can fetch the company meta data" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/company_meta_data.xml")
+    xml = windowsFixture("company_meta_data.xml")
     model = Quickeebooks::Windows::Model::CompanyMetaData
     service = Quickeebooks::Windows::Service::CompanyMetaData.new
     service.access_token = @oauth

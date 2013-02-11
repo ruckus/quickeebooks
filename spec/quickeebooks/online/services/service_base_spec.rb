@@ -1,8 +1,3 @@
-require "spec_helper"
-require "fakeweb"
-require "oauth"
-require "quickeebooks/online/service/service_base"
-
 describe "Quickeebooks::Online::Service::ServiceBase" do
   before(:all) do
     FakeWeb.allow_net_connect = false
@@ -18,7 +13,7 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
 
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/user.xml")
+    xml = onlineFixture("user.xml")
     user_url = Quickeebooks::Online::Service::ServiceBase::QB_BASE_URI + "/" + @realm_id
     FakeWeb.register_uri(:get, user_url, :status => ["200", "OK"], :body => xml)
     @service = Quickeebooks::Online::Service::ServiceBase.new
@@ -27,12 +22,12 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
       @realm_id = "9991111222"
     }
   end
-  
+
   it "can determine login_name" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/user.xml")
+    xml = onlineFixture("user.xml")
     user_url = "https://qbo.intuit.com/qbo1/rest/user/v2/#{@realm_id}"
     FakeWeb.register_uri(:get, user_url, :status => ["200", "OK"], :body => xml)
     @service.login_name.should == 'foo@example.com'
   end
-  
+
 end
