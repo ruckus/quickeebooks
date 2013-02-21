@@ -134,9 +134,10 @@ module Quickeebooks
             headers.merge!({'Content-Type' => 'application/xml'})
           end
           # puts "METHOD = #{method}"
-          # puts "URL = #{url}"
-          # puts "BODY = #{body == nil ? "<NIL>" : body}"
+          # puts "RESOURCE = #{resource}"
+          # puts "BODY(#{body.class}) = #{body == nil ? "<NIL>" : body.inspect}"
           # puts "HEADERS = #{headers.inspect}"
+
           response = @oauth.request(method, resource, body, headers)
           check_response(response)
         end

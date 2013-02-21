@@ -35,14 +35,14 @@ def fixture_path
 end
 
 def onlineFixture(file)
-  File.new(fixture_path + '/online/' + file)
+  File.new(fixture_path + '/online/' + file).read
 end
 
 def sharedFixture(file)
-  File.new(fixture_path + '/shared/' + file)
+  File.new(fixture_path + '/shared/' + file).read
 end
 
 def windowsFixture(file)
-  File.new(fixture_path + '/windows/' + file)
+  File.new(fixture_path + '/windows/' + file).read
 end
 
