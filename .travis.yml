@@ -2,5 +2,4 @@ rvm:
   - 1.9.2
   - 1.9.1
   - ruby-head
-  - rbx
   - ree
