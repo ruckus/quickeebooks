@@ -22,7 +22,7 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     service.realm_id = @realm_id
 
     model = Quickeebooks::Windows::Model::Invoice
-    FakeWeb.register_uri(:get, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     invoices = service.list
     invoices.entries.count.should == 7
 

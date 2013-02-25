@@ -21,7 +21,7 @@ describe "Quickeebooks::Windows::Service::ShipMethod" do
     service = Quickeebooks::Windows::Service::ShipMethod.new
     service.access_token = @oauth
     service.realm_id = @realm_id
-    FakeWeb.register_uri(:get, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     shipping_methods = service.list
     shipping_methods.entries.count.should == 15
 

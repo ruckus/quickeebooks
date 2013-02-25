@@ -39,6 +39,17 @@ module Quickeebooks
           end
         end
 
+        def to_xml
+          case @type.to_sym
+          when :text
+            text_to_xml
+          when :boolean
+            boolean_to_xml
+          else
+            raise ArgumentError, "Don't know how to generate a Filter for type #{@type}"
+          end
+        end
+
         private
 
         def number_to_s
@@ -77,8 +88,16 @@ module Quickeebooks
           "#{@field} :EQUALS: #{@value}"
         end
 
+        def text_to_xml
+          "<#{@field}>#{CGI::escapeHTML(@value)}</#{@field}>"
+        end
+
         def boolean_to_s
           "#{@field} :EQUALS: #{@value}"
+        end
+
+        def boolean_to_xml
+          "<#{@field}>#{CGI::escapeHTML(@value.to_s)}</#{@field}>"
         end
 
         def formatted_time(time)
@@ -88,8 +107,6 @@ module Quickeebooks
             time.strftime(DATE_TIME_FORMAT)
           end
         end
-
-
       end
     end
   end
