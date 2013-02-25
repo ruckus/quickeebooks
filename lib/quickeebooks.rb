@@ -7,19 +7,19 @@ class InvalidModelException < Exception; end
 
 module Quickeebooks
   @@logger = nil
-  
+
   def self.logger
     @@logger || Logger.new($stdout) # TODO: replace with a real log file
   end
-  
+
   def self.logger=(logger)
     @@logger = logger
   end
-  
+
   class Collection
     attr_accessor :entries, :count, :current_page
   end
-  
+
 end
 
 # monkey-path the to_xml method to add support for passing
@@ -36,7 +36,7 @@ module ROXML
         refs = (self.roxml_references.present? \
           ? self.roxml_references \
           : self.class.roxml_attrs.map {|attr| attr.to_ref(self) })
-        
+
         if params[:fields].length > 0
           refs.reject! { |r| !params[:fields].include?(r.name) }
         end
@@ -56,6 +56,7 @@ end
 # Services
 require 'quickeebooks/shared/service/filter'
 require 'quickeebooks/shared/service/access_token'
+require 'quickeebooks/shared/service/sort'
 
 #== Online
 
@@ -134,6 +135,7 @@ require 'quickeebooks/windows/model/sales_receipt'
 
 # Services
 require 'quickeebooks/windows/service/filter'
+require 'quickeebooks/windows/service/sort'
 require 'quickeebooks/windows/service/service_base'
 require 'quickeebooks/windows/service/account'
 require 'quickeebooks/windows/service/customer'

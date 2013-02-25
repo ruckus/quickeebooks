@@ -22,7 +22,7 @@ describe "Quickeebooks::Windows::Service::Payment" do
     service.realm_id = @realm_id
 
     model = Quickeebooks::Windows::Model::Payment
-    FakeWeb.register_uri(:get,
+    FakeWeb.register_uri(:post,
                          service.url_for_resource(model::REST_RESOURCE),
                          :status => ["200", "OK"],
                          :body => xml)
