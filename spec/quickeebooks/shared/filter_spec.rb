@@ -1,4 +1,6 @@
 describe "Quickeebooks::Shared::Service::Filter" do
+  ENV['TZ'] = 'UTC'
+
   let(:filter){ Quickeebooks::Shared::Service::Filter }
 
   context 'DateTime' do
@@ -32,25 +34,25 @@ describe "Quickeebooks::Shared::Service::Filter" do
       it 'parses after' do
         filter.new(:datetime,
           :field => 'Foo',
-          :after => Time.parse('2020-12-31')).to_s.should == "Foo :AFTER: 2020-12-31T00:00:00EST"
+          :after => Time.parse('2020-12-31')).to_s.should == "Foo :AFTER: 2020-12-31T00:00:00UTC"
       end
 
       it 'parses before' do
         filter.new(:datetime,
           :field => 'Foo',
-          :before => Time.parse('2020-12-31')).to_s.should == "Foo :BEFORE: 2020-12-31T00:00:00EST"
+          :before => Time.parse('2020-12-31')).to_s.should == "Foo :BEFORE: 2020-12-31T00:00:00UTC"
       end
 
       it 'parses after with time' do
         filter.new(:datetime,
           :field => 'Foo',
-          :after => Time.parse('2020-12-31 12:00:00')).to_s.should == "Foo :AFTER: 2020-12-31T12:00:00EST"
+          :after => Time.parse('2020-12-31 12:00:00')).to_s.should == "Foo :AFTER: 2020-12-31T12:00:00UTC"
       end
 
       it 'parses before with time' do
         filter.new(:datetime,
           :field => 'Foo',
-          :before => Time.parse('2020-12-31 12:00:00')).to_s.should == "Foo :BEFORE: 2020-12-31T12:00:00EST"
+          :before => Time.parse('2020-12-31 12:00:00')).to_s.should == "Foo :BEFORE: 2020-12-31T12:00:00UTC"
       end
     end
 
