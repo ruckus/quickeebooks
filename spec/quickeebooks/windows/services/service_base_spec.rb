@@ -31,7 +31,7 @@ describe "Quickeebooks::Windows::Service::ServiceBase" do
     end
 
     def wrap_result(res)
-      "<FooQuery>#{res}</FooQuery>"
+      %Q{<?xml version="1.0" encoding="utf-8"?>\n<FooQuery xmlns="http://www.intuit.com/sb/cdm/v2">#{res}</FooQuery>}
     end
 
     it "uses all default values" do
