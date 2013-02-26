@@ -22,7 +22,7 @@ describe "Quickeebooks::Windows::Service::SalesRep" do
     service.realm_id = @realm_id
 
     model = Quickeebooks::Windows::Model::SalesRep
-    FakeWeb.register_uri(:get, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     reps = service.list
     reps.entries.count.should == 10
 

@@ -30,4 +30,62 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
     @service.login_name.should == 'foo@example.com'
   end
 
+  describe "#fetch_collection" do
+    before do
+      @model = mock(Object)
+      @model.stub(:resource_for_collection){ "foos" }
+
+      @url = @service.url_for_resource(@model.resource_for_collection)
+    end
+
+    it "uses all default values" do
+      @service.should_receive(:do_http_post).with(@url,
+        "PageNum=1&ResultsPerPage=20",
+        {},
+        {"Content-Type"=>"application/x-www-form-urlencoded"})
+
+      @service.send(:fetch_collection, @model)
+    end
+
+    it "filters" do
+
+      filter = Quickeebooks::Online::Service::Filter.new(:text, :field => "Name", :value => "Smith")
+
+      @service.should_receive(:do_http_post).with(@url,
+        "Filter=Name+%3AEQUALS%3A+Smith&PageNum=1&ResultsPerPage=20",
+        {},
+        {"Content-Type"=>"application/x-www-form-urlencoded"})
+
+      @service.send(:fetch_collection, @model, [filter])
+    end
+
+    it "paginates" do
+      @service.should_receive(:do_http_post).with(@url,
+        "PageNum=2&ResultsPerPage=20",
+        {},
+        {"Content-Type"=>"application/x-www-form-urlencoded"})
+
+      @service.send(:fetch_collection, @model, nil, 2)
+    end
+
+    it "changes per_page" do
+      @service.should_receive(:do_http_post).with(@url,
+        "PageNum=1&ResultsPerPage=10",
+        {},
+        {"Content-Type"=>"application/x-www-form-urlencoded"})
+
+      @service.send(:fetch_collection, @model, nil, 1, 10)
+    end
+
+    it "sorts" do
+      sorter = Quickeebooks::Online::Service::Sort.new('FamilyName', 'AtoZ')
+
+      @service.should_receive(:do_http_post).with(@url,
+        "PageNum=1&ResultsPerPage=20&Sort=FamilyName+AtoZ",
+        {},
+        {"Content-Type"=>"application/x-www-form-urlencoded"})
+
+      @service.send(:fetch_collection, @model, nil, 1, 20, sorter)
+    end
+  end
 end

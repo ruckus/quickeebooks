@@ -1,5 +1,5 @@
 module Quickeebooks
-  module Online
+  module Windows
     module Service
       class Sort < Quickeebooks::Shared::Service::Sort
       end

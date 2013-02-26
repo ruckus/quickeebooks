@@ -26,7 +26,7 @@ module Quickeebooks
 
         def initialize(oauth_access_token = nil, realm_id = nil)
           @base_uri = 'https://services.intuit.com/sb'
-          
+
           if !oauth_access_token.nil? && !realm_id.nil?
             msg = "Quickeebooks::Windows::ServiceBase - "
             msg += "This version of the constructor is deprecated. "
@@ -36,11 +36,11 @@ module Quickeebooks
             realm_id = realm_id
           end
         end
-        
+
         def access_token=(token)
           @oauth = token
         end
-        
+
         def realm_id=(realm_id)
           @realm_id = realm_id
         end
@@ -52,7 +52,7 @@ module Quickeebooks
         def url_for_base(raw)
           "#{@base_uri}/#{raw}/v2/#{@realm_id}"
         end
-        
+
         def guid
           UUIDTools::UUID.random_create.to_s.gsub('-', '')
         end
@@ -60,7 +60,7 @@ module Quickeebooks
         private
 
         def parse_xml(xml)
-          @last_response_xml = 
+          @last_response_xml =
           begin
             x = Nokogiri::XML(xml)
             #x.document.remove_namespaces!
@@ -71,7 +71,7 @@ module Quickeebooks
         def valid_xml_document(xml)
           %Q{<?xml version="1.0" encoding="utf-8"?>\n#{xml.strip}}
         end
-        
+
         # In QBD a single object response is the same as a collection response except
         # it just has a single main element
         def fetch_object(model, url, params = {}, options = {})
@@ -88,14 +88,29 @@ module Quickeebooks
         def fetch_collection(model, custom_field_query = nil, filters = [], page = 1, per_page = 20, sort = nil, options ={})
           raise ArgumentError, "missing model to instantiate" if model.nil?
 
-          if custom_field_query != nil
-            response = do_http_post(url_for_resource(model::REST_RESOURCE), custom_field_query, {}, {'Content-Type' => 'text/xml'})
-          else
-            response = do_http_get(url_for_resource(model::REST_RESOURCE), {}, {'Content-Type' => 'text/html'})
+          post_body_tags = []
+
+          if filters.is_a?(Array) && filters.length > 0
+            post_body_tags << filters.collect { |f| f.to_xml }
+            post_body_tags.flatten!
           end
+
+          post_body_tags << "<StartPage>#{page}</StartPage>"
+          post_body_tags << "<ChunkSize>#{per_page}</ChunkSize>"
+
+          if sort
+            post_body_tags << sort.to_xml
+          end
+
+          post_body_tags << custom_field_query
+
+          xml_query_tag = "#{model::XML_NODE}Query"
+          body = "<#{xml_query_tag}>#{post_body_tags.join}</#{xml_query_tag}>"
+
+          response = do_http_post(url_for_resource(model::REST_RESOURCE), body, {}, {'Content-Type' => 'text/xml'})
           parse_collection(response, model)
         end
-        
+
         def parse_collection(response, model)
           if response
             collection = Quickeebooks::Collection.new
@@ -121,14 +136,14 @@ module Quickeebooks
             nil
           end
         end
-        
+
         def perform_write(model, body = "", params = {}, headers = {})
           url = url_for_resource(model::REST_RESOURCE)
           unless headers.has_key?('Content-Type')
             headers['Content-Type'] = 'text/xml'
           end
           response = do_http_post(url, body.strip, params, headers)
-          
+
           result = nil
           if response
             case response.code.to_i
@@ -195,7 +210,7 @@ module Quickeebooks
             raise "HTTP Error Code: #{status}, Msg: #{response.body}"
           end
         end
-        
+
         def parse_and_raise_exceptione
           err = parse_intuit_error
           ex = IntuitRequestException.new(err[:message])
@@ -203,7 +218,7 @@ module Quickeebooks
           ex.cause = err[:cause]
           raise ex
         end
-        
+
         def response_is_error?
           @last_response_xml.xpath("//xmlns:RestResponse/xmlns:Error").first != nil
         end
