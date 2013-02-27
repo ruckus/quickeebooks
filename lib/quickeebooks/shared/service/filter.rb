@@ -41,6 +41,8 @@ module Quickeebooks
 
         def to_xml
           case @type.to_sym
+          when :date, :datetime
+            date_time_to_xml
           when :text
             text_to_xml
           when :boolean
@@ -82,6 +84,11 @@ module Quickeebooks
           end
 
           clauses.join(" :AND: ")
+        end
+
+        def date_time_to_xml
+          raise ':value is not a valid DateTime/Time object' unless (@value.is_a?(Time) || @value.is_a?(DateTime))
+          "<#{@field}>#{formatted_time(@value)}</#{field}>"
         end
 
         def text_to_s

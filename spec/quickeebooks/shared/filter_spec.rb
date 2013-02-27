@@ -30,7 +30,23 @@ describe "Quickeebooks::Shared::Service::Filter" do
       end
     end
 
-    context 'Time' do
+    describe '#to_xml' do
+      it 'parses equals' do
+        filter.new(:date,
+          :field => 'Foo',
+          :value => DateTime.parse('2020-12-31')).to_xml.should == '<Foo>2020-12-31</Foo>'
+      end
+
+      it 'parses equals with time' do
+        filter.new(:date,
+          :field => 'Foo',
+          :value => DateTime.parse('2020-12-31T12:00:00')).to_xml.should == "<Foo>2020-12-31</Foo>"
+      end
+    end
+  end
+
+  context 'Time' do
+    describe '#to_s' do
       it 'parses after' do
         filter.new(:datetime,
           :field => 'Foo',
@@ -56,16 +72,32 @@ describe "Quickeebooks::Shared::Service::Filter" do
       end
     end
 
-    context 'Not a date but responds to strftime' do
-      before do
-        # ActiveSupport::TimeWithZone is_a? Time but doesn't behave similarly.
-        # This test lets us mock out that use case and verify it works
-        @fake_time = mock(Object)
-        @fake_time.stub(:is_a?).with(Time).and_return(true)
-        @fake_time.stub(:is_a?).with(Date).and_return(false)
-        @fake_time.stub(:strftime).and_return("2020-12-31T12:00:00EST")
+    describe '#to_xml' do
+      it 'parses equals' do
+        filter.new(:datetime,
+          :field => 'Foo',
+          :value => Time.parse('2020-12-31')).to_xml.should == "<Foo>2020-12-31T00:00:00UTC</Foo>"
       end
 
+      it 'parses equals with time' do
+        filter.new(:datetime,
+          :field => 'Foo',
+          :value => Time.parse('2020-12-31 12:00:00')).to_xml.should == "<Foo>2020-12-31T12:00:00UTC</Foo>"
+      end
+    end
+  end
+
+  context 'Not a date but responds to strftime' do
+    before do
+      # ActiveSupport::TimeWithZone is_a? Time but doesn't behave similarly.
+      # This test lets us mock out that use case and verify it works
+      @fake_time = mock(Object)
+      @fake_time.stub(:is_a?).with(Time).and_return(true)
+      @fake_time.stub(:is_a?).with(Date).and_return(false)
+      @fake_time.stub(:strftime).and_return("2020-12-31T12:00:00EST")
+    end
+
+    describe '#to_s' do
       it 'parses after' do
         filter.new(:datetime,
           :field => 'Foo',
@@ -77,9 +109,6 @@ describe "Quickeebooks::Shared::Service::Filter" do
           :field => 'Foo',
           :before => @fake_time).to_s.should == "Foo :BEFORE: 2020-12-31T12:00:00EST"
       end
-    end
-
-    describe '#to_xml' do
     end
   end
 
