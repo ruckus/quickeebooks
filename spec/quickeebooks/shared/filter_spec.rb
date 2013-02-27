@@ -104,6 +104,12 @@ describe "Quickeebooks::Shared::Service::Filter" do
           :field => 'Foo',
           :value => "<3 Bar's ><things").to_xml.should == '<Foo>&lt;3 Bar\'s &gt;&lt;things</Foo>'
       end
+
+      it 'CGI escapes integers' do
+        filter.new(:text,
+          :field => 'Foo',
+          :value => 3).to_xml.should == '<Foo>3</Foo>'
+      end
     end
   end
 
