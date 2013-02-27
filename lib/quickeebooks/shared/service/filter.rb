@@ -7,7 +7,7 @@ module Quickeebooks
         DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S%Z'
 
         attr_reader :type
-        attr_accessor :field, :value
+        attr_accessor :field, :value, :escape
 
         # For Date/Time filtering
         attr_accessor :before, :after
@@ -16,6 +16,7 @@ module Quickeebooks
         attr_accessor :gt, :lt, :eq
 
         def initialize(type, *args)
+          @escape = true
           @type = type
           if args.first.is_a?(Hash)
             args.first.each_pair do |key, value|
@@ -96,7 +97,9 @@ module Quickeebooks
         end
 
         def text_to_xml
-          "<#{@field}>#{CGI::escapeHTML(@value.to_s)}</#{@field}>"
+          value = @escape ? CGI::escapeHTML(@value.to_s) : @value
+
+          "<#{@field}>#{value}</#{@field}>"
         end
 
         def boolean_to_s
@@ -104,7 +107,9 @@ module Quickeebooks
         end
 
         def boolean_to_xml
-          "<#{@field}>#{CGI::escapeHTML(@value.to_s)}</#{@field}>"
+          value = @escape ? CGI::escapeHTML(@value.to_s) : @value
+
+          "<#{@field}>#{value}</#{@field}>"
         end
 
         def formatted_time(time)

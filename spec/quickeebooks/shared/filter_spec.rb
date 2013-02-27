@@ -139,6 +139,13 @@ describe "Quickeebooks::Shared::Service::Filter" do
           :field => 'Foo',
           :value => 3).to_xml.should == '<Foo>3</Foo>'
       end
+
+      it 'Allows unescaping' do
+        filter.new(:text,
+          :field  => 'TransactionIdSet',
+          :value  => '<Id>3</Id>',
+          :escape => false).to_xml.should == '<TransactionIdSet><Id>3</Id></TransactionIdSet>'
+      end
     end
   end
 
