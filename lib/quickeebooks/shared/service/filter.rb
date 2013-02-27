@@ -89,7 +89,7 @@ module Quickeebooks
         end
 
         def text_to_xml
-          "<#{@field}>#{CGI::escapeHTML(@value)}</#{@field}>"
+          "<#{@field}>#{CGI::escapeHTML(@value.to_s)}</#{@field}>"
         end
 
         def boolean_to_s
