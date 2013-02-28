@@ -56,7 +56,7 @@ describe "Quickeebooks::Windows::Service::ServiceBase" do
       filter = Quickeebooks::Windows::Service::Filter.new(:boolean, :field => "IsPaid", :value => "true")
 
       @service.should_receive(:do_http_post).with(@url,
-        wrap_result("<IsPaid>true</IsPaid>#{default_params}"),
+        wrap_result("#{default_params}<IsPaid>true</IsPaid>"),
         {},
         {"Content-Type"=>"text/xml"})
 

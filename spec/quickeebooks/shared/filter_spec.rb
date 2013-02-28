@@ -76,13 +76,13 @@ describe "Quickeebooks::Shared::Service::Filter" do
       it 'parses equals' do
         filter.new(:datetime,
           :field => 'Foo',
-          :value => Time.parse('2020-12-31')).to_xml.should == "<Foo>2020-12-31T00:00:00UTC</Foo>"
+          :value => Time.parse('2020-12-31')).to_xml.should == "<Foo>2020-12-31T00:00:00.0Z</Foo>"
       end
 
       it 'parses equals with time' do
         filter.new(:datetime,
           :field => 'Foo',
-          :value => Time.parse('2020-12-31 12:00:00')).to_xml.should == "<Foo>2020-12-31T12:00:00UTC</Foo>"
+          :value => Time.parse('2020-12-31 12:00:00')).to_xml.should == "<Foo>2020-12-31T12:00:00.0Z</Foo>"
       end
     end
   end

@@ -42,7 +42,9 @@ module Quickeebooks
 
         def to_xml
           case @type.to_sym
-          when :date, :datetime
+          when :date
+            date_to_xml
+          when :datetime
             date_time_to_xml
           when :text
             text_to_xml
@@ -87,9 +89,14 @@ module Quickeebooks
           clauses.join(" :AND: ")
         end
 
+        def date_to_xml
+          raise ':value is not a valid DateTime/Time object' unless (@value.is_a?(Time) || @value.is_a?(DateTime))
+          "<#{@field}>#{xml_formatted_date(@value)}</#{field}>"
+        end
+
         def date_time_to_xml
           raise ':value is not a valid DateTime/Time object' unless (@value.is_a?(Time) || @value.is_a?(DateTime))
-          "<#{@field}>#{formatted_time(@value)}</#{field}>"
+          "<#{@field}>#{xml_formatted_time(@value)}</#{field}>"
         end
 
         def text_to_s
@@ -110,6 +117,14 @@ module Quickeebooks
           value = @escape ? CGI::escapeHTML(@value.to_s) : @value
 
           "<#{@field}>#{value}</#{@field}>"
+        end
+
+        def xml_formatted_date(time)
+          time.strftime(DATE_FORMAT)
+        end
+
+        def xml_formatted_time(time)
+          time.utc.iso8601(1)
         end
 
         def formatted_time(time)
