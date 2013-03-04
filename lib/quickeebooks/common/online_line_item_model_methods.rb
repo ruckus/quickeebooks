@@ -20,7 +20,7 @@ module OnlineLineItemModelMethods
 
     def valid_for_deletion?
       return false if(id.nil? || sync_token.nil?)
-      id.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
+      id.value.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
     end
 
     private
