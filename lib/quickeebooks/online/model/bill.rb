@@ -7,7 +7,7 @@ require 'quickeebooks/common/online_line_item_model_methods'
 module Quickeebooks
   module Online
     module Model
-      class Bill  < Quickeebooks::Online::Model::IntuitType
+      class Bill < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
         include OnlineLineItemModelMethods
         XML_NODE = "Bill"
