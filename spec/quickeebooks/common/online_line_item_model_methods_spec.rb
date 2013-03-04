@@ -1,4 +1,4 @@
-describe 'Mixin between Online models that have line items' do
+describe 'Mixin for online models that have line items' do
 
   let (:shared_models) { %w(Invoice Payment) }
 
