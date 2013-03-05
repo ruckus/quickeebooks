@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:SearchResults xmlns:qbo="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1">
+  <qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Bills">
+    <Bill>
+      <Id>56</Id>
+      <SyncToken>1</SyncToken>
+      <MetaData>
+        <CreateTime>2010-09-13T21:40:41-07:00</CreateTime>
+        <LastUpdatedTime>2010-09-13T21:44:43-07:00</LastUpdatedTime>
+      </MetaData>
+      <Header>
+        <DocNumber>2004</DocNumber>
+        <TxnDate>2010-08-06-07:00</TxnDate>
+        <VendorId>7</VendorId>
+        <TotalAmt>25.00</TotalAmt>
+        <SalesTermId>5</SalesTermId>
+        <DueDate>2010-08-11-07:00</DueDate>
+        <Balance>25.00</Balance>
+      </Header>
+      <Line>
+        <Id>1</Id>
+        <Desc>Pens</Desc>
+        <Amount>25.00</Amount>
+        <ItemId>2</ItemId>
+        <UnitPrice>5</UnitPrice>
+        <Qty>7</Qty>
+        <AccountId>30</AccountId>
+      </Line>
+    </Bill>
+  </qbo:CdmCollections>
+  <qbo:Count>1</qbo:Count>
+  <qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>
