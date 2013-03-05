@@ -54,13 +54,7 @@ module ServiceCRUD
   end
 
   def action_url(object)
-    url = url_for_resource(model.resource_for_singular)
-    case included_model
-    when 'Customer'
-      url += "/#{object.id.value}"
-    when 'Payment'
-      url += "/#{object.id}"
-    end
+    url = "#{url_for_resource(model.resource_for_singular)}/#{object.id.value}"
   end
 
 end
