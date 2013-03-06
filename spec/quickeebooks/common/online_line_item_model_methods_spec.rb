@@ -1,6 +1,6 @@
 describe 'Mixin for online models that have line items' do
 
-  let (:shared_models) { %w(Invoice Payment) }
+  let (:shared_models) { %w(Invoice Payment Bill) }
 
   it 'initializes' do
     shared_models.each do |model|
