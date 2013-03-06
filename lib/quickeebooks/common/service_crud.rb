@@ -45,12 +45,8 @@ module ServiceCRUD
     fetch_collection(model, filters, page, per_page, sort, options)
   end
 
-  def included_model
-    self.class.to_s.split('::').last
-  end 
-
   def model
-    "Quickeebooks::Online::Model::#{included_model}".constantize
+    self.class.to_s.sub(/::Service::/,'::Model::').constantize
   end
 
   def action_url(object)
