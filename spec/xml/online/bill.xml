@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Bill xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2">
+  <Id>56</Id>
+  <SyncToken>0</SyncToken>
+  <MetaData>
+    <CreateTime>2010-09-13T21:40:41-07:00</CreateTime>
+    <LastUpdatedTime>2010-09-13T21:40:41-07:00</LastUpdatedTime>
+  </MetaData>
+  <Header>
+    <DocNumber>2004</DocNumber>
+    <TxnDate>2010-08-06</TxnDate>
+    <Msg>4 Pens</Msg>
+    <VendorId>7</VendorId>
+    <VendorName>Digital</VendorName>
+    <TotalAmt>50</TotalAmt>
+    <SalesTermId>5</SalesTermId>
+    <SalesTermName>Due before receipt</SalesTermName>
+    <DueDate>2010-08-11</DueDate>
+  </Header>
+  <Line>
+    <Desc>Pens</Desc>
+    <Amount>25</Amount>
+    <BillableStatus>NotBillable</BillableStatus>
+    <Qty>5</Qty>
+    <UnitPrice>5</UnitPrice>
+    <ItemId>2</ItemId>
+    <ReimbursableInfo>
+      <CustomerId>5</CustomerId>
+      <CustomerName>2</CustomerName>
+    </ReimbursableInfo>
+  </Line>
+</Bill>
