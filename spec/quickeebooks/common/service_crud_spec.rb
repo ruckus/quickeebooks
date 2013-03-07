@@ -21,7 +21,7 @@ describe 'Mixin CRUD like methods for various service modules' do
     end
 
     def build_dummy_windows_service(inc = '')
-      eval "
+      eval("
         module Quickeebooks
           module Windows
             module Service
@@ -35,7 +35,7 @@ describe 'Mixin CRUD like methods for various service modules' do
             end
           end
         end
-        "
+      ", TOPLEVEL_BINDING)
     end
   end
 end
