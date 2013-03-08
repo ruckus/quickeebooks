@@ -21,6 +21,8 @@ def mock_error(subject, message)
   end
 end
 
+Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
+
 def mock_exit(&block)
   block.should raise_error(SystemExit)
 end
