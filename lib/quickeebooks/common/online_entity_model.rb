@@ -22,7 +22,6 @@ module OnlineEntityModel
       xml_accessor :gender, :from => 'Gender'
       xml_accessor :dba_name, :from => 'DBAName'
       xml_accessor :tax_identifier, :from => 'TaxIdentifier'
-      xml_accessor :notes, :from => 'Notes', :as => [Quickeebooks::Online::Model::Note]
       xml_accessor :sales_term_id, :from => 'SalesTermId', :as => Quickeebooks::Online::Model::Id
       xml_accessor :open_balance, :from => 'OpenBalance', :as => Quickeebooks::Online::Model::OpenBalance
     end 

@@ -19,6 +19,7 @@ module Quickeebooks
         XML_NODE = "Customer"
         REST_RESOURCE = "customer"
 
+        xml_accessor :notes, :from => 'Notes', :as => [Quickeebooks::Online::Model::Note]
         xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Online::Model::CustomerCustomField]
         xml_accessor :paymethod_method_id, :from => 'PaymentMethodId', :as => Quickeebooks::Online::Model::Id
 
