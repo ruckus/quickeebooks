@@ -25,6 +25,7 @@ describe "Quickeebooks::Online::Model::Vendor" do
 
   it "cannot update an invalid model" do
     vendor = Quickeebooks::Online::Model::Vendor.new
+    vendor.to_xml_ns.should match('Vendor')
     vendor.valid_for_update?.should == false
     vendor.errors.keys.include?(:sync_token).should == true
   end

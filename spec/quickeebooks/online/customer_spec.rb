@@ -36,6 +36,7 @@ describe "Quickeebooks::Online::Model::Customer" do
   it "cannot update an invalid model" do
     customer = Quickeebooks::Online::Model::Customer.new
     customer.valid_for_update?.should == false
+    customer.to_xml_ns.should match('Customer')
     customer.errors.keys.include?(:sync_token).should == true
   end
 
