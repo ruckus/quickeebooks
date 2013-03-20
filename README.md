@@ -390,6 +390,9 @@ Thank you for the contributions:
 
 * [Walter McGinnis](https://github.com/walter)
 * [Simon Wistow](https://github.com/simonwistow)
+* [Matt Rogish](https://github.com/MattRogish)
+* [Nick Hammond](https://github.com/nickhammond)
+* [Christian Pelczarski](https://github.com/minimul)
 
 ## License
 
