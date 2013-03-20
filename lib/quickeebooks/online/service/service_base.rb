@@ -121,12 +121,12 @@ module Quickeebooks
 
         def do_http_post(resource, body = "", params = {}, headers = {}) # throws IntuitRequestException
           url = add_query_string_to_url(resource, params)
-          do_http(:post, resource, body, headers)
+          do_http(:post, url, body, headers)
         end
 
         def do_http_get(resource, params = {}, headers = {}) # throws IntuitRequestException
-          url = add_query_string_to_url(url, params)
-          do_http(:get, resource, "", headers)
+          url = add_query_string_to_url(resource, params)
+          do_http(:get, url, "", headers)
         end
 
         def do_http(method, resource, body, headers) # throws IntuitRequestException

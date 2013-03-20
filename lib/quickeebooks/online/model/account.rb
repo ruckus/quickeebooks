@@ -19,6 +19,7 @@ module Quickeebooks
         xml_accessor :name, :from => 'Name'
         xml_accessor :desc, :from => 'Desc'
         xml_accessor :sub_type, :from => 'Subtype'
+        xml_accessor :type, :from => 'Type'
         xml_accessor :acct_num, :from => 'AcctNum'
         xml_accessor :account_parent_id, :from => 'AccountParentId', :as => Quickeebooks::Online::Model::Id
         xml_accessor :current_balance, :from => 'CurrentBalance', :as => Float

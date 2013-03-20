@@ -11,7 +11,7 @@ module Quickeebooks
         end
 
         def create(account)
-          raise InvalidModelException unless account.valid?
+          raise InvalidModelException.new(account.errors.full_messages.join(", ")) unless account.valid?
           xml = account.to_xml_ns
           response = do_http_post(url_for_resource(Quickeebooks::Online::Model::Account.resource_for_singular), valid_xml_document(xml))
           if response && response.code.to_i == 200

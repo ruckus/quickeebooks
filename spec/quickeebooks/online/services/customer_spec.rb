@@ -1,23 +1,6 @@
 describe "Quickeebooks::Online::Service::Customer" do
   before(:all) do
-    FakeWeb.allow_net_connect = false
-    qb_key = "key"
-    qb_secret = "secreet"
-
-    @realm_id = "9991111222"
-    @oauth_consumer = OAuth::Consumer.new(qb_key, qb_key, {
-        :site                 => "https://oauth.intuit.com",
-        :request_token_path   => "/oauth/v1/get_request_token",
-        :authorize_path       => "/oauth/v1/get_access_token",
-        :access_token_path    => "/oauth/v1/get_access_token"
-    })
-    @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
-
-    @service = Quickeebooks::Online::Service::Customer.new
-    @service.access_token = @oauth
-    @service.instance_eval {
-      @realm_id = "9991111222"
-    }
+    construct_oauth_service :customer
   end
 
   it "can fetch a list of customers" do
@@ -51,7 +34,7 @@ describe "Quickeebooks::Online::Service::Customer" do
   end
 
   it "can delete a customer" do
-    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/99"
+    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/99?methodx=delete"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
     customer = Quickeebooks::Online::Model::Customer.new
     customer.id = Quickeebooks::Online::Model::Id.new("99")

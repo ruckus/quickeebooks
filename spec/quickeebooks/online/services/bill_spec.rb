@@ -25,7 +25,7 @@ describe "Quickeebooks::Online::Service::Bill" do
   end
 
   it "can delete a bill" do
-    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Bill.resource_for_singular)}/56"
+    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Bill.resource_for_singular)}/56?methodx=delete"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
     bill = Quickeebooks::Online::Model::Bill.new
     bill.id = Quickeebooks::Online::Model::Id.new("56")
