@@ -13,7 +13,7 @@ and has `JSON` request/response formats, which should be easier to work with tha
 
 ## Requirements
 
-This is being developed on Ruby 1.9.2. Other versions/VMs are untested but Ruby 1.8 should work in theory.
+This is being developed on Ruby REE, 1.9.2 & 1.9.3. Other versions/VMs are untested but stable Rubies should work in theory.
 
 ## Dependencies
 
@@ -130,6 +130,8 @@ customer_service.list
 See *Retrieving Objects* for the complete docs on fetching collections.
 
 Quickbooks API requires that all HTTP operations are performed against a client-specific "Base URL", as discussed here:
+
+Note: The Windows and Online(versions 7.0 and above) now use a static base URL which is the default URL that is used with Quickeebooks so no additional HTTP requests are made.
 
 [Getting the Base URL](https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0010_Getting_the_Base_URL)
 
