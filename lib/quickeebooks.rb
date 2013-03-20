@@ -137,6 +137,7 @@ require 'quickeebooks/windows/model/clazz'
 require 'quickeebooks/windows/model/sales_receipt_header'
 require 'quickeebooks/windows/model/sales_receipt_line_item'
 require 'quickeebooks/windows/model/sales_receipt'
+require 'quickeebooks/windows/model/employee'
 
 
 # Services
@@ -156,3 +157,4 @@ require 'quickeebooks/windows/service/company_meta_data'
 require 'quickeebooks/windows/service/payment'
 require 'quickeebooks/windows/service/clazz'
 require 'quickeebooks/windows/service/access_token'
+require 'quickeebooks/windows/service/employee'
