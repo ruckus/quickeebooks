@@ -51,7 +51,7 @@ describe "Quickeebooks::Online::Service::Account" do
 
   it "can delete an account" do
     url = @service.url_for_resource(Quickeebooks::Online::Model::Account.resource_for_singular)
-    url = "#{url}/99"
+    url = "#{url}/99?methodx=delete"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
     account = Quickeebooks::Online::Model::Account.new
     account.id = 99

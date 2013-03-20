@@ -26,7 +26,7 @@ describe "Quickeebooks::Online::Service::Vendor" do
   end
 
   it "can delete a vendor" do
-    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Vendor.resource_for_singular)}/11"
+    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Vendor.resource_for_singular)}/11?methodx=delete"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
     vendor = Quickeebooks::Online::Model::Vendor.new
     vendor.id = Quickeebooks::Online::Model::Id.new("11")

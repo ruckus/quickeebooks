@@ -34,7 +34,7 @@ describe "Quickeebooks::Online::Service::Customer" do
   end
 
   it "can delete a customer" do
-    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/99"
+    url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/99?methodx=delete"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
     customer = Quickeebooks::Online::Model::Customer.new
     customer.id = Quickeebooks::Online::Model::Id.new("99")
