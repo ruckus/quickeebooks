@@ -86,6 +86,7 @@ require 'quickeebooks/online/model/credit_charge_response'
 require 'quickeebooks/online/model/vendor'
 require 'quickeebooks/online/model/sales_receipt'
 require 'quickeebooks/online/model/sales_receipt_line_item'
+require 'quickeebooks/online/model/sales_receipt_header'
 
 # Services
 require 'quickeebooks/online/service/filter'
