@@ -1,4 +1,4 @@
-require 'time'
+require 'quickeebooks/common/date_time'
 
 module Quickeebooks
   module Online
@@ -6,7 +6,7 @@ module Quickeebooks
       class SalesReceiptHeader < Quickeebooks::Online::Model::IntuitType
         xml_name 'Header'
         xml_accessor :doc_number,            :from => 'DocNumber'
-        xml_accessor :txn_date,              :from => 'TxnDate',            :as => Time
+        xml_accessor :txn_date,              :from => 'TxnDate',            :as => Quickeebooks::Common::DateTime
         xml_accessor :msg,                   :from => 'Msg'
         xml_accessor :note,                  :from => 'Note'
         xml_accessor :status,                :from => 'Status'

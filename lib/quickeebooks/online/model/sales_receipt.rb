@@ -12,8 +12,9 @@ module Quickeebooks
         include OnlineLineItemModelMethods
 
         XML_NODE = "SalesReceipt"
-        REST_RESOURCE = "sales_receipt"
+        REST_RESOURCE = "sales-receipt"
 
+        xml_name "SalesReceipt"
         xml_accessor :id,         :from => 'Id',        :as => Quickeebooks::Online::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :doc_number, :from => 'DocNumber', :as => Integer
