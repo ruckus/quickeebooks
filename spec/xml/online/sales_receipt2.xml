@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SalesReceipt xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns2="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:ns3="http://www.intuit.com/sb/cdm/qbo">
+  <Id idDomain="QBO">8</Id>
+  <SyncToken>0</SyncToken>
+  <MetaData>
+    <CreateTime>2010-10-21T23:05:21-07:00</CreateTime>
+    <LastUpdatedTime>2010-10-21T23:05:21-07:00</LastUpdatedTime>
+  </MetaData>
+  <Header>
+    <DocNumber>1006</DocNumber>
+    <TxnDate>2010-10-22-07:00</TxnDate>
+    <CustomerId>4</CustomerId>
+    <SalesTaxCodeId idDomain="QBO">1</SalesTaxCodeId>
+    <SalesTaxCodeName>IS_TAXABLE</SalesTaxCodeName>
+    <SubTotalAmt>50.00</SubTotalAmt>
+    <TotalAmt>50.00</TotalAmt>
+    <ToBePrinted>false</ToBePrinted>
+    <ToBeEmailed>false</ToBeEmailed>
+    <ShipAddr>
+      <Line1>Mountain View</Line1>
+      <CountrySubDivisionCode>US</CountrySubDivisionCode>
+    </ShipAddr>
+    <DepositToAccountId>4</DepositToAccountId>
+    <DepositToAccountName>Undeposited Funds</DepositToAccountName>
+    <DiscountTaxable>true</DiscountTaxable>
+  </Header>
+  <Line>
+    <Id>1</Id>
+    <Desc>Keyboards</Desc>
+    <Amount>50.00</Amount>
+    <Taxable>false</Taxable>
+    <ItemId>1</ItemId>
+    <UnitPrice>10</UnitPrice>
+    <Qty>2</Qty>
+  </Line>
+</SalesReceipt>
