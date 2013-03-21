@@ -32,7 +32,7 @@ describe "Quickeebooks::Windows::Service::TimeActivity" do
     my_time.minutes.should == "0"
     my_time.txn_date.should == "2012-03-20"
     my_time.employee.employee_name.should == "Whitley, Michael"
-
+    my_time.employee.employee_id.value.should == "246"
   end
 
 end

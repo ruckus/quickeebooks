@@ -36,13 +36,13 @@ module Quickeebooks
 		        xml_accessor :vendor, :from => 'Vendor', :as => Quickeebooks::Windows::Model::TimeActivityVendor
 		        xml_accessor :customer_id, :from => 'CustomerId'
 		        xml_accessor :customer_name, :from => 'CustomerName'
-		        xml_accessor :job_id, :from => 'JobId'
+		        xml_accessor :job_id, :from => 'JobId', :as => Quickeebooks::Windows::Model::Id
 		        xml_accessor :job_name, :from => 'JobName'
-		        xml_accessor :item_id, :from => 'ItemId'
+		        xml_accessor :item_id, :from => 'ItemId', :as => Quickeebooks::Windows::Model::Id
 		        xml_accessor :item_name, :from => 'ItemName'
 		        xml_accessor :item_type, :from => 'ItemType'
-		        xml_accessor :class_id, :from => 'ClassId'
-		        xml_accessor :pay_item_id, :from => 'PayItemId'
+		        xml_accessor :class_id, :from => 'ClassId', :as => Quickeebooks::Windows::Model::Id
+		        xml_accessor :pay_item_id, :from => 'PayItemId', :as => Quickeebooks::Windows::Model::Id
 		        xml_accessor :pay_item_name, :from => 'PayItemName'
 		        xml_accessor :billable_status, :from => 'BillableStatus'
 		        xml_accessor :taxable, :from => 'Taxable'
