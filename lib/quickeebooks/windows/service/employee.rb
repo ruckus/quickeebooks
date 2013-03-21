@@ -1,3 +1,4 @@
+require 'quickeebooks/windows/model/employee'
 require 'quickeebooks/windows/service/service_base'
 
 module Quickeebooks
