@@ -141,6 +141,7 @@ require 'quickeebooks/windows/model/employee'
 require 'quickeebooks/windows/model/time_activity'
 require 'quickeebooks/windows/model/time_activity_employee'
 require 'quickeebooks/windows/model/time_activity_vendor'
+require 'quickeebooks/windows/model/job'
 
 
 # Services
@@ -162,3 +163,4 @@ require 'quickeebooks/windows/service/clazz'
 require 'quickeebooks/windows/service/access_token'
 require 'quickeebooks/windows/service/employee'
 require 'quickeebooks/windows/service/time_activity'
+require 'quickeebooks/windows/service/job'
