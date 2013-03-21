@@ -60,6 +60,10 @@ module Quickeebooks
           			addresses.detect { |address| address.tag == "Billing" }
         		end
 
+        		def shipping_address
+          			addresses.detect { |address| address.tag == "Shipping" }
+        		end
+
 		    end
 	    end
     end
