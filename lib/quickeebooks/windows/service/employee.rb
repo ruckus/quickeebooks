@@ -6,7 +6,7 @@ module Quickeebooks
     module Service
       class Employee < Quickeebooks::Windows::Service::ServiceBase
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
-          fetch_collection(Quickeebooks::Windows::Model::Customer, nil, filters, page, per_page, sort, options)
+          fetch_collection(Quickeebooks::Windows::Model::Employee, nil, filters, page, per_page, sort, options)
         end
       end
     end

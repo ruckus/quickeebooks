@@ -20,8 +20,8 @@
 				<Id idDomain="QB">0000000000000Qrt</Id>
 				<Line1>Charles Rogets</Line1>
 				<City>Los Angeles</City>
-				<State>CA</State>
-				<Zip>90064</Zip>
+				<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+				<PostalCode>90064</PostalCode>
 				<Default>1</Default>
 				<Tag>Billing</Tag>
 			</Address>

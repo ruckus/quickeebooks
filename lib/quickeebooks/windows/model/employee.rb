@@ -31,7 +31,7 @@ module Quickeebooks
 		        xml_accessor :party_reference_id, :from => 'PartyReferenceId'
 		        xml_accessor :type_of, :from => 'TypeOf'
 		        xml_accessor :name, :from => 'Name'
-		        xml_accessor :address, :from => 'Address', :as => [Quickeebooks::Windows::Model::Address]
+		        xml_accessor :addresses, :from => 'Address', :as => [Quickeebooks::Windows::Model::Address]
 				xml_accessor :phone, :from => 'Phone', :as => [Quickeebooks::Windows::Model::Phone]
 		        xml_accessor :web_site, :from => 'WebSite', :as => Quickeebooks::Windows::Model::WebSite
 		        xml_accessor :email, :from => 'Email', :as => Quickeebooks::Windows::Model::Email       
@@ -50,6 +50,16 @@ module Quickeebooks
 		        xml_accessor :hired_date, :from => 'HiredDate'
 		        xml_accessor :released_date, :from => 'ReleasedDate'
 		        xml_accessor :use_time_entry, :from => 'UseTimeEntry'
+        
+		        def address=(address)
+		          self.addresses ||= []
+		          self.addresses << address
+		        end
+
+		        def billing_address
+          			addresses.detect { |address| address.tag == "Billing" }
+        		end
+
 		    end
 	    end
     end

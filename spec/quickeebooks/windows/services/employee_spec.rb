@@ -24,17 +24,17 @@ describe "Quickeebooks::Windows::Service::Employee" do
     FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     employees = service.list
     employees.entries.count.should == 1
-    rogets = accounts.entries.first
+    rogets = employees.entries.first
     rogets.name.should == "Rogets, Charles"
 
-    rogets_address = rogets.address
+    rogets_address = rogets.billing_address
     rogets_address.should_not == nil
     rogets_address.line1.should == "Charles Rogets"
     rogets_address.city.should == "Los Angeles"
     rogets_address.state.should == "CA"
     rogets_address.postal_code.should == "90064"
 
-    rogets_active = rogets.rogets_active
+    rogets_active = rogets.active
     rogets_active.should == "true"
 
   end
