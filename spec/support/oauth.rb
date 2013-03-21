@@ -12,7 +12,7 @@ def construct_oauth_service(model)
   })
   @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
 
-  @service = "Quickeebooks::Online::Service::#{model.to_s.capitalize}".constantize.new
+  @service = "Quickeebooks::Online::Service::#{model.to_s.camelcase}".constantize.new
   @service.access_token = @oauth
   @service.instance_eval {
     @realm_id = "9991111222"
