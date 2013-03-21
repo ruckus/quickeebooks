@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo" xmlns:ns3="http://www.intuit.com/sb/cdm/qbopayroll/v1">
+  <qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SalesReceipts">
+    <SalesReceipt>
+      <Id idDomain="QBO">6</Id>
+      <SyncToken>2</SyncToken>
+      <MetaData>
+        <CreateTime>2010-10-21T02:40:35-07:00</CreateTime>
+        <LastUpdatedTime>2010-10-21T03:11:28-07:00</LastUpdatedTime>
+      </MetaData>
+      <Header>
+        <DocNumber>1006</DocNumber>
+        <TxnDate>2010-10-21-07:00</TxnDate>
+        <Msg>Inventory</Msg>
+        <CustomerId>1</CustomerId>
+        <SubTotalAmt>10.00</SubTotalAmt>
+        <TotalAmt>10.00</TotalAmt>
+        <ToBePrinted>false</ToBePrinted>
+        <ToBeEmailed>false</ToBeEmailed>
+        <ShipAddr>
+          <Line1>Mountain View</Line1>
+          <Line2>US</Line2>
+        </ShipAddr>
+        <DepositToAccountId>4</DepositToAccountId>
+        <DepositToAccountName>Undeposited Funds</DepositToAccountName>
+        <DiscountTaxable>true</DiscountTaxable>
+      </Header>
+      <Line>
+        <Id>1</Id>
+        <Desc>Camel</Desc>
+        <Amount>10.00</Amount>
+        <Taxable>false</Taxable>
+        <ItemId>2</ItemId>
+      </Line>
+    </SalesReceipt>
+  </qbo:CdmCollections>
+  <qbo:Count>1</qbo:Count>
+  <qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>

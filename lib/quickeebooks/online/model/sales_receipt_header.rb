@@ -12,8 +12,8 @@ module Quickeebooks
         xml_accessor :status,                :from => 'Status'
         xml_accessor :customer_id,           :from => 'CustomerId',         :as => Quickeebooks::Online::Model::Id
         xml_accessor :customer_name,         :from => 'CustomerName'
-        xml_accessor :subtotal_amount,   :from => 'SubTotalAmt',  :as => Float
-        xml_accessor :total_amount,      :from => 'TotalAmt', :as => Float
+        xml_accessor :subtotal_amount,       :from => 'SubTotalAmt',        :as => Float
+        xml_accessor :total_amount,          :from => 'TotalAmt',           :as => Float
       end
     end
   end

@@ -102,6 +102,7 @@ require 'quickeebooks/online/service/entitlement'
 require 'quickeebooks/online/service/payment'
 require 'quickeebooks/online/service/access_token'
 require 'quickeebooks/online/service/vendor'
+require 'quickeebooks/online/service/sales_receipt'
 
 #== Windows
 

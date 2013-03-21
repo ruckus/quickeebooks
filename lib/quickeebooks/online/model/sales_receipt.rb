@@ -8,7 +8,11 @@ module Quickeebooks
   module Online
     module Model
       class SalesReceipt < Quickeebooks::Online::Model::IntuitType
+        include ActiveModel::Validations
         include OnlineLineItemModelMethods
+
+        XML_NODE = "SalesReceipt"
+        REST_RESOURCE = "sales_receipt"
 
         xml_accessor :id,         :from => 'Id',        :as => Quickeebooks::Online::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
