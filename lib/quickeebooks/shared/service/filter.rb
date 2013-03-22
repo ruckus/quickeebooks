@@ -45,6 +45,8 @@ module Quickeebooks
             text_to_xml
           when :boolean
             boolean_to_xml
+          when :datetime
+            datetime_to_xml
           else
             raise ArgumentError, "Don't know how to generate a Filter for type #{@type}"
           end
@@ -98,6 +100,10 @@ module Quickeebooks
 
         def boolean_to_xml
           "<#{@field}>#{CGI::escapeHTML(@value.to_s)}</#{@field}>"
+        end
+
+        def datetime_to_xml
+          "<#{@field}>#{CGI::escapeHTML(@value.xmlschema)}</#{@field}>"
         end
 
         def formatted_time(time)
