@@ -90,13 +90,13 @@ module Quickeebooks
 
           post_body_tags = []
 
+          post_body_tags << "<StartPage>#{page}</StartPage>"
+          post_body_tags << "<ChunkSize>#{per_page}</ChunkSize>"
+
           if filters.is_a?(Array) && filters.length > 0
             post_body_tags << filters.collect { |f| f.to_xml }
             post_body_tags.flatten!
           end
-
-          post_body_tags << "<StartPage>#{page}</StartPage>"
-          post_body_tags << "<ChunkSize>#{per_page}</ChunkSize>"
 
           if sort
             post_body_tags << sort.to_xml
