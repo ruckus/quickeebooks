@@ -380,6 +380,12 @@ Usage: Download invoice #89 and store it at `/tmp/invoice.pdf`:
 invoice_as_pdf(89, "/tmp/invoice.pdf")
 ```
 
+## Logging
+
+```ruby
+Quickeebooks.log = true
+```
+
 _Note:_ it is up to you the caller to remove or clean up the file when you are done.
 
 ## Author
