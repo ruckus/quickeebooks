@@ -8,13 +8,30 @@ class InvalidModelException < Exception; end
 module Quickeebooks
   @@logger = nil
 
-  def self.logger
-    @@logger || Logger.new($stdout) # TODO: replace with a real log file
-  end
+  class << self
+    def logger
+      @@logger ||= ::Logger.new($stdout) # TODO: replace with a real log file
+    end
 
-  def self.logger=(logger)
-    @@logger = logger
-  end
+    def logger=(logger)
+      @@logger = logger
+    end
+
+    # set logging on or off
+    attr_writer :log
+
+    # Returns whether to log. Defaults to 'false'.
+    def log?
+      @log ||= false
+    end
+
+    def log(msg)
+      if log?
+        logger.info(msg)
+        logger.flush if logger.respond_to?(:flush)
+      end
+    end
+  end # << self
 
   class Collection
     attr_accessor :entries, :count, :current_page

@@ -43,6 +43,23 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
         @service.should_receive(:do_http).with(:post, url + '?methodx=delete', '', {})
         @service.send(:do_http_post, url, '', { :methodx => 'delete' })
       end
+
+      it "should not log by default" do
+        url = "https://qbo.intuit.com/qbo1/rest/user/v2"
+        FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
+        Quickeebooks.logger.should_receive(:info).never
+        @service.send(:do_http_post, url)
+      end
+
+      it "should log if Quickbooks.log = true" do
+        url = "https://qbo.intuit.com/qbo1/rest/user/v2"
+        FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
+        Quickeebooks.log = true
+        Quickeebooks.logger.should_receive(:info).at_least(1)
+        @service.send(:do_http_post, url)
+        Quickeebooks.log = false
+      end
+
     end
 
     context 'called from do_http_get' do

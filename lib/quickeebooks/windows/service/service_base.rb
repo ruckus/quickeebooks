@@ -2,6 +2,7 @@ require 'rexml/document'
 require 'uri'
 require 'cgi'
 require 'uuidtools'
+require 'quickeebooks/common/logging'
 
 class IntuitRequestException < Exception
   attr_accessor :code, :cause
@@ -15,6 +16,7 @@ module Quickeebooks
   module Windows
     module Service
       class ServiceBase
+        include Logging
 
         attr_accessor :realm_id
         attr_accessor :oauth
@@ -234,11 +236,6 @@ module Quickeebooks
             error[:code] = error_code.text
           end
           error
-        end
-
-        def log(msg)
-          Quickeebooks.logger.info(msg)
-          Quickeebooks.logger.flush if Quickeebooks.logger.respond_to?(:flush)
         end
 
       end

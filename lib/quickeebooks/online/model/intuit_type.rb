@@ -1,8 +1,10 @@
+require 'quickeebooks/common/logging'
 module Quickeebooks
   module Online
     module Model
       class IntuitType
         include ROXML
+        include Logging
         
         # These can be over-ridden in each model object as needed
         # For the most part a model object has a single resource for all operations
@@ -29,11 +31,6 @@ module Quickeebooks
           s = StringIO.new
           xml = to_xml(options).write_to(s, :indent => 0, :indent_text => '')
           s.string.sub("<#{model_name}>", "<#{model_name} #{Quickeebooks::Online::Service::ServiceBase::XML_NS}>")
-        end
-
-        def log(msg)
-          Quickeebooks.logger.info(msg)
-          Quickeebooks.logger.flush if Quickeebooks.logger.respond_to?(:flush)
         end
 
       end 
