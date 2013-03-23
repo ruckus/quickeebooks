@@ -33,13 +33,13 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
   describe "#do_http" do
     context 'called from do_http_post' do
       it "without params" do
-        url = "https://qbo.intuit.com/qbo1/rest/user/v2/#{@realm_id}"
+        url = "https://qbo.intuit.com/qbo1/rest/user/v2"
         @service.should_receive(:do_http).with(:post, url, '', {})
         @service.send(:do_http_post, url)
       end
 
       it "with params" do
-        url = "https://qbo.intuit.com/qbo1/rest/user/v2/#{@realm_id}"
+        url = "https://qbo.intuit.com/qbo1/rest/user/v2"
         @service.should_receive(:do_http).with(:post, url + '?methodx=delete', '', {})
         @service.send(:do_http_post, url, '', { :methodx => 'delete' })
       end
@@ -64,13 +64,13 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
 
     context 'called from do_http_get' do
       it "without params" do
-        url = "https://qbo.intuit.com/qbo1/rest/user/v2/#{@realm_id}"
+        url = "https://qbo.intuit.com/qbo1/rest/user/v2"
         @service.should_receive(:do_http).with(:get, url, '', {})
         @service.send(:do_http_get, url)
       end
 
       it "with params" do
-        url = "https://qbo.intuit.com/qbo1/rest/user/v2/#{@realm_id}"
+        url = "https://qbo.intuit.com/qbo1/rest/user/v2"
         @service.should_receive(:do_http).with(:get, url + '?methodx=delete', '', {})
         @service.send(:do_http_get, url, { :methodx => 'delete' })
       end
