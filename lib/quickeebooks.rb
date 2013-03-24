@@ -57,6 +57,7 @@ end
 require 'quickeebooks/shared/service/filter'
 require 'quickeebooks/shared/service/access_token'
 require 'quickeebooks/shared/service/sort'
+require 'quickeebooks/shared/service/operation_node'
 
 #== Online
 

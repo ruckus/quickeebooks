@@ -9,11 +9,8 @@ module Quickeebooks
       class SalesReceipt < Quickeebooks::Windows::Service::ServiceBase
 
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
-          custom_field_query = '<?xml version="1.0" encoding="utf-8"?>'
-          custom_field_query += '<SalesReceiptQuery xmlns="http://www.intuit.com/sb/cdm/v2">'
-          custom_field_query += "<StartPage>#{page}</StartPage><ChunkSize>#{per_page}</ChunkSize>"
-          custom_field_query += '<CustomFieldEnable>true</CustomFieldEnable></SalesReceiptQuery>'
-          fetch_collection(Quickeebooks::Windows::Model::SalesReceipt, custom_field_query.strip, filters, page, per_page, sort, options)
+          filters << Quickeebooks::Shared::Service::Filter.new(:boolean, :field => 'CustomFieldEnable', :value => true)
+          fetch_collection(Quickeebooks::Windows::Model::SalesReceipt, nil, filters, page, per_page, sort, options)
         end
 
         def create(sales_receipt)
@@ -23,12 +20,9 @@ module Quickeebooks
           #    <Object xsi:type="Invoice">
           xml_node = sales_receipt.to_xml(:name => 'Object')
           xml_node.set_attribute('xsi:type', 'SalesReceipt')
-          xml = <<-XML
-          <Add xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequestId="#{guid}" xmlns="http://www.intuit.com/sb/cdm/v2">
-          <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
-          #{xml_node}
-          </Add>
-          XML
+          xml = Quickeebooks::Shared::Service::OperationNode.new.add do |content|
+            content << "<ExternalRealmId>#{self.realm_id}</ExternalRealmId>#{xml_node}"
+          end
           perform_write(Quickeebooks::Windows::Model::SalesReceipt, xml)
         end
 

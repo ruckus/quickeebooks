@@ -1,7 +1,6 @@
 require 'rexml/document'
 require 'uri'
 require 'cgi'
-require 'uuidtools'
 
 class IntuitRequestException < Exception
   attr_accessor :code, :cause
@@ -53,10 +52,6 @@ module Quickeebooks
           "#{@base_uri}/#{raw}/v2/#{@realm_id}"
         end
 
-        def guid
-          UUIDTools::UUID.random_create.to_s.gsub('-', '')
-        end
-
         private
 
         def parse_xml(xml)
@@ -90,13 +85,15 @@ module Quickeebooks
 
           post_body_tags = []
 
+          # pagination parameters must come first
+          post_body_tags << "<StartPage>#{page}</StartPage>"
+          post_body_tags << "<ChunkSize>#{per_page}</ChunkSize>"
+
+          # ... followed by any filters
           if filters.is_a?(Array) && filters.length > 0
             post_body_tags << filters.collect { |f| f.to_xml }
             post_body_tags.flatten!
           end
-
-          post_body_tags << "<StartPage>#{page}</StartPage>"
-          post_body_tags << "<ChunkSize>#{per_page}</ChunkSize>"
 
           if sort
             post_body_tags << sort.to_xml
@@ -169,6 +166,9 @@ module Quickeebooks
         end
 
         def do_http(method, url, body, headers) # throws IntuitRequestException
+          if @oauth.nil?
+            raise "OAuth client has not been initialized. Initialize with setter access_token="
+          end
           unless headers.has_key?('Content-Type')
             headers.merge!({'Content-Type' => 'application/xml'})
           end

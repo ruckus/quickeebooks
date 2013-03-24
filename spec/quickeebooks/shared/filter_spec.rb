@@ -8,25 +8,25 @@ describe "Quickeebooks::Shared::Service::Filter" do
       it 'parses after' do
         filter.new(:date,
           :field => 'Foo',
-          :after => DateTime.parse('2020-12-31')).to_s.should == "Foo :AFTER: 2020-12-31"
+          :after => Date.parse('2020-12-31')).to_s.should == "Foo :AFTER: 2020-12-31"
       end
 
       it 'parses before' do
         filter.new(:date,
           :field => 'Foo',
-          :before => DateTime.parse('2020-12-31')).to_s.should == "Foo :BEFORE: 2020-12-31"
+          :before => Date.parse('2020-12-31')).to_s.should == "Foo :BEFORE: 2020-12-31"
       end
 
       it 'parses after with time' do
-        filter.new(:date,
+        filter.new(:datetime,
           :field => 'Foo',
-          :after => DateTime.parse('2020-12-31T12:00:00')).to_s.should == "Foo :AFTER: 2020-12-31"
+          :after => DateTime.parse('2020-12-31T12:00:00')).to_s.should == "Foo :AFTER: 2020-12-31T12:00:00"
       end
 
       it 'parses before with time' do
-        filter.new(:date,
+        filter.new(:datetime,
           :field => 'Foo',
-          :before => DateTime.parse('2020-12-31T12:00:00')).to_s.should == "Foo :BEFORE: 2020-12-31"
+          :before => DateTime.parse('2020-12-31T12:00:00')).to_s.should == "Foo :BEFORE: 2020-12-31T12:00:00"
       end
     end
 
@@ -34,25 +34,25 @@ describe "Quickeebooks::Shared::Service::Filter" do
       it 'parses after' do
         filter.new(:datetime,
           :field => 'Foo',
-          :after => Time.parse('2020-12-31')).to_s.should == "Foo :AFTER: 2020-12-31T00:00:00UTC"
+          :after => Time.parse('2020-12-31')).to_s.should == "Foo :AFTER: 2020-12-31T00:00:00"
       end
 
       it 'parses before' do
         filter.new(:datetime,
           :field => 'Foo',
-          :before => Time.parse('2020-12-31')).to_s.should == "Foo :BEFORE: 2020-12-31T00:00:00UTC"
+          :before => Time.parse('2020-12-31')).to_s.should == "Foo :BEFORE: 2020-12-31T00:00:00"
       end
 
       it 'parses after with time' do
         filter.new(:datetime,
           :field => 'Foo',
-          :after => Time.parse('2020-12-31 12:00:00')).to_s.should == "Foo :AFTER: 2020-12-31T12:00:00UTC"
+          :after => Time.parse('2020-12-31 12:00:00')).to_s.should == "Foo :AFTER: 2020-12-31T12:00:00"
       end
 
       it 'parses before with time' do
         filter.new(:datetime,
           :field => 'Foo',
-          :before => Time.parse('2020-12-31 12:00:00')).to_s.should == "Foo :BEFORE: 2020-12-31T12:00:00UTC"
+          :before => Time.parse('2020-12-31 12:00:00')).to_s.should == "Foo :BEFORE: 2020-12-31T12:00:00"
       end
     end
 
@@ -63,19 +63,19 @@ describe "Quickeebooks::Shared::Service::Filter" do
         @fake_time = mock(Object)
         @fake_time.stub(:is_a?).with(Time).and_return(true)
         @fake_time.stub(:is_a?).with(Date).and_return(false)
-        @fake_time.stub(:strftime).and_return("2020-12-31T12:00:00EST")
+        @fake_time.stub(:strftime).and_return("2020-12-31T12:00:00")
       end
 
       it 'parses after' do
         filter.new(:datetime,
           :field => 'Foo',
-          :after => @fake_time).to_s.should == "Foo :AFTER: 2020-12-31T12:00:00EST"
+          :after => @fake_time).to_s.should == "Foo :AFTER: 2020-12-31T12:00:00"
       end
 
       it 'parses before' do
         filter.new(:datetime,
           :field => 'Foo',
-          :before => @fake_time).to_s.should == "Foo :BEFORE: 2020-12-31T12:00:00EST"
+          :before => @fake_time).to_s.should == "Foo :BEFORE: 2020-12-31T12:00:00"
       end
     end
 
