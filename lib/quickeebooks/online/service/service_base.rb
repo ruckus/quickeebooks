@@ -154,7 +154,7 @@ module Quickeebooks
 
         def check_response(response)
           log "RESPONSE CODE = #{response.code}"
-          log "RESOURCE BODY = #{response.body}"
+          log "RESPONSE BODY = #{response.body}"
           status = response.code.to_i
           case status
           when 200
