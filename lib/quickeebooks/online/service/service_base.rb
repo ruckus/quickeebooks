@@ -1,6 +1,7 @@
 require 'rexml/document'
 require 'uri'
 require 'cgi'
+require 'quickeebooks/common/logging'
 
 class IntuitRequestException < Exception
   attr_accessor :code, :cause
@@ -15,6 +16,7 @@ module Quickeebooks
 
     module Service
       class ServiceBase
+        include Logging
         attr_accessor :realm_id
         attr_accessor :oauth
         attr_accessor :base_uri
@@ -132,10 +134,11 @@ module Quickeebooks
           unless headers.has_key?('Content-Type')
             headers.merge!({'Content-Type' => 'application/xml'})
           end
-          # puts "METHOD = #{method}"
-          # puts "RESOURCE = #{resource}"
-          # puts "BODY(#{body.class}) = #{body == nil ? "<NIL>" : body.inspect}"
-          # puts "HEADERS = #{headers.inspect}"
+          log "------ New Request ------"
+          log "METHOD = #{method}"
+          log "RESOURCE = #{resource}"
+          log "BODY(#{body.class}) = #{body == nil ? "<NIL>" : body.inspect}"
+          log "HEADERS = #{headers.inspect}"
 
           response = @oauth.request(method, resource, body, headers)
           check_response(response)
@@ -150,7 +153,8 @@ module Quickeebooks
         end
 
         def check_response(response)
-          #puts "HTTP Response: #{response.code}"
+          log "RESPONSE CODE = #{response.code}"
+          log "RESPONSE BODY = #{response.body}"
           status = response.code.to_i
           case status
           when 200
@@ -187,11 +191,6 @@ module Quickeebooks
           end
 
           error
-        end
-
-        def log(msg)
-          Quickeebooks.logger.info(msg)
-          Quickeebooks.logger.flush if Quickeebooks.logger.respond_to?(:flush)
         end
 
       end
