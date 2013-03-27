@@ -35,7 +35,7 @@ module OnlineLineItemModelMethods
 
   module ClassMethods
     def resource_for_collection
-      "#{self::REST_RESOURCE}s"
+      self::REST_RESOURCE.underscore.dasherize.pluralize
     end
   end
 
