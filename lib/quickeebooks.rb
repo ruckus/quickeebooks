@@ -105,6 +105,9 @@ require 'quickeebooks/online/model/vendor'
 require 'quickeebooks/online/model/sales_receipt'
 require 'quickeebooks/online/model/sales_receipt_line_item'
 require 'quickeebooks/online/model/sales_receipt_header'
+require 'quickeebooks/online/model/journal_entry'
+require 'quickeebooks/online/model/journal_entry_line_item'
+require 'quickeebooks/online/model/journal_entry_header'
 
 # Services
 require 'quickeebooks/online/service/filter'
