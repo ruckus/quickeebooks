@@ -15,7 +15,7 @@ module Quickeebooks
         xml_accessor :entity_type,                :from => 'EntityType'
 
         validates_inclusion_of :posting_type, :in => %w(Credit Debit)
-        validates_presence_of  :amount, :account_id, :entity_id
+        validates_presence_of  :amount, :account_id
       end
     end
   end
