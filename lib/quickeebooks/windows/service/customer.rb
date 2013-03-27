@@ -21,12 +21,9 @@ module Quickeebooks
           #    <Object xsi:type="Invoice">
           xml_node = customer.to_xml(:name => 'Object')
           xml_node.set_attribute('xsi:type', 'Customer')
-          xml = <<-XML
-          <Add xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequestId="#{guid}" xmlns="http://www.intuit.com/sb/cdm/v2">
-          <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
-          #{xml_node}
-          </Add>
-          XML
+          xml = Quickeebooks::Shared::Service::OperationNode.new.add do |content|
+            content << "<ExternalRealmId>#{self.realm_id}</ExternalRealmId>#{xml_node}"
+          end
           perform_write(Quickeebooks::Windows::Model::Customer, xml)
         end
 
@@ -56,12 +53,9 @@ module Quickeebooks
 
           xml_node = customer.to_xml(:name => 'Object')
           xml_node.set_attribute('xsi:type', 'Customer')
-          xml = <<-XML
-          <Mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequestId="#{guid}" xmlns="http://www.intuit.com/sb/cdm/v2">
-          <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
-          #{xml_node}
-          </Mod>
-          XML
+          xml = Quickeebooks::Shared::Service::OperationNode.new.mod do |content|
+            content << "<ExternalRealmId>#{self.realm_id}</ExternalRealmId>#{xml_node}"
+          end
           perform_write(Quickeebooks::Windows::Model::Customer, xml)
         end
 

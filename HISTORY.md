@@ -1,3 +1,7 @@
+## 0.1.4 (2013-03-24)
+
+* Refactored `Filter` and separated the handling of `Date` and `DateTime`. Also refactored how operational XML is generated and removed hard-coded XML scattered in classes in favor of a centralized mechanism for generating generic XML.
+
 ## 0.1.2 (2013-01-18)
 
 * Fixed issue where an instance of `ActiveSupport::TimeWithZone` was given to a `:datetime` Filter and the resultant format was not being correctly parsed by Intuit.

@@ -7,8 +7,8 @@ module Quickeebooks
       class Item < Quickeebooks::Windows::Service::ServiceBase
 
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
-          custom_field_query = '<CustomFieldEnable>true</CustomFieldEnable>'
-          fetch_collection(Quickeebooks::Windows::Model::Item, custom_field_query.strip, filters, page, per_page, sort, options)
+          filters << Quickeebooks::Shared::Service::Filter.new(:boolean, :field => 'CustomFieldEnable', :value => true)
+          fetch_collection(Quickeebooks::Windows::Model::Item, nil, filters, page, per_page, sort, options)
         end
 
         def create(item)
@@ -16,12 +16,9 @@ module Quickeebooks
           #    <Object xsi:type="Item">
           xml_node = item.to_xml(:name => 'Object')
           xml_node.set_attribute('xsi:type', 'Item')
-          xml = <<-XML
-          <Add xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequestId="#{guid}" xmlns="http://www.intuit.com/sb/cdm/v2">
-          <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
-          #{xml_node}
-          </Add>
-          XML
+          xml = Quickeebooks::Shared::Service::OperationNode.new.add do |content|
+            content << "<ExternalRealmId>#{self.realm_id}</ExternalRealmId>#{xml_node}"
+          end
           perform_write(Quickeebooks::Windows::Model::Item, xml)
         end
 
