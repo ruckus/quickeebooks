@@ -12,7 +12,7 @@ module Quickeebooks
         include OnlineLineItemModelMethods
 
         XML_NODE = "JournalEntry"
-        REST_RESOURCE = "journal-entyr"
+        REST_RESOURCE = "journal-entry"
 
         xml_name "JournalEntry"
         xml_accessor :id,         :from => 'Id',        :as => Quickeebooks::Online::Model::Id
@@ -21,6 +21,11 @@ module Quickeebooks
         xml_accessor :meta_data,  :from => 'MetaData',  :as => Quickeebooks::Online::Model::MetaData
         xml_accessor :header,     :from => 'Header',    :as => Quickeebooks::Online::Model::JournalEntryHeader
         xml_accessor :line_items, :from => 'Line',      :as => [Quickeebooks::Online::Model::JournalEntryLineItem]
+
+        def self.resource_for_collection
+          'journal-entries'
+        end
+
       end
     end
   end
