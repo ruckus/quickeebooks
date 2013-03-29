@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JournalEntry xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1">
+  <Id idDomain="QBO">381</Id>
+  <SyncToken>0</SyncToken>
+  <MetaData>
+    <CreateTime>2011-05-05T02:42:35-07:00</CreateTime>
+    <LastUpdatedTime>2011-05-05T02:42:35-07:00</LastUpdatedTime>
+  </MetaData>
+  <Header>
+    <TxnDate>2011-05-05-07:00</TxnDate>
+    <Note>Updated note about journal entry</Note>
+    <Msg>Message about entry</Msg>
+    <Adjustment>false</Adjustment>
+    <DocNumber>5</DocNumber>
+  </Header>
+  <Line>
+    <Desc>credit this -- Desc</Desc>
+    <Amount>100.00</Amount>
+    <PostingType>Credit</PostingType>
+    <AccountId idDomain="QBO">255</AccountId>
+    <EntityId idDomain="QBO">259</EntityId>
+    <EntityType>Customer</EntityType>
+  </Line>
+  <Line>
+    <Desc>debit this -- Desc</Desc>
+    <Amount>100.00</Amount>
+    <PostingType>Debit</PostingType>
+    <AccountId idDomain="QBO">255</AccountId>
+    <EntityId idDomain="QBO">260</EntityId>
+    <EntityType>Customer</EntityType>
+  </Line>
+</JournalEntry>

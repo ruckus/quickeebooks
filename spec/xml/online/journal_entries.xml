@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+  <qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="JournalEntries">
+    <JournalEntry>
+      <Id idDomain="QBO">381</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2011-05-05T02:42:35-07:00</CreateTime>
+        <LastUpdatedTime>2011-05-05T02:42:35-07:00</LastUpdatedTime>
+      </MetaData>
+      <Header>
+        <TxnDate>2011-05-05-07:00</TxnDate>
+        <Note>Some note</Note>
+        <Msg>Message about entry</Msg>
+        <Adjustment>false</Adjustment>
+        <DocNumber>5</DocNumber>
+      </Header>
+      <Line>
+        <Desc>credit this -- Desc</Desc>
+        <Amount>100.00</Amount>
+        <PostingType>Credit</PostingType>
+        <AccountId idDomain="QBO">255</AccountId>
+        <EntityId idDomain="QBO">259</EntityId>
+        <EntityType>Customer</EntityType>
+      </Line>
+      <Line>
+        <Desc>debit this -- Desc</Desc>
+        <Amount>100.00</Amount>
+        <PostingType>Debit</PostingType>
+        <AccountId idDomain="QBO">255</AccountId>
+        <EntityId idDomain="QBO">260</EntityId>
+        <EntityType>Customer</EntityType>
+      </Line>
+    </JournalEntry>
+  </qbo:CdmCollections>
+  <qbo:Count>1</qbo:Count>
+  <qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>
