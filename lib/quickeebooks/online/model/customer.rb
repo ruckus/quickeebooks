@@ -23,6 +23,19 @@ module Quickeebooks
         xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Online::Model::CustomerCustomField]
         xml_accessor :paymethod_method_id, :from => 'PaymentMethodId', :as => Quickeebooks::Online::Model::Id
 
+        def address=(address)
+          self.addresses ||= []
+          self.addresses << address
+        end
+
+        def billing_address
+          addresses.detect { |address| address.tag == "Billing" }
+        end
+
+        def shipping_address
+          addresses.detect { |address| address.tag == "Shipping" }
+        end
+
       end
     end
   end

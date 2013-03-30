@@ -1,3 +1,7 @@
+## 0.1.5 (2013-03-30)
+
+* Added Address convenience assignment methods to Online Customer model.
+
 ## 0.1.4 (2013-03-24)
 
 * Refactored `Filter` and separated the handling of `Date` and `DateTime`. Also refactored how operational XML is generated and removed hard-coded XML scattered in classes in favor of a centralized mechanism for generating generic XML.
