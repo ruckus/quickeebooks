@@ -10,10 +10,15 @@ describe "Quickeebooks::Online::Model::Customer" do
     customer.meta_data.create_time.year.should == create_time.year
     customer.addresses.count.should == 2
 
-    customer.addresses.first.line1.should == "123 Main St."
+    customer.billing_address.line1.should == "123 Main St."
+    customer.shipping_address.line1.should == "123 Shipping St."
 
-    customer.phones.size.should == 2
-    customer.phones.first.free_form_number.should == "(408) 555-1212"
+    customer.phones.size.should == 5
+    customer.primary_phone.free_form_number.should == "(408) 555-1212"
+    customer.secondary_phone.free_form_number.should == "(408) 555-1213"
+    customer.mobile_phone.free_form_number.should == "(408) 555-1214"
+    customer.fax.free_form_number.should == "(408) 555-1215"
+    customer.pager.free_form_number.should == "(408) 555-1216"
 
     customer.email.address.should == "johndoe@gmail.com"
 
