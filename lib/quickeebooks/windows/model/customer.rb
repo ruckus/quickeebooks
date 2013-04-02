@@ -13,6 +13,7 @@ module Quickeebooks
     module Model
       class Customer < Quickeebooks::Windows::Model::IntuitType
         include ActiveModel::Validations
+        include Quickeebooks::Model::Addressable
 
         DEFAULT_TYPE_OF = 'Person'
         XML_COLLECTION_NODE = 'Customers'
@@ -81,14 +82,6 @@ module Quickeebooks
           active == 'true'
         end
         
-        def billing_address
-          addresses.detect { |address| address.tag == "Billing" }
-        end
-
-        def shipping_address
-          addresses.detect { |address| address.tag == "Shipping" }
-        end
-        
         def valid_for_update?
           if sync_token.nil?
             errors.add(:sync_token, "Missing required attribute SyncToken for update")
@@ -112,10 +105,6 @@ module Quickeebooks
           self.email = Quickeebooks::Windows::Model::Email.new(email_address)
         end
         
-        def address=(address)
-          self.addresses ||= []
-          self.addresses << address
-        end
 
         # To delete an account Intuit requires we provide Id and SyncToken fields
         def valid_for_deletion?

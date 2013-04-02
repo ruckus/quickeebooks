@@ -16,6 +16,8 @@ module Quickeebooks
       class Customer < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
         include OnlineEntityModel
+        include Quickeebooks::Model::Addressable
+
         XML_NODE = "Customer"
         REST_RESOURCE = "customer"
 

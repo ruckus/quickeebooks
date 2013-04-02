@@ -76,6 +76,9 @@ require 'quickeebooks/shared/service/access_token'
 require 'quickeebooks/shared/service/sort'
 require 'quickeebooks/shared/service/operation_node'
 
+#== Model
+require 'quickeebooks/common/addressable'
+
 #== Online
 
 # Models
