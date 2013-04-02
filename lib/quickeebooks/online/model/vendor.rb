@@ -14,7 +14,8 @@ module Quickeebooks
       class Vendor < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
         include OnlineEntityModel
-        
+        include Quickeebooks::Model::Addressable
+
         XML_NODE = "Vendor"
         REST_RESOURCE = "vendor"
 
