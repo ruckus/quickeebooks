@@ -75,6 +75,13 @@ module Quickeebooks
           Nokogiri::XML(xml)
         end
 
+        def escape_filter(str)
+          # Ampersand needs to double encoded within an Oath request.
+          # CGI.escape will take the #26 and properly turn it into #2526
+          str.gsub!('&','%26')
+          CGI.escape(str)
+        end
+
         def valid_xml_document(xml)
           %Q{<?xml version="1.0" encoding="utf-8"?>\n#{xml.strip}}
         end
@@ -86,7 +93,7 @@ module Quickeebooks
 
           if filters.is_a?(Array) && filters.length > 0
             filter_string = filters.collect { |f| f.to_s }
-            post_body_lines << "Filter=#{CGI.escape(filter_string.join(" :AND: "))}"
+            post_body_lines << "Filter=#{escape_filter(filter_string.join(" :AND: "))}"
           end
 
           post_body_lines << "PageNum=#{page}"
