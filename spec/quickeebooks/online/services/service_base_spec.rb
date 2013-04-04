@@ -106,6 +106,18 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
       @service.send(:fetch_collection, @model, [filter])
     end
 
+    it "with an ampersand in filter value" do
+
+      filter = Quickeebooks::Online::Service::Filter.new(:text, :field => "Name", :value => "Smith & Gentry")
+
+      @service.should_receive(:do_http_post).with(@url,
+        "Filter=Name+%3AEQUALS%3A+Smith+%2526+Gentry&PageNum=1&ResultsPerPage=20",
+        {},
+        {"Content-Type"=>"application/x-www-form-urlencoded"})
+
+      @service.send(:fetch_collection, @model, [filter])
+    end
+
     it "paginates" do
       @service.should_receive(:do_http_post).with(@url,
         "PageNum=2&ResultsPerPage=20",
