@@ -111,6 +111,7 @@ require 'quickeebooks/online/model/sales_receipt_header'
 require 'quickeebooks/online/model/journal_entry'
 require 'quickeebooks/online/model/journal_entry_line_item'
 require 'quickeebooks/online/model/journal_entry_header'
+require 'quickeebooks/online/model/employee'
 
 # Services
 require 'quickeebooks/online/service/filter'
@@ -128,6 +129,7 @@ require 'quickeebooks/online/service/access_token'
 require 'quickeebooks/online/service/vendor'
 require 'quickeebooks/online/service/sales_receipt'
 require 'quickeebooks/online/service/journal_entry'
+require 'quickeebooks/online/service/employee'
 
 #== Windows
 
