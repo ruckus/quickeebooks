@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Employee xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns2="http://www.intuit.com/sb/cdm/qbo">
+<Id>13</Id>
+<SyncToken>0</SyncToken>
+<MetaData>
+<CreateTime>2010-09-10T00:55:25-07:00</CreateTime>
+<LastUpdatedTime>2010-09-10T00:55:25-07:00</LastUpdatedTime>
+</MetaData>
+<Name>John Doe</Name>
+<Address>
+<Line1>21215 Burbank Boulevard, Ste. 100</Line1>
+<Line2></Line2>
+<City>Woodland Hills</City>
+<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+<PostalCode>91367</PostalCode>
+</Address>
+<Phone>
+<FreeFormNumber>(818) 936-7800</FreeFormNumber>
+</Phone>
+<Phone>
+<DeviceType>Mobile</DeviceType>
+<FreeFormNumber>(818) 436-8225</FreeFormNumber>
+</Phone>
+<Email>
+<Address>john.simpson@mint.com</Address>
+</Email>
+<GivenName>John</GivenName>
+<FamilyName>Simpson</FamilyName>
+<BillableTime>false</BillableTime>
+<HiredDate>9999-12-31-08:00</HiredDate>
+</Employee>
