@@ -16,7 +16,7 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
     xml = onlineFixture("user.xml")
     user_url = Quickeebooks::Online::Service::ServiceBase::QB_BASE_URI + "/" + @realm_id
     FakeWeb.register_uri(:get, user_url, :status => ["200", "OK"], :body => xml)
-    @service = Quickeebooks::Online::Service::ServiceBase.new
+    @service = Quickeebooks::Online::Service::Customer.new
     @service.access_token = @oauth
     @service.instance_eval {
       @realm_id = "9991111222"
@@ -79,9 +79,7 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
 
   describe "#fetch_collection" do
     before do
-      @model = mock(Object)
-      @model.stub(:resource_for_collection){ "foos" }
-
+      @model = Quickeebooks::Online::Model::Customer
       @url = @service.url_for_resource(@model.resource_for_collection)
     end
 
@@ -91,7 +89,7 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
         {},
         {"Content-Type"=>"application/x-www-form-urlencoded"})
 
-      @service.send(:fetch_collection, @model)
+      @service.send(:fetch_collection)
     end
 
     it "filters" do
@@ -103,7 +101,7 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
         {},
         {"Content-Type"=>"application/x-www-form-urlencoded"})
 
-      @service.send(:fetch_collection, @model, [filter])
+      @service.send(:fetch_collection, [filter])
     end
 
     it "with an ampersand in filter value" do
@@ -115,7 +113,7 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
         {},
         {"Content-Type"=>"application/x-www-form-urlencoded"})
 
-      @service.send(:fetch_collection, @model, [filter])
+      @service.send(:fetch_collection, [filter])
     end
 
     it "paginates" do
@@ -124,7 +122,7 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
         {},
         {"Content-Type"=>"application/x-www-form-urlencoded"})
 
-      @service.send(:fetch_collection, @model, nil, 2)
+      @service.send(:fetch_collection, nil, 2)
     end
 
     it "changes per_page" do
@@ -133,7 +131,7 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
         {},
         {"Content-Type"=>"application/x-www-form-urlencoded"})
 
-      @service.send(:fetch_collection, @model, nil, 1, 10)
+      @service.send(:fetch_collection, nil, 1, 10)
     end
 
     it "sorts" do
@@ -144,7 +142,7 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
         {},
         {"Content-Type"=>"application/x-www-form-urlencoded"})
 
-      @service.send(:fetch_collection, @model, nil, 1, 20, sorter)
+      @service.send(:fetch_collection, nil, 1, 20, sorter)
     end
   end
 end
