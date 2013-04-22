@@ -364,6 +364,8 @@ Current Services:
 * Customer
 * Invoice
 * Item
+* Vendor
+* Employee
 
 
 ## Invoice Service
