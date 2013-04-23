@@ -13,6 +13,28 @@ describe "Quickeebooks::Online::Service::Customer" do
     accounts.entries.first.name.should == "John Doe"
   end
 
+  it "can fetch a list of customers in hash format" do
+    begin
+      Quickeebooks.result_format = :hash
+      xml = onlineFixture("customers.xml")
+      url = @service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_collection)
+      FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml)
+      result = @service.list
+      result.should be_a_kind_of(Hash)
+      result.should_not be_empty
+      result[:search_results].should_not be_empty
+      result[:search_results][:current_page] = 1
+      result[:search_results][:count] = 3
+      result[:search_results][:cdm_collections].should_not be_empty
+      customers = result[:search_results][:cdm_collections][:customer]
+      customers.should_not be_empty
+      customers.size.should == 3
+      customers.first[:name].should == "John Doe"
+    ensure
+      Quickeebooks.result_format = :object
+    end
+  end
+
   it "can fetch a list of customers with filters" do
     xml = onlineFixture("customers.xml")
     url = @service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_collection)
@@ -66,6 +88,24 @@ describe "Quickeebooks::Online::Service::Customer" do
     customer = @service.fetch_by_id(99)
     customer.name.should == "John Doe"
   end
+
+  it "can fetch a customer by id in hash format" do
+      begin
+        Quickeebooks.result_format = :hash
+        xml = onlineFixture("customer.xml")
+        url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Customer.resource_for_singular)}/99"
+        FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => xml)
+        result = @service.fetch_by_id(99)
+        result.should be_a_kind_of(Hash)
+        result.should_not be_empty
+        result[:customer].should_not be_empty
+        customer = result[:customer]
+        customer.should_not be_empty
+        customer[:name].should == "John Doe"
+      ensure
+        Quickeebooks.result_format = :object
+      end
+    end
 
   it "can update a customer" do
     xml2 = onlineFixture("customer2.xml")

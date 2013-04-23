@@ -12,7 +12,7 @@ module Quickeebooks
           url = url_for_resource(Quickeebooks::Online::Model::CompanyMetaData.resource_for_singular)
           response = do_http_get(url)
           if response && response.code.to_i == 200
-            Quickeebooks::Online::Model::CompanyMetaData.from_xml(response.body)
+            parse_result(response.body)
           else
             nil
           end

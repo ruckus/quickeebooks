@@ -2,9 +2,11 @@ require 'rexml/document'
 require 'uri'
 require 'cgi'
 require 'quickeebooks/common/logging'
+require 'nori'
 
 class IntuitRequestException < Exception
   attr_accessor :code, :cause
+
   def initialize(msg)
     super(msg)
   end
@@ -33,16 +35,19 @@ module Quickeebooks
             access_token = oauth_access_token
             realm_id = realm_id
           end
+          @parser = ::Nori.new(:parser => :nokogiri,
+                               :strip_namespaces => true,
+                               :convert_tags_to => lambda { |tag| tag.snakecase.to_sym })
         end
 
         def access_token=(token)
           @oauth = token
         end
-        
+
         def realm_id=(realm_id)
           @realm_id = realm_id
         end
-        
+
         # uri is of the form `https://qbo.intuit.com/qbo36`
         def base_url=(uri)
           @base_uri = uri
@@ -70,7 +75,7 @@ module Quickeebooks
         end
 
         private
-        
+
         def parse_xml(xml)
           Nokogiri::XML(xml)
         end
@@ -78,7 +83,7 @@ module Quickeebooks
         def escape_filter(str)
           # Ampersand needs to double encoded within an Oath request.
           # CGI.escape will take the #26 and properly turn it into #2526
-          str.gsub!('&','%26')
+          str.gsub!('&', '%26')
           CGI.escape(str)
         end
 
@@ -86,9 +91,10 @@ module Quickeebooks
           %Q{<?xml version="1.0" encoding="utf-8"?>\n#{xml.strip}}
         end
 
-        def fetch_collection(model, filters = [], page = 1, per_page = 20, sort = nil, options ={})
-          raise ArgumentError, "missing model to instantiate" if model.nil?
-          
+        def fetch_collection(filters = [], page = 1, per_page = 20, sort = nil, options ={})
+          name = self.class.to_s.split('::').last
+          model = Object.const_get(:Quickeebooks).const_get(:Online).const_get(:Model).const_get(name)
+
           post_body_lines = []
 
           if filters.is_a?(Array) && filters.length > 0
@@ -106,24 +112,37 @@ module Quickeebooks
           body = post_body_lines.join("&")
           response = do_http_post(url_for_resource(model.resource_for_collection), body, {}, {'Content-Type' => 'application/x-www-form-urlencoded'})
           if response
-            collection = Quickeebooks::Collection.new
-            xml = parse_xml(response.body)
-            begin
-              results = []
-              collection.count = xml.xpath("//qbo:SearchResults/qbo:Count")[0].text.to_i
-              if collection.count > 0
-                xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{model::XML_NODE}").each do |xa|
-                  results << model.from_xml(xa)
+            if Quickeebooks.hash_result_format?
+              @parser.parse(response.body)
+            else
+              collection = Quickeebooks::Collection.new
+              xml = parse_xml(response.body)
+              begin
+                results = []
+                collection.count = xml.xpath("//qbo:SearchResults/qbo:Count")[0].text.to_i
+                if collection.count > 0
+                  xml.xpath("//qbo:SearchResults/qbo:CdmCollections/xmlns:#{model::XML_NODE}").each do |xa|
+                    results << model.from_xml(xa)
+                  end
                 end
+                collection.entries = results
+                collection.current_page = xml.xpath("//qbo:SearchResults/qbo:CurrentPage")[0].text.to_i
+              rescue => ex
+                raise IntuitRequestException.new("Error parsing XML: #{ex.message}")
               end
-              collection.entries = results
-              collection.current_page = xml.xpath("//qbo:SearchResults/qbo:CurrentPage")[0].text.to_i
-            rescue => ex
-              raise IntuitRequestException.new("Error parsing XML: #{ex.message}")
+              collection
             end
-            collection
           else
             nil
+          end
+        end
+
+        def parse_result(response)
+          if Quickeebooks.hash_result_format?
+            @parser.parse(response)
+          else
+            name = self.class.to_s.split('::').last
+            Object.const_get(:Quickeebooks).const_get(:Online).const_get(:Model).const_get(name).from_xml(response)
           end
         end
 
@@ -164,20 +183,20 @@ module Quickeebooks
           log "RESPONSE BODY = #{response.body}"
           status = response.code.to_i
           case status
-          when 200
-            response
-          when 302
-            raise "Unhandled HTTP Redirect"
-          when 401
-            raise AuthorizationFailure
-          when 400, 500
-            err = parse_intuit_error(response.body)
-            ex = IntuitRequestException.new(err[:message])
-            ex.code = err[:code]
-            ex.cause = err[:cause]
-            raise ex
-          else
-            raise "HTTP Error Code: #{status}, Msg: #{response.body}"
+            when 200
+              response
+            when 302
+              raise "Unhandled HTTP Redirect"
+            when 401
+              raise AuthorizationFailure
+            when 400, 500
+              err = parse_intuit_error(response.body)
+              ex = IntuitRequestException.new(err[:message])
+              ex.code = err[:code]
+              ex.cause = err[:cause]
+              raise ex
+            else
+              raise "HTTP Error Code: #{status}, Msg: #{response.body}"
           end
         end
 
@@ -199,7 +218,6 @@ module Quickeebooks
 
           error
         end
-
       end
     end
   end

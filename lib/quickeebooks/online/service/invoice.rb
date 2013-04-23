@@ -14,7 +14,7 @@ module Quickeebooks
           xml = invoice.to_xml_ns
           response = do_http_post(url_for_resource(Quickeebooks::Online::Model::Invoice.resource_for_singular), valid_xml_document(xml))
           if response.code.to_i == 200
-            Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+            parse_result(response.body)
           else
             nil
           end
@@ -24,7 +24,7 @@ module Quickeebooks
         # Returns: +Invoice+ object
         def fetch_by_id(invoice_id)
           response = do_http_get("#{url_for_resource(Quickeebooks::Online::Model::Invoice::REST_RESOURCE)}/#{invoice_id}")
-          Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+          parse_result(response.body)
         end
 
         def update(invoice)
@@ -33,12 +33,12 @@ module Quickeebooks
           xml = invoice.to_xml_ns
           response = do_http_post(url, valid_xml_document(xml))
           if response.code.to_i == 200
-            Quickeebooks::Online::Model::Invoice.from_xml(response.body)
+            parse_result(response.body)
           else
             nil
           end
         end
-        
+
         # Fetch a +Collection+ of +Invoice+ objects
         # Arguments:
         # filters: Array of +Filter+ objects to apply
@@ -47,7 +47,7 @@ module Quickeebooks
         # sort: +Sort+ object
         # options: +Hash+ extra arguments
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
-          fetch_collection(Quickeebooks::Online::Model::Invoice, filters, page, per_page, sort, options)
+          fetch_collection(filters, page, per_page, sort, options)
         end
 
         # Returns the absolute path to the PDF on disk

@@ -5,7 +5,7 @@ module ServiceCRUD
     xml = object.to_xml_ns
     response = do_http_post(url_for_resource(model.resource_for_singular), valid_xml_document(xml))
     if response.code.to_i == 200
-      model.from_xml(response.body)
+      parse_result(response.body)
     else
       nil
     end
@@ -15,7 +15,7 @@ module ServiceCRUD
     url = "#{url_for_resource(model.resource_for_singular)}/#{id}"
     response = do_http_get(url)
     if response && response.code.to_i == 200
-      model.from_xml(response.body)
+      parse_result(response.body)
     else
       nil
     end
@@ -27,7 +27,7 @@ module ServiceCRUD
     xml = object.to_xml_ns
     response = do_http_post(url, valid_xml_document(xml))
     if response.code.to_i == 200
-      model.from_xml(response.body)
+      parse_result(response.body)
     else
       nil
     end
@@ -42,7 +42,7 @@ module ServiceCRUD
   end
 
   def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
-    fetch_collection(model, filters, page, per_page, sort, options)
+    fetch_collection(filters, page, per_page, sort, options)
   end
 
   def model

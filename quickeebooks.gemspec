@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'nokogiri'
   gem.add_dependency 'activemodel'
   gem.add_dependency 'uuidtools'
+  gem.add_dependency 'nori'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'simplecov'

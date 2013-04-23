@@ -31,6 +31,28 @@ module Quickeebooks
         logger.flush if logger.respond_to?(:flush)
       end
     end
+
+    def result_format=(format=:object)
+      case format.to_s.downcase.to_sym
+        when :hash
+          @format = :hash
+        else
+          @format = :object
+      end
+    end
+
+    def result_format
+      @format ||= :object
+    end
+
+    def hash_result_format?
+      result_format == :hash
+    end
+
+    def object_result_format?
+      result_format == :object
+    end
+
   end # << self
 
   class Collection
