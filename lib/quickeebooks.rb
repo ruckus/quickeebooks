@@ -32,9 +32,8 @@ module Quickeebooks
       end
     end
 
-
     def result_format=(format=:object)
-      case format
+      case format.to_s.downcase.to_sym
         when :hash
           @format = :hash
         else
