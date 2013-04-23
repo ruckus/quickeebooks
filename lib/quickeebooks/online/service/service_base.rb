@@ -37,8 +37,9 @@ module Quickeebooks
             realm_id = realm_id
           end
           @parser = ::Nori.new(:parser => :nokogiri,
-                             :strip_namespaces => true,
-                             :convert_tags_to => lambda { |tag| tag.snakecase.to_sym })
+                               :strip_namespaces => true,
+                               :delete_namespace_attributes => true,
+                               :convert_tags_to => lambda { |tag| tag.snakecase.to_sym })
         end
 
         def access_token=(token)
