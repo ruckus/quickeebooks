@@ -37,7 +37,6 @@ module Quickeebooks
           end
           @parser = ::Nori.new(:parser => :nokogiri,
                                :strip_namespaces => true,
-                               :delete_namespace_attributes => true,
                                :convert_tags_to => lambda { |tag| tag.snakecase.to_sym })
         end
 
