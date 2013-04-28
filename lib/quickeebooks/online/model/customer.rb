@@ -25,6 +25,8 @@ module Quickeebooks
         xml_accessor :custom_fields, :from => 'CustomField', :as => [Quickeebooks::Online::Model::CustomerCustomField]
         xml_accessor :paymethod_method_id, :from => 'PaymentMethodId', :as => Quickeebooks::Online::Model::Id
 
+        validates_length_of :name, :minimum => 1
+
         def address=(address)
           self.addresses ||= []
           self.addresses << address

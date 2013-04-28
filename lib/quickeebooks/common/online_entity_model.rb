@@ -4,8 +4,6 @@ module OnlineEntityModel
     base.send :include, InstanceMethods
     base.extend ClassMethods
     base.class_eval do
-      validates_length_of :name, :minimum => 1
-
       xml_convention :camelcase
       xml_accessor :id, :from => 'Id', :as => Quickeebooks::Online::Model::Id
       xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
