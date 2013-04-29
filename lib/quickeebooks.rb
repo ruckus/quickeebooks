@@ -112,6 +112,9 @@ require 'quickeebooks/online/model/journal_entry'
 require 'quickeebooks/online/model/journal_entry_line_item'
 require 'quickeebooks/online/model/journal_entry_header'
 require 'quickeebooks/online/model/employee'
+require 'quickeebooks/online/model/time_activity'
+require 'quickeebooks/online/model/time_activity_employee'
+require 'quickeebooks/online/model/time_activity_vendor'
 
 # Services
 require 'quickeebooks/online/service/filter'
@@ -130,6 +133,8 @@ require 'quickeebooks/online/service/vendor'
 require 'quickeebooks/online/service/sales_receipt'
 require 'quickeebooks/online/service/journal_entry'
 require 'quickeebooks/online/service/employee'
+require 'quickeebooks/online/service/time_activity'
+
 
 #== Windows
 
