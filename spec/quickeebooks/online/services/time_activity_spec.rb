@@ -18,10 +18,11 @@ describe "Quickeebooks::Online::Service::TimeActivity" do
     url = @service.url_for_resource(Quickeebooks::Online::Model::TimeActivity.resource_for_singular)
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml)
     time_activity = Quickeebooks::Online::Model::TimeActivity.new
-    time_activity.name="bob"   ###### WHY DO I HAVE TO HAVE A NAME PARAM?  IF I DON'T, THEN VALIDATION FAILS!!!!!!!!
     time_activity.description = "here is my description"
+    time_activity.hourly_rate = "10.5"
     time_activity.name_of = "Vendor"
     time_activity.hours = "10"
+    time_activity.customer_id = "3794"
     time_activity.minutes = "5"
     result = @service.create(time_activity)
     result.id.value.to_i.should > 0
@@ -65,7 +66,6 @@ describe "Quickeebooks::Online::Service::TimeActivity" do
   it "can update a time_activity" do
     xml2 = onlineFixture("time_activity2.xml")
     time_activity = Quickeebooks::Online::Model::TimeActivity.new
-    time_activity.name = "Digital NYC" # STUPID REQUIRED FIELD
     time_activity.id = Quickeebooks::Online::Model::Id.new("1")
     time_activity.sync_token = 2
 

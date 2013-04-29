@@ -36,6 +36,8 @@ module Quickeebooks
         xml_accessor :end_time, :from => 'EndTime'
         xml_accessor :description, :from => 'Description'
 
+        validates_presence_of :name_of, :customer_id, :hourly_rate
+
 
         def self.resource_for_collection
           'time-activities'
