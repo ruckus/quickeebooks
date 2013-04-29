@@ -17,6 +17,7 @@ module Quickeebooks
 
         XML_NODE = "Employee"
         REST_RESOURCE = "employee"
+        validates_length_of :name, :minimum => 1
 
       end
     end

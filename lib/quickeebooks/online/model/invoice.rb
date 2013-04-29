@@ -23,8 +23,6 @@ module Quickeebooks
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Online::Model::MetaData
         xml_accessor :header, :from => 'Header', :as => Quickeebooks::Online::Model::InvoiceHeader
-        xml_accessor :bill_address, :from => 'BillAddr', :as => Quickeebooks::Online::Model::Address
-        xml_accessor :ship_address, :from => 'ShipAddr', :as => Quickeebooks::Online::Model::Address
         xml_accessor :bill_email, :from => 'BillEmail'
         xml_accessor :ship_method_id, :from => 'ShipMethodId', :as => Quickeebooks::Online::Model::Id
         xml_accessor :ship_method_name, :from => 'ShipMethodName'

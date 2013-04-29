@@ -20,6 +20,7 @@ module Quickeebooks
         REST_RESOURCE = "vendor"
 
         xml_accessor :is_1099?, :from => 'Vendor1099'
+        validates_length_of :name, :minimum => 1
 
       end
     end

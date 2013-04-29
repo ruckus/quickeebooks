@@ -1,3 +1,7 @@
+## 0.1.6 (2013-04-08)
+
+* Online: Moved Shipping and Billing properties from the Invoice model to the InvoiceHeader model where they belong.
+
 ## 0.1.5 (2013-03-30)
 
 * Added Address convenience assignment methods to Online Customer model.
