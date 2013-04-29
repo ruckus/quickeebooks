@@ -27,13 +27,13 @@ module Quickeebooks
         xml_accessor :billable_status, :from => 'BillableStatus'
         xml_accessor :taxable, :from => 'Taxable'
         xml_accessor :hourly_rate, :from => 'HourlyRate'
-        xml_accessor :hours, :from => 'Hours'
-        xml_accessor :minutes, :from => 'Minutes'
-        xml_accessor :seconds, :from => 'Seconds'
-        xml_accessor :break_hours, :from => 'BreakHours'
-        xml_accessor :break_minutes, :from => 'BreakMinutes'
-        xml_accessor :start_time, :from => 'StartTime'
-        xml_accessor :end_time, :from => 'EndTime'
+        xml_accessor :hours, :from => 'Hours', :as => Integer
+        xml_accessor :minutes, :from => 'Minutes', :as => Integer
+        xml_accessor :seconds, :from => 'Seconds', :as => Integer
+        xml_accessor :break_hours, :from => 'BreakHours', :as => Integer
+        xml_accessor :break_minutes, :from => 'BreakMinutes', :as => Integer
+        xml_accessor :start_time, :from => 'StartTime', :as => DateTime
+        xml_accessor :end_time, :from => 'EndTime', :as => DateTime
         xml_accessor :description, :from => 'Description'
 
         validates_presence_of :name_of, :customer_id, :hourly_rate
