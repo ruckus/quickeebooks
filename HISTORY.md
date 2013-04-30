@@ -1,3 +1,7 @@
+## 0.1.6 (2013-04-29)
+
+* Online: TimeActivity provided by epugh
+
 ## 0.1.6 (2013-04-08)
 
 * Online: Moved Shipping and Billing properties from the Invoice model to the InvoiceHeader model where they belong.
