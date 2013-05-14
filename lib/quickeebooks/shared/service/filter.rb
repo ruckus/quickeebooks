@@ -4,7 +4,7 @@ module Quickeebooks
       class Filter
 
         DATE_FORMAT = '%Y-%m-%d'
-        DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S%z'
+        DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
 
         attr_reader :type
         attr_accessor :field, :value
@@ -26,7 +26,9 @@ module Quickeebooks
 
         def to_s
           case @type.to_sym
-          when :date, :datetime
+          when :date
+            date_to_s
+          when :datetime
             date_time_to_s
           when :text
             text_to_s
@@ -34,6 +36,23 @@ module Quickeebooks
             boolean_to_s
           when :number
             number_to_s
+          else
+            raise ArgumentError, "Don't know how to generate a Filter for type #{@type}"
+          end
+        end
+
+        def to_xml
+          case @type.to_sym
+          when :text
+            text_to_xml
+          when :boolean
+            boolean_to_xml
+          when :date
+            date_to_xml
+          when :datetime
+            datetime_to_xml
+          when :number
+            number_to_xml
           else
             raise ArgumentError, "Don't know how to generate a Filter for type #{@type}"
           end
@@ -54,20 +73,38 @@ module Quickeebooks
           end
           clauses.join(" :AND: ")
         end
+        
+        def date_to_s
+          clauses = []
+          if @before
+            raise ':before is not a valid Date-like object' unless valid_datetime?(@before)
+            clauses << "#{@field} :BEFORE: #{formatted_date(@before)}"
+          end
+          if @after
+            raise ':after is not a valid Date-like object' unless valid_datetime?(@after)
+            clauses << "#{@field} :AFTER: #{formatted_date(@after)}"
+          end
+
+          if @before.nil? && @after.nil?
+            clauses << "#{@field} :EQUALS: #{formatted_date(@value)}"
+          end
+
+          clauses.join(" :AND: ")
+        end
 
         def date_time_to_s
           clauses = []
           if @before
-            raise ':before is not a valid DateTime/Time object' unless (@before.is_a?(Time) || @before.is_a?(DateTime))
-            clauses << "#{@field} :BEFORE: #{formatted_time(@before)}"
+            raise ':before is not a valid DateTime-like object' unless valid_datetime?(@before)
+            clauses << "#{@field} :BEFORE: #{formatted_datetime(@before)}"
           end
           if @after
-            raise ':after is not a valid DateTime/Time object' unless (@after.is_a?(Time) || @after.is_a?(DateTime))
-            clauses << "#{@field} :AFTER: #{formatted_time(@after)}"
+            raise ':after is not a valid DateTime-like object' unless valid_datetime?(@after)
+            clauses << "#{@field} :AFTER: #{formatted_datetime(@after)}"
           end
 
           if @before.nil? && @after.nil?
-            clauses << "#{@field} :EQUALS: #{formatted_time(@value)}"
+            clauses << "#{@field} :EQUALS: #{formatted_datetime(@value)}"
           end
 
           clauses.join(" :AND: ")
@@ -77,18 +114,41 @@ module Quickeebooks
           "#{@field} :EQUALS: #{@value}"
         end
 
+        def text_to_xml
+          "<#{@field}>#{CGI::escapeHTML(@value.to_s)}</#{@field}>"
+        end
+
         def boolean_to_s
           "#{@field} :EQUALS: #{@value}"
         end
 
-        def formatted_time(time)
-          if time.is_a?(Date)
-            time.strftime(DATE_FORMAT)
-          elsif time.is_a?(DateTime) || time.is_a?(Time)
-            time.strftime(DATE_TIME_FORMAT)
-          end
+        def boolean_to_xml
+          "<#{@field}>#{CGI::escapeHTML(@value.to_s)}</#{@field}>"
         end
 
+        def number_to_xml
+          "<#{@field}>#{CGI::escapeHTML(@value.to_s)}</#{@field}>"
+        end
+        
+        def date_to_xml
+          "<#{@field}>#{formatted_date(@value)}</#{@field}>"
+        end
+
+        def datetime_to_xml
+          "<#{@field}>#{formatted_datetime(@value)}</#{@field}>"
+        end
+        
+        def formatted_date(date)
+          date.strftime(DATE_FORMAT)
+        end
+
+        def formatted_datetime(datetime)
+          datetime.strftime(DATE_TIME_FORMAT)
+        end
+        
+        def valid_datetime?(value)
+          value.respond_to?(:strftime)
+        end
 
       end
     end

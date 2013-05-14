@@ -1,6 +1,7 @@
 require 'rexml/document'
 require 'uri'
 require 'cgi'
+require 'quickeebooks/common/logging'
 
 class IntuitRequestException < Exception
   attr_accessor :code, :cause
@@ -15,18 +16,19 @@ module Quickeebooks
 
     module Service
       class ServiceBase
+        include Logging
         attr_accessor :realm_id
         attr_accessor :oauth
         attr_accessor :base_uri
 
-        QB_BASE_URI = "https://qbo.intuit.com/qbo1/rest/user/v2"
+        QB_BASE_URI = "https://qbo.sbfinance.intuit.com"
         XML_NS = %{xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm"}
 
         def initialize(oauth_access_token = nil, realm_id = nil)
           if !oauth_access_token.nil? && !realm_id.nil?
             msg = "Quickeebooks::Online::ServiceBase - "
             msg += "This version of the constructor is deprecated. "
-            msg += "Use the no-arg constructor and set the AccessToken and the RealmID using the accessors."
+            msg += "Use the no-arg constructor and set the AccessToken (access_token=) and the RealmID (realm_id=) using the setters."
             warn(msg)
             access_token = oauth_access_token
             realm_id = realm_id
@@ -46,63 +48,38 @@ module Quickeebooks
           @base_uri = uri
         end
 
-        # Given a realm ID we need to determine the real Base URL
-        # to use for all subsequenet REST operations
-        # See: https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0010_Getting_the_Base_URL
-        def determine_base_url
-          if service_response
-            if service_response.code == "200"
-              element = base_doc.xpath("//qbo:QboUser/qbo:CurrentCompany/qbo:BaseURI")[0]
-              if element
-                @base_uri = element.text
-              else
-                raise IntuitRequestException.new("Response error: Could not extract BaseURI from response. Invalid XML: #{service_response.body}")
-              end
-            else
-              raise IntuitRequestException.new("Response error: invalid code #{service_response.code}")
-            end
-          end
-        end
-
         def url_for_resource(resource)
           url_for_base("resource/#{resource}")
         end
 
         def url_for_base(raw)
-          determine_base_url unless determined_base_url?
-          "#{@base_uri}/#{raw}/v2/#{@realm_id}"
+          "#{QB_BASE_URI}/#{raw}/v2/#{@realm_id}"
         end
 
-        def qb_base_uri_with_realm_id
-          "#{QB_BASE_URI}/#{@realm_id}"
-        end
-
-        # store service base response
-        # so it can be accessed by other methods
-        def service_response
-          @service_response ||= check_response(@oauth.request(:get, qb_base_uri_with_realm_id))
-        end
-
-        # allows for reuse of service base's xml doc
-        # rather than loading it each time we need it
-        def base_doc
-          @base_doc ||= parse_xml(service_response.body)
-        end
-        
         # gives us the qbo user's LoginName
         # useful for verifying email address against
         def login_name
-          @login_name ||= base_doc.xpath("//qbo:QboUser/qbo:LoginName")[0].text
+          @login_name ||= begin
+            url = "https://qbo.intuit.com/qbo1/rest/user/v2/#{@realm_id}"
+            response = @oauth.request(:get, url)
+            if response && response.code.to_i == 200
+              xml = parse_xml(response.body)
+              xml.xpath("//qbo:QboUser/qbo:LoginName")[0].text
+            end
+          end
         end
 
         private
         
-        def determined_base_url?
-          @base_uri != nil
-        end
-
         def parse_xml(xml)
           Nokogiri::XML(xml)
+        end
+
+        def escape_filter(str)
+          # Ampersand needs to double encoded within an Oath request.
+          # CGI.escape will take the #26 and properly turn it into #2526
+          str.gsub!('&','%26')
+          CGI.escape(str)
         end
 
         def valid_xml_document(xml)
@@ -112,13 +89,11 @@ module Quickeebooks
         def fetch_collection(model, filters = [], page = 1, per_page = 20, sort = nil, options ={})
           raise ArgumentError, "missing model to instantiate" if model.nil?
           
-          determine_base_url unless determined_base_url?
-
           post_body_lines = []
 
           if filters.is_a?(Array) && filters.length > 0
             filter_string = filters.collect { |f| f.to_s }
-            post_body_lines << "Filter=#{CGI.escape(filter_string.join(" :AND: "))}"
+            post_body_lines << "Filter=#{escape_filter(filter_string.join(" :AND: "))}"
           end
 
           post_body_lines << "PageNum=#{page}"
@@ -144,7 +119,6 @@ module Quickeebooks
               collection.entries = results
               collection.current_page = xml.xpath("//qbo:SearchResults/qbo:CurrentPage")[0].text.to_i
             rescue => ex
-              #log("Error parsing XML: #{ex.message}")
               raise IntuitRequestException.new("Error parsing XML: #{ex.message}")
             end
             collection
@@ -155,23 +129,24 @@ module Quickeebooks
 
         def do_http_post(resource, body = "", params = {}, headers = {}) # throws IntuitRequestException
           url = add_query_string_to_url(resource, params)
-          do_http(:post, resource, body, headers)
+          do_http(:post, url, body, headers)
         end
 
         def do_http_get(resource, params = {}, headers = {}) # throws IntuitRequestException
-          url = add_query_string_to_url(url, params)
-          do_http(:get, resource, "", headers)
+          url = add_query_string_to_url(resource, params)
+          do_http(:get, url, "", headers)
         end
 
         def do_http(method, resource, body, headers) # throws IntuitRequestException
           unless headers.has_key?('Content-Type')
             headers.merge!({'Content-Type' => 'application/xml'})
           end
-          determine_base_url unless determined_base_url?
-          # puts "METHOD = #{method}"
-          # puts "URL = #{url}"
-          # puts "BODY = #{body == nil ? "<NIL>" : body}"
-          # puts "HEADERS = #{headers.inspect}"
+          log "------ New Request ------"
+          log "METHOD = #{method}"
+          log "RESOURCE = #{resource}"
+          log "BODY(#{body.class}) = #{body == nil ? "<NIL>" : body.inspect}"
+          log "HEADERS = #{headers.inspect}"
+
           response = @oauth.request(method, resource, body, headers)
           check_response(response)
         end
@@ -185,7 +160,8 @@ module Quickeebooks
         end
 
         def check_response(response)
-          #puts "HTTP Response: #{response.code}"
+          log "RESPONSE CODE = #{response.code}"
+          log "RESPONSE BODY = #{response.body}"
           status = response.code.to_i
           case status
           when 200
@@ -222,11 +198,6 @@ module Quickeebooks
           end
 
           error
-        end
-
-        def log(msg)
-          Quickeebooks.logger.info(msg)
-          Quickeebooks.logger.flush if Quickeebooks.logger.respond_to?(:flush)
         end
 
       end

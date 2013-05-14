@@ -1,9 +1,3 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-require "date"
-
 describe "Quickeebooks::Windows::Service::Invoice" do
   before(:all) do
     FakeWeb.allow_net_connect = false
@@ -20,18 +14,18 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
   end
-  
+
   it "can fetch a list of invoices" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/invoices.xml")
+    xml = windowsFixture("invoices.xml")
     service = Quickeebooks::Windows::Service::Invoice.new
     service.access_token = @oauth
     service.realm_id = @realm_id
-    
+
     model = Quickeebooks::Windows::Model::Invoice
-    FakeWeb.register_uri(:get, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     invoices = service.list
     invoices.entries.count.should == 7
-    
+
     invoice = invoices.entries.first
     invoice.id.value.should == "9107908"
     invoice.header.should_not == nil
@@ -39,7 +33,7 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     header.doc_number.should == "12-225"
     header.txn_date.should == DateTime.parse('2012-07-10T00:00:00Z')
     header.customer_name.should == "Zanotto's Fine Grocer"
-    
+
     header.remit_to_id.value.should == "2"
     header.remit_to_name.should == "Zanotto's Fine Grocer"
     header.ship_date.should == DateTime.parse('2012-07-11T00:00:00Z')
@@ -51,7 +45,7 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     header.ar_account_id.value.should == "30"
     header.ar_account_name.should == "Accounts Receivable"
     header.due_date.should == DateTime.parse('2012-08-09T00:00:00Z')
-    
+
     bill_addr = header.billing_address
     bill_addr.should_not == nil
     bill_addr.line1.should == "981 Lusk Blvd."
@@ -65,10 +59,10 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     ship_addr.city.should == "San Jose"
     ship_addr.state.should == "CA"
     ship_addr.postal_code.should == "95126"
-    
+
     header.bill_email.should == "thorn@zanottos.com"
     header.balance.should == header.total_amount
-    
+
     line1 = invoice.line_items.first
     line1.should_not == nil
     line1.desc.should == "PVR2920"
@@ -78,13 +72,13 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     line1.unit_price.should == 144.00
     line1.quantity.should == 2.67
   end
-  
+
   it "can create an invoice" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/invoice_success_create.xml")
+    xml = windowsFixture("invoice_success_create.xml")
     service = Quickeebooks::Windows::Service::Invoice.new
     service.access_token = @oauth
     service.realm_id = @realm_id
-    
+
     model = Quickeebooks::Windows::Model::Invoice
     FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
 
@@ -124,7 +118,7 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     invoice.header = header
 
     created_invoice = service.create(invoice)
-    
+
     created_invoice.success?.should == true
     created_invoice.success.object_ref.id.value.should == "9107908"
     created_invoice.success.request_name.should == "InvoiceAdd"

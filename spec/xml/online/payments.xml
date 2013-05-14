@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:SearchResults xmlns:qbo="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2"
+  xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1">
+  <qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Payments">
+    <Payment>
+      <Id>47</Id>
+      <SyncToken>1</SyncToken>
+      <MetaData>
+        <CreateTime>2010-09-14T05:33:24-07:00</CreateTime>
+        <LastUpdatedTime>2010-09-14T05:42:00-07:00</LastUpdatedTime>
+      </MetaData>
+      <Header>
+        <DocNumber>54</DocNumber>
+        <TxnDate>2010-08-09</TxnDate>
+        <Note>Payment against Invoice</Note>
+        <CustomerId>5</CustomerId>
+        <DepositToAccountId>41</DepositToAccountId>
+        <PaymentMethodId>1</PaymentMethodId>
+        <TotalAmt>50.00</TotalAmt>
+        <ProcessPayment>false</ProcessPayment>
+      </Header>
+      <Line>
+        <Amount>50.00</Amount>
+        <TxnId>8</TxnId>
+      </Line>
+    </Payment>
+  </qbo:CdmCollections>
+  <qbo:Count>1</qbo:Count>
+  <qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>

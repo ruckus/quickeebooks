@@ -1,10 +1,7 @@
-require "spec_helper"
-require "quickeebooks/online/model/company_meta_data"
-
 describe "Quickeebooks::Online::Model::CompanyMetaData" do
-  
+
   it "parse company meta data from XML" do
-    xml = File.read(File.dirname(__FILE__) + "/../../xml/online/company_meta_data.xml")
+    xml = onlineFixture("company_meta_data.xml")
     company_meta_data = Quickeebooks::Online::Model::CompanyMetaData.from_xml(xml)
 
     company_meta_data.external_realm_id.should be_nil
@@ -14,16 +11,16 @@ describe "Quickeebooks::Online::Model::CompanyMetaData" do
     company_meta_data.industry_type.should == "Landscaping Services"
 
     company_meta_data.addresses.count.should == 2
-    
+
     company_meta_data.addresses.first.line1.should == "2600 Service Street"
 
     company_meta_data.legal_address.line1.should == "2602 Service Street"
-    
+
     company_meta_data.phone.free_form_number.should == "(669)111-2222"
-    
+
     company_meta_data.emails.size.should == 2
     company_meta_data.emails.first.address.should == "john@bayarealandscapeservices.com"
-    
+
     # Tag not supported yet in Quickeebooks::Online::Model::Email
     # company_meta_data.emails.first.tag.should == "COMPANY_EMAIL"
   end

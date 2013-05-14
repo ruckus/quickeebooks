@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Vendor xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns2="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:ns3="http://www.intuit.com/sb/cdm/qbo">
+  <Id>12</Id>
+  <SyncToken>2</SyncToken>
+  <MetaData>
+    <CreateTime>2010-09-13T01:52:36-07:00</CreateTime>
+    <LastUpdatedTime>2010-09-13T01:52:36-07:00</LastUpdatedTime>
+  </MetaData>
+  <Name>Digital NYC</Name>
+  <Address>
+    <Line1>Broadway</Line1>
+    <Line2></Line2>
+    <City>New York</City>
+    <CountrySubDivisionCode>NY</CountrySubDivisionCode>
+    <PostalCode>10001</PostalCode>
+  </Address>
+  <Phone>
+    <FreeFormNumber>(646) 436-8225</FreeFormNumber>
+  </Phone>
+  <WebSite>
+    <URI>http://www.digitalinsight.mint.com/</URI>
+  </WebSite>
+  <Email>
+    <Address>john_doe@digitalinsight.mint.com</Address>
+  </Email>
+  <GivenName>John</GivenName>
+  <FamilyName>Doe</FamilyName>
+  <DBAName>Digital</DBAName>
+  <AcctNum>9001</AcctNum>
+  <OpenBalance>
+    <Amount>6200</Amount>
+  </OpenBalance>
+  <Vendor1099>true</Vendor1099>
+</Vendor>

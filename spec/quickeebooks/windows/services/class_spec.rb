@@ -1,8 +1,3 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Windows::Service::Clazz" do
   before(:all) do
     FakeWeb.allow_net_connect = false
@@ -19,9 +14,9 @@ describe "Quickeebooks::Windows::Service::Clazz" do
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
   end
-  
+
   it "can fetch a list of classes" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/classes.xml")
+    xml = windowsFixture("classes.xml")
     model = Quickeebooks::Windows::Model::Clazz
     service = Quickeebooks::Windows::Service::Clazz.new
     service.access_token = @oauth

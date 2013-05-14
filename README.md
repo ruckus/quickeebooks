@@ -9,9 +9,11 @@ This library communicates with the Quickbooks Data Services `v2` API, documented
 When Intuit finalizes the `v3` API I would like to move to that version as it appears to be better structured
 and has `JSON` request/response formats, which should be easier to work with than XML.
 
+[![Build Status](https://travis-ci.org/ruckus/quickeebooks.png)](https://travis-ci.org/ruckus/quickeebooks)
+
 ## Requirements
 
-This is being developed on Ruby 1.9.2. Other versions/VMs are untested but Ruby 1.8 should work in theory.
+This is being developed on Ruby REE, 1.9.2 & 1.9.3. Other versions/VMs are untested but stable Rubies should work in theory.
 
 ## Dependencies
 
@@ -89,7 +91,7 @@ oauth_client = OAuth::AccessToken.new($qb_oauth_consumer, access_token, access_s
 
 ## Quickbooks Online vs Windows
 
-IDS provides 2 APIs, one for interacting with Quickbooks Online resources and one for Quickbooks Windows resources. 
+IDS provides 2 APIs, one for interacting with Quickbooks Online resources and one for Quickbooks Windows resources.
 
 See: https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services
 
@@ -102,13 +104,13 @@ For example:
 customer_service = Quickeebooks::Online::Service::Customer.new
 customer_service.access_token = oauth_client
 customer_service.realm_id = realm_id
-customer_service.list 
+customer_service.list
 
 # Instantiate a Windows API
 customer_service = Quickeebooks::Windows::Service::Customer.new(oauth_client, realm_id)
 customer_service.access_token = oauth_client
 customer_service.realm_id = realm_id
-customer_service.list 
+customer_service.list
 ```
 
 All of the documentation below is geared towards the Online flavor but unless noted one should be able to replace it with Windows.
@@ -119,8 +121,8 @@ Now we can initialize any of the `Service` clients:
 customer_service = Quickeebooks::Online::Service::Customer.new
 customer_service.access_token = oauth_client
 customer_service.realm_id = realm_id
-customer_service.list 
-customer_service.list 
+customer_service.list
+customer_service.list
 
 # returns a `Collection` object
 ```
@@ -128,6 +130,8 @@ customer_service.list
 See *Retrieving Objects* for the complete docs on fetching collections.
 
 Quickbooks API requires that all HTTP operations are performed against a client-specific "Base URL", as discussed here:
+
+Note: The Windows and Online(versions 7.0 and above) now use a static base URL which is the default URL that is used with Quickeebooks so no additional HTTP requests are made.
 
 [Getting the Base URL](https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0400_QuickBooks_Online/0100_Calling_Data_Services/0010_Getting_the_Base_URL)
 
@@ -156,7 +160,7 @@ Specify none of these to get the defaults:
 customer_service = Quickeebooks::Online::Service::Customer.new
 customer_service.access_token = oauth_client
 customer_service.realm_id = realm_id
-customer_service.list 
+customer_service.list
 
 # fetch all customers with default parameters (pagination, sorting, filtering)
 customers = customer_service.list
@@ -164,13 +168,17 @@ customers = customer_service.list
 
 Return result: a `Collection` instance with properties: `entries`, `current_page`, `count` which should be self-explanatory.
 
-### Filtering (currently only supported in the Online API)
+### Filtering (full Online API support, partial Windows API support)
 
-All filters in the Intuit documentation are supported: text, datetime, boolean.
+For Online, all filters in the Intuit documentation are supported: text, datetime, boolean.
 
-Construct an instance of `Quickeebooks::Online::Service::Filter` with the type of filter, one of: `:text`, `:datetime`, `:boolean`.
+For Windows, Intuit has a custom API for certain query fields: you cannot search on an arbitrary attributes. See https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0500_QuickBooks_Windows/0100_Calling_Data_Services/0015_Retrieving_Objects#Filtering for more information, and to see which attributes are queryable, see: https://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0050_Data_Services/0500_QuickBooks_Windows/0600_Object_Reference/Invoice#section_9
 
-Pass an array of `Quickeebooks::Online::Service::Filter` objects as the first argument to the Services `list` method and all filters will be applied.
+Note: you'll get an exception from Intuit if you attempt to query on a non-queryable attribute.
+
+Construct an instance of `Quickeebooks::Shared::Service::Filter` with the type of filter, one of: `:text`, `:datetime`, `:boolean`.
+
+Pass an array of `Quickeebooks::Shared::Service::Filter` objects as the first argument to the Services `list` method and all filters will be applied.
 
 #### Filtering on a text field
 
@@ -179,7 +187,7 @@ Specify a type of `:text` and your desired `:field` and a `:value` clause which 
 Note: the Intuit API is case-INSENSITIVE.
 
 ```ruby
-Quickeebooks::Online::Service::Filter.new(:text, :field => 'FamilyName', :value => 'Richards')
+Quickeebooks::Shared::Service::Filter.new(:text, :field => 'FamilyName', :value => 'Richards')
 ```
 
 #### Filtering on a Date/Time
@@ -191,16 +199,16 @@ Examples:
 ```ruby
 # find all customers created after 2/15/2011
 datetime = Time.mktime(2011, 2, 15)
-Quickeebooks::Online::Service::Filter.new(:datetime, :field => 'CreateTime', :after => datetime)
+Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'CreateTime', :after => datetime)
 
 # find all customers created before 3/28/2011
 datetime = Time.mktime(2011, 2, 28)
-Quickeebooks::Online::Service::Filter.new(:datetime, :field => 'CreateTime', :before => datetime)
+Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'CreateTime', :before => datetime)
 
 # find all customers created between 1/1/2011 and 2/15/2011
 after = Time.mktime(2011, 1, 1)
 before = Time.mktime(2011, 2, 15
-Quickeebooks::Online::Service::Filter.new(:datetime, :field => 'CreateTime', :after => after, :before => before)
+Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'CreateTime', :after => after, :before => before)
 ```
 
 #### Filtering on a Boolean field
@@ -209,7 +217,7 @@ Specify a type of `:boolean` and your desired `:field` and a `:value` with eithe
 
 ```ruby
 # find all customers and exclude jobs
-Quickeebooks::Online::Service::Filter.new(:boolean, :field => 'IncludeJobs', :value => false)
+Quickeebooks::Shared::Service::Filter.new(:boolean, :field => 'IncludeJobs', :value => false)
 ```
 
 #### Filtering on a Number
@@ -218,7 +226,7 @@ Specify a type of `:number` and an operator, one of: `:gt`, `:lt`, or `:eq`.
 
 ```ruby
 # find all customers and exclude jobs
-Quickeebooks::Online::Service::Filter.new(:number, :field => 'Amount', :gt => 150)
+Quickeebooks::Shared::Service::Filter.new(:number, :field => 'Amount', :gt => 150)
 ```
 
 Once you have created all of your `Filters` than just pass an array of them to any services `list` method and they will all be applied.
@@ -233,7 +241,7 @@ filters << Quickeebooks::Online::Service::Filter.new(:datetime, :field => 'Creat
 customer_service = Quickeebooks::Online::Service::Customer.new
 customer_service.access_token = oauth_client
 customer_service.realm_id = realm_id
-customer_service.list 
+customer_service.list
 
 customers = customer_service.list(filters)
 ```
@@ -266,19 +274,19 @@ sorter = Quickeebooks::Online::Service::Sort.new('FamilyName', 'AtoZ')
 customer_service = Quickeebooks::Online::Service::Customer.new
 customer_service.access_token = oauth_client
 customer_service.realm_id = realm_id
-customer_service.list 
+customer_service.list
 
 customers = customer_service.list(filters, 1, 30, sort)
 
 # returns
- 
+
 customers.count
 => 67
 
 customers.current_page
 => 1
 
-customers.entries 
+customers.entries
 => [ #<Quickeebooks::Online::Model::Customer:0x007f8e29259770>, #<Quickeebooks::Online::Model::Customer:0x0078768202020>, ... ]
 ```
 
@@ -291,7 +299,7 @@ Use the `Service` instance to fetch an object by its id using the `fetch_by_id` 
 customer_service = Quickeebooks::Online::Service::Customer.new
 customer_service.access_token = oauth_client
 customer_service.realm_id = realm_id
-customer_service.list 
+customer_service.list
 
 customer = customer_service.fetch_by_id(100)
 customer.name
@@ -312,7 +320,7 @@ Pass an instance of your object to the `create` method on its related Service:
 customer_service = Quickeebooks::Online::Service::Customer.new
 customer_service.access_token = oauth_client
 customer_service.realm_id = realm_id
-customer_service.list 
+customer_service.list
 
 customer = Quickeebooks::Online::Model::Customer.new
 customer.name = "Richard Parker"
@@ -330,7 +338,7 @@ Pass an instance of your object to the `update` method on its related Service:
 customer_service = Quickeebooks::Online::Service::Customer.new
 customer_service.access_token = oauth_client
 customer_service.realm_id = realm_id
-customer_service.list 
+customer_service.list
 
 customer = customer_service.fetch_by_id(100)
 customer.name = "Richard Parker"
@@ -356,6 +364,8 @@ Current Services:
 * Customer
 * Invoice
 * Item
+* Vendor
+* Employee
 
 
 ## Invoice Service
@@ -371,8 +381,14 @@ Usage: Download invoice #89 and store it at `/tmp/invoice.pdf`:
 ```ruby
 invoice_as_pdf(89, "/tmp/invoice.pdf")
 ```
-
 _Note:_ it is up to you the caller to remove or clean up the file when you are done.
+
+
+## Logging
+
+```ruby
+Quickeebooks.log = true
+```
 
 ## Author
 
@@ -384,6 +400,9 @@ Thank you for the contributions:
 
 * [Walter McGinnis](https://github.com/walter)
 * [Simon Wistow](https://github.com/simonwistow)
+* [Matt Rogish](https://github.com/MattRogish)
+* [Nick Hammond](https://github.com/nickhammond)
+* [Christian Pelczarski](https://github.com/minimul)
 
 ## License
 

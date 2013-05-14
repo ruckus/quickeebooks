@@ -1,8 +1,3 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Windows::Service::Customer" do
   before(:all) do
     FakeWeb.allow_net_connect = false
@@ -19,9 +14,9 @@ describe "Quickeebooks::Windows::Service::Customer" do
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
   end
-  
+
   it "can fetch a list of customers" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/customers.xml")
+    xml = windowsFixture("customers.xml")
     model = Quickeebooks::Windows::Model::Customer
     service = Quickeebooks::Windows::Service::Customer.new
     service.access_token = @oauth
@@ -31,23 +26,23 @@ describe "Quickeebooks::Windows::Service::Customer" do
     accounts.entries.count.should == 3
     wine_house = accounts.entries.first
     wine_house.name.should == "Wine House"
-    
+
     billing_address = wine_house.billing_address
     billing_address.should_not == nil
     billing_address.line2.should == "2311 Maple Ave"
     billing_address.city.should == "Los Angeles"
     billing_address.state.should == "CA"
     billing_address.postal_code.should == "90064"
-    
+
     email = wine_house.email
     email.should_not == nil
     email.address.should == "no-reply@winehouse.com"
     email.tag.should == "Business"
     email.default.should == "1"
   end
-  
+
   it "can fetch a customer by ID" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/fetch_customer_by_id.xml")
+    xml = windowsFixture("fetch_customer_by_id.xml")
     model = Quickeebooks::Windows::Model::Customer
     service = Quickeebooks::Windows::Service::Customer.new
     service.access_token = @oauth
@@ -56,7 +51,7 @@ describe "Quickeebooks::Windows::Service::Customer" do
     customer = service.fetch_by_id(341)
     customer.name.should == "Wine Stop"
   end
-  
+
   it "cannot create a customer without a name" do
     customer = Quickeebooks::Windows::Model::Customer.new
     service = Quickeebooks::Windows::Service::Customer.new
@@ -65,7 +60,7 @@ describe "Quickeebooks::Windows::Service::Customer" do
     lambda do
       service.create(customer)
     end.should raise_error(InvalidModelException)
-    
+
     customer.valid?.should == false
     customer.errors.keys.include?(:name).should == true
   end
@@ -80,7 +75,7 @@ describe "Quickeebooks::Windows::Service::Customer" do
     end.should raise_error(InvalidModelException)
     customer.errors.keys.include?(:type_of).should == true
   end
-  
+
   it "cannot create a customer with invalid name" do
     customer = Quickeebooks::Windows::Model::Customer.new
     service = Quickeebooks::Windows::Service::Customer.new
@@ -90,7 +85,7 @@ describe "Quickeebooks::Windows::Service::Customer" do
     lambda do
       service.create(customer)
     end.should raise_error(InvalidModelException)
-    
+
     customer.valid?.should == false
     customer.errors.keys.include?(:name).should == true
   end
@@ -104,7 +99,7 @@ describe "Quickeebooks::Windows::Service::Customer" do
     lambda do
       service.create(customer)
     end.should raise_error(InvalidModelException)
-    
+
     customer.valid?.should == false
     customer.errors.keys.include?(:addresses).should == true
   end
@@ -119,13 +114,13 @@ describe "Quickeebooks::Windows::Service::Customer" do
     lambda do
       service.create(customer)
     end.should raise_error(InvalidModelException)
-    
+
     customer.valid?.should == false
     customer.errors.keys.include?(:email).should == true
   end
 
   it "can create a customer" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/customer_create_success.xml")
+    xml = windowsFixture("customer_create_success.xml")
     service = Quickeebooks::Windows::Service::Customer.new
     model = Quickeebooks::Windows::Model::Customer
     customer = Quickeebooks::Windows::Model::Customer.new
@@ -153,10 +148,10 @@ describe "Quickeebooks::Windows::Service::Customer" do
     create_response.success.party_role_ref.id.value.should == "6762304"
     create_response.success.request_name.should == "CustomerAdd"
   end
-  
+
   it "can update a customer name" do
-    customer_xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/customer.xml")
-    update_response_xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/customer_update_success.xml")
+    customer_xml = windowsFixture("customer.xml")
+    update_response_xml = windowsFixture("customer_update_success.xml")
     service = Quickeebooks::Windows::Service::Customer.new
     model = Quickeebooks::Windows::Model::Customer
     customer = model.from_xml(customer_xml)

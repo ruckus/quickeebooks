@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TimeActivity xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2">
+  <Id>7</Id>
+  <SyncToken>0</SyncToken>
+  <MetaData>
+    <CreateTime>2010-09-13T04:11:06-07:00</CreateTime>
+    <LastUpdatedTime>2010-09-13T04:11:06-07:00</LastUpdatedTime>
+  </MetaData>
+  <TxnDate>2011-08-03-07:00</TxnDate>
+  <NameOf>Vendor</NameOf>
+  <Vendor>
+    <VendorId idDomain="QBO">3793</VendorId>
+  </Vendor>
+  <CustomerId idDomain="QBO">3794</CustomerId>
+  <Taxable>true</Taxable>
+  <HourlyRate>10.5</HourlyRate>
+  <BillableStatus>Billable</BillableStatus>
+  <Hours>12</Hours>
+  <Minutes>15</Minutes>
+  <Description>This is a Description</Description>
+</TimeActivity>

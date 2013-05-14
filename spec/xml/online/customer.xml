@@ -17,7 +17,7 @@
     <Tag>Billing</Tag>
   </Address>
   <Address>
-    <Line1>123 Main St.</Line1>
+    <Line1>123 Shipping St.</Line1>
     <Line2>Suite 400</Line2>
     <City>San Diego</City>
     <Country>USA</Country>
@@ -30,10 +30,24 @@
     <FreeFormNumber>(408) 555-1212</FreeFormNumber>
   </Phone>
   <Phone>
-    <DeviceType>Mobile</DeviceType>
-    <FreeFormNumber>(831) 334-0987</FreeFormNumber>
+    <DeviceType>Secondary</DeviceType>
+    <FreeFormNumber>(408) 555-1213</FreeFormNumber>
   </Phone>
-  <WebSite/>
+  <Phone>
+    <DeviceType>Mobile</DeviceType>
+    <FreeFormNumber>(408) 555-1214</FreeFormNumber>
+  </Phone>
+  <Phone>
+    <DeviceType>Fax</DeviceType>
+    <FreeFormNumber>(408) 555-1215</FreeFormNumber>
+  </Phone>
+  <Phone>
+    <DeviceType>Pager</DeviceType>
+    <FreeFormNumber>(408) 555-1216</FreeFormNumber>
+  </Phone>
+  <WebSite>
+    <URI>http://blah.com</URI>
+  </WebSite>
   <Email>
     <Address>johndoe@gmail.com</Address>
   </Email>

@@ -29,7 +29,7 @@ module Quickeebooks
 
         def update(invoice)
           raise InvalidModelException.new("Missing required parameters for update") unless invoice.valid_for_update?
-          url = "#{url_for_resource(Quickeebooks::Online::Model::Invoice.resource_for_singular)}/#{invoice.id}"
+          url = "#{url_for_resource(Quickeebooks::Online::Model::Invoice.resource_for_singular)}/#{invoice.id.value}"
           xml = invoice.to_xml_ns
           response = do_http_post(url, valid_xml_document(xml))
           if response.code.to_i == 200

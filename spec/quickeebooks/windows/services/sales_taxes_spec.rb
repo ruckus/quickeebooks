@@ -1,8 +1,3 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Windows::Service::SalesTax" do
   before(:all) do
     FakeWeb.allow_net_connect = false
@@ -19,23 +14,23 @@ describe "Quickeebooks::Windows::Service::SalesTax" do
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
   end
-  
+
   it "can fetch a list of sales taxes" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/sales_taxes.xml")
+    xml = windowsFixture("sales_taxes.xml")
     model = Quickeebooks::Windows::Model::SalesTax
     service = Quickeebooks::Windows::Service::SalesTax.new
     service.access_token = @oauth
     service.realm_id = @realm_id
-    FakeWeb.register_uri(:get, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     shipping_methods = service.list
     shipping_methods.entries.count.should == 2
-    
+
     sf = shipping_methods.entries.detect { |sm| sm.name == "San Francisco County" }
     sf.should_not == nil
     sf.id.value.should == "80"
     sf.desc.should == 'Sales Tax - San Francisco'
     sf.tax_rate.should == 8.5
-    
+
   end
 
 end

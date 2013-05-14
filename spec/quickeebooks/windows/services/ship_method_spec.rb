@@ -1,8 +1,3 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Windows::Service::ShipMethod" do
   before(:all) do
     FakeWeb.allow_net_connect = false
@@ -19,17 +14,17 @@ describe "Quickeebooks::Windows::Service::ShipMethod" do
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
   end
-  
+
   it "can fetch a list of shipping methods" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/windows/ship_methods.xml")
+    xml = windowsFixture("ship_methods.xml")
     model = Quickeebooks::Windows::Model::ShipMethod
     service = Quickeebooks::Windows::Service::ShipMethod.new
     service.access_token = @oauth
     service.realm_id = @realm_id
-    FakeWeb.register_uri(:get, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
     shipping_methods = service.list
     shipping_methods.entries.count.should == 15
-    
+
     vinlux = shipping_methods.entries.detect { |sm| sm.name == "Vinlux" }
     vinlux.should_not == nil
     vinlux.id.value.should == "13"

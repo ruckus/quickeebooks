@@ -1,8 +1,3 @@
-require "spec_helper"
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Online::Service::CompanyMetaData" do
   before(:all) do
     FakeWeb.allow_net_connect = false
@@ -10,7 +5,6 @@ describe "Quickeebooks::Online::Service::CompanyMetaData" do
     qb_secret = "secreet"
 
     @realm_id = "9991111222"
-    @base_uri = "https://qbo.intuit.com/qbo36"
     @oauth_consumer = OAuth::Consumer.new(qb_key, qb_key, {
         :site                 => "https://oauth.intuit.com",
         :request_token_path   => "/oauth/v1/get_request_token",
@@ -18,20 +12,16 @@ describe "Quickeebooks::Online::Service::CompanyMetaData" do
         :access_token_path    => "/oauth/v1/get_access_token"
     })
     @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
-    
+
     @service = Quickeebooks::Online::Service::CompanyMetaData.new
     @service.access_token = @oauth
     @service.instance_eval {
       @realm_id = "9991111222"
     }
-    @service.base_uri = @base_uri
-    determine_base_url = @service.qb_base_uri_with_realm_id
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/determine_base_url.xml")
-    FakeWeb.register_uri(:get, determine_base_url, :status => ["200", "OK"], :body => xml)
   end
 
   it "can get the realm's company_meta_data record" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/company_meta_data.xml")
+    xml = onlineFixture("company_meta_data.xml")
     url = @service.url_for_resource(Quickeebooks::Online::Model::CompanyMetaData.resource_for_singular)
     FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => xml)
     company_meta_data_response = @service.load

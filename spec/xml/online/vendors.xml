@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/qbo" xmlns:qbp="http://www.intuit.com/sb/cdm/v2" xmlns:qbo="http://www.intuit.com/sb/cdm/qbopayroll/v1">
+  <qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Vendors">
+    <Vendor>
+      <Id>6</Id>
+      <SyncToken>1</SyncToken>
+      <MetaData>
+        <CreateTime>2010-09-13T01:52:36-07:00</CreateTime>
+        <LastUpdatedTime>2010-09-13T01:56:13-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Digital</Name>
+      <Address>
+        <Line1>Park Avenue</Line1>
+        <Line2></Line2>
+        <City>San Francisco</City>
+        <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+        <PostalCode>91367</PostalCode>
+      </Address>
+      <Phone>
+        <FreeFormNumber>(818) 436-8225</FreeFormNumber>
+      </Phone>
+      <WebSite>
+        <URI>http://www.digitalinsight.mint.com/</URI>
+      </WebSite>
+      <Email>
+        <Address>john_doe@digitalinsight.mint.com</Address>
+      </Email>
+      <GivenName>John</GivenName>
+      <FamilyName>Doe</FamilyName>
+      <DBAName>Digital</DBAName>
+      <AcctNum>9001</AcctNum>
+      <Vendor1099>true</Vendor1099>
+    </Vendor>
+    <Vendor>
+      <Id>7</Id>
+      <SyncToken>2</SyncToken>
+      <MetaData>
+        <CreateTime>2010-09-27T01:52:36-07:00</CreateTime>
+        <LastUpdatedTime>2011-09-13T01:56:13-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>C & S Wholesale Grocers</Name>
+      <Address>
+        <Line1>Route 12</Line1>
+        <Line2></Line2>
+        <City>Keene</City>
+        <CountrySubDivisionCode>NH</CountrySubDivisionCode>
+        <PostalCode>03457</PostalCode>
+      </Address>
+      <Phone>
+        <FreeFormNumber>(603) 436-8225</FreeFormNumber>
+      </Phone>
+      <WebSite>
+        <URI>http://www.cswg.com/</URI>
+      </WebSite>
+      <Email>
+        <Address>john_doe@cswg.com</Address>
+      </Email>
+      <GivenName></GivenName>
+      <FamilyName></FamilyName>
+      <DBAName>C&S</DBAName>
+      <AcctNum>9002</AcctNum>
+      <Vendor1099>false</Vendor1099>
+    </Vendor>
+  </qbo:CdmCollections>
+  <qbo:Count>1</qbo:Count>
+  <qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>

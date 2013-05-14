@@ -1,8 +1,3 @@
-require "spec_helper"
-require "fakeweb"
-require "oauth"
-require "quickeebooks"
-
 describe "Quickeebooks::Online::Service::Filter" do
   before(:all) do
   end
@@ -19,14 +14,14 @@ describe "Quickeebooks::Online::Service::Filter" do
 
   it "can generate a date filter" do
     date = Date.civil(2012, 2, 16)
-    filter = Quickeebooks::Online::Service::Filter.new(:datetime, :field => "CreateTime", :value => date)
-    filter.to_s.should == "CreateTime :EQUALS: #{date.strftime(Quickeebooks::Online::Service::Filter::DATE_FORMAT)}"
+    filter = Quickeebooks::Online::Service::Filter.new(:date, :field => "CreateTime", :value => date)
+    filter.to_s.should == "CreateTime :EQUALS: 2012-02-16"
   end
 
   it "can generate a datetime filter" do
     time = Time.mktime(2012, 1, 2, 8, 31, 44)
     filter = Quickeebooks::Online::Service::Filter.new(:datetime, :field => "CreateTime", :after => time)
-    filter.to_s.should == "CreateTime :AFTER: #{time.strftime(Quickeebooks::Online::Service::Filter::DATE_TIME_FORMAT)}"
+    filter.to_s.should == "CreateTime :AFTER: 2012-01-02T08:31:44"
   end
 
   it "can generate a number filter with equals" do
