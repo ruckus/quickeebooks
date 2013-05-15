@@ -178,7 +178,8 @@ require 'quickeebooks/windows/model/time_activity'
 require 'quickeebooks/windows/model/time_activity_employee'
 require 'quickeebooks/windows/model/time_activity_vendor'
 require 'quickeebooks/windows/model/job'
-
+require 'quickeebooks/windows/model/sync_activity_response'
+require 'quickeebooks/windows/model/sync_status_drill_down'
 
 # Services
 require 'quickeebooks/windows/service/filter'
@@ -200,3 +201,4 @@ require 'quickeebooks/windows/service/access_token'
 require 'quickeebooks/windows/service/employee'
 require 'quickeebooks/windows/service/time_activity'
 require 'quickeebooks/windows/service/job'
+require 'quickeebooks/windows/service/sync_activity'
