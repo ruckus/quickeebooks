@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:xdb="http://xmlns.oracle.com/xdb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.intuit.com/sb/cdm/v2 ../common/RestDataFilter.xsd">
+  <SyncActivityResponses>
+    <SyncActivityResponse>
+      <SyncType>Writeback</SyncType>
+      <StartSyncTMS>2011-07-29T07:09:02.0</StartSyncTMS>
+      <EndSyncTMS>2011-07-29T07:09:02.0</EndSyncTMS>
+      <EntityName>Customer</EntityName>
+      <SyncStatusDrillDown>
+        <SyncTMS>2011-07-29T14:09:02.0Z</SyncTMS>
+        <EntityId>2480872</EntityId>
+        <RequestId>0729e1124a274fc79d65a1d97233877f</RequestId>
+        <NgObjectType>Customer</NgObjectType>
+        <OperationType>CustomerAdd</OperationType>
+        <SyncMessageCode>10</SyncMessageCode>
+        <SyncMessage>success</SyncMessage>
+      </SyncStatusDrillDown>
+    </SyncActivityResponse>
+  </SyncActivityResponses>
+</RestResponse>
