@@ -26,11 +26,11 @@ describe "Quickeebooks::Windows::Service::SyncActivity" do
     sync_activity_responses.entries.count.should == 1
     single_response = sync_activity_responses.entries.first
     single_response.sync_type.should == "Writeback"
-    single_response.start_sync_tms.should == Time.parse("2011-07-29 07:09:02 -0400")
-    single_response.end_sync_tms.should == Time.parse("2011-07-29 07:09:02 -0400")
+    single_response.start_sync_tms.utc.should == Time.parse("2011-07-29T07:09:02.0").utc
+    single_response.end_sync_tms.utc.should == Time.parse("2011-07-29T07:09:02.0").utc
     single_response.entity_name.should == "Customer"
     drill_down = single_response.sync_status_drill_down
-    drill_down.sync_tms.should == Time.parse("2011-07-29 14:09:02 UTC")
+    drill_down.sync_tms.should == Time.parse("2011-07-29T14:09:02.0Z").utc
     drill_down.entity_id.should == "2480872"
     drill_down.request_id.should == "0729e1124a274fc79d65a1d97233877f"
     drill_down.ng_object_type.should == "Customer"
