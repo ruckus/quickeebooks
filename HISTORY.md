@@ -1,4 +1,8 @@
-## 0.1.6 (2013-04-29)
+## 0.1.8 (2013-05-15)
+
+* Desktop: SyncActivity provided by kdaigle
+
+## 0.1.7 (2013-04-29)
 
 * Online: TimeActivity provided by epugh
 
