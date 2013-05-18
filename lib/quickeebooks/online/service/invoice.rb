@@ -68,7 +68,7 @@ module Quickeebooks
         def delete(invoice)
           raise InvalidModelException.new("Missing required parameters for delete") unless invoice.valid_for_deletion?
           xml = valid_xml_document(invoice.to_xml_ns(:fields => ['Id', 'SyncToken']))
-          url = "#{url_for_resource(Quickeebooks::Online::Model::Invoice::REST_RESOURCE)}/#{invoice.id}"
+          url = "#{url_for_resource(Quickeebooks::Online::Model::Invoice::REST_RESOURCE)}/#{invoice.id.value}"
           response = do_http_post(url, xml, {:methodx => "delete"})
           response.code.to_i == 200
         end
