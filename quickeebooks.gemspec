@@ -23,6 +23,8 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'simplecov'
   gem.add_development_dependency 'rr',     '~> 1.0.2'
-  gem.add_development_dependency 'rspec',  '2.11.0'
+  gem.add_development_dependency 'rspec',  '2.13.0'
   gem.add_development_dependency 'fakeweb'
+  gem.add_development_dependency 'guard', '1.8.0'
+  gem.add_development_dependency 'guard-rspec', '3.0.0'
 end
