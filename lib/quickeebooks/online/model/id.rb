@@ -15,6 +15,15 @@ module Quickeebooks
         def initialize(value = nil)
           self.value = value
         end
+        
+        def to_i
+          self.value.to_i
+        end
+        
+        def to_s
+          self.value.to_s
+        end
+        
       end
     end
   end

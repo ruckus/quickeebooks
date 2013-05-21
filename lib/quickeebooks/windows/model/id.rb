@@ -20,6 +20,10 @@ module Quickeebooks
           self.value.to_i
         end
         
+        def to_s
+          self.value.to_s
+        end
+        
       end
     end
   end

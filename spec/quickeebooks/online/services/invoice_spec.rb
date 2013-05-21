@@ -39,4 +39,16 @@ describe "Quickeebooks::Online::Service::Invoice" do
     result.id.value.to_i.should > 0
   end
 
+  it "can delete an invoice" do
+    fixture_xml = onlineFixture("invoice.xml")
+    response_xml = onlineFixture("deleted_invoice.xml")
+
+    invoice_id = "123"
+    url = @service.url_for_resource(Quickeebooks::Online::Model::Invoice.resource_for_singular) + "/13?methodx=delete"
+    FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => response_xml)
+    invoice = Quickeebooks::Online::Model::Invoice.from_xml(fixture_xml)
+    
+    result = @service.delete(invoice)
+  end
+
 end
