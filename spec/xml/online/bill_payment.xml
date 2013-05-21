@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BillPayment xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns2="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:ns3="http://www.intuit.com/sb/cdm/qbo">
+  <Id>13</Id>
+  <SyncToken>0</SyncToken>
+  <MetaData>
+    <CreateTime>2010-09-08T22:46:06-07:00</CreateTime>
+    <LastUpdatedTime>2010-09-08T22:46:06-07:00</LastUpdatedTime>
+  </MetaData>
+  <Header>
+    <DocNumber>15</DocNumber>
+    <TxnDate>2010-09-08-07:00</TxnDate>
+    <EntityId>1</EntityId>
+    <APAccountId>31</APAccountId>
+    <TotalAmt>5000.00</TotalAmt>
+  </Header>
+  <Line>
+    <Amount>5000.00</Amount>
+    <TxnId>12</TxnId>
+  </Line>
+</BillPayment>

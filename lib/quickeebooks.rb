@@ -115,6 +115,9 @@ require 'quickeebooks/online/model/employee'
 require 'quickeebooks/online/model/time_activity'
 require 'quickeebooks/online/model/time_activity_employee'
 require 'quickeebooks/online/model/time_activity_vendor'
+require 'quickeebooks/online/model/bill_payment'
+require 'quickeebooks/online/model/bill_payment_header'
+require 'quickeebooks/online/model/bill_payment_line_item'
 
 # Services
 require 'quickeebooks/online/service/filter'
