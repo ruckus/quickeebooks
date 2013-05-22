@@ -38,11 +38,11 @@ module Quickeebooks
         def access_token=(token)
           @oauth = token
         end
-        
+
         def realm_id=(realm_id)
           @realm_id = realm_id
         end
-        
+
         # uri is of the form `https://qbo.intuit.com/qbo36`
         def base_url=(uri)
           @base_uri = uri
@@ -70,7 +70,7 @@ module Quickeebooks
         end
 
         private
-        
+
         def parse_xml(xml)
           Nokogiri::XML(xml)
         end
@@ -88,7 +88,7 @@ module Quickeebooks
 
         def fetch_collection(model, filters = [], page = 1, per_page = 20, sort = nil, options ={})
           raise ArgumentError, "missing model to instantiate" if model.nil?
-          
+
           post_body_lines = []
 
           if filters.is_a?(Array) && filters.length > 0

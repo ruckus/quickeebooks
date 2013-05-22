@@ -1,7 +1,8 @@
 # https://developer.intuit.com/docs/0025_quickbooksapi/0050_data_services/v2/0400_quickbooks_online/billpayment
-require 'quickeebooks/common/online_line_item_model_methods'
 require 'quickeebooks/online/model/bill_payment_header'
 require 'quickeebooks/online/model/bill_payment_line_item'
+require 'quickeebooks/online/model/meta_data'
+require 'quickeebooks/common/online_line_item_model_methods'
 
 module Quickeebooks
   module Online
