@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+  <qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Classes">
+    <Class>
+      <Id idDomain="QBO">1</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2012-11-15T12:39:48-08:00</CreateTime>
+        <LastUpdatedTime>2013-03-29T09:26:54-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Food</Name>
+    </Class>
+    <Class>
+      <Id idDomain="QBO">2</Id>
+      <SyncToken>0</SyncToken>
+      <MetaData>
+        <CreateTime>2012-11-15T12:39:48-08:00</CreateTime>
+        <LastUpdatedTime>2013-03-29T09:26:54-07:00</LastUpdatedTime>
+      </MetaData>
+      <Name>Bacon</Name>
+      <ClassParentId idDomain="QBO">1</ClassParentId>
+    </Class>
+  </qbo:CdmCollections>
+  <qbo:Count>2</qbo:Count>
+  <qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>
