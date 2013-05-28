@@ -118,6 +118,7 @@ require 'quickeebooks/online/model/time_activity_vendor'
 require 'quickeebooks/online/model/bill_payment'
 require 'quickeebooks/online/model/bill_payment_header'
 require 'quickeebooks/online/model/bill_payment_line_item'
+require 'quickeebooks/online/model/tracking_class'
 
 # Services
 require 'quickeebooks/online/service/filter'
@@ -138,7 +139,7 @@ require 'quickeebooks/online/service/sales_receipt'
 require 'quickeebooks/online/service/journal_entry'
 require 'quickeebooks/online/service/employee'
 require 'quickeebooks/online/service/time_activity'
-
+require 'quickeebooks/online/service/tracking_class'
 
 #== Windows
 
