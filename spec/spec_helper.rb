@@ -46,4 +46,3 @@ end
 def windowsFixture(file)
   File.new(fixture_path + '/windows/' + file).read
 end
-

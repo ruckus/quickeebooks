@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Class xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+  <Id idDomain="QBO">3000000000000029839</Id>
+  <SyncToken>0</SyncToken>
+  <MetaData>
+    <CreateTime>2012-11-15T12:39:48-08:00</CreateTime>
+    <LastUpdatedTime>2013-03-29T09:26:54-07:00</LastUpdatedTime>
+  </MetaData>
+  <Name>2012-11-02</Name>
+  <ClassParentId idDomain="QBO">3000000000000040889</ClassParentId>
+</Class>
