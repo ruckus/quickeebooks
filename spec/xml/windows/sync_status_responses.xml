@@ -1,0 +1,186 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:xdb="http://xmlns.oracle.com/xdb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.intuit.com/sb/cdm/v2 ../common/RestDataFilter.xsd">
+	<SyncStatusResponses> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>145058</NgId> 
+				<SyncToken>1</SyncToken> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>ffc989cf272e4c658496989dbfe70b90</RequestId> 
+			<StateCode>4</StateCode> 
+			<StateDesc>Next Gen record created</StateDesc> 
+			<MessageCode>60</MessageCode> 
+			<MessageDesc>ERR: p_validate_txn - any QB transaction must have at least one line!</MessageDesc> 
+			<ResponseLogTMS>2013-01-09T23:42:29.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>145091</NgId> 
+				<SyncToken>1</SyncToken> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>411cb002e8ce4458b6d4dd06edbe2bf2</RequestId> 
+			<StateCode>4</StateCode> 
+			<StateDesc>Next Gen record created</StateDesc> 
+			<MessageCode>60</MessageCode> 
+			<MessageDesc>ERR: p_validate_txn - any QB transaction must have at least one line!</MessageDesc> 
+			<ResponseLogTMS>2013-01-09T23:43:44.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>146547</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>D2E4A1167AD4AC07E040900A0E1B71FF</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-01-09T23:47:34.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>146625</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>D2E4A1167AD7AC07E040900A0E1B71FF</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-01-09T23:52:38.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>180431</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>D2F02802AC05EAD3E040900A0F1B07B8</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-01-10T22:56:18.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>718651</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>D9B435AEB29098DFE040900A0E1B04AD</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-04-06T18:42:10.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>721570</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>DCADB09E66116748E040900A0F1B1993</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-05-14T23:01:33.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>722461</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>D9B435AEB29098DFE040900A0E1B04AD</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-04-06T18:42:10.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>722462</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>D9B435AEB29098DFE040900A0E1B04AD</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-04-06T18:42:10.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>722470</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>D9B435AEB29098DFE040900A0E1B04AD</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-04-06T18:42:10.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>725667</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>DCADB09E66116748E040900A0F1B1993</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-05-14T23:01:33.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>725668</NgId> 
+				<NgObjectType>Invoice</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>DCADB09E66116748E040900A0F1B1993</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-05-14T23:01:33.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>984263</NgId> 
+				<NgObjectType>Payment</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>DE5403C9E3C4DDD8E040900A0F1B294D</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-06-04T16:19:40.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>984275</NgId> 
+				<NgObjectType>Payment</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>DE5403C9E3C7DDD8E040900A0F1B294D</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-06-04T16:28:58.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>984434</NgId> 
+				<NgObjectType>Payment</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>DE5403C9E3CADDD8E040900A0F1B294D</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-06-04T16:48:52.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+	</SyncStatusResponses>
+</RestResponse>

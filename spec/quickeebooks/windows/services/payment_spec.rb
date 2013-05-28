@@ -39,4 +39,34 @@ describe "Quickeebooks::Windows::Service::Payment" do
     line1.should_not be_nil
     line1.amount.should == header.total_amount
   end
+  
+  it "can create a payment" do
+    xml = windowsFixture("payment_create_success.xml")
+    service = Quickeebooks::Windows::Service::Payment.new
+    model = Quickeebooks::Windows::Model::Payment
+    customer = Quickeebooks::Windows::Model::Payment.new
+
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+
+    payment = Quickeebooks::Windows::Model::Payment.new
+    payment.header = Quickeebooks::Windows::Model::PaymentHeader.new
+    payment.header.customer_id = Quickeebooks::Windows::Model::Id.new("4")
+    payment.header.payment_method_id = Quickeebooks::Windows::Model::Id.new("8") # Gift Card
+
+    payment.header.doc_number = "99999"
+    payment.header.txn_date = Date.civil(2013, 5, 3)
+    payment.header.total_amount = 88
+
+    line_item = Quickeebooks::Windows::Model::PaymentLineItem.new
+    line_item.desc = "Dog Grooming"
+    line_item.amount = 88
+    payment.line_items << line_item
+
+    create_response = service.create(payment)
+    create_response.success?.should == true
+    create_response.success.object_ref.id.value.should == "984434"
+    create_response.success.request_name.should == "PaymentAdd"
+  end
 end

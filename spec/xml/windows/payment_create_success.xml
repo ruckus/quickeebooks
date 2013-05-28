@@ -1,0 +1,11 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+	<Success RequestId="17e000beb7564cadba90af946c10d73a">
+		<ObjectRef>
+			<Id idDomain="NG">984434</Id>
+			<SyncToken>1</SyncToken>
+			<LastUpdatedTime>2013-06-04T16:48:24Z</LastUpdatedTime>
+		</ObjectRef>
+		<RequestName>PaymentAdd</RequestName>
+		<ProcessedTime>2013-06-04T16:48:24Z</ProcessedTime>
+	</Success>
+</RestResponse>
