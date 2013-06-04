@@ -1,0 +1,121 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+	<PaymentMethods>
+		<PaymentMethod>
+			<Id idDomain="QB">9</Id>
+			<SyncToken>1</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-09T19:50:18Z</CreateTime>
+				<LastUpdatedTime>2012-07-09T19:50:18Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">9</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Name>E-Check</Name>
+			<Active>true</Active>
+			<Type>ECheck</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QB">8</Id>
+			<SyncToken>1</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-09T19:50:18Z</CreateTime>
+				<LastUpdatedTime>2012-07-09T19:50:18Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">8</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Name>Gift Card</Name>
+			<Active>true</Active>
+			<Type>GiftCard</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QB">7</Id>
+			<SyncToken>1</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-09T19:50:18Z</CreateTime>
+				<LastUpdatedTime>2012-07-09T19:50:18Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">7</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Name>Debit Card</Name>
+			<Active>true</Active>
+			<Type>DebitCard</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QB">6</Id>
+			<SyncToken>1</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-09T19:50:18Z</CreateTime>
+				<LastUpdatedTime>2012-07-09T19:50:18Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">6</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Name>Visa</Name>
+			<Active>true</Active>
+			<Type>Visa</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QB">5</Id>
+			<SyncToken>1</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-09T19:50:18Z</CreateTime>
+				<LastUpdatedTime>2012-07-09T19:50:18Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">5</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Name>MasterCard</Name>
+			<Active>true</Active>
+			<Type>MasterCard</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QB">4</Id>
+			<SyncToken>1</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-09T19:50:18Z</CreateTime>
+				<LastUpdatedTime>2012-07-09T19:50:18Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">4</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Name>Discover</Name>
+			<Active>true</Active>
+			<Type>Discover</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QB">3</Id>
+			<SyncToken>1</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-09T19:50:18Z</CreateTime>
+				<LastUpdatedTime>2012-07-09T19:50:18Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">3</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Name>American Express</Name>
+			<Active>true</Active>
+			<Type>AmEx</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QB">2</Id>
+			<SyncToken>1</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-09T19:50:11Z</CreateTime>
+				<LastUpdatedTime>2012-07-09T19:50:11Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">2</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Name>Check</Name>
+			<Active>true</Active>
+			<Type>Check</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QB">1</Id>
+			<SyncToken>1</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-09T19:50:11Z</CreateTime>
+				<LastUpdatedTime>2012-07-09T19:50:11Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">1</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Name>Cash</Name>
+			<Active>true</Active>
+			<Type>Cash</Type>
+		</PaymentMethod>
+	</PaymentMethods>
+</RestResponse>

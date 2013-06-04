@@ -11,8 +11,10 @@ module Quickeebooks
         xml_accessor :idDomain, :from => '@idDomain' # Attribute with name 'idDomain'
         xml_accessor :value, :from => :content
         
-        def initialize(value = nil)
-          self.idDomain = DOMAIN
+        def initialize(value = nil, suppress_domain_attribute = false)
+          unless suppress_domain_attribute
+            self.idDomain = DOMAIN
+          end
           self.value = value
         end
         

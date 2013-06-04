@@ -1,3 +1,8 @@
+## 0.1.9 (2013-06-04)
+
+* Desktop: Added PaymentMethod list support. Added Payment create support.
+* Desktop: SyncStatus support for querying about status of recent sync requests / errors
+
 ## 0.1.8 (2013-05-15)
 
 * Desktop: SyncActivity provided by kdaigle

@@ -27,6 +27,20 @@ module Quickeebooks
           ensure_line_items_initialization
         end
 
+        def valid_for_create?
+          valid?
+          if header.nil?
+            errors.add(:header, "Missing Header field for Create")
+          # else
+          #   # ensure header is valid
+          #   unless header.valid?
+          #     #errors.concat(header.errors)
+          #     #errors[:base].each {|e| header.errors[:base] << e }
+          #   end
+          end
+          errors.empty?
+        end
+
         private
 
         def after_parse

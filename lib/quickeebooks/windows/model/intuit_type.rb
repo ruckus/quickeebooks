@@ -7,6 +7,6 @@ module Quickeebooks
         include Logging
 
       end 
-    end    
+    end
   end
 end
