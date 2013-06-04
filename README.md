@@ -192,7 +192,7 @@ Quickeebooks::Shared::Service::Filter.new(:text, :field => 'FamilyName', :value 
 
 #### Filtering on a Date/Time
 
-Specify a type of `:datetime` and your desired `:field` than any combination of: `:before` and `:after`
+Specify a type of `:datetime`, your desired `:field` and finally use `:value` to specify the anchoring date.
 
 Examples:
 
