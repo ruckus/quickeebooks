@@ -353,14 +353,53 @@ fetch_by_id(object_id)
 delete(object)
 ```
 
-Current Services:
+As of `0.1.9` the supported Service operations are:
 
-* Account
-* Customer
-* Invoice
-* Item
-* Vendor
-* Employee
+Entity | Create | Update | List | Delete | Fetch by ID | Other
+--- | --- | --- | --- | --- | --- | ---
+**Online:** Account | yes | yes | yes | yes | yes 
+**Windows:** Account | no | no | yes | no | no 
+**Online:** Bill | yes | yes | yes | yes | yes 
+**Windows:** Bill | no | no | no | no | no
+**Online:** Bill Payment | yes | yes | yes | yes | yes 
+**Windows:** Bill Payment | no | no | no | no | no
+**Online:** Company Meta Data | no | no | no | no | no | `load`
+**Windows:** Company Meta Data | no | no | no | no | no | `load`
+**Online:** Customer | yes | yes | yes | yes | yes | 
+**Windows:** Customer | yes | yes | yes | no | yes | 
+**Online:** Employee | yes | yes | yes | yes | yes | 
+**Windows:** Employee | no | no | yes | no | no | 
+**Online:** Entitlement | n/a | n/a | n/a | n/a | n/a | `status`
+**Windows:** Entitlement | n/a | n/a | n/a | n/a | n/a | 
+**Online:** Invoice | yes | yes | yes | yes | yes | `invoice_as_pdf`
+**Windows:** Invoice | yes | no | yes | no | no | 
+**Online:** Item | yes | yes | yes | yes | yes | 
+**Windows:** Item | yes | no | yes | no | no | 
+**Online:** Journal Entry | yes | yes | yes | yes | yes | 
+**Windows:** Journal Entry | no | no | no | no | no | 
+**Online:** Payment | yes | yes | yes | yes | yes | 
+**Windows:** Payment | yes | no | yes | no | yes | 
+**Online:** Payment Method | no | no | no | no | no | 
+**Windows:** Payment Method | no | no | yes | no | no | 
+**Online:** Sales Receipt | yes | yes | yes | yes | yes | 
+**Windows:** Sales Receipt | yes | no | yes | no | no | 
+**Online:** Sales Rep | no | no | no | no | no | 
+**Windows:** Sales Rep | no | no | yes | no | no | 
+**Online:** Sales Tax | no | no | no | no | no | 
+**Windows:** Sales Tax | no | no | yes | no | no | 
+**Online:** Ship Method | no | no | no | no | no | 
+**Windows:** Ship Method | no | no | yes | no | no | 
+**Online:** Sync Activity | n/a | n/a | n/a | n/a | n/a | 
+**Windows:** Sync Activity | no | no | no | no | no | `retrieve`
+**Online:** Sync Status | n/a | n/a | n/a | n/a | n/a | 
+**Windows:** Sync Status | no | no | no | no | no | `retrieve`
+**Online:** Time Activity | yes | yes | yes | yes | yes | 
+**Windows:** Time Activity | no | no | yes | no | no | 
+**Online:** Tracking Class | yes | yes | yes | yes | yes | 
+**Windows:** Tracking Class | n/a | n/a | n/a | n/a | n/a | 
+**Online:** Vendor | yes | yes | yes | yes | yes | 
+**Windows:** Vendor | no | no | no | no | no |
+
 
 
 ## Invoice Service
