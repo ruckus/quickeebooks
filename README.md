@@ -197,10 +197,11 @@ Specify a type of `:datetime`, your desired `:field` and finally use `:value` to
 Examples:
 
 ```ruby
-# find all customers created between after Feb 1 - 28
+# find all customers created between Feb 1 - 28
 # this requires specifying TWO filters, one for the start and another for the end
-Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'StartCreatedTMS', :value => Time.mktime(2013, 2, 1))
-Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'EndCreatedTMS', :value => Time.mktime(2013, 2, 28))
+filters = []
+filters << Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'StartCreatedTMS', :value => Time.mktime(2013, 2, 1))
+filters << Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'EndCreatedTMS', :value => Time.mktime(2013, 2, 28))
 ```
 
 You will need to consult the Intuit API docs for each entity type to determine what the filterable fields are, as they change from entity to entity. In the above case `Customer` supports both `StartCreatedTMS` and `EndCreatedTMS`
