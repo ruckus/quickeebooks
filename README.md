@@ -197,19 +197,13 @@ Specify a type of `:datetime` and your desired `:field` than any combination of:
 Examples:
 
 ```ruby
-# find all customers created after 2/15/2011
-datetime = Time.mktime(2011, 2, 15)
-Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'CreateTime', :after => datetime)
-
-# find all customers created before 3/28/2011
-datetime = Time.mktime(2011, 2, 28)
-Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'CreateTime', :before => datetime)
-
-# find all customers created between 1/1/2011 and 2/15/2011
-after = Time.mktime(2011, 1, 1)
-before = Time.mktime(2011, 2, 15
-Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'CreateTime', :after => after, :before => before)
+# find all customers created between after Feb 1 - 28
+# this requires specifying TWO filters, one for the start and another for the end
+Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'StartCreatedTMS', :value => Time.mktime(2013, 2, 1))
+Quickeebooks::Shared::Service::Filter.new(:datetime, :field => 'EndCreatedTMS', :value => Time.mktime(2013, 2, 28))
 ```
+
+You will need to consult the Intuit API docs for each entity type to determine what the filterable fields are, as they change from entity to entity. In the above case `Customer` supports both `StartCreatedTMS` and `EndCreatedTMS`
 
 #### Filtering on a Boolean field
 
