@@ -54,6 +54,20 @@ module Quickeebooks
           "#{@base_uri}/#{raw}/v2/#{@realm_id}"
         end
 
+        # Intuit API requires that filters obey a specific ordering
+        # Each Service implementation should have a +FILTER_ORDER+ Array constant
+        # defined. If this is defined than any filters given will be re-ordered
+        # to match the required ordering
+        def enforce_filter_order(filters)
+          if self.class.const_defined?(:FILTER_ORDER)
+            self.class.const_get(:FILTER_ORDER).map do |field|
+              filters.detect { |f| f.field.to_s == field }
+            end.compact
+          else
+            filters
+          end
+        end
+
         private
 
         def parse_xml(xml)
@@ -93,6 +107,7 @@ module Quickeebooks
 
           # ... followed by any filters
           if filters.is_a?(Array) && filters.length > 0
+            filters = enforce_filter_order(filters).compact
             post_body_tags << filters.collect { |f| f.to_xml }
             post_body_tags.flatten!
           end
@@ -198,7 +213,7 @@ module Quickeebooks
           when 200
             # even HTTP 200 can contain an error, so we always have to peek for an Error
             if response_is_error?
-              parse_and_raise_exceptione
+              parse_and_raise_exception
             else
               response
             end
@@ -213,7 +228,7 @@ module Quickeebooks
           end
         end
 
-        def parse_and_raise_exceptione
+        def parse_and_raise_exception
           err = parse_intuit_error
           ex = IntuitRequestException.new(err[:message])
           ex.code = err[:code]

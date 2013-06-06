@@ -1,3 +1,7 @@
+## 0.1.10 (2013-06-06)
+
+* Desktop: Begin implementation of enforcing filter ordering. The Intuit API requires that filter elements obey a given order. We don't expect callers to know this order. Thus, callers can give us an array of filters and the Service class will re-order them appropriately. As of this release only `Job` service has `FILTER_ORDER` defined. However going forward its easy to add it to other Service objects as needed.
+
 ## 0.1.9 (2013-06-04)
 
 * Desktop: Added PaymentMethod list support. Added Payment create support.
