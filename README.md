@@ -355,51 +355,57 @@ delete(object)
 
 As of `0.1.9` the supported Service operations are:
 
+### Quickbooks Online
+
 Entity | Create | Update | List | Delete | Fetch by ID | Other
 --- | --- | --- | --- | --- | --- | ---
-**Online:** Account | yes | yes | yes | yes | yes 
-**Windows:** Account | no | no | yes | no | no 
-**Online:** Bill | yes | yes | yes | yes | yes 
-**Windows:** Bill | no | no | no | no | no
-**Online:** Bill Payment | yes | yes | yes | yes | yes 
-**Windows:** Bill Payment | no | no | no | no | no
-**Online:** Company Meta Data | no | no | no | no | no | `load`
-**Windows:** Company Meta Data | no | no | no | no | no | `load`
-**Online:** Customer | yes | yes | yes | yes | yes | 
-**Windows:** Customer | yes | yes | yes | no | yes | 
-**Online:** Employee | yes | yes | yes | yes | yes | 
-**Windows:** Employee | no | no | yes | no | no | 
-**Online:** Entitlement | n/a | n/a | n/a | n/a | n/a | `status`
-**Windows:** Entitlement | n/a | n/a | n/a | n/a | n/a | 
-**Online:** Invoice | yes | yes | yes | yes | yes | `invoice_as_pdf`
-**Windows:** Invoice | yes | no | yes | no | no | 
-**Online:** Item | yes | yes | yes | yes | yes | 
-**Windows:** Item | yes | no | yes | no | no | 
-**Online:** Journal Entry | yes | yes | yes | yes | yes | 
-**Windows:** Journal Entry | no | no | no | no | no | 
-**Online:** Payment | yes | yes | yes | yes | yes | 
-**Windows:** Payment | yes | no | yes | no | yes | 
-**Online:** Payment Method | no | no | no | no | no | 
-**Windows:** Payment Method | no | no | yes | no | no | 
-**Online:** Sales Receipt | yes | yes | yes | yes | yes | 
-**Windows:** Sales Receipt | yes | no | yes | no | no | 
-**Online:** Sales Rep | no | no | no | no | no | 
-**Windows:** Sales Rep | no | no | yes | no | no | 
-**Online:** Sales Tax | no | no | no | no | no | 
-**Windows:** Sales Tax | no | no | yes | no | no | 
-**Online:** Ship Method | no | no | no | no | no | 
-**Windows:** Ship Method | no | no | yes | no | no | 
-**Online:** Sync Activity | n/a | n/a | n/a | n/a | n/a | 
-**Windows:** Sync Activity | no | no | no | no | no | `retrieve`
-**Online:** Sync Status | n/a | n/a | n/a | n/a | n/a | 
-**Windows:** Sync Status | no | no | no | no | no | `retrieve`
-**Online:** Time Activity | yes | yes | yes | yes | yes | 
-**Windows:** Time Activity | no | no | yes | no | no | 
-**Online:** Tracking Class | yes | yes | yes | yes | yes | 
-**Windows:** Tracking Class | n/a | n/a | n/a | n/a | n/a | 
-**Online:** Vendor | yes | yes | yes | yes | yes | 
-**Windows:** Vendor | no | no | no | no | no |
+Account | yes | yes | yes | yes | yes 
+Bill | yes | yes | yes | yes | yes 
+Bill Payment | yes | yes | yes | yes | yes 
+Company Meta Data | no | no | no | no | no | `load`
+Customer | yes | yes | yes | yes | yes | 
+Employee | yes | yes | yes | yes | yes | 
+Entitlement | n/a | n/a | n/a | n/a | n/a | `status`
+Invoice | yes | yes | yes | yes | yes | `invoice_as_pdf`
+Item | yes | yes | yes | yes | yes | 
+Journal Entry | yes | yes | yes | yes | yes | 
+Payment | yes | yes | yes | yes | yes | 
+Payment Method | no | no | no | no | no | 
+Sales Receipt | yes | yes | yes | yes | yes | 
+Sales Rep | no | no | no | no | no | 
+Sales Tax | no | no | no | no | no | 
+Ship Method | no | no | no | no | no | 
+Sync Activity | n/a | n/a | n/a | n/a | n/a | 
+Sync Status | n/a | n/a | n/a | n/a | n/a | 
+Time Activity | yes | yes | yes | yes | yes | 
+Tracking Class | yes | yes | yes | yes | yes | 
+Vendor | yes | yes | yes | yes | yes | 
 
+### Quickbooks Windows / Desktop
+
+Entity | Create | Update | List | Delete | Fetch by ID | Other
+--- | --- | --- | --- | --- | --- | ---
+Account | no | no | yes | no | no 
+Bill | no | no | no | no | no
+Bill Payment | no | no | no | no | no
+Company Meta Data | no | no | no | no | no | `load`
+Customer | yes | yes | yes | no | yes | 
+Employee | no | no | yes | no | no | 
+Entitlement | n/a | n/a | n/a | n/a | n/a | 
+Invoice | yes | no | yes | no | no | 
+Item | yes | no | yes | no | no | 
+Journal Entry | no | no | no | no | no | 
+Payment | yes | no | yes | no | yes | 
+Payment Method | no | no | yes | no | no | 
+Sales Receipt | yes | no | yes | no | no | 
+Sales Rep | no | no | yes | no | no | 
+Sales Tax | no | no | yes | no | no | 
+Ship Method | no | no | yes | no | no | 
+Sync Activity | no | no | no | no | no | `retrieve`
+Sync Status | no | no | no | no | no | `retrieve`
+Time Activity | no | no | yes | no | no | 
+Tracking Class | n/a | n/a | n/a | n/a | n/a | 
+Vendor | no | no | no | no | no |
 
 
 ## Invoice Service
