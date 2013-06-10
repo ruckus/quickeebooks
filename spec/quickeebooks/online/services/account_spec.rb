@@ -54,7 +54,7 @@ describe "Quickeebooks::Online::Service::Account" do
     url = "#{url}/99?methodx=delete"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"])
     account = Quickeebooks::Online::Model::Account.new
-    account.id = 99
+    account.id = Quickeebooks::Online::Model::Id.new(99)
     account.sync_token = 0
     result = @service.delete(account)
     result.should == true
