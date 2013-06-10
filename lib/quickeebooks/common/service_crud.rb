@@ -1,7 +1,7 @@
 module ServiceCRUD
 
   def create(object)
-    raise InvalidModelException unless object.valid?
+    raise InvalidModelException.new(object.errors.full_messages.join(',')) unless object.valid?
     xml = object.to_xml_ns
     response = do_http_post(url_for_resource(model.resource_for_singular), valid_xml_document(xml))
     if response.code.to_i == 200

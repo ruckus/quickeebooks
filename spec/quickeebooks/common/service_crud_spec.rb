@@ -1,5 +1,13 @@
 describe 'Mixin CRUD like methods for various service modules' do
 
+  context "validations" do
+    it "outputs the erros" do
+      service = Quickeebooks::Online::Service::Invoice.new
+      expect {
+        service.create(Quickeebooks::Online::Model::Invoice.new)
+      }.to raise_error(InvalidModelException, /Line items is too short/)
+    end
+  end
   context 'model method' do
     it 'should constantize properly for an online service' do
       service = Quickeebooks::Online::Service::Bill.new

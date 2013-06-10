@@ -30,8 +30,8 @@ module Quickeebooks
             msg += "This version of the constructor is deprecated. "
             msg += "Use the no-arg constructor and set the AccessToken (access_token=) and the RealmID (realm_id=) using the setters."
             warn(msg)
-            access_token = oauth_access_token
-            realm_id = realm_id
+            self.access_token = oauth_access_token
+            self.realm_id = realm_id
           end
         end
 
