@@ -51,4 +51,28 @@ describe "Quickeebooks::Online::Service::Invoice" do
     result = @service.delete(invoice)
   end
 
+  it "can successfully download an invoice pdf" do
+    destination_file_name = '/tmp/invoice.pdf'
+    invoice_id = '123'
+    url = "#{@service.url_for_resource("invoice-document")}/#{invoice_id}"
+    FakeWeb.register_uri(:get, url, :status => ["200", "OK"], :body => '')
+    File.should_receive(:open).with(destination_file_name, "wb")
+    @service.invoice_as_pdf(invoice_id, destination_file_name).should == destination_file_name
+  end
+
+  it "should return nil and log the exception when failing to download an invoice pdf" do
+    destination_file_name = '/tmp/invoice.pdf'
+    invoice_id = '123'
+    url = "#{@service.url_for_resource("invoice-document")}/#{invoice_id}"
+    Quickeebooks.log = true
+    strio = StringIO.new
+    Quickeebooks.logger = ::Logger.new(strio)
+    FakeWeb.register_uri(:get, url, :status => ["403", "Forbidden"], :body => '')
+    @service.invoice_as_pdf(invoice_id, destination_file_name).should be_nil
+    strio.string.should =~ /Error downloading.*#{destination_file_name}/
+    Quickeebooks.logger = ::Logger.new($stdout)
+    Quickeebooks.log = false
+  end
+
+
 end
