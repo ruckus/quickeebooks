@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Model::Invoice" do
 
-  describe "parse invoice from XML" do
+  it "parse invoice from XML" do
     xml = onlineFixture("invoice.xml")
     invoice = Quickeebooks::Online::Model::Invoice.from_xml(xml)
     invoice.header.balance.should == 0
