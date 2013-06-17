@@ -47,11 +47,6 @@ module Quickeebooks
           id.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
         end
         
-        #== Class methods
-        def self.resource_for_collection
-          "#{self::REST_RESOURCE}s"
-        end
-
       end
     end
     

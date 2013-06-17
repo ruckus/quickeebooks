@@ -50,9 +50,6 @@ module OnlineEntityModel
   end
 
   module ClassMethods
-    def resource_for_collection
-      "#{self::REST_RESOURCE}s"
-    end
   end
 
 end

@@ -15,7 +15,7 @@ module Quickeebooks
         #     vs
         # Create an account, fetch an account, etc: <baseURL>/resource/account/v2/<realmID>
         def self.resource_for_collection
-          self::REST_RESOURCE
+          "#{self::REST_RESOURCE}s"
         end
 
         def self.resource_for_singular
@@ -33,7 +33,7 @@ module Quickeebooks
           s.string.sub("<#{model_name}>", "<#{model_name} #{Quickeebooks::Online::Service::ServiceBase::XML_NS}>")
         end
 
-      end 
-    end    
+      end
+    end
   end
 end

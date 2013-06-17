@@ -14,7 +14,7 @@ module Quickeebooks
         XML_NODE = "Item"
         
         # <baseURL>/resource/items/v2/<realmID>
-        REST_RESOURCE = "items"
+        REST_RESOURCE = "item"
 
         xml_name 'Item'
         xml_accessor :id, :from => 'Id', :as => Quickeebooks::Online::Model::Id
@@ -46,6 +46,7 @@ module Quickeebooks
         def taxable?
           taxable == "true"
         end
+        
       end
     end
   end
