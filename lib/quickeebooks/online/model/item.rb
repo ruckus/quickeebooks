@@ -32,6 +32,7 @@ module Quickeebooks
         xml_accessor :expense_account_reference, :from => 'ExpenseAccountRef', :as => Quickeebooks::Online::Model::AccountReference
 
         validates_presence_of :account_reference
+        validates_length_of :name, :within => 1..100
 
         def to_xml_ns(options = {})
           to_xml_inject_ns('Item', options)
