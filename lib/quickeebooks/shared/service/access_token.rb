@@ -12,6 +12,7 @@ module Quickeebooks
         xml_accessor :error_message
         xml_accessor :token,  :from => 'OAuthToken'
         xml_accessor :secret, :from => 'OAuthTokenSecret'
+        xml_accessor :server_time, :from => 'ServerTime', :as => Time
 
         def error?
           error_code.to_i != 0
