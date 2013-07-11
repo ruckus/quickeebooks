@@ -1,7 +1,6 @@
 require "quickeebooks"
 require "quickeebooks/online/model/meta_data"
 require "quickeebooks/online/model/id"
-require "quickeebooks/online/model/custom_field"
 require "quickeebooks/online/model/meta_data"
 
 module Quickeebooks
