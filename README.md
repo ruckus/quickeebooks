@@ -362,6 +362,7 @@ Entity | Create | Update | List | Delete | Fetch by ID | Other
 Account | yes | yes | yes | yes | yes 
 Bill | yes | yes | yes | yes | yes 
 Bill Payment | yes | yes | yes | yes | yes 
+Class | yes | yes | yes | yes | yes 
 Company Meta Data | no | no | no | no | no | `load`
 Customer | yes | yes | yes | yes | yes | 
 Employee | yes | yes | yes | yes | yes | 

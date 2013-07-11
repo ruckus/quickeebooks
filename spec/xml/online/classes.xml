@@ -1,0 +1,15 @@
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+	<qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Classes">
+		<Class>
+			<Id idDomain="QBO">3550000000000079157695</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2013-07-11T14:19:03-07:00</CreateTime>
+				<LastUpdatedTime>2013-07-11T14:19:03-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>FOO</Name>
+		</Class>
+	</qbo:CdmCollections>
+	<qbo:Count>1</qbo:Count>
+	<qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>

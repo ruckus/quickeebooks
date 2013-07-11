@@ -40,7 +40,8 @@ module Quickeebooks
         end
 
         def to_xml_ns(options = {})
-          to_xml
+          options.merge!(:destination_name => 'Class')
+          to_xml_inject_ns('Clazz', options)
         end
 
         # To delete an account Intuit requires we provide Id and SyncToken fields

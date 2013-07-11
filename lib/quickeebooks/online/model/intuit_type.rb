@@ -30,7 +30,12 @@ module Quickeebooks
         def to_xml_inject_ns(model_name, options = {})
           s = StringIO.new
           xml = to_xml(options).write_to(s, :indent => 0, :indent_text => '')
-          s.string.sub("<#{model_name}>", "<#{model_name} #{Quickeebooks::Online::Service::ServiceBase::XML_NS}>")
+          destination_name = options.fetch(:destination_name, nil)
+          destination_name ||= model_name
+          
+          step1 = s.string.sub("<#{model_name}>", "<#{destination_name} #{Quickeebooks::Online::Service::ServiceBase::XML_NS}>")
+          step2 = step1.sub("</#{model_name}>", "</#{destination_name}>")
+          step2
         end
 
       end

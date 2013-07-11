@@ -1,3 +1,14 @@
+## 0.1.11 (2013-07-11)
+
+* Online: Added support for `Class` read/write
+* Fixed broken collection resource for Online#Item
+* Implemented ItemSpec from @thilo - thank you
+  Online resource for collection generation is now just the plural name
+  of the model across the board - it appears Intuit has standardized on
+  this going forward and we no longer need the overrides in certain
+  models
+* Added ServerTime accessor to AccessToken entity
+
 ## 0.1.10 (2013-06-06)
 
 * Desktop: Begin implementation of enforcing filter ordering. The Intuit API requires that filter elements obey a given order. We don't expect callers to know this order. Thus, callers can give us an array of filters and the Service class will re-order them appropriately. As of this release only `Job` service has `FILTER_ORDER` defined. However going forward its easy to add it to other Service objects as needed.

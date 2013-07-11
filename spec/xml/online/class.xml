@@ -1,0 +1,9 @@
+<Class xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+	<Id idDomain="QBO">3600000000000725718</Id>
+	<SyncToken>0</SyncToken>
+	<MetaData>
+		<CreateTime>2013-07-11T15:14:37-07:00</CreateTime>
+		<LastUpdatedTime>2013-07-11T15:14:37-07:00</LastUpdatedTime>
+	</MetaData>
+	<Name>TEST CLASS</Name>
+</Class>

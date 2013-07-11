@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
 
   gem.description = gem.summary
 
-  gem.files = Dir["**/*"]
+  gem.files = Dir['lib/**/*']
 
   gem.add_dependency 'roxml'
   gem.add_dependency 'oauth'

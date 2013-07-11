@@ -19,8 +19,9 @@ module Quickeebooks
           postal_code
         end
 
-        def to_xml_ns
-          to_xml_inject_ns('Address')
+        def to_xml_ns(options = {})
+          options.merge!(:destination_name => 'Address')
+          to_xml_inject_ns('Address', options)
         end
 
       end
