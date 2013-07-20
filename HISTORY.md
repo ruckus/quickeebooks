@@ -1,3 +1,7 @@
+## 0.1.12 (2013-07-20)
+
+* Added "ShowAs" and "ExternalID" Attributes to Online#Vendor
+
 ## 0.1.11 (2013-07-11)
 
 * Online: Added support for `Class` read/write
