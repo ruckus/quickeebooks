@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.email    = "toolbag@gmail.com"
   gem.homepage = "http://github.com/ruckus/quickeebooks"
   gem.summary  = "REST API to Quickbooks Online/Windows via Intuit Data Services"
-
+  gem.license  = 'MIT'
   gem.description = gem.summary
 
   gem.files = Dir['lib/**/*']
