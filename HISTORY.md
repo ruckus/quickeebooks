@@ -1,3 +1,7 @@
+## 0.1.13 (2013-07-21)
+
+* Removed UUIDTools gem in favor or Ruby stdlib SecureRandom to generate a "unique" ID.
+
 ## 0.1.12 (2013-07-20)
 
 * Added "ShowAs" and "ExternalID" Attributes to Online#Vendor

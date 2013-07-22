@@ -1,4 +1,4 @@
-require 'uuidtools'
+require 'securerandom'
 
 module Quickeebooks
   module Shared
@@ -15,7 +15,7 @@ module Quickeebooks
         end
 
         def guid
-          UUIDTools::UUID.random_create.to_s.gsub('-', '')
+          SecureRandom.hex(16)
         end
         
         private

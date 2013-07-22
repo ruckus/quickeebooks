@@ -18,7 +18,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'oauth'
   gem.add_dependency 'nokogiri', '~> 1.5.9'
   gem.add_dependency 'activemodel'
-  gem.add_dependency 'uuidtools'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'simplecov'
