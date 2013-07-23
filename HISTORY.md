@@ -1,3 +1,7 @@
+## 0.1.15 (2013-07-22)
+
+* Added Windows#Invoice::fetch_by_id
+
 ## 0.1.14 (2013-07-22)
 
 * Added Windows#Item::fetch_by_id
