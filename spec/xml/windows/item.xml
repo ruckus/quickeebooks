@@ -1,0 +1,58 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:xdb="http://xmlns.oracle.com/xdb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.intuit.com/sb/cdm/v2 ../common/RestDataFilter.xsd">
+	<Items> 
+		<Item> 
+			<Id idDomain="QB">407</Id> 
+			<SyncToken>1</SyncToken> 
+			<MetaData> 
+				<CreatedBy>app</CreatedBy> 
+				<CreateTime>2013-05-07T21:04:22.0Z</CreateTime> 
+				<LastModifiedBy>app</LastModifiedBy> 
+				<LastUpdatedTime>2013-07-22T22:19:49.0Z</LastUpdatedTime> 
+			</MetaData> 
+			<ExternalKey idDomain="QB">407</ExternalKey> 
+			<Synchronized>true</Synchronized> 
+			<Name>DWCSH11</Name> 
+			<Desc>2011 Deovlet Wines - Solomon Hills Chardonnay 12/750ML</Desc> 
+			<Taxable>false</Taxable> 
+			<Active>true</Active> 
+			<UnitPrice> 
+				<CurrencyCode>USD</CurrencyCode> 
+				<Amount>0</Amount> 
+			</UnitPrice> 
+			<Type>Inventory</Type> 
+			<UOMId idDomain="QB">1</UOMId> 
+			<UOMAbbrv>By the Case - 12 pk</UOMAbbrv> 
+			<IncomeAccountRef> 
+				<AccountId idDomain="QB">8</AccountId> 
+				<AccountName>Sales</AccountName> 
+				<AccountType>Revenue</AccountType> 
+			</IncomeAccountRef> 
+			<PurchaseDesc>2011 Deovlet Wines - Solomon Hills Chardonnay 12/750ML</PurchaseDesc> 
+			<PurchaseCost> 
+				<CurrencyCode>USD</CurrencyCode> 
+				<Amount>210</Amount> 
+			</PurchaseCost> 
+			<COGSAccountRef> 
+				<AccountId idDomain="QB">44</AccountId> 
+				<AccountName>Wine Cost</AccountName> 
+				<AccountType>Expense</AccountType> 
+			</COGSAccountRef> 
+			<AssetAccountRef> 
+				<AccountId idDomain="QB">42</AccountId> 
+				<AccountName>Inventory Asset</AccountName> 
+				<AccountType>Asset</AccountType> 
+			</AssetAccountRef> 
+			<PrefVendorRef> 
+				<VendorId idDomain="QB">755</VendorId> 
+				<VendorName>Deovlet Wines</VendorName> 
+			</PrefVendorRef> 
+			<AvgCost> 
+				<CurrencyCode>USD</CurrencyCode> 
+				<Amount>210</Amount> 
+			</AvgCost> 
+			<QtyOnHand>2.5</QtyOnHand> 
+			<QtyOnPurchaseOrder>0</QtyOnPurchaseOrder> 
+			<QtyOnSalesOrder>0</QtyOnSalesOrder> 
+		</Item> 
+	</Items>
+</RestResponse>

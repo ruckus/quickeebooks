@@ -1,3 +1,7 @@
+## 0.1.14 (2013-07-22)
+
+* Added Windows#Item::fetch_by_id
+
 ## 0.1.13 (2013-07-21)
 
 * Removed UUIDTools gem in favor or Ruby stdlib SecureRandom to generate a "unique" ID.
