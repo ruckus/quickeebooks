@@ -12,7 +12,7 @@ module Quickeebooks
         include OnlineEntityModel
 
         XML_NODE = "TimeActivity"
-        REST_RESOURCE = "time_activity"
+        REST_RESOURCE = "time-activity"
 
         xml_accessor :txn_date, :from => 'TxnDate'
         xml_accessor :name_of, :from => 'NameOf'
