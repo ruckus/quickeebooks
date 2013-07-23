@@ -394,7 +394,7 @@ Customer | yes | yes | yes | no | yes |
 Employee | no | no | yes | no | no | 
 Entitlement | n/a | n/a | n/a | n/a | n/a | 
 Invoice | yes | no | yes | no | no | 
-Item | yes | no | yes | yes | no | 
+Item | yes | no | yes | no | yes | 
 Journal Entry | no | no | no | no | no | 
 Payment | yes | no | yes | no | yes | 
 Payment Method | no | no | yes | no | no | 
