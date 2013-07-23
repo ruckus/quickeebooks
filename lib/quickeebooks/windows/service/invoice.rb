@@ -9,7 +9,6 @@ module Quickeebooks
     module Service
       class Invoice < Quickeebooks::Windows::Service::ServiceBase
 
-
         # Fetch a +Collection+ of +Invoice+ objects
         # Arguments:
         # filters: Array of +Filter+ objects to apply
@@ -23,6 +22,11 @@ module Quickeebooks
         
         def invoice_as_pdf(invoice_id, destination_file_name)
           raise NoMethodError, 'invoice_as_pdf is not implemented in Quickeebooks for Windows, only available in the Online adapter.'
+        end
+        
+        def fetch_by_id(id, idDomain = 'QB', options = {})
+          url = "#{url_for_resource(Quickeebooks::Windows::Model::Invoice::REST_RESOURCE)}/#{id}"
+          fetch_object(Quickeebooks::Windows::Model::Invoice, url, {:idDomain => idDomain})
         end
         
         def create(invoice)

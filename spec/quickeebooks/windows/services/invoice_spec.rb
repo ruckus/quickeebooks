@@ -124,4 +124,15 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     created_invoice.success.request_name.should == "InvoiceAdd"
   end
 
+  it "can fetch an Invoice by ID" do
+    xml = windowsFixture("invoice.xml")
+    model = Quickeebooks::Windows::Model::Invoice
+    service = Quickeebooks::Windows::Service::Invoice.new
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    FakeWeb.register_uri(:get, "#{service.url_for_resource(model::REST_RESOURCE)}/40154?idDomain=QB", :status => ["200", "OK"], :body => xml)
+    invoice = service.fetch_by_id('40154')
+    invoice.header.doc_number.should == "1515"
+  end
+
 end
