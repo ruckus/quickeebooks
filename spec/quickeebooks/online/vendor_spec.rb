@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Model::Vendor" do
 
-  describe "parse vendor from XML" do
+  it "parse vendor from XML" do
     xml = onlineFixture("vendor.xml")
     vendor = Quickeebooks::Online::Model::Vendor.from_xml(xml)
     vendor.sync_token.should == 0
