@@ -1,3 +1,7 @@
+## 0.1.16 (2013-07-24)
+
+* Use proper URL for Online#TimeActivity tracking. Thanks Kevin Carter - https://github.com/DexterTheDragon
+
 ## 0.1.15 (2013-07-22)
 
 * Added Windows#Invoice::fetch_by_id
