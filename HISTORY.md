@@ -1,4 +1,4 @@
-## 0.1.16 (2013-07-24)
+## 0.1.17 (2013-07-24)
 
 * Use proper URL for Online#TimeActivity tracking. Thanks Kevin Carter - https://github.com/DexterTheDragon
 
