@@ -189,10 +189,11 @@ module Quickeebooks
           unless headers.has_key?('Content-Type')
             headers.merge!({'Content-Type' => 'application/xml'})
           end
-          # puts "METHOD = #{method}"
-          # puts "URL = #{url}"
-          # puts "BODY = #{body == nil ? "<NIL>" : body}"
-          # puts "HEADERS = #{headers.inspect}"
+          log "------ New Request ------"
+          log "METHOD = #{method}"
+          log "RESOURCE = #{url}"
+          log "BODY(#{body.class}) = #{body == nil ? "<NIL>" : body.inspect}"
+          log "HEADERS = #{headers.inspect}"
           response = @oauth.request(method, url, body, headers)
           check_response(response)
         end
@@ -206,7 +207,8 @@ module Quickeebooks
         end
 
         def check_response(response)
-          #puts "HTTP Response: #{response.code}"
+          log "RESPONSE CODE = #{response.code}"
+          log "RESPONSE BODY = #{response.body}"
           parse_xml(response.body)
           status = response.code.to_i
           case status
