@@ -1,5 +1,5 @@
 describe "Quickeebooks::Online::Model::SalesReceipt" do
-  describe "parse invoice from XML" do
+  it "parse invoice from XML" do
     xml = onlineFixture("sales_receipt.xml")
     sales_receipt = Quickeebooks::Online::Model::SalesReceipt.from_xml(xml)
     sales_receipt.id.value.should == "8"

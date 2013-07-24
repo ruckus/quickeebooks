@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Model::TimeActivity" do
 
-  describe "parse time_activity from XML" do
+  it "parse time_activity from XML" do
     xml = onlineFixture("time_activity.xml")
     time_activity = Quickeebooks::Online::Model::TimeActivity.from_xml(xml)
     time_activity.sync_token.should == 0

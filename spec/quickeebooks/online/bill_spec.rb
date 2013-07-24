@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Model::Bill" do
 
-  describe "parse bill from XML" do
+  it "parse bill from XML" do
     xml = onlineFixture("bill.xml")
     bill = Quickeebooks::Online::Model::Bill.from_xml(xml)
     bill.header.doc_number.should == "2004"
