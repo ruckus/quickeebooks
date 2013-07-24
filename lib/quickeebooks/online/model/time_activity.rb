@@ -36,7 +36,21 @@ module Quickeebooks
         xml_accessor :end_time, :from => 'EndTime', :as => DateTime
         xml_accessor :description, :from => 'Description'
 
-        validates_presence_of :name_of, :customer_id, :hourly_rate
+        validates_inclusion_of :name_of, :in => %w(Employee Vendor)
+        validates_presence_of :customer_id, :if => Proc.new { |c| c.billable_status == 'Billable' }
+        validates_presence_of :hourly_rate, :if => Proc.new { |c| c.billable_status == 'Billable' }
+        validates_inclusion_of :billable_status, :in => %w(Billable NotBillable HasBeenBilled),
+          :allow_blank => true
+        validate :duration_is_set
+
+        def duration_is_set
+          if (self.hours || self.minutes) && (self.start_time || self.end_time)
+            errors.add(:base, 'Only one duration type allowed')
+          end
+          unless (self.hours || self.minutes) || (self.start_time && self.end_time)
+            errors.add(:base, 'A duration is required')
+          end
+        end
 
 
         def self.resource_for_collection
