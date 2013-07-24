@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Model::Employee" do
 
-  describe "parse employee from XML" do
+  it "parse employee from XML" do
     xml = onlineFixture("employee.xml")
     employee = Quickeebooks::Online::Model::Employee.from_xml(xml)
     employee.sync_token.should == 0
