@@ -68,6 +68,20 @@ describe "Quickeebooks::Online::Model::TimeActivity" do
         time_activity.valid?
         time_activity.errors.full_messages.should include('Name of is not included in the list')
       end
+
+      it 'requires the vendor node when name_of is Vendor' do
+        time_activity = Quickeebooks::Online::Model::TimeActivity.new
+        time_activity.name_of = 'Vendor'
+        time_activity.valid?
+        time_activity.errors.full_messages.should include("Vendor can't be blank")
+      end
+
+      it 'requires the employee node when name_of is Employee' do
+        time_activity = Quickeebooks::Online::Model::TimeActivity.new
+        time_activity.name_of = 'Employee'
+        time_activity.valid?
+        time_activity.errors.full_messages.should include("Employee can't be blank")
+      end
     end
     describe 'customer_id' do
       it 'is valid when billable_status is Billable' do

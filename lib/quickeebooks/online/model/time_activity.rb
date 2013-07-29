@@ -37,6 +37,8 @@ module Quickeebooks
         xml_accessor :description, :from => 'Description'
 
         validates_inclusion_of :name_of, :in => %w(Employee Vendor)
+        validate :has_vendor_node, :if => Proc.new { |c| c.name_of == 'Vendor' }
+        validate :has_employee_node, :if => Proc.new { |c| c.name_of == 'Employee' }
         validates_presence_of :customer_id, :if => Proc.new { |c| c.billable_status == 'Billable' }
         validates_presence_of :hourly_rate, :if => Proc.new { |c| c.billable_status == 'Billable' }
         validates_inclusion_of :billable_status, :in => %w(Billable NotBillable HasBeenBilled),
@@ -52,6 +54,17 @@ module Quickeebooks
           end
         end
 
+        def has_vendor_node
+          unless self.vendor.is_a?(Quickeebooks::Online::Model::TimeActivityVendor)
+            errors.add(:vendor, "can't be blank")
+          end
+        end
+
+        def has_employee_node
+          unless self.vendor.is_a?(Quickeebooks::Online::Model::TimeActivityEmployee)
+            errors.add(:employee, "can't be blank")
+          end
+        end
 
         def self.resource_for_collection
           'time-activities'
