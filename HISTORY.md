@@ -1,3 +1,7 @@
+## 0.1.18 (2013-08-08)
+
+* Fixed issue with incorrect time format for parsing UTC date/times. Thanks Sean Xie- https://github.com/seanxiesx
+
 ## 0.1.17 (2013-07-24)
 
 * Use proper URL for Online#TimeActivity tracking. Thanks Kevin Carter - https://github.com/DexterTheDragon
