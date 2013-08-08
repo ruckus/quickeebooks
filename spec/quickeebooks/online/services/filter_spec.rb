@@ -21,7 +21,7 @@ describe "Quickeebooks::Online::Service::Filter" do
   it "can generate a datetime filter" do
     time = Time.mktime(2012, 1, 2, 8, 31, 44)
     filter = Quickeebooks::Online::Service::Filter.new(:datetime, :field => "CreateTime", :after => time)
-    filter.to_s.should == "CreateTime :AFTER: 2012-01-02T08:31:44"
+    filter.to_s.should == "CreateTime :AFTER: 2012-01-02T08:31:44UTC"
   end
 
   it "can generate a number filter with equals" do

@@ -4,7 +4,7 @@ module Quickeebooks
       class Filter
 
         DATE_FORMAT = '%Y-%m-%d'
-        DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
+        DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S%Z'
 
         attr_reader :type
         attr_accessor :field, :value
