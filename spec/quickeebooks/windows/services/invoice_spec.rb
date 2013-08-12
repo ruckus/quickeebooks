@@ -134,5 +134,25 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     invoice = service.fetch_by_id('40154')
     invoice.header.doc_number.should == "1515"
   end
+  
+  it "can update an invoice" do
+    invoice_xml = windowsFixture("invoice_2.xml")
+    update_response_xml = windowsFixture("invoice_update_success.xml")
+    service = Quickeebooks::Windows::Service::Invoice.new
+    model = Quickeebooks::Windows::Model::Invoice
+    invoice = model.from_xml(invoice_xml)
+    invoice.header.customer_name.should == "Cafe Smith"
+
+    service.access_token = @oauth
+    service.realm_id = @realm_id
+    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => update_response_xml)
+
+    # alter the note
+    invoice.header.note = "an updated note"
+    update_response = service.update(invoice)
+    update_response.success?.should == true
+    update_response.success.object_ref.id.value.should == "98"
+    update_response.success.request_name.should == "InvoiceMod"
+  end
 
 end

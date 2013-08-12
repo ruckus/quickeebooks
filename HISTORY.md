@@ -1,3 +1,7 @@
+## 0.1.19 (2013-08-12)
+
+* Implemented Windows#Invoice.update
+
 ## 0.1.18 (2013-08-08)
 
 * Fixed issue with incorrect time format for parsing UTC date/times. Thanks Sean Xie- https://github.com/seanxiesx

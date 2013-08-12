@@ -39,6 +39,31 @@ module Quickeebooks
           end
           perform_write(Quickeebooks::Windows::Model::Invoice, xml)
         end
+        
+        def update(invoice)
+          # XML is a wrapped 'object' where the type is specified as an attribute
+          #    <Object xsi:type="Invoice">
+
+          # Intuit requires that some fields are unset / do not exist.
+          invoice.meta_data = nil
+          invoice.external_key = nil
+
+          # unset Id fields in addresses
+          if invoice.header.billing_address
+            invoice.header.billing_address.id = nil
+          end
+
+          if invoice.header.shipping_address
+            invoice.header.shipping_address.id = nil
+          end
+          
+          xml_node = invoice.to_xml(:name => 'Object')
+          xml_node.set_attribute('xsi:type', 'Invoice')
+          xml = Quickeebooks::Shared::Service::OperationNode.new.mod do |content|
+            content << "<ExternalRealmId>#{self.realm_id}</ExternalRealmId>#{xml_node}"
+          end
+          perform_write(Quickeebooks::Windows::Model::Invoice, xml)
+        end
 
       end
     end

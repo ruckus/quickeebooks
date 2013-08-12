@@ -1,0 +1,11 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+	<Success RequestId="f8e9785dd55d38b0d2c0d8cfca2a0d66">
+		<ObjectRef>
+			<Id idDomain="QB">98</Id>
+			<SyncToken>1</SyncToken>
+			<LastUpdatedTime>2013-08-12T17:48:50Z</LastUpdatedTime>
+		</ObjectRef>
+		<RequestName>InvoiceMod</RequestName>
+		<ProcessedTime>2013-08-12T17:48:50Z</ProcessedTime>
+	</Success>
+</RestResponse>

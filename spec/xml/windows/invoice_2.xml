@@ -1,0 +1,80 @@
+<Invoice>
+	<Id idDomain="QB">40154</Id>
+	<SyncToken>1</SyncToken>
+	<MetaData>
+		<CreateTime>2013-01-29T17:53:55.874Z</CreateTime>
+		<LastUpdatedTime>2013-02-21T23:21:00.357Z</LastUpdatedTime>
+	</MetaData>
+	<ExternalKey idDomain="QB">40154</ExternalKey>
+	<Synchronized>true</Synchronized>
+	<Header>
+		<DocNumber>1515</DocNumber>
+		<TxnDate>2013-01-23T00:00:00Z</TxnDate>
+		<Status>Paid</Status>
+		<CustomerId idDomain="QB">694</CustomerId>
+		<CustomerName>Cafe Smith</CustomerName>
+		<RemitToId idDomain="QB">694</RemitToId>
+		<RemitToName>Cafe Smith</RemitToName>
+		<SalesRepId idDomain="QB">15</SalesRepId>
+		<SalesRepName>OT</SalesRepName>
+		<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
+		<SalesTaxCodeName>Non</SalesTaxCodeName>
+		<ShipDate>2013-01-23T00:00:00Z</ShipDate>
+		<SubTotalAmt>1520</SubTotalAmt>
+		<TaxId idDomain="QB">80</TaxId>
+		<TaxName>San Francisco County</TaxName>
+		<TaxRate>8.5</TaxRate>
+		<TaxAmt>0</TaxAmt>
+		<TotalAmt>1520</TotalAmt>
+		<ToBePrinted>false</ToBePrinted>
+		<ToBeEmailed>false</ToBeEmailed>
+		<ARAccountId idDomain="QB">48</ARAccountId>
+		<ARAccountName>Accounts Receivable</ARAccountName>
+		<SalesTermId idDomain="QB">6</SalesTermId>
+		<SalesTermName>Net 30</SalesTermName>
+		<DueDate>2013-02-22T00:00:00Z</DueDate>
+		<BillAddr>
+			<Id idDomain="QB">00000000000017bL</Id>
+			<Line1>1313</Line1>
+			<Line2>1313 Main Street</Line2>
+			<City>Napa</City>
+			<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+			<PostalCode>94559</PostalCode>
+			<Default>true</Default>
+			<Tag>Billing</Tag>
+		</BillAddr>
+		<ShipAddr>
+			<Id idDomain="QB">00000000000018TF</Id>
+			<Line1>Cafe Smith</Line1>
+			<Line2>1313 Main Street</Line2>
+			<City>Napa</City>
+			<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+			<PostalCode>94559</PostalCode>
+			<Default>false</Default>
+			<Tag>Shipping</Tag>
+		</ShipAddr>
+		<ShipMethodId idDomain="QB">5</ShipMethodId>
+		<Balance>0</Balance>
+	</Header>
+	<Line>
+		<Id idDomain="QB">40156</Id>
+		<Desc>2010 Charles Shaw</Desc>
+		<Amount>1520</Amount>
+		<Taxable>false</Taxable>
+		<ItemId idDomain="QB">330</ItemId>
+		<ItemName>SHAW2010</ItemName>
+		<ItemType>Inventory</ItemType>
+		<UnitPrice>760</UnitPrice>
+		<Qty>2</Qty>
+		<UOMId idDomain="QB">2</UOMId>
+		<UOMAbbrv>12-750ML</UOMAbbrv>
+		<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
+		<SalesTaxCodeName>Non</SalesTaxCodeName>
+	</Line>
+	<TaxLine>
+		<Id idDomain="QB">40157</Id>
+		<Amount>0</Amount>
+		<TaxId idDomain="QB">80</TaxId>
+		<TaxName>San Francisco County</TaxName>
+	</TaxLine>
+</Invoice>
