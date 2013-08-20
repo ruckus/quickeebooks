@@ -19,6 +19,7 @@ module Quickeebooks
         xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Windows::Model::MetaData
         xml_accessor :external_key, :as => Quickeebooks::Windows::Model::ExternalKey
         xml_accessor :synchronized
+        xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
         xml_accessor :header, :from => 'Header', :as => Quickeebooks::Windows::Model::SalesReceiptHeader
         xml_accessor :line_items, :from => 'Line', :as => [Quickeebooks::Windows::Model::SalesReceiptLineItem]
         xml_accessor :tax_line, :from => 'TaxLine', :as => Quickeebooks::Windows::Model::TaxLine
