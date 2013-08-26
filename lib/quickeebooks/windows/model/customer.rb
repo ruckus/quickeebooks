@@ -74,7 +74,6 @@ module Quickeebooks
         xml_accessor :total_expense, :from => 'TotalExpense', :as => Quickeebooks::Windows::Model::Price
 
         validates_length_of :name, :minimum => 1
-        validate :require_an_address
         validate :name_cannot_contain_invalid_characters
         validate :email_address_is_valid
         
@@ -124,12 +123,6 @@ module Quickeebooks
             unless address.index('@') && address.index('.')
               errors.add(:email, "Email address must contain @ and . (dot)")
             end
-          end
-        end
-        
-        def require_an_address
-          if addresses.nil? || (addresses.is_a?(Array) && addresses.empty?)
-            errors.add(:addresses, "Must provide at least one address for this Customer.")
           end
         end
 
