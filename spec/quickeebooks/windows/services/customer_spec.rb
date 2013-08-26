@@ -90,20 +90,6 @@ describe "Quickeebooks::Windows::Service::Customer" do
     customer.errors.keys.include?(:name).should == true
   end
 
-  it "cannot create a customer with no address" do
-    customer = Quickeebooks::Windows::Model::Customer.new
-    service = Quickeebooks::Windows::Service::Customer.new
-    service.access_token = @oauth
-    service.realm_id = @realm_id
-    customer.name = "Bobs Plumbing"
-    lambda do
-      service.create(customer)
-    end.should raise_error(InvalidModelException)
-
-    customer.valid?.should == false
-    customer.errors.keys.include?(:addresses).should == true
-  end
-
   it "cannot create a customer with an invalid email" do
     customer = Quickeebooks::Windows::Model::Customer.new
     service = Quickeebooks::Windows::Service::Customer.new
