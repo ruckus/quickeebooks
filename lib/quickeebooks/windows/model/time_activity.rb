@@ -14,6 +14,7 @@ module Quickeebooks
   module Windows
     module Model
       class TimeActivity < Quickeebooks::Windows::Model::IntuitType
+        include ActiveModel::Validations
 
         XML_COLLECTION_NODE = 'TimeActivities'
         XML_NODE = 'TimeActivity'
@@ -55,6 +56,22 @@ module Quickeebooks
         xml_accessor :start_time, :from => 'StartTime'
         xml_accessor :end_time, :from => 'EndTime'
         xml_accessor :description, :from => 'Description'
+
+        validates_inclusion_of :name_of, :in => %w(Employee Vendor)
+        validates_inclusion_of :billable_status, :in => %w(Billable NotBillable HasBeenBilled),
+          :allow_blank => true
+        validate :duration_is_set
+
+        def valid_for_create?
+          valid?
+          errors.empty?
+        end
+
+        def duration_is_set
+          unless (self.hours || self.minutes || self.seconds)
+            errors.add(:base, 'A duration is required')
+          end
+        end
 
       end
     end

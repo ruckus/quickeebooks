@@ -404,7 +404,7 @@ Sales Tax | no | no | yes | no | no |
 Ship Method | no | no | yes | no | no | 
 Sync Activity | no | no | no | no | no | `retrieve`
 Sync Status | no | no | no | no | no | `retrieve`
-Time Activity | no | no | yes | no | no | 
+Time Activity | yes | no | yes | no | no | 
 Tracking Class | n/a | n/a | n/a | n/a | n/a | 
 Vendor | no | no | no | no | no |
 
