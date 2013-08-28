@@ -12,6 +12,7 @@ module Quickeebooks
   module Windows
     module Model
       class Employee < Quickeebooks::Windows::Model::IntuitType
+        include ActiveModel::Validations
 
         XML_COLLECTION_NODE = 'Employees'
         XML_NODE = 'Employee'
@@ -50,6 +51,23 @@ module Quickeebooks
         xml_accessor :hired_date, :from => 'HiredDate'
         xml_accessor :released_date, :from => 'ReleasedDate'
         xml_accessor :use_time_entry, :from => 'UseTimeEntry'
+
+        validates_length_of :name, :minimum => 1
+        validate :name_cannot_contain_invalid_characters
+
+        def valid_for_create?
+          valid?
+          if type_of.nil?
+            errors.add(:type_of, "Missing required attribute TypeOf for Create")
+          end
+          errors.empty?
+        end
+
+        def name_cannot_contain_invalid_characters
+          if name.to_s.index(':')
+            errors.add(:name, "Name cannot contain a colon (:)")
+          end
+        end
 
         def address=(address)
           self.addresses ||= []

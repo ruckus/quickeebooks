@@ -391,7 +391,7 @@ Bill | no | no | no | no | no
 Bill Payment | no | no | no | no | no
 Company Meta Data | no | no | no | no | no | `load`
 Customer | yes | yes | yes | no | yes | 
-Employee | no | no | yes | no | no | 
+Employee | yes | no | yes | no | no | 
 Entitlement | n/a | n/a | n/a | n/a | n/a | 
 Invoice | yes | yes | yes | no | yes | 
 Item | yes | no | yes | no | yes | 
