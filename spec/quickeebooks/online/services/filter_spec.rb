@@ -49,5 +49,4 @@ describe "Quickeebooks::Online::Service::Filter" do
     filter.to_s.should == text
   end
 
-
 end

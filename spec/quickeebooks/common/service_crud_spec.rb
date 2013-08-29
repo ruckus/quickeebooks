@@ -34,7 +34,7 @@ describe 'Mixin CRUD like methods for various service modules' do
           module Windows
             module Service
               class TEST < Quickeebooks::Windows::Service::ServiceBase
-                #{inc} 
+                #{inc}
               end
             end
             module Model

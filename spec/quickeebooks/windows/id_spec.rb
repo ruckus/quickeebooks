@@ -9,7 +9,7 @@ describe "Quickeebooks::Windows::Model::Id" do
     id = Quickeebooks::Windows::Model::Id.new(42)
     id.to_i.should == 42
   end
-  
+
   it "can be coerced into a String" do
     id = Quickeebooks::Windows::Model::Id.new(42)
     "/whatever/#{id}".should == "/whatever/42"

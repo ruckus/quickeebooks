@@ -1,6 +1,6 @@
 describe Quickeebooks::Online::Service::TrackingClass do
   before(:all) do
-    construct_oauth_service :tracking_class
+    construct_online_service :tracking_class
   end
 
   describe ".list" do
@@ -96,4 +96,3 @@ describe Quickeebooks::Online::Service::TrackingClass do
 
   end
 end
-

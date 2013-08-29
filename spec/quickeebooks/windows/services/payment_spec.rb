@@ -1,32 +1,17 @@
 describe "Quickeebooks::Windows::Service::Payment" do
   before(:all) do
-    FakeWeb.allow_net_connect = false
-    qb_key = "key"
-    qb_secret = "secreet"
-
-    @realm_id = "9991111222"
-    @base_uri = "https://qbo.intuit.com/qbo36"
-    @oauth_consumer = OAuth::Consumer.new(qb_key, qb_key, {
-        :site                 => "https://oauth.intuit.com",
-        :request_token_path   => "/oauth/v1/get_request_token",
-        :authorize_path       => "/oauth/v1/get_access_token",
-        :access_token_path    => "/oauth/v1/get_access_token"
-    })
-    @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
+    construct_windows_service :payment
   end
 
   it "can fetch a list of payments" do
     xml = windowsFixture("payments.xml")
-    service = Quickeebooks::Windows::Service::Payment.new
-    service.access_token = @oauth
-    service.realm_id = @realm_id
 
     model = Quickeebooks::Windows::Model::Payment
     FakeWeb.register_uri(:post,
-                         service.url_for_resource(model::REST_RESOURCE),
+                         @service.url_for_resource(model::REST_RESOURCE),
                          :status => ["200", "OK"],
                          :body => xml)
-    payments = service.list
+    payments = @service.list
     payments.entries.count.should == 1
 
     payment = payments.entries.first
@@ -39,16 +24,13 @@ describe "Quickeebooks::Windows::Service::Payment" do
     line1.should_not be_nil
     line1.amount.should == header.total_amount
   end
-  
+
   it "can create a payment" do
     xml = windowsFixture("payment_create_success.xml")
-    service = Quickeebooks::Windows::Service::Payment.new
     model = Quickeebooks::Windows::Model::Payment
     customer = Quickeebooks::Windows::Model::Payment.new
 
-    service.access_token = @oauth
-    service.realm_id = @realm_id
-    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+    FakeWeb.register_uri(:post, @service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
 
     payment = Quickeebooks::Windows::Model::Payment.new
     payment.header = Quickeebooks::Windows::Model::PaymentHeader.new
@@ -64,7 +46,7 @@ describe "Quickeebooks::Windows::Service::Payment" do
     line_item.amount = 88
     payment.line_items << line_item
 
-    create_response = service.create(payment)
+    create_response = @service.create(payment)
     create_response.success?.should == true
     create_response.success.object_ref.id.value.should == "984434"
     create_response.success.request_name.should == "PaymentAdd"

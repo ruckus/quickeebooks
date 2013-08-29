@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Service::Vendor" do
   before(:all) do
-    construct_oauth_service :vendor
+    construct_online_service :vendor
   end
 
   it "can fetch a list of vendors" do

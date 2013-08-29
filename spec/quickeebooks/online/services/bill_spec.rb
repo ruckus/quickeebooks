@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Service::Bill" do
   before(:all) do
-    construct_oauth_service :bill
+    construct_online_service :bill
   end
 
   it "can fetch a list of bills" do
@@ -46,7 +46,7 @@ describe "Quickeebooks::Online::Service::Bill" do
     xml2 = onlineFixture("bill2.xml")
     bill = Quickeebooks::Online::Model::Bill.new
     bill.header = Quickeebooks::Online::Model::BillHeader.new
-    bill.header.total_amount = 75.00 
+    bill.header.total_amount = 75.00
     bill.id = Quickeebooks::Online::Model::Id.new("56")
     bill.sync_token = 2
 
@@ -56,6 +56,4 @@ describe "Quickeebooks::Online::Service::Bill" do
     updated.header.total_amount.should == 75.00
   end
 
-
 end
-

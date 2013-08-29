@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Service::SalesReceipt" do
   before(:all) do
-    construct_oauth_service :sales_receipt
+    construct_online_service :sales_receipt
   end
 
   it "can fetch a list of sales receipts" do
@@ -59,6 +59,4 @@ describe "Quickeebooks::Online::Service::SalesReceipt" do
     updated.header.total_amount.should == 50.00
   end
 
-
 end
-

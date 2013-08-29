@@ -1,17 +1,6 @@
 describe "Quickeebooks::Online::Service::ServiceBase" do
   before(:all) do
-    FakeWeb.allow_net_connect = false
-    qb_key = "key"
-    qb_secret = "secreet"
-
-    @realm_id = "9991111222"
-    @oauth_consumer = OAuth::Consumer.new(qb_key, qb_key, {
-        :site                 => "https://oauth.intuit.com",
-        :request_token_path   => "/oauth/v1/get_request_token",
-        :authorize_path       => "/oauth/v1/get_access_token",
-        :access_token_path    => "/oauth/v1/get_access_token"
-    })
-    @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
+    construct_oauth
 
     xml = onlineFixture("user.xml")
     user_url = Quickeebooks::Online::Service::ServiceBase::QB_BASE_URI + "/" + @realm_id

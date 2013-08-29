@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Service::TimeActivity" do
   before(:all) do
-    construct_oauth_service :time_activity
+    construct_online_service :time_activity
   end
 
   it "can fetch a list of time activities" do

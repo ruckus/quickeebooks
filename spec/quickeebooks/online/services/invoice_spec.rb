@@ -1,22 +1,6 @@
 describe "Quickeebooks::Online::Service::Invoice" do
   before(:all) do
-    FakeWeb.allow_net_connect = false
-    qb_key = "key"
-    qb_secret = "secreet"
-
-    @realm_id = "9991111222"
-    @oauth_consumer = OAuth::Consumer.new(qb_key, qb_key, {
-        :site                 => "https://oauth.intuit.com",
-        :request_token_path   => "/oauth/v1/get_request_token",
-        :authorize_path       => "/oauth/v1/get_access_token",
-        :access_token_path    => "/oauth/v1/get_access_token"
-    })
-    @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
-    @service = Quickeebooks::Online::Service::Invoice.new
-    @service.access_token = @oauth
-    @service.instance_eval {
-      @realm_id = "9991111222"
-    }
+    construct_online_service :invoice
   end
 
   it "can create an invoice" do
@@ -47,7 +31,7 @@ describe "Quickeebooks::Online::Service::Invoice" do
     url = @service.url_for_resource(Quickeebooks::Online::Model::Invoice.resource_for_singular) + "/13?methodx=delete"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => response_xml)
     invoice = Quickeebooks::Online::Model::Invoice.from_xml(fixture_xml)
-    
+
     result = @service.delete(invoice)
   end
 
@@ -73,6 +57,5 @@ describe "Quickeebooks::Online::Service::Invoice" do
     Quickeebooks.logger = ::Logger.new($stdout)
     Quickeebooks.log = false
   end
-
 
 end

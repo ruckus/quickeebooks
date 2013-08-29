@@ -1,29 +1,14 @@
 describe "Quickeebooks::Windows::Service::Invoice" do
   before(:all) do
-    FakeWeb.allow_net_connect = false
-    qb_key = "key"
-    qb_secret = "secreet"
-
-    @realm_id = "9991111222"
-    @base_uri = "https://qbo.intuit.com/qbo36"
-    @oauth_consumer = OAuth::Consumer.new(qb_key, qb_key, {
-        :site                 => "https://oauth.intuit.com",
-        :request_token_path   => "/oauth/v1/get_request_token",
-        :authorize_path       => "/oauth/v1/get_access_token",
-        :access_token_path    => "/oauth/v1/get_access_token"
-    })
-    @oauth = OAuth::AccessToken.new(@oauth_consumer, "blah", "blah")
+    construct_windows_service :invoice
   end
 
   it "can fetch a list of invoices" do
     xml = windowsFixture("invoices.xml")
-    service = Quickeebooks::Windows::Service::Invoice.new
-    service.access_token = @oauth
-    service.realm_id = @realm_id
 
     model = Quickeebooks::Windows::Model::Invoice
-    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
-    invoices = service.list
+    FakeWeb.register_uri(:post, @service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+    invoices = @service.list
     invoices.entries.count.should == 7
 
     invoice = invoices.entries.first
@@ -75,12 +60,9 @@ describe "Quickeebooks::Windows::Service::Invoice" do
 
   it "can create an invoice" do
     xml = windowsFixture("invoice_success_create.xml")
-    service = Quickeebooks::Windows::Service::Invoice.new
-    service.access_token = @oauth
-    service.realm_id = @realm_id
 
     model = Quickeebooks::Windows::Model::Invoice
-    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
+    FakeWeb.register_uri(:post, @service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => xml)
 
     invoice = Quickeebooks::Windows::Model::Invoice.new
     header = Quickeebooks::Windows::Model::InvoiceHeader.new
@@ -117,7 +99,7 @@ describe "Quickeebooks::Windows::Service::Invoice" do
     invoice.line_items << item1
     invoice.header = header
 
-    created_invoice = service.create(invoice)
+    created_invoice = @service.create(invoice)
 
     created_invoice.success?.should == true
     created_invoice.success.object_ref.id.value.should == "9107908"
@@ -127,29 +109,23 @@ describe "Quickeebooks::Windows::Service::Invoice" do
   it "can fetch an Invoice by ID" do
     xml = windowsFixture("invoice.xml")
     model = Quickeebooks::Windows::Model::Invoice
-    service = Quickeebooks::Windows::Service::Invoice.new
-    service.access_token = @oauth
-    service.realm_id = @realm_id
-    FakeWeb.register_uri(:get, "#{service.url_for_resource(model::REST_RESOURCE)}/40154?idDomain=QB", :status => ["200", "OK"], :body => xml)
-    invoice = service.fetch_by_id('40154')
+    FakeWeb.register_uri(:get, "#{@service.url_for_resource(model::REST_RESOURCE)}/40154?idDomain=QB", :status => ["200", "OK"], :body => xml)
+    invoice = @service.fetch_by_id('40154')
     invoice.header.doc_number.should == "1515"
   end
-  
+
   it "can update an invoice" do
     invoice_xml = windowsFixture("invoice_2.xml")
     update_response_xml = windowsFixture("invoice_update_success.xml")
-    service = Quickeebooks::Windows::Service::Invoice.new
     model = Quickeebooks::Windows::Model::Invoice
     invoice = model.from_xml(invoice_xml)
     invoice.header.customer_name.should == "Cafe Smith"
 
-    service.access_token = @oauth
-    service.realm_id = @realm_id
-    FakeWeb.register_uri(:post, service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => update_response_xml)
+    FakeWeb.register_uri(:post, @service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => update_response_xml)
 
     # alter the note
     invoice.header.note = "an updated note"
-    update_response = service.update(invoice)
+    update_response = @service.update(invoice)
     update_response.success?.should == true
     update_response.success.object_ref.id.value.should == "98"
     update_response.success.request_name.should == "InvoiceMod"

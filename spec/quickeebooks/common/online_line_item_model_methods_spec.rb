@@ -38,4 +38,3 @@ describe 'Mixin for online models that have line items' do
   end
 
 end
-

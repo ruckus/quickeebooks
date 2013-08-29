@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Service::Customer" do
   before(:all) do
-    construct_oauth_service :customer
+    construct_online_service :customer
   end
 
   it "can fetch a list of customers" do

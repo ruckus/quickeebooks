@@ -1,6 +1,6 @@
 describe "Quickeebooks::Windows::Service::PaymentMethod" do
   before(:all) do
-    construct_oauth_service :payment_method
+    construct_online_service :payment_method
   end
 
   it "can fetch a list of journal entries" do

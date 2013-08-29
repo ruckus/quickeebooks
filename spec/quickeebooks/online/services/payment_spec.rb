@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Service::Payment" do
   before(:all) do
-    construct_oauth_service :payment
+    construct_online_service :payment
   end
 
   it "can fetch a list of payments" do
@@ -20,7 +20,7 @@ describe "Quickeebooks::Online::Service::Payment" do
     payment = Quickeebooks::Online::Model::Payment.new
     payment.header = Quickeebooks::Online::Model::PaymentHeader.new
     payment.header.note = "Payment against Invoice"
-    payment.header.total_amount = 20.00 
+    payment.header.total_amount = 20.00
     result = @service.create(payment)
     result.id.value.to_i.should > 0
   end
@@ -48,7 +48,7 @@ describe "Quickeebooks::Online::Service::Payment" do
     payment = Quickeebooks::Online::Model::Payment.new
     payment.header = Quickeebooks::Online::Model::PaymentHeader.new
     payment.header.note = "Payment against Invoice"
-    payment.header.total_amount = 50.00 
+    payment.header.total_amount = 50.00
     payment.id = Quickeebooks::Online::Model::Id.new("50")
     payment.sync_token = 2
 
@@ -58,6 +58,4 @@ describe "Quickeebooks::Online::Service::Payment" do
     updated.header.total_amount.should == 50.00
   end
 
-
 end
-

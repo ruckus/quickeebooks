@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Service::JournalEntry" do
   before(:all) do
-    construct_oauth_service :journal_entry
+    construct_online_service :journal_entry
   end
 
   it "can fetch a list of journal entries" do
@@ -20,7 +20,7 @@ describe "Quickeebooks::Online::Service::JournalEntry" do
     journal_entry.header = Quickeebooks::Online::Model::JournalEntryHeader.new
     journal_entry.header.note = "Journal entry for bananas"
     journal_entry.header.doc_number = "5"
-    
+
     credit = Quickeebooks::Online::Model::JournalEntryLineItem.new
     credit.amount = 100.00
     credit.posting_type = "Credit"
@@ -70,6 +70,4 @@ describe "Quickeebooks::Online::Service::JournalEntry" do
     updated = @service.update(journal_entry)
   end
 
-
 end
-

@@ -1,6 +1,6 @@
 describe "Quickeebooks::Online::Service::BillPayment" do
   before(:all) do
-    construct_oauth_service :bill_payment
+    construct_online_service :bill_payment
   end
 
   describe "list" do
