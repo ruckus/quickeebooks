@@ -28,7 +28,7 @@ describe "Quickeebooks::Online::Service::Account" do
   end
 
   it "can fetch a list of accounts" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/accounts.xml")
+    xml = onlineFixture("accounts.xml")
     url = @service.url_for_resource(Quickeebooks::Online::Model::Account.resource_for_collection)
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml)
     accounts = @service.list
@@ -38,7 +38,7 @@ describe "Quickeebooks::Online::Service::Account" do
   end
 
   it "can create an account" do
-    xml = File.read(File.dirname(__FILE__) + "/../../../xml/online/account.xml")
+    xml = onlineFixture("account.xml")
     url = @service.url_for_resource(Quickeebooks::Online::Model::Account.resource_for_singular)
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml)
     account = Quickeebooks::Online::Model::Account.new
