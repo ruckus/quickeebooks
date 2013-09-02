@@ -9,6 +9,10 @@ module Quickeebooks
         xml_accessor :tag, :from => 'Tag'
         xml_accessor :default, :from => 'Default'
 
+        def initialize(uri = nil)
+          self.uri = uri if uri
+        end
+        
         def to_xml(options = {})
           return "" if uri.to_s.empty?
         end

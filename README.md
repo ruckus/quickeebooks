@@ -370,6 +370,7 @@ Entitlement       | n/a    | n/a    | n/a  | n/a    | n/a         | `status`
 Invoice           | yes    | yes    | yes  | yes    | yes         | `invoice_as_pdf`
 Item              | yes    | yes    | yes  | yes    | yes         |
 Journal Entry     | yes    | yes    | yes  | yes    | yes         |
+Job               | yes    | yes    | yes  | yes    | yes         |
 Payment           | yes    | yes    | yes  | yes    | yes         |
 Payment Method    | no     | no     | no   | no     | no          |
 Sales Receipt     | yes    | yes    | yes  | yes    | yes         |

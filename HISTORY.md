@@ -1,3 +1,7 @@
+## 0.1.20 (2013-09-02)
+
+* Implemented Online#Job
+
 ## 0.1.19 (2013-08-12)
 
 * Implemented Windows#Invoice.update
