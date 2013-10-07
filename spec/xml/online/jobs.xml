@@ -1,0 +1,31 @@
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+	<qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Jobs">
+		<Job>
+			<Id idDomain="QBO">128</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2013-09-02T11:28:45-07:00</CreateTime>
+				<LastUpdatedTime>2013-09-02T11:28:45-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>Kitchen Cleaning</Name>
+			<WebSite />
+			<Email />
+			<CustomField xsi:type="BooleanTypeCustomField">
+				<DefinitionId>Bill With Parent</DefinitionId>
+				<Value>false</Value>
+			</CustomField>
+			<CustomField xsi:type="StringTypeCustomField">
+				<DefinitionId>Preferred Delivery Method</DefinitionId>
+				<Value>DONT</Value>
+			</CustomField>
+			<ShowAs>Kitchen Cleaning</ShowAs>
+			<OpenBalance>
+				<Amount>0</Amount>
+			</OpenBalance>
+			<CustomerId idDomain="QBO">10</CustomerId>
+			<CustomerName>Acme Wines</CustomerName>
+		</Job>
+	</qbo:CdmCollections>
+	<qbo:Count>1</qbo:Count>
+	<qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>

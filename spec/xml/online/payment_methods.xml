@@ -1,0 +1,66 @@
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+	<qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="PaymentMethods">
+		<PaymentMethod>
+			<Id idDomain="QBO">3</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2009-06-19T14:04:29-07:00</CreateTime>
+				<LastUpdatedTime>2009-06-19T14:04:29-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>American Express</Name>
+			<Type>CREDIT_CARD</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QBO">1</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2009-06-19T14:04:29-07:00</CreateTime>
+				<LastUpdatedTime>2009-06-19T14:04:29-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>Cash</Name>
+			<Type>NON_CREDIT_CARD</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QBO">2</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2009-06-19T14:04:29-07:00</CreateTime>
+				<LastUpdatedTime>2009-06-19T14:04:29-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>Check</Name>
+			<Type>NON_CREDIT_CARD</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QBO">4</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2009-06-19T14:04:29-07:00</CreateTime>
+				<LastUpdatedTime>2009-06-19T14:04:29-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>Discover</Name>
+			<Type>CREDIT_CARD</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QBO">5</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2009-06-19T14:04:29-07:00</CreateTime>
+				<LastUpdatedTime>2009-06-19T14:04:29-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>MasterCard</Name>
+			<Type>CREDIT_CARD</Type>
+		</PaymentMethod>
+		<PaymentMethod>
+			<Id idDomain="QBO">6</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2009-06-19T14:04:29-07:00</CreateTime>
+				<LastUpdatedTime>2009-06-19T14:04:29-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>Visa</Name>
+			<Type>CREDIT_CARD</Type>
+		</PaymentMethod>
+	</qbo:CdmCollections>
+	<qbo:Count>6</qbo:Count>
+	<qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>

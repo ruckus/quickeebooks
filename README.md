@@ -357,56 +357,57 @@ As of `0.1.9` the supported Service operations are:
 
 ### Quickbooks Online
 
-Entity | Create | Update | List | Delete | Fetch by ID | Other
---- | --- | --- | --- | --- | --- | ---
-Account | yes | yes | yes | yes | yes 
-Bill | yes | yes | yes | yes | yes 
-Bill Payment | yes | yes | yes | yes | yes 
-Class | yes | yes | yes | yes | yes 
-Company Meta Data | no | no | no | no | no | `load`
-Customer | yes | yes | yes | yes | yes | 
-Employee | yes | yes | yes | yes | yes | 
-Entitlement | n/a | n/a | n/a | n/a | n/a | `status`
-Invoice | yes | yes | yes | yes | yes | `invoice_as_pdf`
-Item | yes | yes | yes | yes | yes | 
-Journal Entry | yes | yes | yes | yes | yes | 
-Payment | yes | yes | yes | yes | yes | 
-Payment Method | no | no | no | no | no | 
-Sales Receipt | yes | yes | yes | yes | yes | 
-Sales Rep | no | no | no | no | no | 
-Sales Tax | no | no | no | no | no | 
-Ship Method | no | no | no | no | no | 
-Sync Activity | n/a | n/a | n/a | n/a | n/a | 
-Sync Status | n/a | n/a | n/a | n/a | n/a | 
-Time Activity | yes | yes | yes | yes | yes | 
-Tracking Class | yes | yes | yes | yes | yes | 
-Vendor | yes | yes | yes | yes | yes | 
+Entity            | Create | Update | List | Delete | Fetch by ID | Other
+---               | ---    | ---    | ---  | ---    | ---         | ---
+Account           | yes    | yes    | yes  | yes    | yes
+Bill              | yes    | yes    | yes  | yes    | yes
+Bill Payment      | yes    | yes    | yes  | yes    | yes
+Class             | yes    | yes    | yes  | yes    | yes
+Company Meta Data | no     | no     | no   | no     | no          | `load`
+Customer          | yes    | yes    | yes  | yes    | yes         |
+Employee          | yes    | yes    | yes  | yes    | yes         |
+Entitlement       | n/a    | n/a    | n/a  | n/a    | n/a         | `status`
+Invoice           | yes    | yes    | yes  | yes    | yes         | `invoice_as_pdf`
+Item              | yes    | yes    | yes  | yes    | yes         |
+Journal Entry     | yes    | yes    | yes  | yes    | yes         |
+Job               | yes    | yes    | yes  | yes    | yes         |
+Payment           | yes    | yes    | yes  | yes    | yes         |
+Payment Method    | no     | no     | no   | no     | no          |
+Sales Receipt     | yes    | yes    | yes  | yes    | yes         |
+Sales Rep         | no     | no     | no   | no     | no          |
+Sales Tax         | no     | no     | no   | no     | no          |
+Ship Method       | no     | no     | no   | no     | no          |
+Sync Activity     | n/a    | n/a    | n/a  | n/a    | n/a         |
+Sync Status       | n/a    | n/a    | n/a  | n/a    | n/a         |
+Time Activity     | yes    | yes    | yes  | yes    | yes         |
+Tracking Class    | yes    | yes    | yes  | yes    | yes         |
+Vendor            | yes    | yes    | yes  | yes    | yes         |
 
 ### Quickbooks Windows / Desktop
 
-Entity | Create | Update | List | Delete | Fetch by ID | Other
---- | --- | --- | --- | --- | --- | ---
-Account | no | no | yes | no | no 
-Bill | no | no | no | no | no
-Bill Payment | no | no | no | no | no
-Company Meta Data | no | no | no | no | no | `load`
-Customer | yes | yes | yes | no | yes | 
-Employee | no | no | yes | no | no | 
-Entitlement | n/a | n/a | n/a | n/a | n/a | 
-Invoice | yes | yes | yes | no | yes | 
-Item | yes | no | yes | no | yes | 
-Journal Entry | no | no | no | no | no | 
-Payment | yes | no | yes | no | yes | 
-Payment Method | no | no | yes | no | no | 
-Sales Receipt | yes | no | yes | no | no | 
-Sales Rep | no | no | yes | no | no | 
-Sales Tax | no | no | yes | no | no | 
-Ship Method | no | no | yes | no | no | 
-Sync Activity | no | no | no | no | no | `retrieve`
-Sync Status | no | no | no | no | no | `retrieve`
-Time Activity | no | no | yes | no | no | 
-Tracking Class | n/a | n/a | n/a | n/a | n/a | 
-Vendor | no | no | no | no | no |
+Entity            | Create | Update | List | Delete | Fetch by ID | Other
+---               | ---    | ---    | ---  | ---    | ---         | ---
+Account           | no     | no     | yes  | no     | no
+Bill              | no     | no     | no   | no     | no
+Bill Payment      | no     | no     | no   | no     | no
+Company Meta Data | no     | no     | no   | no     | no          | `load`
+Customer          | yes    | yes    | yes  | no     | yes         |
+Employee          | yes    | no     | yes  | no     | no          |
+Entitlement       | n/a    | n/a    | n/a  | n/a    | n/a         |
+Invoice           | yes    | yes    | yes  | no     | yes         |
+Item              | yes    | no     | yes  | no     | yes         |
+Journal Entry     | no     | no     | no   | no     | no          |
+Payment           | yes    | no     | yes  | no     | yes         |
+Payment Method    | no     | no     | yes  | no     | no          |
+Sales Receipt     | yes    | no     | yes  | no     | no          |
+Sales Rep         | no     | no     | yes  | no     | no          |
+Sales Tax         | no     | no     | yes  | no     | no          |
+Ship Method       | no     | no     | yes  | no     | no          |
+Sync Activity     | no     | no     | no   | no     | no          | `retrieve`
+Sync Status       | no     | no     | no   | no     | no          | `retrieve`
+Time Activity     | yes    | no     | yes  | no     | no          |
+Tracking Class    | n/a    | n/a    | n/a  | n/a    | n/a         |
+Vendor            | no     | no     | no   | no     | no          |
 
 
 ## Invoice Service
