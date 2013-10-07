@@ -8,10 +8,10 @@ module Quickeebooks
     module Model
       class Account < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
-        
+
         REST_RESOURCE = "account"
         XML_NODE = "Account"
-        
+
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id', :as => Quickeebooks::Online::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
@@ -31,7 +31,6 @@ module Quickeebooks
         def to_xml_ns(options = {})
           to_xml_inject_ns('Account', options)
         end
-        
 
         def valid_for_update?
           if sync_token.nil?
@@ -46,9 +45,9 @@ module Quickeebooks
           return false if(id.nil? || sync_token.nil?)
           id.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
         end
-        
+
       end
     end
-    
+
   end
 end
