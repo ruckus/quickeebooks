@@ -41,12 +41,11 @@ module Quickeebooks
           
           xml_node = sales_receipt.to_xml(:name => 'Object')
           xml_node.set_attribute('xsi:type', 'SalesReceipt')
-          xml = <<-XML
-          <Mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" equestId="#{guid}" xmlns="http://www.intuit.com/sb/cdm/v2">
-          <ExternalRealmId>#{self.realm_id}</ExternalRealmId>
-          #{xml_node}
-          </Mod>
-          XML
+
+          xml = Quickeebooks::Shared::Service::OperationNode.new.modd do |content|
+            content << "<ExternalRealmId>#{self.realm_id}</ExternalRealmId> #{xml_node}"
+          end
+          
           perform_write(Quickeebooks::Windows::Model::SalesReceipt, xml)
         end
 
