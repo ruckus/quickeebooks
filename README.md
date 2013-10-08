@@ -387,7 +387,7 @@ Vendor            | yes    | yes    | yes  | yes    | yes         |
 
 Entity            | Create | Update | List | Delete | Fetch by ID | Other
 ---               | ---    | ---    | ---  | ---    | ---         | ---
-Account           | no     | no     | yes  | no     | no
+Account           | yes    | no     | yes  | no     | no
 Bill              | no     | no     | no   | no     | no
 Bill Payment      | no     | no     | no   | no     | no
 Company Meta Data | no     | no     | no   | no     | no          | `load`
@@ -399,10 +399,10 @@ Item              | yes    | no     | yes  | no     | yes         |
 Journal Entry     | no     | no     | no   | no     | no          |
 Payment           | yes    | no     | yes  | no     | yes         |
 Payment Method    | no     | no     | yes  | no     | no          |
-Sales Receipt     | yes    | no     | yes  | no     | no          |
+Sales Receipt     | yes    | yes    | yes  | no     | yes         |
 Sales Rep         | no     | no     | yes  | no     | no          |
 Sales Tax         | no     | no     | yes  | no     | no          |
-Ship Method       | no     | no     | yes  | no     | no          |
+Ship Method       | yes    | no     | yes  | no     | no          |
 Sync Activity     | no     | no     | no   | no     | no          | `retrieve`
 Sync Status       | no     | no     | no   | no     | no          | `retrieve`
 Time Activity     | yes    | no     | yes  | no     | no          |
