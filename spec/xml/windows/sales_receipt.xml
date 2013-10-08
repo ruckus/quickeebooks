@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SalesReceipt>
+ <Id idDomain="NG">4865595</Id>
+ <SyncToken>2</SyncToken>
+ <MetaData>
+  <CreatedBy>app</CreatedBy>
+  <CreateTime>2010-09-02T08:59:13.0Z</CreateTime>
+  <LastModifiedBy>app</LastModifiedBy>
+  <LastUpdatedTime>2010-09-02T09:04:45.0Z</LastUpdatedTime>
+ </MetaData>
+ <Synchronized>false</Synchronized>
+ <Header>
+  <DocNumber>1</DocNumber>
+  <TxnDate>2010-09-02</TxnDate>
+  <CustomerId>44883182</CustomerId>
+  <ShipDate>2011-03-02</ShipDate>
+  <SubTotalAmt>2500</SubTotalAmt>
+  <TaxRate>0</TaxRate>
+  <TaxAmt>0</TaxAmt>
+  <TotalAmt>2500</TotalAmt>
+  <DiscountAmt>0</DiscountAmt>
+ </Header>
+ <Line>
+  <Id>2302971</Id>
+  <Desc>QWERTY Keyboards</Desc>
+  <Taxable>false</Taxable>
+  <ItemName>Keyboards</ItemName>
+  <UnitPrice>1250</UnitPrice>
+  <Qty>2</Qty>
+ </Line>
+  <Id idDomain="NG">2302971</Id>
+  <Desc>Keyboards</Desc>
+  <Taxable>false</Taxable>
+  <ItemName>Eraser634188653670738758</ItemName>
+  <UnitPrice>1</UnitPrice>
+  <Qty>2</Qty>
+  </Line>
+</SalesReceipt>

@@ -13,4 +13,17 @@ describe "Quickeebooks::Windows::Service::SalesReceipt" do
     sales_receipt.line_items.first.desc.should eql "QWERTY Keyboards"
   end
 
+  it "can update a sales receipt" do
+    xml = windowsFixture("sales_receipt.xml")
+    update_response_xml = windowsFixture("sales_receipt_update_success.xml")
+    model = Quickeebooks::Windows::Model::SalesReceipt
+    sales_receipt = model.from_xml(xml)
+
+    FakeWeb.register_uri(:post, @service.url_for_resource(model::REST_RESOURCE), :status => ["200", "OK"], :body => update_response_xml)
+
+    update_response = @service.update(sales_receipt)
+    update_response.success?.should == true
+    update_response.success.request_name.should == "SalesReceiptMod"
+  end
+
 end

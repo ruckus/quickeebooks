@@ -20,7 +20,7 @@ module Quickeebooks
 
         def create(sales_receipt)
           raise InvalidModelException unless sales_receipt.valid_for_create?
-          
+
           # XML is a wrapped 'object' where the type is specified as an attribute
           #    <Object xsi:type="Invoice">
           xml_node = sales_receipt.to_xml(:name => 'Object')
@@ -34,23 +34,23 @@ module Quickeebooks
         def update(sales_receipt)
           # XML is a wrapped 'object' where the type is specified as an attribute
           #    <Object xsi:type="Invoice">
-          
+
           # Intuit requires that some fields are unset / do not exist.
           sales_receipt.meta_data = nil
           sales_receipt.external_key = nil
-          
+
           xml_node = sales_receipt.to_xml(:name => 'Object')
           xml_node.set_attribute('xsi:type', 'SalesReceipt')
 
-          xml = Quickeebooks::Shared::Service::OperationNode.new.modd do |content|
+          xml = Quickeebooks::Shared::Service::OperationNode.new.mod do |content|
             content << "<ExternalRealmId>#{self.realm_id}</ExternalRealmId> #{xml_node}"
           end
-          
+
           perform_write(Quickeebooks::Windows::Model::SalesReceipt, xml)
         end
 
       end
     end
-    
+
   end
 end

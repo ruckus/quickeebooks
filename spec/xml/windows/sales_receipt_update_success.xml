@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+   <Success RequestId="edbbf821a9af4e1bafff675be85e515d">
+    <ObjectRef>
+     <Id idDomain="NG">4865595</Id>
+     <SyncToken>2</SyncToken>
+     <LastUpdatedTime>2010-09-02T09:04:46Z</LastUpdatedTime>
+    </ObjectRef>
+    <RequestName>SalesReceiptMod</RequestName>
+    <ProcessedTime>2010-09-02T09:04:46Z</ProcessedTime>
+   </Success>
+</RestResponse>
