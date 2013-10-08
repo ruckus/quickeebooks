@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+<Success RequestId="a721d009adfd43488108de883949d4b9">
+   <ObjectRef>
+      <Id idDomain="NG">4040</Id>
+      <SyncToken>1</SyncToken>
+      <LastUpdatedTime>2010-06-18T02:17:18Z</LastUpdatedTime>
+   </ObjectRef>
+   <RequestName>AccountAdd</RequestName>
+   <ProcessedTime>2010-06-18T02:17:18Z</ProcessedTime>
+</Success>
+</RestResponse>
