@@ -1,3 +1,7 @@
+## 0.1.21 (2013-10-07)
+
+* Merged in updates from @peterberkenbosch and @GeekOnCoffee pertaining to Windows Sales Receipts & Ship Methods. Thank you!
+
 ## 0.1.20 (2013-09-02)
 
 * Implemented Online#Job
