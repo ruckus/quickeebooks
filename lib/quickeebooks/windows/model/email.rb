@@ -12,7 +12,7 @@ module Quickeebooks
 
         validates_length_of :address, :minimum => 1
         validate :ensure_valid_format
-        
+
         def to_xml(options = {})
           return "" if address.to_s.empty?
           super
@@ -23,13 +23,13 @@ module Quickeebooks
             self.address = email_address
           end
         end
-        
+
         def default?
           default == "true"
         end
-        
+
         private
-        
+
         def ensure_valid_format
           # address must contain both @ and .
           if !address.include?('@') || !address.include?('.')
@@ -40,5 +40,5 @@ module Quickeebooks
       end
     end
   end
-  
+
 end

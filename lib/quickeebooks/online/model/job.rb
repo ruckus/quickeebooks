@@ -32,9 +32,9 @@ module Quickeebooks
 
         validates_length_of :name, :minimum => 1
         validate :require_a_customer
-        
+
         private
-        
+
         def require_a_customer
           if customer_id.nil?
             errors.add(:customer_id, "Must provide a Customer ID.")

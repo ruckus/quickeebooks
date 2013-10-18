@@ -6,7 +6,7 @@ module Quickeebooks
 
         XML_COLLECTION_NODE = 'PaymentMethods'
         XML_NODE = 'PaymentMethod'
-        
+
         # https://services.intuit.com/sb/paymentmethod/v2/<realmID>
         REST_RESOURCE = "paymentmethod"
 
@@ -20,7 +20,7 @@ module Quickeebooks
         xml_accessor :name,           :from => 'Name'
         xml_accessor :active,         :from => 'Active'
         xml_accessor :type,           :from => 'Type'
-        
+
         validates_length_of :name, :minimum => 1
       end
     end

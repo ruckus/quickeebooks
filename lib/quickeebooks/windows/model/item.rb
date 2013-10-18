@@ -12,7 +12,7 @@ module Quickeebooks
 
         XML_COLLECTION_NODE = 'Items'
         XML_NODE = 'Item'
-        
+
         # https://services.intuit.com/sb/item/v2/<realmID>
         REST_RESOURCE = "item"
 

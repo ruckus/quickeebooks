@@ -42,7 +42,7 @@ describe "Quickeebooks::Online::Service::Job" do
     job = @service.fetch_by_id(128)
     job.name.should == "Kitchen Cleaning"
   end
-   
+
   it "can update a job" do
     xml2 = onlineFixture("job_create_response.xml")
     job = Quickeebooks::Online::Model::Job.new
@@ -50,7 +50,7 @@ describe "Quickeebooks::Online::Service::Job" do
     job.customer_id = Quickeebooks::Online::Model::Id.new("10")
     job.id = Quickeebooks::Online::Model::Id.new("128")
     job.sync_token = 2
-  
+
     url = "#{@service.url_for_resource(Quickeebooks::Online::Model::Job.resource_for_singular)}/#{job.id.value}"
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml2)
     updated = @service.update(job)

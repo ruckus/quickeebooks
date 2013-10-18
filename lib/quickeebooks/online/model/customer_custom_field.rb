@@ -13,7 +13,7 @@ module Quickeebooks
         xml_accessor :value, :from => 'Value'
 
         def to_xml(options = {})
-          # Intuit v3 doesnt support custom field updating... 
+          # Intuit v3 doesnt support custom field updating...
           return ""
 
           # return "" if value.to_s.empty?

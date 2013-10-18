@@ -73,7 +73,7 @@ module Quickeebooks
           end
           clauses.join(" :AND: ")
         end
-        
+
         def date_to_s
           clauses = []
           if @before
@@ -129,7 +129,7 @@ module Quickeebooks
         def number_to_xml
           "<#{@field}>#{CGI::escapeHTML(@value.to_s)}</#{@field}>"
         end
-        
+
         def date_to_xml
           "<#{@field}>#{formatted_date(@value)}</#{@field}>"
         end
@@ -137,7 +137,7 @@ module Quickeebooks
         def datetime_to_xml
           "<#{@field}>#{formatted_datetime(@value)}</#{@field}>"
         end
-        
+
         def formatted_date(date)
           date.strftime(DATE_FORMAT)
         end
@@ -145,7 +145,7 @@ module Quickeebooks
         def formatted_datetime(datetime)
           datetime.strftime(DATE_TIME_FORMAT)
         end
-        
+
         def valid_datetime?(value)
           value.respond_to?(:strftime)
         end

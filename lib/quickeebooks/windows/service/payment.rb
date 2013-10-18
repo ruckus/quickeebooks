@@ -20,7 +20,7 @@ module Quickeebooks
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
           fetch_collection(Quickeebooks::Windows::Model::Payment, nil, filters, page, per_page, sort, options)
         end
-        
+
         def create(payment)
           raise InvalidModelException unless payment.valid_for_create?
 
@@ -33,7 +33,7 @@ module Quickeebooks
           end
           perform_write(Quickeebooks::Windows::Model::Payment, xml)
         end
-        
+
       end
     end
   end

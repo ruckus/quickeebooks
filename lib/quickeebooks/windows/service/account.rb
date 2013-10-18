@@ -15,11 +15,11 @@ module Quickeebooks
           #    <Object xsi:type="Account">
           xml_node = account.to_xml(:name => 'Object')
           xml_node.set_attribute('xsi:type', 'Account')
-          
+
           xml = Quickeebooks::Shared::Service::OperationNode.new.add do |content|
             content << "<ExternalRealmId>#{self.realm_id}</ExternalRealmId>#{xml_node}"
           end
-          
+
           perform_write(Quickeebooks::Windows::Model::Account, xml)
         end
 

@@ -21,7 +21,7 @@ module Quickeebooks
           datetime.strftime('%Y-%m-%dT%H:%M:%S%z')
         end
 
-      end  
+      end
     end
   end
 end

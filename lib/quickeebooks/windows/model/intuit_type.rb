@@ -6,7 +6,7 @@ module Quickeebooks
         include ROXML
         include Logging
 
-      end 
+      end
     end
   end
 end

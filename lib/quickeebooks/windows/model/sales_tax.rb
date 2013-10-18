@@ -11,10 +11,10 @@ module Quickeebooks
 
         XML_COLLECTION_NODE = 'SalesTaxes'
         XML_NODE = 'SalesTax'
-        
+
         # https://services.intuit.com/sb/salestax/v2/<realmID>
         REST_RESOURCE = "salestax"
-        
+
         xml_convention :camelcase
         xml_accessor :id, :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token
@@ -25,7 +25,7 @@ module Quickeebooks
         xml_accessor :name
         xml_accessor :desc
         xml_accessor :tax_rate, :as => Float
-        
+
 
       end
     end

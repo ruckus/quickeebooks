@@ -11,10 +11,10 @@ module Quickeebooks
 
         XML_COLLECTION_NODE = 'CustomerMsgs'
         XML_NODE = 'CustomerMsg'
-        
+
         # https://services.intuit.com/sb/customermsg/v2/<realmID>
         REST_RESOURCE = "customermsg"
-        
+
         xml_convention :camelcase
         xml_accessor :id, :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token

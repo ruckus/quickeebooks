@@ -6,7 +6,7 @@ module Quickeebooks
     module Model
       class Vendor < Quickeebooks::Windows::Model::IntuitType
         include Quickeebooks::Model::Addressable
-        
+
         xml_convention :camelcase
         xml_accessor :vendor_id, :from => 'VendorId', :as => Quickeebooks::Windows::Model::VendorId
         xml_accessor :vendor_name
