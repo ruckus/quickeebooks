@@ -1,5 +1,5 @@
-module Quickeebooks 
-  module Online 
+module Quickeebooks
+  module Online
     module Model
       class SalesReceiptLineItem < Quickeebooks::Online::Model::IntuitType
         xml_name 'Line'

@@ -1,7 +1,7 @@
 require 'quickeebooks/online/model/id'
 
-module Quickeebooks 
-  module Online 
+module Quickeebooks
+  module Online
     module Model
       class PaymentLineItem < Quickeebooks::Online::Model::IntuitType
         xml_name 'Line'

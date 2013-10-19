@@ -11,10 +11,10 @@ module Quickeebooks
 
         XML_COLLECTION_NODE = 'ShipMethods'
         XML_NODE = 'ShipMethod'
-        
+
         # https://services.intuit.com/sb/shipmethod/v2/<realmID>
         REST_RESOURCE = "shipmethod"
-        
+
         xml_convention :camelcase
         xml_accessor :id, :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token

@@ -14,14 +14,14 @@ module Quickeebooks
     module Model
       class Job < Quickeebooks::Windows::Model::IntuitType
         include ActiveModel::Validations
-        
+
         XML_COLLECTION_NODE = 'Jobs'
         XML_NODE = 'Job'
-        
+
         # https://services.intuit.com/sb/job/v2/<realmId>
 
         REST_RESOURCE = "job"
-        
+
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id'
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
@@ -88,7 +88,7 @@ module Quickeebooks
         def shipping_address
             addresses.detect { |address| address.tag == "Shipping" }
         end
-        
+
       end
 
     end

@@ -10,9 +10,9 @@ module Quickeebooks
     module Model
       class Item < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
-        
+
         XML_NODE = "Item"
-        
+
         # <baseURL>/resource/items/v2/<realmID>
         REST_RESOURCE = "item"
 
@@ -47,7 +47,7 @@ module Quickeebooks
         def taxable?
           taxable == "true"
         end
-        
+
       end
     end
   end

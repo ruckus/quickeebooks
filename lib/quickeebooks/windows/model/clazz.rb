@@ -12,10 +12,10 @@ module Quickeebooks
 
         XML_COLLECTION_NODE = 'Classes'
         XML_NODE = 'Class'
-        
+
         # https://services.intuit.com/sb/customer/v2/<realmID>
         REST_RESOURCE = "class"
-        
+
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
@@ -28,20 +28,20 @@ module Quickeebooks
         xml_accessor :active
         xml_accessor :class_parent_id, :from => 'ClassParentId', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :class_parent_name, :from => 'ClassParentName'
-        
+
         validates_length_of :name, :minimum => 1, :maximum => 256
-        
+
         def active?
           active == 'true'
         end
-        
+
         def valid_for_update?
           if sync_token.nil?
             errors.add(:sync_token, "Missing required attribute SyncToken for update")
           end
           errors.empty?
         end
-        
+
         def valid_for_create?
           valid?
           if type_of.nil?

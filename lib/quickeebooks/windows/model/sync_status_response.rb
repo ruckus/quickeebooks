@@ -7,7 +7,7 @@ module Quickeebooks
         XML_NODE = 'SyncStatusResponse'
         # https://services.intuit.com/sb/status/v2/<realmID>
         REST_RESOURCE = "status"
-                
+
         STATE_CODES = {
           1 => {
             :desc => 'Synchronized',
@@ -46,7 +46,7 @@ module Quickeebooks
             :verbose => 'Not synchronized. The synchronization was rejected by Quickbooks because of a bad record or unsupported operation.'
           }
         }
-        
+
         MESSAGE_CODES = {
           10 => {
             :desc => 'ADD success',
@@ -121,7 +121,7 @@ module Quickeebooks
             :verbose => 'Objects have been rolled back to previous state. No synchronization occurred.'
           }
         }
-        
+
         xml_convention :camelcase
         xml_accessor :offering_id, :as => Quickeebooks::Windows::Model::Id
         xml_accessor :ng_id_set, :as => Quickeebooks::Windows::Model::NgIdSet
@@ -133,7 +133,7 @@ module Quickeebooks
         xml_accessor :message_code, :from => 'MessageCode'
         xml_accessor :message_desc, :from => 'MessageDesc'
         xml_accessor :response_log_tms, :from => 'ResponseLogTMS', :as => Time
-        
+
         def verbose_state_description
           if STATE_CODES[state_code.to_i]
             STATE_CODES[state_code.to_i][:verbose]
@@ -149,7 +149,7 @@ module Quickeebooks
             nil
           end
         end
-        
+
       end
     end
   end

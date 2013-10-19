@@ -1,7 +1,7 @@
 require 'quickeebooks/windows/model/id'
 
-module Quickeebooks 
-  module Windows 
+module Quickeebooks
+  module Windows
     module Model
       class PaymentLineItem < Quickeebooks::Windows::Model::IntuitType
         xml_name 'Line'

@@ -1,7 +1,7 @@
 require 'quickeebooks/online/model/bill_reimbursable'
 
-module Quickeebooks 
-  module Online 
+module Quickeebooks
+  module Online
     module Model
       class BillLineItem < Quickeebooks::Online::Model::IntuitType
         xml_name 'Line'

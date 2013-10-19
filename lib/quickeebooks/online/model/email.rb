@@ -1,7 +1,7 @@
 require "quickeebooks"
 
 module Quickeebooks
-  
+
   module Online
     module Model
       class Email < Quickeebooks::Online::Model::IntuitType

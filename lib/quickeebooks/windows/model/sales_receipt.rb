@@ -10,10 +10,10 @@ module Quickeebooks
 
     		XML_COLLECTION_NODE = 'SalesReceipts'
     		XML_NODE = 'SalesReceipt'
-    		
+
     		# https://services.intuit.com/sb/salesreceipt/v2/<realmID>
     		REST_RESOURCE = "salesreceipt"
-    		
+
     		xml_convention :camelcase
         xml_accessor :id, :as => Quickeebooks::Windows::Model::Id
         xml_accessor :meta_data, :from => 'MetaData', :as => Quickeebooks::Windows::Model::MetaData

@@ -15,7 +15,7 @@ describe "Quickeebooks::Online::Model::Job" do
     job.web_site.is_a?(Quickeebooks::Online::Model::WebSite).should == true
     job.web_site.uri.should == the_uri
   end
-  
+
   it "must require a Customer ID for Create" do
     job = Quickeebooks::Online::Model::Job.new
     job.name = "Computer Repair"

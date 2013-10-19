@@ -37,7 +37,7 @@ module Quickeebooks
         xml_accessor :discount_rate, :from => 'DiscountRate', :as => Float
         xml_accessor :discount_taxable, :from => 'DiscountTaxable'
         xml_accessor :txn_id, :from => 'TxnId', :as => Quickeebooks::Online::Model::Id
-        
+
       end
     end
   end

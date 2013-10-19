@@ -1,5 +1,5 @@
-module Quickeebooks 
-  module Online 
+module Quickeebooks
+  module Online
     module Model
       class JournalEntryLineItem < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations

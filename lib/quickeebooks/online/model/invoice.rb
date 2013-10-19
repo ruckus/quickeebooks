@@ -14,10 +14,10 @@ module Quickeebooks
       class Invoice < Quickeebooks::Online::Model::IntuitType
         include ActiveModel::Validations
         include OnlineLineItemModelMethods
-        
+
         XML_NODE = "Invoice"
         REST_RESOURCE = "invoice"
-        
+
         xml_convention :camelcase
         xml_accessor :id, :from => 'Id', :as => Quickeebooks::Online::Model::Id
         xml_accessor :sync_token, :from => 'SyncToken', :as => Integer

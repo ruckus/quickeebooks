@@ -24,7 +24,7 @@ module OnlineEntityModel
       xml_accessor :sales_term_id, :from => 'SalesTermId', :as => Quickeebooks::Online::Model::Id
       xml_accessor :open_balance, :from => 'OpenBalance', :as => Quickeebooks::Online::Model::OpenBalance
       xml_accessor :external_id, :from => 'ExternalId'
-    end 
+    end
   end
 
 

@@ -12,7 +12,7 @@ module Quickeebooks
 
         XML_COLLECTION_NODE = 'CompaniesMetaData'
         XML_NODE = 'CompanyMetaData'
-        
+
         REST_RESOURCE = "company"
 
         xml_convention :camelcase

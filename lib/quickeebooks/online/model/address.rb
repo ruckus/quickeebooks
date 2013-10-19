@@ -26,7 +26,7 @@ module Quickeebooks
 
       end
     end
-    
+
   end
 end
 

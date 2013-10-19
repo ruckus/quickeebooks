@@ -25,15 +25,15 @@ module Quickeebooks
         def to_xml_ns
           to_xml
         end
-        
+
         def default?
           default == "true"
         end
-        
+
         def state
           country_sub_division_code
         end
-        
+
         def state=(new_state)
           self.country_sub_division_code = new_state
         end

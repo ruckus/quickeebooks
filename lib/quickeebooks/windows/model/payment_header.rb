@@ -28,11 +28,11 @@ module Quickeebooks
         xml_accessor :detail,                   :from => 'Detail',             :as => Quickeebooks::Windows::Model::PaymentDetail
         xml_accessor :total_amount,             :from => 'TotalAmt',           :as => Float
         xml_accessor :process_payment,          :from => 'ProcessPayment'
-        
+
         validate :customer_is_valid
-        
+
         private
-        
+
         def customer_is_valid
           if customer_id.nil?
             errors.add(:customer_id, "Missing customer_id")
@@ -43,7 +43,7 @@ module Quickeebooks
             end
           end
         end
-        
+
       end
     end
   end

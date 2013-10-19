@@ -6,10 +6,10 @@ module Quickeebooks
         base.send :include, InstanceMethods
         base.extend ClassMethods
       end
-      
+
       module ClassMethods
       end
-      
+
       module InstanceMethods
         def phone=(phone)
           self.phones ||= []
@@ -58,7 +58,7 @@ module Quickeebooks
         def select_address(tag)
           addresses.detect { |address| address.tag == tag }
         end
-        
+
       end # InstanceMethods
 
     end
