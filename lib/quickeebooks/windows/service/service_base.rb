@@ -224,7 +224,7 @@ module Quickeebooks
           when 401
             raise AuthorizationFailure
           when 400, 500
-            parse_and_raise_exceptione
+            parse_and_raise_exception
           else
             raise "HTTP Error Code: #{status}, Msg: #{response.body}"
           end
