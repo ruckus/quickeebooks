@@ -1,3 +1,7 @@
+## 0.1.21 (2013-10-21)
+
+* Implemented Online#SalesTerm
+
 ## 0.1.21 (2013-10-07)
 
 * Merged in updates from @peterberkenbosch and @GeekOnCoffee pertaining to Windows Sales Receipts & Ship Methods. Thank you!

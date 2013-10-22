@@ -376,6 +376,7 @@ Payment Method    | no     | no     | no   | no     | no          |
 Sales Receipt     | yes    | yes    | yes  | yes    | yes         |
 Sales Rep         | no     | no     | no   | no     | no          |
 Sales Tax         | no     | no     | no   | no     | no          |
+Sales Term        | yes    | yes    | yes  | yes    | yes         |
 Ship Method       | no     | no     | no   | no     | no          |
 Sync Activity     | n/a    | n/a    | n/a  | n/a    | n/a         |
 Sync Status       | n/a    | n/a    | n/a  | n/a    | n/a         |

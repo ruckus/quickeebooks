@@ -1,0 +1,50 @@
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+	<qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SalesTerms">
+		<SalesTerm>
+			<Id idDomain="QBO">1</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2011-09-29T15:42:35-07:00</CreateTime>
+				<LastUpdatedTime>2011-09-29T15:42:35-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>Due on receipt</Name>
+			<DueDays>0</DueDays>
+			<DiscountDays>0</DiscountDays>
+		</SalesTerm>
+		<SalesTerm>
+			<Id idDomain="QBO">2</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2011-09-29T15:42:35-07:00</CreateTime>
+				<LastUpdatedTime>2011-09-29T15:42:35-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>Net 15</Name>
+			<DueDays>15</DueDays>
+			<DiscountDays>0</DiscountDays>
+		</SalesTerm>
+		<SalesTerm>
+			<Id idDomain="QBO">3</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2011-09-29T15:42:35-07:00</CreateTime>
+				<LastUpdatedTime>2011-09-29T15:42:35-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>Net 30</Name>
+			<DueDays>30</DueDays>
+			<DiscountDays>0</DiscountDays>
+		</SalesTerm>
+		<SalesTerm>
+			<Id idDomain="QBO">4</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2011-09-29T15:42:35-07:00</CreateTime>
+				<LastUpdatedTime>2011-09-29T15:42:35-07:00</LastUpdatedTime>
+			</MetaData>
+			<Name>Net 60</Name>
+			<DueDays>60</DueDays>
+			<DiscountDays>0</DiscountDays>
+		</SalesTerm>
+	</qbo:CdmCollections>
+	<qbo:Count>4</qbo:Count>
+	<qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>

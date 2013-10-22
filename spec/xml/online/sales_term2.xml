@@ -1,0 +1,11 @@
+<SalesTerm xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm"> 
+	<Id idDomain="QBO">1</Id> 
+	<SyncToken>0</SyncToken> 
+	<Name>Due When I say</Name> 
+	<MetaData> 
+		<CreateTime>2011-09-29T15:42:35-0700</CreateTime> 
+		<LastUpdatedTime>2011-09-29T15:42:35-0700</LastUpdatedTime> 
+	</MetaData> 
+	<DueDays>15</DueDays> 
+	<DiscountDays>10</DiscountDays> 
+</SalesTerm>
