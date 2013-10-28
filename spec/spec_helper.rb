@@ -11,7 +11,6 @@ require "rspec"
 require "fakeweb"
 require "oauth"
 
-$:.unshift "lib"
 require 'quickeebooks'
 
 Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
