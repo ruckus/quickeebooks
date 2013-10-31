@@ -80,6 +80,7 @@ def oauth_callback
 	# store the token, secret & RealmID somewhere for this user, you will need all 3 to work with Quickeebooks
 end
 ```
+:star: Also, check out regular Quickeebooks contributor, <a href="https://github.com/minimul" target="_blank">minimul</a>'s, article [Get started integrating Rails 4 and QuickBooks Online with the Quickeebooks Gem](http://minimul.com/get-started-integrating-rails-4-and-quickbooks-online-with-the-quickeebooks-gem-part-1.html) for a step-by-step guide.
 
 ## Creating an OAuth Access Token
 
