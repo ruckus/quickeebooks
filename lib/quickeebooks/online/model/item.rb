@@ -44,6 +44,14 @@ module Quickeebooks
           id.to_i > 0 && !sync_token.to_s.empty? && sync_token.to_i >= 0
         end
 
+        def valid_for_update?
+          if sync_token.nil?
+            errors.add(:sync_token, "Missing required attribute SyncToken for update")
+          end
+          valid?
+          errors.empty?
+        end        
+
         def taxable?
           taxable == "true"
         end
