@@ -8,4 +8,8 @@ describe "Quickeebooks::Online::Model::Item" do
     Quickeebooks::Online::Model::Item.resource_for_singular.should == 'item'
   end
 
+  it "responds to valid_for_update? " do
+  	Quickeebooks::Online::Model::Item.new.should respond_to :valid_for_update?
+  end
+
 end
