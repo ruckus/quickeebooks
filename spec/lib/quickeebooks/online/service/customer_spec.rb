@@ -29,7 +29,9 @@ describe "Quickeebooks::Online::Service::Customer" do
     FakeWeb.register_uri(:post, url, :status => ["200", "OK"], :body => xml)
     customer = Quickeebooks::Online::Model::Customer.new
     customer.name = "Billy Bob"
+    customer.email_address = 'johndoe@gmail.com'
     result = @service.create(customer)
+    result.email.address.should == 'johndoe@gmail.com'
     result.id.value.to_i.should > 0
   end
 
