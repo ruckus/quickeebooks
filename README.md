@@ -320,7 +320,7 @@ customer_service.list
 
 customer = Quickeebooks::Online::Model::Customer.new
 customer.name = "Richard Parker"
-customer.email = "richard@example.org"
+customer.email_address = "richard@example.org"
 customer_service.create(customer)
 ```
 
@@ -338,7 +338,7 @@ customer_service.list
 
 customer = customer_service.fetch_by_id(100)
 customer.name = "Richard Parker"
-customer.email = "richard@example.org"
+customer.email_address = "richard@example.org"
 customer_service.update(customer)
 ```
 
