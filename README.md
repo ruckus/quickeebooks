@@ -137,7 +137,7 @@ class IntuitController < ApplicationController
 
       # cache this if we have a valid IntuitAccount
       if intuit_account
-        Rails.cache.write(intuit_account.menu_proxy_code_id, html)
+        Rails.cache.write("your user-specific cache key", html)
       end
       render(:text => html) and return
     else
