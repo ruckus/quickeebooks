@@ -82,6 +82,77 @@ end
 ```
 :star: Also, check out regular Quickeebooks contributor, <a href="https://github.com/minimul" target="_blank">minimul</a>'s, article [Get started integrating Rails 4 and QuickBooks Online with the Quickeebooks Gem](http://minimul.com/get-started-integrating-rails-4-and-quickbooks-online-with-the-quickeebooks-gem-part-1.html) for a step-by-step guide.
 
+
+## BlueDot / MenuProx
+
+In the Javascript embed:
+
+```HTML
+<script>
+intuit.ipp.anywhere.setup({menuProxy: '/path/to/blue-dot', grantUrl: '/path/to/your-flow-start'});
+</script>
+```
+
+You need to refer to 2 variables: `menuProxy` and `grantUrl`.
+
+### BlueDot
+
+`menuProxy` is the route in your app which fetches the BlueDot menu contents from Intuit. This is an
+authenticated call against Intuit with active OAuth tokens. You need to cache the results of the BlueDot contents
+after you fetch it from Intuit.
+
+Example implemenation:
+
+```HTML
+<script>
+intuit.ipp.anywhere.setup({menuProxy: '/intuit/blue-dot', /* .. snip .. */});
+</script>
+
+```ruby
+
+# config/routes.rb
+get '/intuit/blue-dot' => 'intuit#bluedot'
+
+# app/controllers/intuit_controller.rb
+class IntuitController < ApplicationController
+  def bluedot
+    intuit_account = IntuitAccount.find("...")
+
+    unless intuit_account
+      render(:text => "You are not connected to Intuit.") and return
+    end
+
+    html = Rails.cache.read("your user-specific cache key")
+    if !html.blank?
+      render(:text => html) and return
+    end
+
+    # nope, contact Intuit
+    access_token = intuit_account.access_token
+    access_secret = intuit_account.access_secret
+    consumer = OAuth::AccessToken.new($qb_oauth_consumer, access_token, access_secret)
+    response = consumer.request(:get, "https://appcenter.intuit.com/api/v1/Account/AppMenu")
+    if response && response.body
+      html = response.body
+
+      # cache this if we have a valid IntuitAccount
+      if intuit_account
+        Rails.cache.write(intuit_account.menu_proxy_code_id, html)
+      end
+      render(:text => html) and return
+    else
+      Rails.logger.info("Error fetching Intuit Menu proxy code: #{response.inspect}")
+    end
+    render(:text => "error") and return
+  end
+
+end
+```
+
+### GrantUrl
+
+Is your route to the `oauth_callback` action.
+
 ## Creating an OAuth Access Token
 
 Once you have your users OAuth Token & Secret you can initialize your `OAuth Consumer` and create a `OAuth Client` using the `$qb_oauth_consumer` you created earlier in your Rails initializer:
