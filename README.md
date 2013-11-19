@@ -105,8 +105,9 @@ Example implemenation:
 
 ```HTML
 <script>
-intuit.ipp.anywhere.setup({menuProxy: '/intuit/blue-dot', /* .. snip .. */});
+intuit.ipp.anywhere.setup({menuProxy: '/intuit/blue-dot', grantUrl: '/intuit/authenticate'});
 </script>
+```
 
 ```ruby
 
