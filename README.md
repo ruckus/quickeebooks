@@ -1,3 +1,8 @@
+# NOTE
+This library only supports Intuit API V2 - If you're looking for Intuit V3 support then you need to use
+my other library: [quickbooks-ruby](https://github.com/ruckus/quickbooks-ruby)
+
+
 # Quickeebooks
 
 Integration with Quickbooks Online via the Intuit Data Services REST API.
