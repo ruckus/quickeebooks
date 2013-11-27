@@ -10,6 +10,11 @@ module Quickeebooks
           fetch_collection(Quickeebooks::Windows::Model::Account, nil, filters, page, per_page, sort, options)
         end
 
+        def fetch_by_id(id, idDomain = 'QB', options = {})
+          url = "#{url_for_resource(Quickeebooks::Windows::Model::Account::REST_RESOURCE)}/#{id}"
+          fetch_object(Quickeebooks::Windows::Model::Account, url, {:idDomain => idDomain})
+        end
+
         def create(account)
           # XML is a wrapped 'object' where the type is specified as an attribute
           #    <Object xsi:type="Account">

@@ -463,7 +463,7 @@ Vendor            | yes    | yes    | yes  | yes    | yes         |
 
 Entity            | Create | Update | List | Delete | Fetch by ID | Other
 ---               | ---    | ---    | ---  | ---    | ---         | ---
-Account           | yes    | no     | yes  | no     | no
+Account           | yes    | no     | yes  | no     | yes
 Bill              | no     | no     | no   | no     | no
 Bill Payment      | no     | no     | no   | no     | no
 Company Meta Data | no     | no     | no   | no     | no          | `load`
