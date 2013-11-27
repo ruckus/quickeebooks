@@ -24,6 +24,7 @@ describe "Quickeebooks::Online::Service::TimeActivity" do
     time_activity.hours = 10
     time_activity.customer_id = "3794"
     time_activity.minutes = 5
+    time_activity.vendor = Quickeebooks::Online::Model::TimeActivityVendor.new
     result = @service.create(time_activity)
     result.id.value.to_i.should > 0
     result.vendor.is_a?(Quickeebooks::Online::Model::TimeActivityVendor)
