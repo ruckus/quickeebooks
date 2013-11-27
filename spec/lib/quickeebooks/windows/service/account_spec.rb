@@ -21,4 +21,12 @@ describe "Quickeebooks::Windows::Service::Account" do
     create_response.success?.should == true
     create_response.success.request_name.should == "AccountAdd"
   end
+
+  it "can fetch an Account by ID" do
+    xml = windowsFixture("account.xml")
+    model = Quickeebooks::Windows::Model::Account
+    FakeWeb.register_uri(:get, "#{@service.url_for_resource(model::REST_RESOURCE)}/407?idDomain=QB", :status => ["200", "OK"], :body => xml)
+    account = @service.fetch_by_id(407)
+    account.name.should == "Sales"
+  end
 end
