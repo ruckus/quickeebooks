@@ -50,7 +50,7 @@ module Quickeebooks
         xml_accessor :ship_method_id, :from => 'ShipMethodId', :as => Quickeebooks::Windows::Model::Id
         xml_accessor :ship_method_name, :from => 'ShipMethodName'
         xml_accessor :remaining_credit, :from => 'Balance', :as => Float
-        xml_accessor :detail, :from => 'Detail', :as => Quickeebooks::Online::Model::PaymentDetail
+        xml_accessor :detail, :from => 'Detail', :as => Quickeebooks::Windows::Model::PaymentDetail
         xml_accessor :discount_amount, :from => 'DiscountAmt', :as => Float
         xml_accessor :discount_rate, :from => 'DiscountRate', :as => Float
         xml_accessor :discount_account_id, :from => 'DiscountAccountId'
