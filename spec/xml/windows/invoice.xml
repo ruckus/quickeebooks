@@ -14,9 +14,9 @@
 				<TxnDate>2013-01-23T00:00:00Z</TxnDate>
 				<Status>Paid</Status>
 				<CustomerId idDomain="QB">694</CustomerId>
-				<CustomerName>Cafe Smith</CustomerName>
+				<CustomerName>C&amp;S Wholesalers</CustomerName>
 				<RemitToId idDomain="QB">694</RemitToId>
-				<RemitToName>Cafe Smith</RemitToName>
+				<RemitToName>C&amp;S Wholesalers</RemitToName>
 				<SalesRepId idDomain="QB">15</SalesRepId>
 				<SalesRepName>OT</SalesRepName>
 				<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
@@ -24,7 +24,7 @@
 				<ShipDate>2013-01-23T00:00:00Z</ShipDate>
 				<SubTotalAmt>1520</SubTotalAmt>
 				<TaxId idDomain="QB">80</TaxId>
-				<TaxName>San Francisco County</TaxName>
+				<TaxName>Cheshire County</TaxName>
 				<TaxRate>8.5</TaxRate>
 				<TaxAmt>0</TaxAmt>
 				<TotalAmt>1520</TotalAmt>
@@ -39,19 +39,19 @@
 					<Id idDomain="QB">00000000000017bL</Id>
 					<Line1>1313</Line1>
 					<Line2>1313 Main Street</Line2>
-					<City>Napa</City>
-					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
-					<PostalCode>94559</PostalCode>
+					<City>Keene</City>
+					<CountrySubDivisionCode>NH</CountrySubDivisionCode>
+					<PostalCode>03457</PostalCode>
 					<Default>true</Default>
 					<Tag>Billing</Tag>
 				</BillAddr>
 				<ShipAddr>
 					<Id idDomain="QB">00000000000018TF</Id>
-					<Line1>Cafe Smith</Line1>
+					<Line1>C&amp;S Wholesalers</Line1>
 					<Line2>1313 Main Street</Line2>
-					<City>Napa</City>
-					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
-					<PostalCode>94559</PostalCode>
+					<City>Keene</City>
+					<CountrySubDivisionCode>NH</CountrySubDivisionCode>
+					<PostalCode>03457</PostalCode>
 					<Default>false</Default>
 					<Tag>Shipping</Tag>
 				</ShipAddr>
