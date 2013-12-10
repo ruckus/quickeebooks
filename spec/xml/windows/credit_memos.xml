@@ -1,0 +1,436 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+	<CreditMemos>
+		<CreditMemo>
+			<Id idDomain="NG">9107908</Id>
+			<SyncToken>2</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-10T18:38:01.125Z</CreateTime>
+				<LastUpdatedTime>2012-07-10T18:38:01.172Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">19</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Header>
+				<DocNumber>12-225</DocNumber>
+				<TxnDate>2012-07-10T00:00:00Z</TxnDate>
+				<Status>Payable</Status>
+				<CustomerId idDomain="QB">2</CustomerId>
+				<CustomerName>Zanotto's Fine Grocer</CustomerName>
+				<RemitToId idDomain="QB">2</RemitToId>
+				<RemitToName>Zanotto's Fine Grocer</RemitToName>
+				<ShipDate>2012-07-11T00:00:00Z</ShipDate>
+				<SubTotalAmt>384.48</SubTotalAmt>
+				<TaxRate>0</TaxRate>
+				<TaxAmt>0</TaxAmt>
+				<TotalAmt>384.48</TotalAmt>
+				<ToBePrinted>false</ToBePrinted>
+				<ToBeEmailed>false</ToBeEmailed>
+				<ARAccountId idDomain="QB">30</ARAccountId>
+				<ARAccountName>Accounts Receivable</ARAccountName>
+				<DueDate>2012-08-09T00:00:00Z</DueDate>
+				<BillAddr>
+					<Id idDomain="QB">00000000000000tW</Id>
+					<Line1>981 Lusk Blvd.</Line1>
+					<City>San Jose</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95126</PostalCode>
+					<Default>true</Default>
+					<Tag>Billing</Tag>
+				</BillAddr>
+				<ShipAddr>
+					<Id idDomain="QB">00000000000000uV</Id>
+					<Line1>981 Lusk Blvd.</Line1>
+					<City>San Jose</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95126</PostalCode>
+					<Default>false</Default>
+					<Tag>Shipping</Tag>
+				</ShipAddr>
+				<BillEmail>thorn@zanottos.com</BillEmail>
+				<Balance>384.48</Balance>
+			</Header>
+			<Line>
+				<Id idDomain="QB">21</Id>
+				<Desc>PVR2920</Desc>
+				<Amount>384.48</Amount>
+				<Taxable>false</Taxable>
+				<ItemId idDomain="QB">4</ItemId>
+				<ItemName>2005 Silver Oak Chardonnay</ItemName>
+				<ItemType>Other Charge</ItemType>
+				<UnitPrice>144</UnitPrice>
+				<Qty>2.67</Qty>
+				<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
+				<SalesTaxCodeName>Non</SalesTaxCodeName>
+			</Line>
+		</CreditMemo>
+		<CreditMemo>
+			<Id idDomain="NG">9106187</Id>
+			<SyncToken>2</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-10T18:36:57.122Z</CreateTime>
+				<LastUpdatedTime>2012-07-10T18:36:57.200Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">16</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Header>
+				<DocNumber>1-4</DocNumber>
+				<TxnDate>2012-07-09T00:00:00Z</TxnDate>
+				<Status>Payable</Status>
+				<CustomerId idDomain="QB">2</CustomerId>
+				<CustomerName>Zanotto's Fine Grocer</CustomerName>
+				<RemitToId idDomain="QB">2</RemitToId>
+				<RemitToName>Zanotto's Fine Grocer</RemitToName>
+				<ShipDate>2012-07-11T00:00:00Z</ShipDate>
+				<SubTotalAmt>384.48</SubTotalAmt>
+				<TaxRate>0</TaxRate>
+				<TaxAmt>0</TaxAmt>
+				<TotalAmt>384.48</TotalAmt>
+				<ToBePrinted>false</ToBePrinted>
+				<ToBeEmailed>false</ToBeEmailed>
+				<ARAccountId idDomain="QB">30</ARAccountId>
+				<ARAccountName>Accounts Receivable</ARAccountName>
+				<DueDate>2012-08-09T00:00:00Z</DueDate>
+				<BillAddr>
+					<Id idDomain="QB">00000000000000uR</Id>
+					<Line1>100 S. Park Drive</Line1>
+					<Line2>Suite 200</Line2>
+					<City>San Jose</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95126</PostalCode>
+					<Default>false</Default>
+					<Tag>Billing</Tag>
+				</BillAddr>
+				<ShipAddr>
+					<Id idDomain="QB">00000000000000uQ</Id>
+					<Line1>999 Widmore Ave.</Line1>
+					<City>Santa Cruz</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95060</PostalCode>
+					<Default>false</Default>
+					<Tag>Shipping</Tag>
+				</ShipAddr>
+				<Balance>384.48</Balance>
+			</Header>
+			<Line>
+				<Id idDomain="QB">18</Id>
+				<Desc>PVR2920</Desc>
+				<Amount>384.48</Amount>
+				<Taxable>false</Taxable>
+				<ItemId idDomain="QB">4</ItemId>
+				<ItemName>2005 Silver Oak Chardonnay</ItemName>
+				<ItemType>Other Charge</ItemType>
+				<UnitPrice>144</UnitPrice>
+				<Qty>2.67</Qty>
+				<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
+				<SalesTaxCodeName>Non</SalesTaxCodeName>
+			</Line>
+		</CreditMemo>
+		<CreditMemo>
+			<Id idDomain="NG">9102882</Id>
+			<SyncToken>2</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-10T18:36:56.950Z</CreateTime>
+				<LastUpdatedTime>2012-07-10T18:36:57.044Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">13</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Header>
+				<DocNumber>12-224</DocNumber>
+				<TxnDate>2012-07-09T00:00:00Z</TxnDate>
+				<Status>Payable</Status>
+				<CustomerId idDomain="QB">2</CustomerId>
+				<CustomerName>Zanotto's Fine Grocer</CustomerName>
+				<RemitToId idDomain="QB">2</RemitToId>
+				<RemitToName>Zanotto's Fine Grocer</RemitToName>
+				<ShipDate>2012-07-11T00:00:00Z</ShipDate>
+				<SubTotalAmt>384.48</SubTotalAmt>
+				<TaxRate>0</TaxRate>
+				<TaxAmt>0</TaxAmt>
+				<TotalAmt>384.48</TotalAmt>
+				<ToBePrinted>false</ToBePrinted>
+				<ToBeEmailed>false</ToBeEmailed>
+				<ARAccountId idDomain="QB">30</ARAccountId>
+				<ARAccountName>Accounts Receivable</ARAccountName>
+				<DueDate>2012-08-09T00:00:00Z</DueDate>
+				<BillAddr>
+					<Id idDomain="QB">00000000000000uL</Id>
+					<Line1>100 S. Park Drive</Line1>
+					<Line2>Suite 200</Line2>
+					<City>San Jose</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95126</PostalCode>
+					<Default>false</Default>
+					<Tag>Billing</Tag>
+				</BillAddr>
+				<ShipAddr>
+					<Id idDomain="QB">00000000000000uK</Id>
+					<Line1>999 Widmore Ave.</Line1>
+					<City>Santa Cruz</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95060</PostalCode>
+					<Default>false</Default>
+					<Tag>Shipping</Tag>
+				</ShipAddr>
+				<Balance>384.48</Balance>
+			</Header>
+			<Line>
+				<Id idDomain="QB">15</Id>
+				<Desc>PVR2920</Desc>
+				<Amount>384.48</Amount>
+				<Taxable>false</Taxable>
+				<ItemId idDomain="QB">4</ItemId>
+				<ItemName>2005 Silver Oak Chardonnay</ItemName>
+				<ItemType>Other Charge</ItemType>
+				<UnitPrice>144</UnitPrice>
+				<Qty>2.67</Qty>
+				<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
+				<SalesTaxCodeName>Non</SalesTaxCodeName>
+			</Line>
+		</CreditMemo>
+		<CreditMemo>
+			<Id idDomain="NG">9099668</Id>
+			<SyncToken>2</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-10T18:36:56.731Z</CreateTime>
+				<LastUpdatedTime>2012-07-10T18:36:56.872Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">10</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Header>
+				<DocNumber>2-224</DocNumber>
+				<TxnDate>2012-07-09T00:00:00Z</TxnDate>
+				<Status>Payable</Status>
+				<CustomerId idDomain="QB">2</CustomerId>
+				<CustomerName>Zanotto's Fine Grocer</CustomerName>
+				<RemitToId idDomain="QB">2</RemitToId>
+				<RemitToName>Zanotto's Fine Grocer</RemitToName>
+				<ShipDate>2012-07-11T00:00:00Z</ShipDate>
+				<SubTotalAmt>384.48</SubTotalAmt>
+				<TaxRate>0</TaxRate>
+				<TaxAmt>0</TaxAmt>
+				<TotalAmt>384.48</TotalAmt>
+				<ToBePrinted>false</ToBePrinted>
+				<ToBeEmailed>false</ToBeEmailed>
+				<ARAccountId idDomain="QB">30</ARAccountId>
+				<ARAccountName>Accounts Receivable</ARAccountName>
+				<DueDate>2012-08-09T00:00:00Z</DueDate>
+				<BillAddr>
+					<Id idDomain="QB">00000000000000uF</Id>
+					<Line1>100 S. Park Drive</Line1>
+					<Line2>Suite 200</Line2>
+					<City>San Jose</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95126</PostalCode>
+					<Default>false</Default>
+					<Tag>Billing</Tag>
+				</BillAddr>
+				<ShipAddr>
+					<Id idDomain="QB">00000000000000uE</Id>
+					<Line1>999 Widmore Ave.</Line1>
+					<City>Santa Cruz</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95060</PostalCode>
+					<Default>false</Default>
+					<Tag>Shipping</Tag>
+				</ShipAddr>
+				<Balance>384.48</Balance>
+			</Header>
+			<Line>
+				<Id idDomain="QB">12</Id>
+				<Desc>PVR2920</Desc>
+				<Amount>384.48</Amount>
+				<Taxable>false</Taxable>
+				<ItemId idDomain="QB">4</ItemId>
+				<ItemName>2005 Silver Oak Chardonnay</ItemName>
+				<ItemType>Other Charge</ItemType>
+				<UnitPrice>144</UnitPrice>
+				<Qty>2.67</Qty>
+				<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
+				<SalesTaxCodeName>Non</SalesTaxCodeName>
+			</Line>
+		</CreditMemo>
+		<CreditMemo>
+			<Id idDomain="NG">9106156</Id>
+			<SyncToken>2</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-10T00:30:16.688Z</CreateTime>
+				<LastUpdatedTime>2012-07-10T00:30:16.735Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">7</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Header>
+				<DocNumber>1-3</DocNumber>
+				<TxnDate>2012-07-09T00:00:00Z</TxnDate>
+				<Status>Payable</Status>
+				<CustomerId idDomain="QB">2</CustomerId>
+				<CustomerName>Zanotto's Fine Grocer</CustomerName>
+				<RemitToId idDomain="QB">2</RemitToId>
+				<RemitToName>Zanotto's Fine Grocer</RemitToName>
+				<ShipDate>2012-07-11T00:00:00Z</ShipDate>
+				<SubTotalAmt>384.48</SubTotalAmt>
+				<TaxRate>0</TaxRate>
+				<TaxAmt>0</TaxAmt>
+				<TotalAmt>384.48</TotalAmt>
+				<ToBePrinted>false</ToBePrinted>
+				<ToBeEmailed>false</ToBeEmailed>
+				<ARAccountId idDomain="QB">30</ARAccountId>
+				<ARAccountName>Accounts Receivable</ARAccountName>
+				<DueDate>2012-08-09T00:00:00Z</DueDate>
+				<BillAddr>
+					<Id idDomain="QB">00000000000000u2</Id>
+					<Line1>100 S. Park Drive</Line1>
+					<Line2>Suite 200</Line2>
+					<City>San Jose</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95126</PostalCode>
+					<Default>false</Default>
+					<Tag>Billing</Tag>
+				</BillAddr>
+				<ShipAddr>
+					<Id idDomain="QB">00000000000000u1</Id>
+					<Line1>999 Widmore Ave.</Line1>
+					<City>Santa Cruz</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95060</PostalCode>
+					<Default>false</Default>
+					<Tag>Shipping</Tag>
+				</ShipAddr>
+				<Balance>384.48</Balance>
+			</Header>
+			<Line>
+				<Id idDomain="QB">9</Id>
+				<Desc>PVR2920</Desc>
+				<Amount>384.48</Amount>
+				<Taxable>false</Taxable>
+				<ItemId idDomain="QB">4</ItemId>
+				<ItemName>2005 Silver Oak Chardonnay</ItemName>
+				<ItemType>Other Charge</ItemType>
+				<UnitPrice>144</UnitPrice>
+				<Qty>2.67</Qty>
+				<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
+				<SalesTaxCodeName>Non</SalesTaxCodeName>
+			</Line>
+		</CreditMemo>
+		<CreditMemo>
+			<Id idDomain="NG">9102858</Id>
+			<SyncToken>2</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-10T00:26:52.356Z</CreateTime>
+				<LastUpdatedTime>2012-07-10T00:26:52.419Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">4</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Header>
+				<DocNumber>1-1</DocNumber>
+				<TxnDate>2012-07-09T00:00:00Z</TxnDate>
+				<Status>Payable</Status>
+				<CustomerId idDomain="QB">2</CustomerId>
+				<CustomerName>Zanotto's Fine Grocer</CustomerName>
+				<RemitToId idDomain="QB">2</RemitToId>
+				<RemitToName>Zanotto's Fine Grocer</RemitToName>
+				<ShipDate>2012-07-11T00:00:00Z</ShipDate>
+				<SubTotalAmt>384.48</SubTotalAmt>
+				<TaxRate>0</TaxRate>
+				<TaxAmt>0</TaxAmt>
+				<TotalAmt>384.48</TotalAmt>
+				<ToBePrinted>false</ToBePrinted>
+				<ToBeEmailed>false</ToBeEmailed>
+				<ARAccountId idDomain="QB">30</ARAccountId>
+				<ARAccountName>Accounts Receivable</ARAccountName>
+				<DueDate>2012-08-09T00:00:00Z</DueDate>
+				<BillAddr>
+					<Id idDomain="QB">00000000000000tr</Id>
+					<Line1>100 S. Park Drive</Line1>
+					<Line2>Suite 200</Line2>
+					<City>San Jose</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95126</PostalCode>
+					<Default>false</Default>
+					<Tag>Billing</Tag>
+				</BillAddr>
+				<ShipAddr>
+					<Id idDomain="QB">00000000000000tq</Id>
+					<Line1>999 Widmore Ave.</Line1>
+					<City>Santa Cruz</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95060</PostalCode>
+					<Default>false</Default>
+					<Tag>Shipping</Tag>
+				</ShipAddr>
+				<Balance>384.48</Balance>
+			</Header>
+			<Line>
+				<Id idDomain="QB">6</Id>
+				<Amount>384.48</Amount>
+				<Taxable>false</Taxable>
+				<ItemId idDomain="QB">4</ItemId>
+				<ItemName>2005 Silver Oak Chardonnay</ItemName>
+				<ItemType>Other Charge</ItemType>
+				<UnitPrice>144</UnitPrice>
+				<Qty>2.67</Qty>
+				<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
+				<SalesTaxCodeName>Non</SalesTaxCodeName>
+			</Line>
+		</CreditMemo>
+		<CreditMemo>
+			<Id idDomain="NG">9099632</Id>
+			<SyncToken>2</SyncToken>
+			<MetaData>
+				<CreateTime>2012-07-10T00:21:33.287Z</CreateTime>
+				<LastUpdatedTime>2012-07-10T00:21:33.365Z</LastUpdatedTime>
+			</MetaData>
+			<ExternalKey idDomain="QB">1</ExternalKey>
+			<Synchronized>true</Synchronized>
+			<Header>
+				<DocNumber>1-1</DocNumber>
+				<TxnDate>2012-07-09T00:00:00Z</TxnDate>
+				<Status>Payable</Status>
+				<CustomerId idDomain="QB">2</CustomerId>
+				<CustomerName>Zanotto's Fine Grocer</CustomerName>
+				<RemitToId idDomain="QB">2</RemitToId>
+				<RemitToName>Zanotto's Fine Grocer</RemitToName>
+				<ShipDate>2012-07-11T00:00:00Z</ShipDate>
+				<SubTotalAmt>384.48</SubTotalAmt>
+				<TaxRate>0</TaxRate>
+				<TaxAmt>0</TaxAmt>
+				<TotalAmt>384.48</TotalAmt>
+				<ToBePrinted>false</ToBePrinted>
+				<ToBeEmailed>false</ToBeEmailed>
+				<ARAccountId idDomain="QB">30</ARAccountId>
+				<ARAccountName>Accounts Receivable</ARAccountName>
+				<DueDate>2012-08-09T00:00:00Z</DueDate>
+				<BillAddr>
+					<Id idDomain="QB">00000000000000tj</Id>
+					<Line1>100 S. Park Drive</Line1>
+					<Line2>Suite 200</Line2>
+					<City>San Jose</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95126</PostalCode>
+					<Default>false</Default>
+					<Tag>Billing</Tag>
+				</BillAddr>
+				<ShipAddr>
+					<Id idDomain="QB">00000000000000ti</Id>
+					<Line1>999 Widmore Ave.</Line1>
+					<City>Santa Cruz</City>
+					<CountrySubDivisionCode>CA</CountrySubDivisionCode>
+					<PostalCode>95060</PostalCode>
+					<Default>false</Default>
+					<Tag>Shipping</Tag>
+				</ShipAddr>
+				<Balance>384.48</Balance>
+			</Header>
+			<Line>
+				<Id idDomain="QB">3</Id>
+				<Amount>384.48</Amount>
+				<Taxable>false</Taxable>
+				<ItemId idDomain="QB">4</ItemId>
+				<ItemName>2005 Silver Oak Chardonnay</ItemName>
+				<ItemType>Other Charge</ItemType>
+				<UnitPrice>144</UnitPrice>
+				<Qty>2.67</Qty>
+				<SalesTaxCodeId idDomain="QB">2</SalesTaxCodeId>
+				<SalesTaxCodeName>Non</SalesTaxCodeName>
+			</Line>
+		</CreditMemo>
+	</CreditMemos>
+</RestResponse>
