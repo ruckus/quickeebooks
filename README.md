@@ -439,6 +439,7 @@ Bill              | yes    | yes    | yes  | yes    | yes
 Bill Payment      | yes    | yes    | yes  | yes    | yes
 Class             | yes    | yes    | yes  | yes    | yes
 Company Meta Data | no     | no     | no   | no     | no          | `load`
+Credit Memo       | n/a    | n/a    | n/a  | n/a    | n/a         |
 Customer          | yes    | yes    | yes  | yes    | yes         |
 Employee          | yes    | yes    | yes  | yes    | yes         |
 Entitlement       | n/a    | n/a    | n/a  | n/a    | n/a         | `status`
@@ -467,6 +468,7 @@ Account           | yes    | no     | yes  | no     | yes
 Bill              | no     | no     | no   | no     | no
 Bill Payment      | no     | no     | no   | no     | no
 Company Meta Data | no     | no     | no   | no     | no          | `load`
+Credit Memo       | yes    | yes    | yes  | no     | yes         |
 Customer          | yes    | yes    | yes  | no     | yes         |
 Employee          | yes    | no     | yes  | no     | no          |
 Entitlement       | n/a    | n/a    | n/a  | n/a    | n/a         |
