@@ -1,0 +1,11 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+	<Success RequestId="feee78faac164b789f103ee6d217a770">
+		<ObjectRef>
+			<Id idDomain="NG">9107908</Id>
+			<SyncToken>1</SyncToken>
+			<LastUpdatedTime>2012-07-10T18:37:38Z</LastUpdatedTime>
+		</ObjectRef>
+		<RequestName>CreditMemoAdd</RequestName>
+		<ProcessedTime>2012-07-10T18:37:38Z</ProcessedTime>
+	</Success>
+</RestResponse>
