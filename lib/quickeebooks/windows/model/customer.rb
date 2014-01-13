@@ -128,8 +128,8 @@ module Quickeebooks
         end
 
         def require_an_address
-          if addresses.nil? || (addresses.is_a?(Array) && addresses.empty?)
-            errors.add(:addresses, "Must provide at least one address for this Customer.")
+          if (addresses.is_a?(Array) && addresses.empty?)
+            errors.add(:addresses, "Cannot send an empty address.")
           end
         end
 
