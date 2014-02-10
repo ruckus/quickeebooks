@@ -15,16 +15,21 @@ module Quickeebooks
         xml_convention :camelcase
         xml_accessor :offering_id
         xml_accessor :sync_status_param, :from => 'SyncStatusParam', :as => Quickeebooks::Windows::Model::SyncStatusParam
+        xml_accessor :ng_id_set, :from => 'NgIdSet', :as => Quickeebooks::Windows::Model::NgIdSet
 
-        def initialize(id = nil, type = nil)
+        def initialize(id = nil, type = nil, options = { :sync_status => true })
           self.offering_id = DEFAULT_OFFERING_ID
 
           if id && type
-            self.sync_status_param = Quickeebooks::Windows::Model::SyncStatusParam.new(id)
-            self.sync_status_param.object_type = type
+            if options[:sync_status]
+              self.sync_status_param = Quickeebooks::Windows::Model::SyncStatusParam.new(id)
+              self.sync_status_param.object_type = type
+            else
+              self.ng_id_set = Quickeebooks::Windows::Model::NgIdSet.new(id)
+              self.ng_id_set.ng_object_type = type
+            end
           end
         end
-
       end
     end
   end
