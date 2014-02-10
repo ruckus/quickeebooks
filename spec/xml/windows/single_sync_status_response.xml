@@ -1,0 +1,16 @@
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:xdb="http://xmlns.oracle.com/xdb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.intuit.com/sb/cdm/v2 ../common/RestDataFilter.xsd">
+	<SyncStatusResponses> 
+		<SyncStatusResponse> 
+			<NgIdSet> 
+				<NgId>984434</NgId> 
+				<NgObjectType>Payment</NgObjectType> 
+			</NgIdSet> 
+			<RequestId>DE5403C9E3CADDD8E040900A0F1B294D</RequestId> 
+			<StateCode>8</StateCode> 
+			<StateDesc>Record netted with QB</StateDesc> 
+			<MessageCode>70</MessageCode> 
+			<MessageDesc>MBL Netter success using QB SDK ext_ack_id</MessageDesc> 
+			<ResponseLogTMS>2013-06-04T16:48:52.0Z</ResponseLogTMS> 
+		</SyncStatusResponse> 
+	</SyncStatusResponses>
+</RestResponse>
