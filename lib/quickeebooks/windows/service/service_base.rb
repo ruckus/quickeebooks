@@ -4,7 +4,7 @@ require 'cgi'
 require 'quickeebooks/common/logging'
 
 class IntuitRequestException < Exception
-  attr_accessor :code, :cause
+  attr_accessor :code, :cause, :request
   def initialize(msg)
     super(msg)
   end
@@ -195,7 +195,7 @@ module Quickeebooks
           log "BODY(#{body.class}) = #{body == nil ? "<NIL>" : body.inspect}"
           log "HEADERS = #{headers.inspect}"
           response = @oauth.request(method, url, body, headers)
-          check_response(response)
+          check_response(response, :request_xml => body)
         end
 
         def add_query_string_to_url(url, params)
@@ -206,7 +206,7 @@ module Quickeebooks
           end
         end
 
-        def check_response(response)
+        def check_response(response, options = {})
           log "RESPONSE CODE = #{response.code}"
           log "RESPONSE BODY = #{response.body}"
           parse_xml(response.body)
@@ -215,7 +215,7 @@ module Quickeebooks
           when 200
             # even HTTP 200 can contain an error, so we always have to peek for an Error
             if response_is_error?
-              parse_and_raise_exception
+              parse_and_raise_exception(options)
             else
               response
             end
@@ -224,17 +224,18 @@ module Quickeebooks
           when 401
             raise AuthorizationFailure
           when 400, 500
-            parse_and_raise_exception
+            parse_and_raise_exception(options)
           else
             raise "HTTP Error Code: #{status}, Msg: #{response.body}"
           end
         end
 
-        def parse_and_raise_exception
+        def parse_and_raise_exception(options)
           err = parse_intuit_error
           ex = IntuitRequestException.new(err[:message])
           ex.code = err[:code]
           ex.cause = err[:cause]
+          ex.request = options[:request_xml]
           raise ex
         end
 

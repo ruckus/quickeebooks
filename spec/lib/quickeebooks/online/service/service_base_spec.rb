@@ -51,6 +51,25 @@ describe "Quickeebooks::Online::Service::ServiceBase" do
 
     end
 
+    describe 'check_response' do
+      it "should throw request exception with no options" do
+        xml = onlineFixture('api_error.xml')
+        response = Struct.new(:code, :body).new(400, xml)
+        expect { @service.send(:check_response, response) }.to raise_error
+      end
+
+      it "should add post xml to request exception" do
+        xml = onlineFixture('api_error.xml')
+        xml2 = onlineFixture('customer.xml')
+        response = Struct.new(:code, :body).new(400, xml)
+        begin
+          @service.send(:check_response, response, :request_xml => xml2)
+        rescue IntuitRequestException => ex
+          ex.request.should == xml2
+        end
+      end
+    end
+
     context 'called from do_http_get' do
       it "without params" do
         url = "https://qbo.intuit.com/qbo1/rest/user/v2"
