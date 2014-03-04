@@ -3,6 +3,25 @@ describe "Quickeebooks::Windows::Service::ServiceBase" do
     construct_windows_service :service_base
   end
 
+  describe 'check_response' do
+    it "should throw request exception with no options" do
+      xml = onlineFixture('api_error.xml') # just use Online error fixture no difference
+      response = Struct.new(:code, :body).new(400, xml)
+      expect { @service.send(:check_response, response) }.to raise_error
+    end
+
+    it "should add post xml to request exception" do
+      xml = onlineFixture('api_error.xml')
+      xml2 = windowsFixture('customer.xml')
+      response = Struct.new(:code, :body).new(400, xml)
+      begin
+        @service.send(:check_response, response, :request_xml => xml2)
+      rescue IntuitRequestException => ex
+        ex.request.should == xml2
+      end
+    end
+  end
+
   describe "#fetch_collection" do
     let(:default_params){ "<StartPage>1</StartPage><ChunkSize>20</ChunkSize>" }
 

@@ -4,7 +4,7 @@ require 'cgi'
 require 'quickeebooks/common/logging'
 
 class IntuitRequestException < Exception
-  attr_accessor :code, :cause
+  attr_accessor :code, :cause, :request
   def initialize(msg)
     super(msg)
   end
@@ -148,7 +148,7 @@ module Quickeebooks
           log "HEADERS = #{headers.inspect}"
 
           response = @oauth.request(method, resource, body, headers)
-          check_response(response)
+          check_response(response, :request_xml => body)
         end
 
         def add_query_string_to_url(url, params)
@@ -159,7 +159,7 @@ module Quickeebooks
           end
         end
 
-        def check_response(response)
+        def check_response(response, options = {})
           log "RESPONSE CODE = #{response.code}"
           log "RESPONSE BODY = #{response.body}"
           status = response.code.to_i
@@ -175,6 +175,7 @@ module Quickeebooks
             ex = IntuitRequestException.new(err[:message])
             ex.code = err[:code]
             ex.cause = err[:cause]
+            ex.request = options[:request_xml]
             raise ex
           else
             raise "HTTP Error Code: #{status}, Msg: #{response.body}"
