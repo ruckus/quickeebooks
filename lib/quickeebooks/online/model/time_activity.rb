@@ -61,7 +61,7 @@ module Quickeebooks
         end
 
         def has_employee_node
-          unless self.vendor.is_a?(Quickeebooks::Online::Model::TimeActivityEmployee)
+          unless self.employee.is_a?(Quickeebooks::Online::Model::TimeActivityEmployee)
             errors.add(:employee, "can't be blank")
           end
         end
