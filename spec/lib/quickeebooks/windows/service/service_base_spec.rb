@@ -93,5 +93,30 @@ describe "Quickeebooks::Windows::Service::ServiceBase" do
 
       @service.send(:fetch_collection, Object, nil, nil, 1, 20, sorter)
     end
+
+    context 'adding attributes to the main query tag' do
+      it "should add 1 attribute" do
+        @service.should_receive(:do_http_post).with(@url,
+          post_request_query('ErroredObjectsOnly="true"'),
+          {},
+          {"Content-Type"=>"text/xml"})
+        @service.send(:fetch_collection, Object, nil, nil, 1, 20, nil, :query_tag_attributes => { 'ErroredObjectsOnly' => 'true'})
+      end
+
+      it "should add 2 attributes" do
+        @service.should_receive(:do_http_post).with(@url,
+          post_request_query('ErroredObjectsOnly="true" ActiveOnly="true"'),
+          {},
+          {"Content-Type"=>"text/xml"})
+        @service.send(:fetch_collection, Object, nil, nil, 1, 20, nil, :query_tag_attributes => { 'ErroredObjectsOnly' => 'true', 'ActiveOnly' => 'true'})
+      end
+    end
+  end
+
+  def post_request_query(attrs)
+    xml = '<?xml version="1.0" encoding="utf-8"?>' + "\n"
+    xml += '<FooQuery %s xmlns="http://www.intuit.com/sb/cdm/v2">'
+    xml += '<StartPage>1</StartPage><ChunkSize>20</ChunkSize></FooQuery>'
+    xml % [attrs]
   end
 end
