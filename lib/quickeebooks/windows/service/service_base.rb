@@ -119,7 +119,11 @@ module Quickeebooks
           post_body_tags << custom_field_query
 
           xml_query_tag = "#{model::XML_NODE}Query"
-          body = %Q{<?xml version="1.0" encoding="utf-8"?>\n<#{xml_query_tag} xmlns="http://www.intuit.com/sb/cdm/v2">#{post_body_tags.join}</#{xml_query_tag}>}
+          close_tag = xml_query_tag
+          if options[:query_tag_attributes] && options[:query_tag_attributes].is_a?(Hash)
+            xml_query_tag += " " +  options[:query_tag_attributes].collect{ |a| %{#{a.first}="#{a.last}"} }.join(" ")
+          end
+          body = %Q{<?xml version="1.0" encoding="utf-8"?>\n<#{xml_query_tag} xmlns="http://www.intuit.com/sb/cdm/v2">#{post_body_tags.join}</#{close_tag}>}
 
           response = do_http_post(url_for_resource(model::REST_RESOURCE), body, {}, {'Content-Type' => 'text/xml'})
           parse_collection(response, model)
