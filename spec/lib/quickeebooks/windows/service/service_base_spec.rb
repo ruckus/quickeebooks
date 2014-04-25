@@ -94,6 +94,25 @@ describe "Quickeebooks::Windows::Service::ServiceBase" do
       @service.send(:fetch_collection, Object, nil, nil, 1, 20, sorter)
     end
 
+    context 'logging' do
+
+      it "should log if Quickbooks.log = true" do
+        response_xml = wrap_result("<StartPage>1</StartPage><ChunkSize>10</ChunkSize>")
+        FakeWeb.register_uri(:post, @url, :status => ["200", "OK"], :body => response_xml)
+        Quickeebooks.log = true
+        Quickeebooks.logger.should_receive(:info).at_least(1)
+        @service.send(:do_http_post, @url)
+        Quickeebooks.log = false
+      end
+
+      it "log_xml should handle a non-xml string" do
+        assortment = [nil, 1, Object.new, [], {foo: 'bar'}]
+        assortment.each do |e|
+          expect{ Quickeebooks::Windows::Service::ServiceBase.new.log_xml(e) }.to_not raise_error
+        end
+      end
+    end
+
     context 'adding attributes to the main query tag' do
       it "should add 1 attribute" do
         @service.should_receive(:do_http_post).with(@url,
