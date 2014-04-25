@@ -144,7 +144,8 @@ module Quickeebooks
           log "------ New Request ------"
           log "METHOD = #{method}"
           log "RESOURCE = #{resource}"
-          log "BODY(#{body.class}) = #{body == nil ? "<NIL>" : body.inspect}"
+          log "REQUEST BODY:"
+          log(log_xml(body))
           log "HEADERS = #{headers.inspect}"
 
           response = @oauth.request(method, resource, body, headers)
@@ -161,7 +162,8 @@ module Quickeebooks
 
         def check_response(response, options = {})
           log "RESPONSE CODE = #{response.code}"
-          log "RESPONSE BODY = #{response.body}"
+          log "RESPONSE BODY:"
+          log(log_xml(response.body))
           status = response.code.to_i
           case status
           when 200
