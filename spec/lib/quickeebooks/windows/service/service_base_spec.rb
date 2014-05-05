@@ -106,7 +106,7 @@ describe "Quickeebooks::Windows::Service::ServiceBase" do
       end
 
       it "log_xml should handle a non-xml string" do
-        assortment = [nil, 1, Object.new, [], {foo: 'bar'}]
+        assortment = [nil, 1, Object.new, [], { :foo => 'bar' }]
         assortment.each do |e|
           expect{ Quickeebooks::Windows::Service::ServiceBase.new.log_xml(e) }.to_not raise_error
         end
