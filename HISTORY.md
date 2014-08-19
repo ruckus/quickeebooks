@@ -1,4 +1,9 @@
-## 0.1.21 (2013-10-21)
+## 0.1.23 (2013-08-19)
+
+* Fixed bug with wrong name for Phone association
+* Small fix for ability to pass in CustomQuery into the Item service
+
+## 0.1.22 (2013-10-21)
 
 * Implemented Online#SalesTerm
 
