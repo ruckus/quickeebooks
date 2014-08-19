@@ -8,7 +8,12 @@ module Quickeebooks
 
         def list(filters = [], page = 1, per_page = 20, sort = nil, options = {})
           filters << Quickeebooks::Shared::Service::Filter.new(:boolean, :field => 'CustomFieldEnable', :value => true)
-          fetch_collection(Quickeebooks::Windows::Model::Item, nil, filters, page, per_page, sort, options)
+          if options[:custom_field_query]
+            custom_field_query = options[:custom_field_query]
+          else
+            custom_field_query = nil
+          end
+          fetch_collection(Quickeebooks::Windows::Model::Item, custom_field_query, filters, page, per_page, sort, options)
         end
 
         def fetch_by_id(id, idDomain = 'QB', options = {})

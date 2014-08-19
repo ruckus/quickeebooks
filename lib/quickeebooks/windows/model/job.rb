@@ -14,6 +14,7 @@ module Quickeebooks
     module Model
       class Job < Quickeebooks::Windows::Model::IntuitType
         include ActiveModel::Validations
+        include Quickeebooks::Model::Addressable
 
         XML_COLLECTION_NODE = 'Jobs'
         XML_NODE = 'Job'
@@ -34,7 +35,7 @@ module Quickeebooks
         xml_accessor :type_of, :from => 'TypeOf'
         xml_accessor :name, :from => 'Name'
         xml_accessor :addresses, :from => 'Address', :as => [Quickeebooks::Windows::Model::Address]
-        xml_accessor :phone, :from => 'Phone', :as => [Quickeebooks::Windows::Model::Phone]
+        xml_accessor :phones, :from => 'Phone', :as => [Quickeebooks::Windows::Model::Phone]
         xml_accessor :web_site, :from => 'WebSite', :as => Quickeebooks::Windows::Model::WebSite
         xml_accessor :email, :from => 'Email', :as => Quickeebooks::Windows::Model::Email
         xml_accessor :external_id, :from => 'ExternalId'
