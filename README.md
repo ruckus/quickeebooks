@@ -1,6 +1,13 @@
-# NOTE
-This library only supports Intuit API V2 - If you're looking for Intuit V3 support then you need to use
-my other library: [quickbooks-ruby](https://github.com/ruckus/quickbooks-ruby)
+# IMPORTANT
+
+Intuit will be discontinuing the v2 API on June 1, 2016. At that point this library will not be usable.
+
+See this Intuit blog post for more details:
+
+https://developer.intuit.com/blog/2014/12/19/18-month-timeline-to-discontinue-quickbooks-online-v2-rest-api
+
+You probably don't want to be using this library and you want to be using the QBO v3 API, my other library
+[quickbooks-ruby](https://github.com/ruckus/quickbooks-ruby)
 
 
 # Quickeebooks
